@@ -31,6 +31,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res', 'src\\main\\res\\layouts\\home', 'src\\main\\res\\layouts\\housekeeping', 'src\\main\\res\\layouts\\booking', 'src\\main\\res\\layouts\\facilities', 'src\\main\\res\\layouts\\payment', 'src\\main\\res\\layouts\\chat'
+            }
+        }
+    }
 }
 
 dependencies {

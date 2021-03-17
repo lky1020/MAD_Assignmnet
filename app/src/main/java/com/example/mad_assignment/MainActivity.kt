@@ -1,24 +1,17 @@
 package com.example.mad_assignment
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mad_assignment.Class.User
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import java.lang.StringBuilder
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val database = FirebaseDatabase.getInstance()
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_housekeeping)
+
+        /*val database = FirebaseDatabase.getInstance()
         val myRef = database.reference.child("User")
 
         val btnCreate: Button = findViewById(R.id.btn_createUser)
@@ -52,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         btnGet.setOnClickListener(){
             myRef.addValueEventListener(getData)
             myRef.addListenerForSingleValueEvent(getData)
-        }
+        }*/
 
     }
 }
