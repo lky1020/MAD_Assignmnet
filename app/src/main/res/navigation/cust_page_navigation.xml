@@ -2,37 +2,37 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/cust_navigation"
+    app:startDestination="@+id/nav_home_cust">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.mad_assignment.Fragments.home.HomeFragment"
+        android:id="@+id/nav_home_cust"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_home.CustHomeFragment"
         android:label="@string/hotel_name"
-        tools:layout="@layout/fragment_customer_home" />
+        tools:layout="@layout/customer_fragment_home" />
 
     <fragment
-        android:id="@+id/nav_services"
-        android:name="com.example.mad_assignment.Fragments.services.ServicesFragment"
+        android:id="@+id/nav_services_cust"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_services.CustServicesFragment"
         android:label="Book Facilities"
-        tools:layout="@layout/fragment_customer_services" />
+        tools:layout="@layout/customer_fragment_services" />
 
     <fragment
-        android:id="@+id/nav_TransHis"
-        android:name="com.example.mad_assignment.Fragments.trans_history.TransHistoryFragment"
+        android:id="@+id/nav_TransHis_cust"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_trans_history.CustTransHistoryFragment"
         android:label="Transaction History"
-        tools:layout="@layout/fragment_customer_trans_history" />
+        tools:layout="@layout/customer_fragment_trans_history" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.mad_assignment.Fragments.profile.ProfileFragment"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_profile.CustProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <!--- will be change to direct logout -->
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.mad_assignment.Fragments.profile.ProfileFragment"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_profile.CustProfileFragment"
         android:label="FAKE LOGOUT"
         tools:layout="@layout/fragment_profile" />
 </navigation>

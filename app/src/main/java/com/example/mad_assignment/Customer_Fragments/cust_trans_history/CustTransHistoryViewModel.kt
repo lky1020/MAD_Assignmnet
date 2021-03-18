@@ -1,13 +1,13 @@
-package com.example.mad_assignment.Fragments.profile
+package com.example.mad_assignment.Customer_Fragments.cust_trans_history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProfileViewModel : ViewModel() {
+class CustTransHistoryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Profile Fragment"
+        value = "This is Transaction History Fragment"
     }
     val text: LiveData<String> = _text
 }

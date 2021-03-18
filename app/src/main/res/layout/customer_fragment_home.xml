@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".Customer_Fragments.cust_home.CustHomeFragment">
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
 
     <TextView
         android:id="@+id/tvTest"
@@ -10,12 +28,14 @@
         android:layout_height="wrap_content"
         android:text="Homepage"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234" />
 
     <Button
-        android:id="@+id/btn_createUser"
+        android:id="@+id/btn_createStaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create"
@@ -25,12 +45,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTest" />
 
     <Button
-        android:id="@+id/btn_getUser"
+        android:id="@+id/btn_getStaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_createUser" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_createStaff" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

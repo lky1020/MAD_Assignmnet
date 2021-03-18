@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Fragments.services
+package com.example.mad_assignment.Customer_Fragments.cust_home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
-class ServicesFragment : Fragment() {
+class CustHomeFragment : Fragment() {
 
-    private lateinit var servicesViewModel: ServicesViewModel
+    private lateinit var custHomeViewModel: CustHomeViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        servicesViewModel =
-                ViewModelProvider(this).get(ServicesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_customer_trans_history, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
-        servicesViewModel.text.observe(viewLifecycleOwner, Observer {
+        custHomeViewModel =
+                ViewModelProvider(this).get(CustHomeViewModel::class.java)
+        val root = inflater.inflate(R.layout.customer_fragment_home, container, false)
+        val textView: TextView = root.findViewById(R.id.text_home)
+        custHomeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Fragments.home
+package com.example.mad_assignment.Staff_Fragments.staff_profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
-class HomeFragment : Fragment() {
+class StaffProfileFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var staffProfileViewModel: StaffProfileViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_customer_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        staffProfileViewModel =
+                ViewModelProvider(this).get(StaffProfileViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_profile, container, false)
+        val textView: TextView = root.findViewById(R.id.text_profile)
+        staffProfileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

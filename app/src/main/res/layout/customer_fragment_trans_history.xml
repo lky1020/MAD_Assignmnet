@@ -4,17 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer_Fragments.cust_profile.CustProfileFragment">
+    tools:context=".Customer_Fragments.cust_trans_history.CustTransHistoryFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:text="@string/hello_blank_fragment" />
-
-
-    <TextView
-        android:id="@+id/text_profile"
+        android:id="@+id/text_transHis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

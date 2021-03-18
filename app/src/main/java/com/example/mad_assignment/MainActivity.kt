@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         //staff menu navigation
         val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
         btnStaffLogin.setOnClickListener(){
-            //menuNavigation()
+            val intent = Intent(this@MainActivity, StaffMain::class.java)
+            startActivity(intent)
         }
 
         /*val database = FirebaseDatabase.getInstance()

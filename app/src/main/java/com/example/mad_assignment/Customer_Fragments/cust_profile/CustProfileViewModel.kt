@@ -1,13 +1,13 @@
-package com.example.mad_assignment.Fragments.home
+package com.example.mad_assignment.Customer_Fragments.cust_profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class CustProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is Profile Fragment"
     }
     val text: LiveData<String> = _text
 }

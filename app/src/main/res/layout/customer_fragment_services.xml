@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.services.ServicesFragment">
+    tools:context=".Customer_Fragments.cust_services.CustServicesFragment">
 
     <TextView
-        android:id="@+id/text_gallery"
+        android:id="@+id/text_services"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

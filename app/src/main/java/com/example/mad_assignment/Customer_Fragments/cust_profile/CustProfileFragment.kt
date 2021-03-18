@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Fragments.trans_history
+package com.example.mad_assignment.Customer_Fragments.cust_profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
-class TransHistoryFragment : Fragment() {
+class CustProfileFragment : Fragment() {
 
-    private lateinit var transHistoryViewModel: TransHistoryViewModel
+    private lateinit var custProfileViewModel: CustProfileViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        transHistoryViewModel =
-                ViewModelProvider(this).get(TransHistoryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_customer_services, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        transHistoryViewModel.text.observe(viewLifecycleOwner, Observer {
+        custProfileViewModel =
+                ViewModelProvider(this).get(CustProfileViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_profile, container, false)
+        val textView: TextView = root.findViewById(R.id.text_profile)
+        custProfileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
