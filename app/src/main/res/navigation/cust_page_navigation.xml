@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.mad_assignment.Fragments.home.HomeFragment"
+        android:label="@string/hotel_name"
+        tools:layout="@layout/customer_home" />
+
+    <fragment
+        android:id="@+id/nav_services"
+        android:name="com.example.mad_assignment.Fragments.services.ServicesFragment"
+        android:label="Book Facilities"
+        tools:layout="@layout/customer_services" />
+
+    <fragment
+        android:id="@+id/nav_TransHis"
+        android:name="com.example.mad_assignment.Fragments.trans_history.TransHistoryFragment"
+        android:label="Transaction History"
+        tools:layout="@layout/customer_trans_history" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.mad_assignment.Fragments.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <!--- will be change to direct logout -->
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.mad_assignment.Fragments.profile.ProfileFragment"
+        android:label="FAKE LOGOUT"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
