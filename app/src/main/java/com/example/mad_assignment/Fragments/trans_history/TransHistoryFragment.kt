@@ -21,7 +21,7 @@ class TransHistoryFragment : Fragment() {
     ): View? {
         transHistoryViewModel =
                 ViewModelProvider(this).get(TransHistoryViewModel::class.java)
-        val root = inflater.inflate(R.layout.customer_services, container, false)
+        val root = inflater.inflate(R.layout.fragment_customer_services, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
         transHistoryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

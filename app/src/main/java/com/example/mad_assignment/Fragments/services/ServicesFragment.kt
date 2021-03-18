@@ -21,7 +21,7 @@ class ServicesFragment : Fragment() {
     ): View? {
         servicesViewModel =
                 ViewModelProvider(this).get(ServicesViewModel::class.java)
-        val root = inflater.inflate(R.layout.customer_trans_history, container, false)
+        val root = inflater.inflate(R.layout.fragment_customer_trans_history, container, false)
         val textView: TextView = root.findViewById(R.id.text_slideshow)
         servicesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
