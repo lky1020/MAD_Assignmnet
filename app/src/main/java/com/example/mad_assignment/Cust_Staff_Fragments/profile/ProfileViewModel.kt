@@ -1,13 +1,13 @@
-package com.example.mad_assignment.logout
+package com.example.mad_assignment.Cust_Staff_Fragments.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class LogoutViewModel : ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Click Logout button to logout out"
+        value = "This is Profile Fragment"
     }
     val text: LiveData<String> = _text
 }

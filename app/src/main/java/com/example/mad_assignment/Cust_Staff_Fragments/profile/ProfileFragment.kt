@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer_Fragments.cust_profile
+package com.example.mad_assignment.Cust_Staff_Fragments.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,20 +11,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
 //belongs to fragment_profile.xml
-class CustProfileFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var custProfileViewModel: CustProfileViewModel
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        custProfileViewModel =
-                ViewModelProvider(this).get(CustProfileViewModel::class.java)
+        profileViewModel =
+                ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_profile)
-        custProfileViewModel.text.observe(viewLifecycleOwner, Observer {
+        profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

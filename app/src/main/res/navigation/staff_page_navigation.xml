@@ -22,14 +22,14 @@ app:startDestination="@+id/nav_home_staff">
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.mad_assignment.Staff_Fragments.staff_profile.StaffProfileFragment"
+        android:name="com.example.mad_assignment.Cust_Staff_Fragments.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <!--- will be change to direct logout -->
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.mad_assignment.logout.LogoutFragment"
+        android:name="com.example.mad_assignment.Cust_Staff_Fragments.logout.LogoutFragment"
         android:label="FAKE LOGOUT"
         tools:layout="@layout/fragment_logout" />
 </navigation>
