@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".CustomerMain"></activity>
         <activity android:name=".StaffMain"></activity>
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login"></activity>
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register"></activity>
     </application>
 
 </manifest>
