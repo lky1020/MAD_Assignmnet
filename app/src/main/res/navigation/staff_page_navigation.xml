@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- declared the fragment page for each menu item -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/staff_navigation"
 app:startDestination="@+id/nav_home_staff">
 
-<fragment
-    android:id="@+id/nav_home_staff"
-    android:name="com.example.mad_assignment.Staff_Fragments.staff_home.StaffHomeFragment"
-    android:label="@string/hotel_name"
-    tools:layout="@layout/staff_fragment_home" />
+    <!-- follow the menu id & assign the layout to them -->
+    <fragment
+        android:id="@+id/nav_home_staff"
+        android:name="com.example.mad_assignment.Staff_Fragments.staff_home.StaffHomeFragment"
+        android:label="@string/hotel_name"
+        tools:layout="@layout/staff_fragment_home" />
 
-<fragment
-    android:id="@+id/nav_TransHis_staff"
-    android:name="com.example.mad_assignment.Staff_Fragments.staff_trans_history.StaffTransHistoryFragment"
-    android:label="Transaction History"
-    tools:layout="@layout/staff_fragment_trans_history" />
+    <fragment
+        android:id="@+id/nav_TransHis_staff"
+        android:name="com.example.mad_assignment.Staff_Fragments.staff_trans_history.StaffTransHistoryFragment"
+        android:label="Transaction History"
+        tools:layout="@layout/staff_fragment_trans_history" />
 
-<fragment
-    android:id="@+id/nav_profile"
-    android:name="com.example.mad_assignment.Staff_Fragments.staff_profile.StaffProfileFragment"
-    android:label="Profile"
-    tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.mad_assignment.Staff_Fragments.staff_profile.StaffProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
-<!--- will be change to direct logout -->
-<fragment
-    android:id="@+id/nav_logout"
-    android:name="com.example.mad_assignment.logout.LogoutFragment"
-    android:label="FAKE LOGOUT"
-    tools:layout="@layout/fragment_logout" />
+    <!--- will be change to direct logout -->
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.mad_assignment.logout.LogoutFragment"
+        android:label="FAKE LOGOUT"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

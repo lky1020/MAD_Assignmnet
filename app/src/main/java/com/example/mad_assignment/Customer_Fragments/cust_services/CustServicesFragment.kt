@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
+//belongs to customer_fragment_services.xml
 class CustServicesFragment : Fragment() {
 
     private lateinit var custServicesViewModel: CustServicesViewModel

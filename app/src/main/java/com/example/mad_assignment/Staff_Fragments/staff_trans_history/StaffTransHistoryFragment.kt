@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
+//belongs to staff_fragment_trans_history.xml
 class StaffTransHistoryFragment : Fragment() {
 
     private lateinit var staffTransHistoryViewModel: StaffTransHistoryViewModel

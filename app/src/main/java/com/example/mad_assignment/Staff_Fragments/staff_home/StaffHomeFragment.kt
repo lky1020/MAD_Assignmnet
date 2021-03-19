@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
+//belongs to staff_fragment_home.xml
 class StaffHomeFragment : Fragment() {
 
     private lateinit var staffHomeViewModel: StaffHomeViewModel

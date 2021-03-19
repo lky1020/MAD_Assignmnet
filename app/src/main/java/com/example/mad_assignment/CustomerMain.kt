@@ -16,32 +16,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
+//this CustomerMain is to enter & run the customer main page
 class CustomerMain: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var drawerLayout: DrawerLayout
-    val intent = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        //run cust_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cust_nav)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        drawerLayout = findViewById(R.id.drawer_layout_cust)
+
+        // get the whole menu drawer id from cust_nav.xml
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout_cust)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        navView.setNavigationItemSelectedListener(this.intent)
-
+        // get the located fragment part from cust_app_bar_main
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
 
+        // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home_cust,

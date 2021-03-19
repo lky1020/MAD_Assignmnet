@@ -14,11 +14,10 @@ import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 
+//belongs to fragment_logout.xml
 class LogoutFragment : Fragment() {
 
     private lateinit var logoutViewModel: LogoutViewModel
-
-
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -30,7 +29,7 @@ class LogoutFragment : Fragment() {
                 ViewModelProvider(this).get(LogoutViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_logout, container, false)
 
-        //confirm logout
+        //action of confirm logout button
         val btnLogout: Button = root.findViewById(R.id.btnLogout)
         btnLogout.setOnClickListener(){
             val intent = Intent(context, MainActivity::class.java)

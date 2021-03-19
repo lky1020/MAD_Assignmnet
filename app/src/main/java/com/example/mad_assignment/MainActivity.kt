@@ -8,23 +8,21 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        //the apps will first run the login page(login.xml)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        //setContentView(R.layout.cust_nav)
 
-        //temporary LOGIN detection
-        //customer menu navigation
+        /** temporary LOGIN detection **/
+
+        //click 'btnCustLogin' will proceed to CustomerMain.kt (will enter customer menu navigation)
         val btnCustLogin: Button = findViewById(R.id.btnCustLogin)
         btnCustLogin.setOnClickListener(){
             val intent = Intent(this@MainActivity, CustomerMain::class.java)
             startActivity(intent)
         }
 
-        //staff menu navigation
+        //click 'btnStafftLogin' will proceed to StaffMain.kt (will enter staff menu navigation)
         val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
         btnStaffLogin.setOnClickListener(){
             val intent = Intent(this@MainActivity, StaffMain::class.java)

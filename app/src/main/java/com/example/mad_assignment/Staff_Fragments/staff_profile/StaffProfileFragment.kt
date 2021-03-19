@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
+//belongs to fragment_profile.xml
 class StaffProfileFragment : Fragment() {
 
     private lateinit var staffProfileViewModel: StaffProfileViewModel
