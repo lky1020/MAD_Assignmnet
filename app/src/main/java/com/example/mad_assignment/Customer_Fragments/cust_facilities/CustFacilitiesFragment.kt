@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer_Fragments.cust_services
+package com.example.mad_assignment.Customer_Fragments.cust_facilities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,21 +10,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.R
 
-//belongs to customer_fragment_services.xml
-class CustServicesFragment : Fragment() {
+//belongs to customer_fragment_facilities.xml
+class CustFacilitiesFragment : Fragment() {
 
-    private lateinit var custServicesViewModel: CustServicesViewModel
+    private lateinit var custFacilitiesViewModel: CustFacilitiesViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        custServicesViewModel =
-                ViewModelProvider(this).get(CustServicesViewModel::class.java)
-        val root = inflater.inflate(R.layout.customer_fragment_services, container, false)
+        custFacilitiesViewModel =
+                ViewModelProvider(this).get(CustFacilitiesViewModel::class.java)
+        val root = inflater.inflate(R.layout.customer_fragment_facilities, container, false)
         val textView: TextView = root.findViewById(R.id.text_services)
-        custServicesViewModel.text.observe(viewLifecycleOwner, Observer {
+        custFacilitiesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

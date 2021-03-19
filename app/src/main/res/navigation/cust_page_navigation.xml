@@ -14,10 +14,16 @@
         tools:layout="@layout/customer_fragment_home" />
 
     <fragment
-        android:id="@+id/nav_services_cust"
-        android:name="com.example.mad_assignment.Customer_Fragments.cust_services.CustServicesFragment"
+        android:id="@+id/nav_facility"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_facilities.CustFacilitiesFragment"
         android:label="Book Facilities"
-        tools:layout="@layout/customer_fragment_services" />
+        tools:layout="@layout/customer_fragment_facilities" />
+
+    <fragment
+        android:id="@+id/nav_housekeeping"
+        android:name="com.example.mad_assignment.Customer_Fragments.cust_housekeeping.CustHousekeepingFragment"
+        android:label="Book Facilities"
+        tools:layout="@layout/customer_fragment_housekeeping" />
 
     <fragment
         android:id="@+id/nav_TransHis_cust"

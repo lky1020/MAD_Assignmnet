@@ -47,7 +47,8 @@ class CustomerMain: AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home_cust,
-                R.id.nav_services_cust,
+                R.id.nav_facility,
+                R.id.nav_housekeeping,
                 R.id.nav_TransHis_cust,
                 R.id.nav_profile,
                 R.id.nav_logout

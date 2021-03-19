@@ -3,13 +3,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" >
         <item android:id="@+id/nav_home_cust"
             android:icon="@drawable/ic_home"
             android:title="Home"/>
-        <item android:id="@+id/nav_services_cust"
+
+        <item android:id="@+id/nav_facility"
             android:icon="@drawable/ic_services"
-            android:title="Services"/>
+            android:title="Facilities"/>
+
+        <item android:id="@+id/nav_housekeeping"
+            android:icon="@drawable/ic_housekeeping"
+            android:title="Housekeeping"/>
+
         <item android:id="@+id/nav_TransHis_cust"
             android:icon="@drawable/ic_transaction_history"
             android:title="Transaction History"/>
