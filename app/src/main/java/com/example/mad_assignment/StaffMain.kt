@@ -23,6 +23,9 @@ class StaffMain: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.staff_nav)
 
+        //get the value pass from previous page
+        var staffPos: String? = intent.getStringExtra("StaffPosition")
+
         val toolbar: Toolbar = findViewById(R.id.toolbar_staff)
         setSupportActionBar(toolbar)
 
@@ -38,10 +41,16 @@ class StaffMain: AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view_staff)
         val navController = findNavController(R.id.nav_host_fragment_staff)
 
+
+        if (staffPos != null) {
+            detectStaffPosition(staffPos, navView)
+        }
+
         // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home_staff,
+                R.id.nav_report,
                 R.id.nav_TransHis_staff,
                 R.id.nav_profile,
                 R.id.nav_logout
@@ -55,5 +64,13 @@ class StaffMain: AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_staff)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun detectStaffPosition(staffPos:String, navView: NavigationView){
+        if(staffPos == "manager"){
+            navView.getMenu().findItem(R.id.nav_report).setVisible(true);
+        }else{ //staffPos == "staff"
+            navView.getMenu().findItem(R.id.nav_report).setVisible(false);
+        }
     }
 }

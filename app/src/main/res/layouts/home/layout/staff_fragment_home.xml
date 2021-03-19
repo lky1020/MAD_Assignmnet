@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer_Fragments.cust_home.CustHomeFragment">
+    tools:context=".Staff_Fragments.staff_home.StaffHomeFragment">
 
     <TextView
         android:id="@+id/text_home1"

@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    //temperary variable -- need REMOVE after use firebase
+    val role:String? = "manager"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //the apps will first run the login page(login.xml)
         super.onCreate(savedInstanceState)
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
         btnStaffLogin.setOnClickListener(){
             val intent = Intent(this@MainActivity, StaffMain::class.java)
+            intent.putExtra("StaffPosition",role)
             startActivity(intent)
         }
 
