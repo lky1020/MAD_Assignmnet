@@ -8,12 +8,13 @@ import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
 
+//connect with login.xml
 class Login: AppCompatActivity() {
+
     //temperary variable -- need REMOVE after use firebase
     val role:String? = "manager"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //the apps will first run the first page of the app (hotelapp_firstpage.xml)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
