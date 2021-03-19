@@ -19,7 +19,7 @@ class StaffMain: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //run cust_nav.xml, the main activity of the customer pages
+        //run staff_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
         setContentView(R.layout.staff_nav)
 
@@ -33,7 +33,7 @@ class StaffMain: AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        // get the whole menu drawer id from cust_nav.xml
+        // get the whole menu drawer id from staff_nav.xml
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout_staff)
         val navView: NavigationView = findViewById(R.id.nav_view_staff)
         val navController = findNavController(R.id.nav_host_fragment_staff)
