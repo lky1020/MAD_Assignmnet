@@ -18,6 +18,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <include layout="@layout/fragment_logout" android:visibility="gone"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_cust_service"
         android:layout_width="wrap_content"
