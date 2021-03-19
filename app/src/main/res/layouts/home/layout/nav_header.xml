@@ -11,9 +11,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
         android:paddingLeft="20dp"
-        android:text="Quad-Core Hotel"
+        android:paddingBottom="20dp"
+        android:text="@string/hotel_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
