@@ -1,6 +1,8 @@
 package com.example.mad_assignment
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,8 +18,14 @@ import com.google.android.material.snackbar.Snackbar
 //this StaffMain is to enter & run the staff main page --- will call by Login.kt
 class StaffMain: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var decorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //For status & navigation bar
+        decorView = window.decorView
+        decorView.systemUiVisibility = hideSystemBars()
+        //Remove status bar shadow in Navigation View
+        window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         //run staff_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
@@ -73,5 +81,23 @@ class StaffMain: AppCompatActivity() {
         }else{ //staffPos == "staff"
             navView.getMenu().findItem(R.id.nav_report).setVisible(false);
         }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus){
+            //Hide the status & navigation bar
+            decorView.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int{
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 }

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- declared the customer menu item (item name and icon) -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single" >
         <item android:id="@+id/nav_home_cust"
             android:icon="@drawable/ic_home"
-            android:title="Home"/>
+            android:title="@string/home"/>
 
         <item android:id="@+id/nav_facility"
             android:icon="@drawable/ic_services"
-            android:title="Facilities"/>
+            android:title="@string/facilities"/>
 
         <item android:id="@+id/nav_housekeeping"
             android:icon="@drawable/ic_housekeeping"
-            android:title="Housekeeping"/>
+            android:title="@string/housekeeping"/>
 
         <item android:id="@+id/nav_TransHis_cust"
             android:icon="@drawable/ic_transaction_history"
-            android:title="Transaction History"/>
+            android:title="@string/transaction_history"/>
+
         <item android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
-            android:title="Profile"/>
+            android:title="@string/profile"/>
 
         <item android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Logout"/>
+            android:title="@string/logout"/>
     </group>
-
 </menu>

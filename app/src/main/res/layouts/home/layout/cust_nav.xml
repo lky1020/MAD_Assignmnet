@@ -6,14 +6,13 @@
     android:id="@+id/drawer_layout_cust"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <!-- put app bar on background when menu is clicked-->
     <include
         layout="@layout/cust_app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
     <!-- get cust_drawer_menu.xml in app:menu (combine the item)-->
     <com.google.android.material.navigation.NavigationView
@@ -21,9 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/cust_drawer_menu"
-        app:itemTextColor="@color/blue"
-        app:itemIconTint="@color/blue"/>
+        app:menu="@menu/cust_drawer_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>

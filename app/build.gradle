@@ -34,7 +34,18 @@ android {
     sourceSets {
         main {
             res {
-                srcDirs 'src\\main\\res', 'src\\main\\res\\layouts\\home', 'src\\main\\res\\layouts\\housekeeping', 'src\\main\\res\\layouts\\booking', 'src\\main\\res\\layouts\\facilities', 'src\\main\\res\\layouts\\payment', 'src\\main\\res\\layouts\\chat', 'src\\main\\res\\layouts\\report', 'src\\main\\res\\layouts\\room_and_facility', 'src\\main\\res\\layouts\\menu_drawer', 'src\\main\\res\\layouts\\login_register'
+                srcDirs 'src\\main\\res',
+                        'src\\main\\res\\layouts\\home',
+                        'src\\main\\res\\layouts\\housekeeping',
+                        'src\\main\\res\\layouts\\booking',
+                        'src\\main\\res\\layouts\\facilities',
+                        'src\\main\\res\\layouts\\payment',
+                        'src\\main\\res\\layouts\\chat',
+                        'src\\main\\res\\layouts\\report',
+                        'src\\main\\res\\layouts\\room_and_facility',
+                        'src\\main\\res\\layouts\\menu_drawer',
+                        'src\\main\\res\\layouts\\login_register',
+                        'src\\main\\res\\login_register'
             }
         }
     }
