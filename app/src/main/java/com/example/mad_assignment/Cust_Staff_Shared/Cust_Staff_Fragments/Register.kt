@@ -9,9 +9,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 //connect with register.xml
 class Register: AppCompatActivity() {
@@ -47,7 +50,6 @@ class Register: AppCompatActivity() {
         mRegisterEmail =findViewById(R.id.edittext_register_email)
         btnSubmitRegister =findViewById(R.id.btn_register_submit)
 
-        mAuth = FirebaseAuth.getInstance()
         mRegisterProgressBar = findViewById(R.id.register_progressBar)
 
         //submit register info
@@ -89,6 +91,17 @@ class Register: AppCompatActivity() {
     fun createUser(name:String, userid:String, password:String,gender:String, phoneNum:String,email:String){
 
        //add database then use it and push to firebase
+        // Write a message to the database
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val userRef: DatabaseReference = database.getReference("User")
+
+        userRef.child(userid).child("Name").setValue(name)
+        userRef.child(userid).child("Password").setValue(password)
+        userRef.child(userid).child("Gender").setValue(gender)
+        userRef.child(userid).child("PhoneNum").setValue(phoneNum)
+        userRef.child(userid).child("Email").setValue(email)
+
+
 
     }
 
