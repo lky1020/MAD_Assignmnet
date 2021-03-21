@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- WILL MODIFY LATER -->
-
 
 <!-- Register page (not a fragment) -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -70,7 +68,7 @@
                 android:layout_width="343dp"
                 android:layout_height="630dp"
                 android:paddingTop="2dp"
-                android:src="@drawable/white_color_bg"
+                android:src="@drawable/white_bg_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.47"
@@ -161,49 +159,81 @@
 
 
             <!-- get password 1st time & 2nd time -->
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:id="@+id/layout_register_password1"
-                android:layout_width="285dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#808080"
                 app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
                 app:layout_constraintHorizontal_bias="0.517"
                 app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
                 app:layout_constraintTop_toBottomOf="@+id/layout_register_userid"
                 app:layout_constraintWidth_percent="0.7">
 
-                <EditText
-                    android:id="@+id/edittext_register_password1"
-                    android:layout_width="285dp"
-                    android:layout_height="45dp"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textSize="15dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#808080"
+                    android:orientation="horizontal">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/edittext_register_password1"
+                        android:layout_width="260dp"
+                        android:layout_height="45dp"
+                        android:ems="10"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textSize="15dp">
+                    </EditText>
 
-            <com.google.android.material.textfield.TextInputLayout
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--icon show password1 or not-->
+                <ImageView
+                    android:id="@+id/iv_password1_hidePassword"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_hide_psw"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_register_password2"
-                android:layout_width="285dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#808080"
                 app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
                 app:layout_constraintHorizontal_bias="0.517"
                 app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
                 app:layout_constraintTop_toBottomOf="@+id/layout_register_password1"
                 app:layout_constraintWidth_percent="0.7">
 
-                <EditText
-                    android:id="@+id/edittext_register_password2"
-                    android:layout_width="285dp"
-                    android:layout_height="45dp"
-                    android:ems="10"
-                    android:hint="Confirm Password"
-                    android:inputType="textPassword"
-                    android:textSize="15dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#808080">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/edittext_register_password2"
+                        android:layout_width="260dp"
+                        android:layout_height="45dp"
+                        android:ems="10"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        android:textSize="15dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--icon show password2 or not-->
+                <ImageView
+                    android:id="@+id/iv_password2_hidePassword"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_hide_psw" />
+
+            </LinearLayout>
 
             <!-- get phone number  -->
 
@@ -269,21 +299,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <ProgressBar
-        android:id="@+id/register_progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:progressTint="#673AB7"
-        android:secondaryProgressTint="#F16997"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

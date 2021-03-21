@@ -3,6 +3,8 @@ package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern
 import java.util.regex.Pattern.compile
+//--- compare if the user is exist b4: email/phone number is used b4 ---//
 
 //connect with register.xml
 class Register: AppCompatActivity() {
@@ -28,7 +31,6 @@ class Register: AppCompatActivity() {
     lateinit var mRegisterPhoneNum:EditText
     lateinit var mRegisterEmail: EditText
     lateinit var btnSubmitRegister: Button
-    lateinit var mRegisterProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,9 @@ class Register: AppCompatActivity() {
         mRegisterEmail =findViewById(R.id.edittext_register_email)
         btnSubmitRegister =findViewById(R.id.btn_register_submit)
 
-        mRegisterProgressBar = findViewById(R.id.register_progressBar)
+
+        //showPassword icon onclick listener
+        showorHidePassword()
 
         //submit register info
         btnSubmitRegister.setOnClickListener(){
@@ -86,7 +90,9 @@ class Register: AppCompatActivity() {
                 allFieldFilled = false
             }else{
                 //set phone num format and validate
-                validatePhoneNumFormat(phoneNum)
+                if(!validatePhoneNumFormat(phoneNum)){
+                    allFieldFilled = false
+                }
             }
 
             //validation for email
@@ -95,8 +101,9 @@ class Register: AppCompatActivity() {
                 allFieldFilled = false
             }else{
                 //set email format and validate
-                validateEmailFormat(email)
-
+                if(!validateEmailFormat(email)){
+                    allFieldFilled = false
+                }
             }
 
             //if all validate
@@ -104,9 +111,7 @@ class Register: AppCompatActivity() {
                 //pass register info to firebase function
                 createUser(name, userid, password, phoneNum, email)
             }
-
         }
-
 
     }
 
@@ -120,6 +125,8 @@ class Register: AppCompatActivity() {
         userRef.child(phoneNum).child("Password").setValue(password)
         userRef.child(phoneNum).child("Email").setValue(email)
         userRef.child(phoneNum).child("UserID").setValue(userid)
+        userRef.child(phoneNum).child("Role").setValue("Member")
+
 
         //redirect to login page
         val intent = Intent(this, Login::class.java)
@@ -127,7 +134,7 @@ class Register: AppCompatActivity() {
     }
 
     //Phone Number Format
-    private fun validatePhoneNumFormat(phoneNum:String){
+    private fun validatePhoneNumFormat(phoneNum:String):Boolean{
         val phoneREG = "^[0-9]{10,11}$"
         var PATTERN: Pattern = Pattern.compile(phoneREG)
         fun CharSequence.isPhoneNumber() : Boolean = PATTERN.matcher(this).find()
@@ -136,14 +143,18 @@ class Register: AppCompatActivity() {
         if(!(phoneNum.isPhoneNumber())){
             if(phoneNum.contains('-')){
                 mRegisterPhoneNum.error = "Phone number do not contains '-'"
+                return false
             }else{
                 mRegisterPhoneNum.error = "Invalid Phone Number"
+                return false
             }
 
         }
+        return true
     }
 
-    private fun validateEmailFormat(email:String){
+    // validate email function
+    private fun validateEmailFormat(email:String):Boolean{
         val emailREG = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                 "\\@" +"[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
                 "(" +"\\." +"[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +")+"
@@ -153,7 +164,42 @@ class Register: AppCompatActivity() {
         //validate email format
         if(!(email.isEmail())){
             mRegisterEmail.error = "Invalid Email"
+            return false
         }
+        return true
+    }
+
+    // show password icon function
+    private fun showorHidePassword(){
+
+        val showPsdIv1: ImageView = findViewById(R.id.iv_password1_hidePassword)
+        val showPsdIv2: ImageView = findViewById(R.id.iv_password2_hidePassword)
+        val password1:EditText = findViewById(R.id.edittext_register_password1)
+        val password2:EditText = findViewById(R.id.edittext_register_password2)
+
+        //password1 icon function
+        showPsdIv1.setOnClickListener(){
+            if(password1.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+                password1.transformationMethod = PasswordTransformationMethod.getInstance()
+                showPsdIv1.setImageResource(R.drawable.ic_hide_psw)
+            }else{
+                password1.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                showPsdIv1.setImageResource(R.drawable.ic_show_psw)
+            }
+        }
+
+        //password2 icon function
+        showPsdIv2.setOnClickListener(){
+            if(password2.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+                password2.transformationMethod = PasswordTransformationMethod.getInstance()
+                showPsdIv2.setImageResource(R.drawable.ic_hide_psw)
+            }else{
+                password2.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                showPsdIv2.setImageResource(R.drawable.ic_show_psw)
+            }
+        }
+
+
     }
 
 
