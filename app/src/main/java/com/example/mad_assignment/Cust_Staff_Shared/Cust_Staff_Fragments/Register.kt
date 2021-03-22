@@ -21,6 +21,7 @@ import java.util.regex.Pattern.compile
 //connect with register.xml
 class Register: AppCompatActivity() {
 
+    private lateinit var decorView: View
     lateinit var mRegisterName:EditText
     lateinit var mRegisterUserid:EditText
     lateinit var mRegisterPassword1:EditText
@@ -32,6 +33,10 @@ class Register: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
+
+        //For status & navigation bar
+        decorView = window.decorView
+        decorView.systemUiVisibility = hideSystemBars()
 
         //back icon action
         val backIcon:ImageView = findViewById(R.id.iv_register_backicon)
@@ -199,6 +204,25 @@ class Register: AppCompatActivity() {
         }
 
 
+    }
+
+    //hide system bars
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus){
+            //Hide the status & navigation bar
+            decorView.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int{
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 
 

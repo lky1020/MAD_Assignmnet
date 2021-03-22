@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.CustomerMain
@@ -17,10 +18,16 @@ import com.google.firebase.database.ValueEventListener
 
 //connect with login.xml
 class Login: AppCompatActivity() {
+    private lateinit var decorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
+
+        //For status & navigation bar
+        decorView = window.decorView
+        decorView.systemUiVisibility = hideSystemBars()
+
 
         //variable
         val userId: EditText = findViewById(R.id.edittext_login_userid)
@@ -144,5 +151,23 @@ class Login: AppCompatActivity() {
 
     }
 
+    //hide system bars
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus){
+            //Hide the status & navigation bar
+            decorView.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int{
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    }
 }
 
