@@ -6,10 +6,7 @@ import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.MainActivity
@@ -110,6 +107,12 @@ class Register: AppCompatActivity() {
             if(allFieldFilled){
                 //pass register info to firebase function
                 createUser(name, userid, password, phoneNum, email)
+
+                //display successful message
+                Toast.makeText(this, "Register Successfully", Toast.LENGTH_LONG).show()
+                //redirect to login page
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
             }
         }
 
@@ -127,10 +130,6 @@ class Register: AppCompatActivity() {
         userRef.child(phoneNum).child("UserID").setValue(userid)
         userRef.child(phoneNum).child("Role").setValue("Member")
 
-
-        //redirect to login page
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
     }
 
     //Phone Number Format

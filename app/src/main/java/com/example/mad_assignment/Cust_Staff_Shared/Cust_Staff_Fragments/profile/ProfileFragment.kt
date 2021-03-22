@@ -1,5 +1,6 @@
 package com.example.mad_assignment.Customer.Cust_Staff_Fragments.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.mad_assignment.R
 
 //belongs to fragment_profile.xml
@@ -20,7 +22,7 @@ class ProfileFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        //var userId = this.requireArguments().getString("userid")
 
         profileViewModel =
                 ViewModelProvider(this).get(ProfileViewModel::class.java)
@@ -31,4 +33,6 @@ class ProfileFragment : Fragment() {
         })
         return root
     }
+
+
 }

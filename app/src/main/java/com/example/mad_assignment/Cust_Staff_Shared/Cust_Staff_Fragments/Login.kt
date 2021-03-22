@@ -2,42 +2,27 @@ package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Cust_Staff_Fragments.profile.ProfileFragment
 import com.example.mad_assignment.CustomerMain
+import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-//NEED GET DATA FROM FIREBASE & compare, then decide which main page to go
-
 //connect with login.xml
 class Login: AppCompatActivity() {
-
-    //temporary variable -- need REMOVE after use firebase
-    val role: String? = "manager"
-
-    //variable
-    private lateinit var auth: FirebaseAuth
-    internal var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
         //variable
-        auth = FirebaseAuth.getInstance()
-        var loginFail = false
         val userId: EditText = findViewById(R.id.edittext_login_userid)
         val showPsdIv: ImageView = findViewById(R.id.iv_login_hidePassword)
         val password: EditText = findViewById(R.id.edittext_login_password)
@@ -48,6 +33,9 @@ class Login: AppCompatActivity() {
             showorHideLoginPassword(showPsdIv, password)
         }
 
+
+        //back main page icon
+        loginBackIcon()
 
         //login btn
         btnLogin.setOnClickListener() {
@@ -62,60 +50,77 @@ class Login: AppCompatActivity() {
                 //GET DATA FROM FIREBASE
                 val database = FirebaseDatabase.getInstance()
                 val myRef = database.getReference("User")
+                //intent for customer
+                val intentCustMain = Intent(this, CustomerMain::class.java)
+                intentCustMain.putExtra("UserID", userId.text.toString())
+
+                //intent for staff
+                val intentStaffMain = Intent(this, StaffMain::class.java)
+                intentStaffMain.putExtra("Role", "Staff")
+                intentStaffMain.putExtra("UserID", userId.text.toString())
+
+                //intent for manager
+                val intentManagerMain = Intent(this, StaffMain::class.java)
+                intentManagerMain.putExtra("Role", "Manager")
+                intentManagerMain.putExtra("UserID", userId.text.toString())
 
                 var getData = object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-
+                        var userFound = false
                         //get all data for compare
                         for (c in snapshot.children) {
 
-                            //compare the userid
-                            if (c.child("UserID").value.toString() == userId.text.toString()) {
+                            //compare the user id
+                            if (c.child("UserID").value.toString() == userId.text.toString() && c.child("Password").value.toString() == password.text.toString() ) {
                                 var phoneNumber = c.key
-                                var name = c.child("Name").getValue()
-                                var email = c.child("Email").getValue()
-                                var role = c.child("Role").getValue()
+                                var user = c.child("Name").value
+                                var email = c.child("Email").value
+                                var role = c.child("Role").value
+                                userFound = true
+
+                                //display message for authorized user
+                                Toast_LoginSuccess()
+
+                                //redirect to different page
+                                if(role == "Member"){
+                                    //proceed to cust main page
+                                    startActivity(intentCustMain)
+                                }else if(role == "Staff"){
+                                    //proceed to staff main page
+                                    startActivity(intentStaffMain)
+                                }else{
+                                    //proceed to manager main page
+                                    startActivity(intentManagerMain)
+                                }
+
                             }
                         }
-
+                        //display message for unauthorized user
+                        if(!userFound){
+                            Toast_LoginFail()
+                        }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
 
                     }
+
                 }
                 myRef.addValueEventListener(getData)
-                myRef.addListenerForSingleValueEvent(getData)
 
-                print("DEBUG MY reference addListenerForSingleValueEvent>>>>>>>>>>>>>>>>>>>> $myRef")
-
-                print("DEBUG Get Data>>>>>>>>>>>>>>>>>> $getData")
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CANNOT SCAN IF USER IS AUTHORIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-                //ACTION IF USER FOUND
-                if (myRef!=null) {
-
-                    //user found, navigate to CustomerMain.kt
-                    val intent = Intent(this, CustomerMain::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "Invalid User", Toast.LENGTH_LONG).show()
-                }
             }
         }
 
+    }
 
-        //will proceed to CustomerMain.kt (will enter customer menu navigation)
-        //click 'btnStafftLogin' will proceed to StaffMain.kt (will enter staff menu navigation)
-        /* val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
-        btnStaffLogin.setOnClickListener() {
-            val intent = Intent(this, StaffMain::class.java)
-            intent.putExtra("StaffPosition", role)
-            startActivity(intent)
-        }
+    // message for login fail
+    private fun Toast_LoginFail(){
+        Toast.makeText(this, "Invalid User", Toast.LENGTH_LONG).show()
+    }
 
-                 */
-
-
+    // message for login success
+    private fun Toast_LoginSuccess(){
+        Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
     }
 
     //show/hide password icon function
@@ -129,5 +134,15 @@ class Login: AppCompatActivity() {
             showPsdIv.setImageResource(R.drawable.ic_show_psw)
         }
     }
+
+    private fun loginBackIcon(){
+        val backIv: ImageView = findViewById(R.id.iv_login_backicon)
+        backIv.setOnClickListener(){
+            val intentMain = Intent(this, MainActivity::class.java)
+            startActivity(intentMain)
+        }
+
+    }
+
 }
 

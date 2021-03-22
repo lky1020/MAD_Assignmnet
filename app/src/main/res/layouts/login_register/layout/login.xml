@@ -34,7 +34,7 @@
 
     <!-- back to MainActivity icon -->
     <ImageView
-        android:id="@+id/iv_register_backicon"
+        android:id="@+id/iv_login_backicon"
         android:layout_width="31dp"
         android:layout_height="25dp"
         android:layout_marginStart="32dp"

@@ -38,6 +38,9 @@ class CustomerMain: AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        //get user id from login
+        var userID: String? = intent.getStringExtra("UserID")
+
         //change language onclick
         val changeLanguage:TextView = findViewById(R.id.testTV_changelanguage)
         changeLanguage.setOnClickListener(){
