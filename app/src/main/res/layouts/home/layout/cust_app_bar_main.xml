@@ -9,16 +9,35 @@
 
     <!-- the upper app bar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- only a white rectangle-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <!-- only a white rectangle-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:layout_anchor="@+id/appBarLayout"
+                app:layout_anchorGravity="center">
+
+                <TextView
+                    android:id="@+id/testTV_changelanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change Language"
+                    android:textAlignment="textEnd"
+                    android:layout_marginRight="10dp"/>
+
+
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- customer service floating action button -->
@@ -43,5 +62,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/cust_page_navigation" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

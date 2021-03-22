@@ -1,8 +1,11 @@
 package com.example.mad_assignment
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -35,6 +38,19 @@ class CustomerMain: AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        //change language onclick
+        val changeLanguage:TextView = findViewById(R.id.testTV_changelanguage)
+        changeLanguage.setOnClickListener(){
+            val tvTest:TextView = findViewById(R.id.tvTest)
+            if(tvTest.text == "Change English"){
+
+                tvTest.text = "Change Japanese"
+            }else{
+                tvTest.text = "Change English"
+            }
+
+        }
+
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service)
         fab.setOnClickListener { view ->
@@ -64,6 +80,24 @@ class CustomerMain: AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
+/*
+    //change menu setting icon
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.change_language_setting, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val eng_set:MenuItem = findViewById(R.id.english_settings)
+        while(item == eng_set){
+            val tvTest:TextView = findViewById(R.id.tvTest)
+            tvTest.text = "Change English"
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+ */
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

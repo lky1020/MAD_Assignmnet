@@ -6,11 +6,10 @@ import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Cust_Staff_Fragments.profile.ProfileFragment
 import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
@@ -25,15 +24,19 @@ import com.google.firebase.database.ValueEventListener
 //connect with login.xml
 class Login: AppCompatActivity() {
 
-    //temperary variable -- need REMOVE after use firebase
-    val role:String? = "manager"
-    internal var user: User? = null  // declare user object outside onCreate Method
+    //temporary variable -- need REMOVE after use firebase
+    val role: String? = "manager"
+
+    //variable
+    private lateinit var auth: FirebaseAuth
+    internal var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
         //variable
+        auth = FirebaseAuth.getInstance()
         var loginFail = false
         val userId: EditText = findViewById(R.id.edittext_login_userid)
         val showPsdIv: ImageView = findViewById(R.id.iv_login_hidePassword)
@@ -41,42 +44,69 @@ class Login: AppCompatActivity() {
         val btnLogin: Button = findViewById(R.id.btn_login)
 
         //if show or hide Password icon is clicked
-        showPsdIv.setOnClickListener(){
+        showPsdIv.setOnClickListener() {
             showorHideLoginPassword(showPsdIv, password)
         }
 
 
-        //check if userid and password is filled
-        if(userId != null && password != null){
-            //get data from database
-            loginGetDataFirebase()
-            //compare if true
+        //login btn
+        btnLogin.setOnClickListener() {
 
-
-        }else{
-            if (TextUtils.isEmpty(userId.text.toString())){
+            //check if userid and password is filled
+            if (userId.text.toString().isEmpty()) {
                 userId.error = "Enter User ID"
-            }else{
+            } else if (password.text.toString().isEmpty()) {
                 password.error = "Enter Password"
-            }
-            loginFail = true
-        }
+            } else { //both field filled
 
-        //if login fail then remain in same page
-        if(!loginFail){
-            //login btn
-            btnLogin.setOnClickListener() {
+                //GET DATA FROM FIREBASE
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("User")
 
-                //compare is the role is staff, member or manager
-                val intent = Intent(this, CustomerMain::class.java)
-                startActivity(intent)
+                var getData = object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        //get all data for compare
+                        for (c in snapshot.children) {
+
+                            //compare the userid
+                            if (c.child("UserID").value.toString() == userId.text.toString()) {
+                                var phoneNumber = c.key
+                                var name = c.child("Name").getValue()
+                                var email = c.child("Email").getValue()
+                                var role = c.child("Role").getValue()
+                            }
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                }
+                myRef.addValueEventListener(getData)
+                myRef.addListenerForSingleValueEvent(getData)
+
+                print("DEBUG MY reference addListenerForSingleValueEvent>>>>>>>>>>>>>>>>>>>> $myRef")
+
+                print("DEBUG Get Data>>>>>>>>>>>>>>>>>> $getData")
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CANNOT SCAN IF USER IS AUTHORIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+                //ACTION IF USER FOUND
+                if (myRef!=null) {
+
+                    //user found, navigate to CustomerMain.kt
+                    val intent = Intent(this, CustomerMain::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Invalid User", Toast.LENGTH_LONG).show()
+                }
             }
         }
 
 
         //will proceed to CustomerMain.kt (will enter customer menu navigation)
         //click 'btnStafftLogin' will proceed to StaffMain.kt (will enter staff menu navigation)
-                /* val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
+        /* val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
         btnStaffLogin.setOnClickListener() {
             val intent = Intent(this, StaffMain::class.java)
             intent.putExtra("StaffPosition", role)
@@ -89,22 +119,15 @@ class Login: AppCompatActivity() {
     }
 
     //show/hide password icon function
-    private fun showorHideLoginPassword(showPsdIv: ImageView, password: EditText ){
+    private fun showorHideLoginPassword(showPsdIv: ImageView, password: EditText) {
         //password1 icon function
-        if(password.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+        if (password.transformationMethod == HideReturnsTransformationMethod.getInstance()) {
             password.transformationMethod = PasswordTransformationMethod.getInstance()
             showPsdIv.setImageResource(R.drawable.ic_hide_psw)
-        }else{
+        } else {
             password.transformationMethod = HideReturnsTransformationMethod.getInstance()
             showPsdIv.setImageResource(R.drawable.ic_show_psw)
         }
     }
-
-    //get data from firebase
-
-    private fun loginGetDataFirebase(){
-
-        //NEED GET DATA FROM FIREBASE
-    }
-
 }
+
