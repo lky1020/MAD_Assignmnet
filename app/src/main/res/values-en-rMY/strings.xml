@@ -1,20 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--AndroidManifest.xml-->
     <string name="app_name">MAD_Assignment</string>
+
+    <!--cust_drawer_menu.xml-->
     <string name="housekeeping">HouseKeeping</string>
-    <string name="hotel_name">Quad-Core Hotel</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="services">Services</string>
-    <string name="search_here">Search Here…</string>
-    <string name="requested">Requested</string>
     <string name="home">Home</string>
-    <string name="homepage">Homepage</string>
     <string name="facilities">Facilities</string>
     <string name="transaction_history">Transaction History</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+
+    <!--cust_page_navigation.xml-->
+    <string name="bookFaci">Book Facilities</string>
+    <string name="bookHouseKeep">Book Housekeeping</string>
+    <string name="fakeLogout">FAKE LOGOUT</string>
+
+    <!--hotelapp_firstpage.xml-->
+    <string name="hotel_name">Quad-Core Hotel</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+
+    <!--fragment_profile.xml-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--customer_fragment_housekeeping.xml-->
+    <string name="services">Services</string>
+    <string name="search_here">Search Here…</string>
+    <string name="requested">Requested</string>
+
+    <!--customer_fragment_home.xml-->
+    <string name="homepage">Homepage</string>
+    <string name="btnCreate">Create</string>
+    <string name="btnGet">Get</string>
+
+    <!--login.xml-->
+    <string name="welcomeMsg">WELCOME \nTO \nQUAD CORE HOTEL!</string>
+    <string name="forgetPassMsg">Forget Password</string>
+    <string name="rememberMeMsg">Remember Me</string>
+    <string name="btnLogin">LOGIN</string>
+
+    <!--register.xml-->
+    <string name="txtCreateAcc">Create a new account to join us!</string>
+    <string name="txtFillForm">Please fill up the form below.</string>
+
+    <!--staff_fragment_report.xml-->
+    <string name="txtReport">Report</string>
+
+    <!--staff_fragment_trans_history.xml-->
+    <string name="txtView">TextView</string>
+
+    <!--language_menu.xml-->
     <string name="language_en">English</string>
+    <string name="language_zh">Chinese</string>
     <string name="language_ja">Japanese</string>
 </resources>

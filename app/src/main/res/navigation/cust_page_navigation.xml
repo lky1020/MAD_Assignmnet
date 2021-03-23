@@ -16,31 +16,31 @@
     <fragment
         android:id="@+id/nav_facility"
         android:name="com.example.mad_assignment.Customer_Fragments.cust_facilities.CustFacilitiesFragment"
-        android:label="Book Facilities"
+        android:label="@string/bookFaci"
         tools:layout="@layout/customer_fragment_facilities" />
 
     <fragment
         android:id="@+id/nav_housekeeping"
         android:name="com.example.mad_assignment.Customer_Fragments.cust_housekeeping.CustHousekeepingFragment"
-        android:label="Book Housekeeping"
+        android:label="@string/bookHouseKeep"
         tools:layout="@layout/customer_fragment_housekeeping" />
 
     <fragment
         android:id="@+id/nav_TransHis_cust"
         android:name="com.example.mad_assignment.Customer_Fragments.cust_trans_history.CustTransHistoryFragment"
-        android:label="Transaction History"
+        android:label="@string/transaction_history"
         tools:layout="@layout/customer_fragment_trans_history" />
 
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.mad_assignment.Customer.Cust_Staff_Fragments.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 
     <!--- will be change to direct logout -->
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment"
-        android:label="FAKE LOGOUT"
+        android:label="@string/fakeLogout"
         tools:layout="@layout/fragment_logout" />
 </navigation>
