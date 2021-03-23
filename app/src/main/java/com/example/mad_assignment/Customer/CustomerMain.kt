@@ -114,6 +114,11 @@ class CustomerMain: AppCompatActivity() {
                 LocalHelper.setNewLocale(this,"en")
                 recreate()
             }
+            R.id.language_zh ->
+            {
+                LocalHelper.setNewLocale(this,"zh")
+                recreate()
+            }
             R.id.language_ja ->
             {
                 LocalHelper.setNewLocale(this,"ja")

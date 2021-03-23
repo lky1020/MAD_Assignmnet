@@ -1,20 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MAD_Assignment</string>
+    <!--AndroidManifest.xml-->
+    <string name="app_name">モバイルアプリケーション開発の課題</string>
+
+    <!--cust_drawer_menu.xml-->
     <string name="housekeeping">ハウスキーピング</string>
-    <string name="hotel_name">クアッドコアホテル</string>
-    <string name="hello_blank_fragment">こんにちは空白のフラグメント</string>
-    <string name="services">サービス</string>
-    <string name="search_here">検索…</string>
-    <string name="requested">リクエスト済み</string>
-    <string name="home">ホームホーム</string>
-    <string name="homepage">ホームページ</string>
-    <string name="facilities">施設</string>
+    <string name="home">ホーム</string>
+    <string name="facilities">設備紹介</string>
     <string name="transaction_history">取引履歴</string>
     <string name="profile">プロフィール</string>
     <string name="logout">ログアウト</string>
+
+    <!--cust_page_navigation.xml-->
+    <string name="bookFaci">設備予約</string>
+    <string name="bookHouseKeep">ハウスキーピングの予約</string>
+    <string name="fakeLogout">フェイクログアウト</string>
+
+    <!--hotelapp_firstpage.xml-->
+    <string name="hotel_name">クアッドコア・ホテル</string>
     <string name="login">ログイン</string>
     <string name="register">登録</string>
+
+    <!--fragment_profile.xml-->
+    <string name="hello_blank_fragment">ハロー・ブランク・フラグメント</string>
+
+    <!--customer_fragment_housekeeping.xml-->
+    <string name="services">サービス</string>
+    <string name="search_here">ここで検索...</string>
+    <string name="requested">リクエスト</string>
+
+    <!--customer_fragment_home.xml-->
+    <string name="homepage">ホームページ</string>
+    <string name="btnCreate">クリエイト</string>
+    <string name="btnGet">ゲット</string>
+
+    <!--login.xml-->
+    <string name="welcomeMsg">歓迎 \nには \nクアッドコアホテル!</string>
+    <string name="forgetPassMsg">パスワードを忘れた場合</string>
+    <string name="rememberMeMsg">リメンバー・ミー</string>
+    <string name="btnLogin">ログイン</string>
+
+    <!--register.xml-->
+    <string name="txtCreateAcc">新しいアカウントを作成して参加する!</string>
+    <string name="txtFillForm">以下のフォームにご記入ください。</string>
+
+    <!--staff_fragment_report.xml-->
+    <string name="txtReport">レポート</string>
+
+    <!--staff_fragment_trans_history.xml-->
+    <string name="txtView">テキストビュー</string>
+
+    <!--language_menu.xml-->
     <string name="language_en">英語</string>
+    <string name="language_zh">中国語</string>
     <string name="language_ja">日本語</string>
 </resources>
