@@ -26,7 +26,6 @@ class CustomerMain: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var decorView: View
 
-
     //To set the base language of the system
     override fun attachBaseContext(newBase: Context?) {
       super.attachBaseContext(LocalHelper.setLocale(newBase!!))
@@ -43,12 +42,8 @@ class CustomerMain: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cust_nav)
 
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        //get user id from login
-        var userID: String? = intent.getStringExtra("UserID")
 
 
         //action of the customer service floating button  -- will modify later - redirect to chat bot

@@ -3,12 +3,9 @@ package com.example.mad_assignment
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -36,21 +33,9 @@ class StaffMain: AppCompatActivity() {
 
         // get the value pass from login
         var staffPos: String? = intent.getStringExtra("Role")
-        var userID: String? = intent.getStringExtra("UserID")
 
         val toolbar: Toolbar = findViewById(R.id.toolbar_staff)
         setSupportActionBar(toolbar)
-
-        /*
-        // send data to fragment (profile)
-        val bundle:Bundle? = null
-        bundle?.putString("userid", userID)
-        val fragInfo = Fragment()
-        fragInfo.arguments = bundle
-       // transaction.replace(R.id.fragment_single, fragInfo);
-       // transaction.commit();
-
-         */
 
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service_staff)
