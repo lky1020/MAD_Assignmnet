@@ -34,7 +34,7 @@
 
     <!-- back to MainActivity icon -->
     <ImageView
-        android:id="@+id/iv_register_backicon"
+        android:id="@+id/iv_login_backicon"
         android:layout_width="31dp"
         android:layout_height="25dp"
         android:layout_marginStart="32dp"
@@ -184,29 +184,5 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.202" />
 
-
-    <!-- for testing-->
-    <!--Button
-        android:id="@+id/btnCustLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="624dp"
-        android:text="Login as Customer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnStaffLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login as Staff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCustLogin"
-        app:layout_constraintVertical_bias="0.24" /-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

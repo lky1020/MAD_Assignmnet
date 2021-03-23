@@ -2,109 +2,172 @@ package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.CustomerMain
+import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-//NEED GET DATA FROM FIREBASE & compare, then decide which main page to go
-
 //connect with login.xml
 class Login: AppCompatActivity() {
-
-    //temperary variable -- need REMOVE after use firebase
-    val role:String? = "manager"
-    internal var user: User? = null  // declare user object outside onCreate Method
+    private lateinit var decorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
+        //For status & navigation bar
+        decorView = window.decorView
+        decorView.systemUiVisibility = hideSystemBars()
+
+
         //variable
-        var loginFail = false
         val userId: EditText = findViewById(R.id.edittext_login_userid)
         val showPsdIv: ImageView = findViewById(R.id.iv_login_hidePassword)
         val password: EditText = findViewById(R.id.edittext_login_password)
         val btnLogin: Button = findViewById(R.id.btn_login)
 
         //if show or hide Password icon is clicked
-        showPsdIv.setOnClickListener(){
+        showPsdIv.setOnClickListener() {
             showorHideLoginPassword(showPsdIv, password)
         }
 
 
-        //check if userid and password is filled
-        if(userId != null && password != null){
-            //get data from database
-            loginGetDataFirebase()
-            //compare if true
+        //back main page icon
+        loginBackIcon()
 
+        //login btn
+        btnLogin.setOnClickListener() {
 
-        }else{
-            if (TextUtils.isEmpty(userId.text.toString())){
+            //check if userid and password is filled
+            if (userId.text.toString().isEmpty()) {
                 userId.error = "Enter User ID"
-            }else{
+            } else if (password.text.toString().isEmpty()) {
                 password.error = "Enter Password"
+            } else { //both field filled
+
+                //GET DATA FROM FIREBASE
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("User")
+                //intent for customer
+                val intentCustMain = Intent(this, CustomerMain::class.java)
+                intentCustMain.putExtra("UserID", userId.text.toString())
+
+                //intent for staff
+                val intentStaffMain = Intent(this, StaffMain::class.java)
+                intentStaffMain.putExtra("Role", "Staff")
+                intentStaffMain.putExtra("UserID", userId.text.toString())
+
+                //intent for manager
+                val intentManagerMain = Intent(this, StaffMain::class.java)
+                intentManagerMain.putExtra("Role", "Manager")
+                intentManagerMain.putExtra("UserID", userId.text.toString())
+
+                var getData = object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var userFound = false
+                        //get all data for compare
+                        for (c in snapshot.children) {
+
+                            //compare the user id
+                            if (c.child("UserID").value.toString() == userId.text.toString() && c.child("Password").value.toString() == password.text.toString() ) {
+                                var phoneNumber = c.key
+                                var user = c.child("Name").value
+                                var email = c.child("Email").value
+                                var role = c.child("Role").value
+                                userFound = true
+
+                                //display message for authorized user
+                                Toast_LoginSuccess()
+
+                                //redirect to different page
+                                if(role == "Member"){
+                                    //proceed to cust main page
+                                    startActivity(intentCustMain)
+                                }else if(role == "Staff"){
+                                    //proceed to staff main page
+                                    startActivity(intentStaffMain)
+                                }else{
+                                    //proceed to manager main page
+                                    startActivity(intentManagerMain)
+                                }
+
+                            }
+                        }
+                        //display message for unauthorized user
+                        if(!userFound){
+                            Toast_LoginFail()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                }
+                myRef.addValueEventListener(getData)
+
             }
-            loginFail = true
         }
-
-        //if login fail then remain in same page
-        if(!loginFail){
-            //login btn
-            btnLogin.setOnClickListener() {
-
-                //compare is the role is staff, member or manager
-                val intent = Intent(this, CustomerMain::class.java)
-                startActivity(intent)
-            }
-        }
-
-
-        //will proceed to CustomerMain.kt (will enter customer menu navigation)
-        //click 'btnStafftLogin' will proceed to StaffMain.kt (will enter staff menu navigation)
-                /* val btnStaffLogin: Button = findViewById(R.id.btnStaffLogin)
-        btnStaffLogin.setOnClickListener() {
-            val intent = Intent(this, StaffMain::class.java)
-            intent.putExtra("StaffPosition", role)
-            startActivity(intent)
-        }
-
-                 */
-
 
     }
 
+    // message for login fail
+    private fun Toast_LoginFail(){
+        Toast.makeText(this, "Invalid User", Toast.LENGTH_LONG).show()
+    }
+
+    // message for login success
+    private fun Toast_LoginSuccess(){
+        Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
+    }
+
     //show/hide password icon function
-    private fun showorHideLoginPassword(showPsdIv: ImageView, password: EditText ){
+    private fun showorHideLoginPassword(showPsdIv: ImageView, password: EditText) {
         //password1 icon function
-        if(password.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+        if (password.transformationMethod == HideReturnsTransformationMethod.getInstance()) {
             password.transformationMethod = PasswordTransformationMethod.getInstance()
             showPsdIv.setImageResource(R.drawable.ic_hide_psw)
-        }else{
+        } else {
             password.transformationMethod = HideReturnsTransformationMethod.getInstance()
             showPsdIv.setImageResource(R.drawable.ic_show_psw)
         }
     }
 
-    //get data from firebase
+    private fun loginBackIcon(){
+        val backIv: ImageView = findViewById(R.id.iv_login_backicon)
+        backIv.setOnClickListener(){
+            val intentMain = Intent(this, MainActivity::class.java)
+            startActivity(intentMain)
+        }
 
-    private fun loginGetDataFirebase(){
-
-        //NEED GET DATA FROM FIREBASE
     }
 
+    //hide system bars
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus){
+            //Hide the status & navigation bar
+            decorView.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int{
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    }
 }
+

@@ -3,9 +3,12 @@ package com.example.mad_assignment
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -27,15 +30,27 @@ class StaffMain: AppCompatActivity() {
         //Remove status bar shadow in Navigation View
         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-        //run staff_nav.xml, the main activity of the customer pages
+        // run staff_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
         setContentView(R.layout.staff_nav)
 
-        //get the value pass from previous page
-        var staffPos: String? = intent.getStringExtra("StaffPosition")
+        // get the value pass from login
+        var staffPos: String? = intent.getStringExtra("Role")
+        var userID: String? = intent.getStringExtra("UserID")
 
         val toolbar: Toolbar = findViewById(R.id.toolbar_staff)
         setSupportActionBar(toolbar)
+
+        /*
+        // send data to fragment (profile)
+        val bundle:Bundle? = null
+        bundle?.putString("userid", userID)
+        val fragInfo = Fragment()
+        fragInfo.arguments = bundle
+       // transaction.replace(R.id.fragment_single, fragInfo);
+       // transaction.commit();
+
+         */
 
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service_staff)
@@ -76,11 +91,7 @@ class StaffMain: AppCompatActivity() {
 
     //if is manager then display report menu option
     private fun detectStaffPosition(staffPos:String, navView: NavigationView){
-        if(staffPos == "manager"){
-            navView.getMenu().findItem(R.id.nav_report).setVisible(true);
-        }else{ //staffPos == "staff"
-            navView.getMenu().findItem(R.id.nav_report).setVisible(false);
-        }
+        navView.menu.findItem(R.id.nav_report).isVisible = staffPos == "Manager"
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

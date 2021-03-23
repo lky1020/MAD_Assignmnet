@@ -6,10 +6,7 @@ import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.MainActivity
@@ -24,6 +21,7 @@ import java.util.regex.Pattern.compile
 //connect with register.xml
 class Register: AppCompatActivity() {
 
+    private lateinit var decorView: View
     lateinit var mRegisterName:EditText
     lateinit var mRegisterUserid:EditText
     lateinit var mRegisterPassword1:EditText
@@ -35,6 +33,10 @@ class Register: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
+
+        //For status & navigation bar
+        decorView = window.decorView
+        decorView.systemUiVisibility = hideSystemBars()
 
         //back icon action
         val backIcon:ImageView = findViewById(R.id.iv_register_backicon)
@@ -110,6 +112,12 @@ class Register: AppCompatActivity() {
             if(allFieldFilled){
                 //pass register info to firebase function
                 createUser(name, userid, password, phoneNum, email)
+
+                //display successful message
+                Toast.makeText(this, "Register Successfully", Toast.LENGTH_LONG).show()
+                //redirect to login page
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
             }
         }
 
@@ -127,10 +135,6 @@ class Register: AppCompatActivity() {
         userRef.child(phoneNum).child("UserID").setValue(userid)
         userRef.child(phoneNum).child("Role").setValue("Member")
 
-
-        //redirect to login page
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
     }
 
     //Phone Number Format
@@ -200,6 +204,25 @@ class Register: AppCompatActivity() {
         }
 
 
+    }
+
+    //hide system bars
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus){
+            //Hide the status & navigation bar
+            decorView.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int{
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 
 
