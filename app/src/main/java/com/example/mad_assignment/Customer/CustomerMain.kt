@@ -50,18 +50,6 @@ class CustomerMain: AppCompatActivity() {
         //get user id from login
         var userID: String? = intent.getStringExtra("UserID")
 
-        //change language onclick
-        val changeLanguage:TextView = findViewById(R.id.testTV_changelanguage)
-        changeLanguage.setOnClickListener(){
-            val tvTest:TextView = findViewById(R.id.tvTest)
-            if(tvTest.text == "Change English"){
-
-                tvTest.text = "Change Japanese"
-            }else{
-                tvTest.text = "Change English"
-            }
-
-        }
 
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service)
@@ -91,49 +79,8 @@ class CustomerMain: AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        //Change Language Image View Option
-        //val changeLanguage: ImageView = findViewById(R.id.imgVchangeLanguage)
-        //changeLanguage.setOnClickListener {
-        //    val popupMenu = PopupMenu(this, it)
-        //    popupMenu.setOnMenuItemClickListener { item ->
-        //        when (item.itemId){
-        //            R.id.language_en -> {
-        //                LocalHelper.setNewLocale(this,"en")
-        //                recreate()
-        //                true
-        //            }
-        //            R.id.language_ja -> {
-        //                LocalHelper.setNewLocale(this,"ja")
-        //                recreate()
-        //                true
-        //            }
-        //            else -> {
-        //                false
-        //            }
-        //        }
-        //    }
-        //    popupMenu.inflate(R.menu.language_menu)
-        //    popupMenu.show()
-        //}
-    }
-/*
-    //change menu setting icon
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.change_language_setting, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val eng_set:MenuItem = findViewById(R.id.english_settings)
-        while(item == eng_set){
-            val tvTest:TextView = findViewById(R.id.tvTest)
-            tvTest.text = "Change English"
-        }
-        return super.onOptionsItemSelected(item)
     }
-
- */
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -158,6 +105,7 @@ class CustomerMain: AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 
+    //Create Change Language Options
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.language_menu, menu)
         return super.onCreateOptionsMenu(menu)
