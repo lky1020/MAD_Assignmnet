@@ -1,6 +1,9 @@
 package com.example.mad_assignment
 
+import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.mad_assignment.Customer.ChangeLanguage.Helper.LocalHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +24,12 @@ import com.google.android.material.snackbar.Snackbar
 class CustomerMain: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var decorView: View
+
+
+    //To set the base language of the system
+    override fun attachBaseContext(newBase: Context?) {
+      super.attachBaseContext(LocalHelper.setLocale(newBase!!))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //For status & navigation bar
@@ -31,6 +41,7 @@ class CustomerMain: AppCompatActivity() {
         //run cust_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cust_nav)
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -63,6 +74,30 @@ class CustomerMain: AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        //Change Language Image View Option
+        //val changeLanguage: ImageView = findViewById(R.id.imgVchangeLanguage)
+        //changeLanguage.setOnClickListener {
+        //    val popupMenu = PopupMenu(this, it)
+        //    popupMenu.setOnMenuItemClickListener { item ->
+        //        when (item.itemId){
+        //            R.id.language_en -> {
+        //                LocalHelper.setNewLocale(this,"en")
+        //                recreate()
+        //                true
+        //            }
+        //            R.id.language_ja -> {
+        //                LocalHelper.setNewLocale(this,"ja")
+        //                recreate()
+        //                true
+        //            }
+        //            else -> {
+        //                false
+        //            }
+        //        }
+        //    }
+        //    popupMenu.inflate(R.menu.language_menu)
+        //    popupMenu.show()
+        //}
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -87,4 +122,29 @@ class CustomerMain: AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.language_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item?.itemId){
+            R.id.language_en ->
+            {
+                LocalHelper.setNewLocale(this,"en")
+                recreate()
+            }
+            R.id.language_ja ->
+            {
+                LocalHelper.setNewLocale(this,"ja")
+                recreate()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
+
+

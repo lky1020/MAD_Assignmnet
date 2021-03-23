@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAD_Assignment</string>
+    <string name="housekeeping">ハウスキーピング</string>
+    <string name="hotel_name">クアッドコアホテル</string>
+    <string name="hello_blank_fragment">こんにちは空白のフラグメント</string>
+    <string name="services">サービス</string>
+    <string name="search_here">検索…</string>
+    <string name="requested">リクエスト済み</string>
+    <string name="home">ホームホーム</string>
+    <string name="homepage">ホームページ</string>
+    <string name="facilities">施設</string>
+    <string name="transaction_history">取引履歴</string>
+    <string name="profile">プロフィール</string>
+    <string name="logout">ログアウト</string>
+    <string name="login">ログイン</string>
+    <string name="register">登録</string>
+    <string name="language_en">英語</string>
+    <string name="language_ja">日本語</string>
+</resources>
