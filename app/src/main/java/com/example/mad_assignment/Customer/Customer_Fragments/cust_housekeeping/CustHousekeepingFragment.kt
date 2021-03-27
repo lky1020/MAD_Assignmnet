@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.HousekeepingAdapter
 import com.example.mad_assignment.R
 
 //belongs to customer_fragment_housekeeping.xml
@@ -20,13 +22,21 @@ class CustHousekeepingFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        custHousekeepingModel =
-                ViewModelProvider(this).get(CustHousekeepingModel::class.java)
+
         val root = inflater.inflate(R.layout.customer_fragment_housekeeping, container, false)
-        val textView: TextView = root.findViewById(R.id.text_services)
-        custHousekeepingModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        val recyclerView: RecyclerView = root.findViewById(R.id.rv_housekeeping)
+
+        //Get the viewmodel for housekeeping
+        custHousekeepingModel = ViewModelProvider(this).get(CustHousekeepingModel::class.java)
+
+        //Observe the housekeeping list and set it
+        custHousekeepingModel.getHousekeepingList().observe(viewLifecycleOwner, Observer{
+            recyclerView.adapter = HousekeepingAdapter(it)
         })
+
+        recyclerView.layoutManager = GridLayoutManager(this.context, 2)
+        recyclerView.setHasFixedSize(true)
+
         return root
     }
 }
