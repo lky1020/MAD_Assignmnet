@@ -54,4 +54,9 @@
     <string name="language_en">英语</string>
     <string name="language_zh">汉语</string>
     <string name="language_ja">日语</string>
+
+    <!-- staff_fragment_home.xml -->
+    <string name="today_check_in">Today\'s Check in</string>
+    <string name="today_check_out">Today\'s Check Out</string>
+
 </resources>

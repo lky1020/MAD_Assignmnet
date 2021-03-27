@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0F346F</color>
+
+    <!-- staff homepage - color of card  -->
+    <color name="pink">#FF182F</color>
+    <color name="smalt_blue">#00209B</color>
+    <color name="rio_grande_yellow">#CED900</color>
+    <color name="observatory_teal">#00927D</color>
+    <color name="tomato_orange">#FF6431</color>
+    <color name="electric_violet_purple">#B50BED</color>
+
 </resources>

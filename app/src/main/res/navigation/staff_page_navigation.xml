@@ -10,7 +10,7 @@ app:startDestination="@+id/nav_home_staff">
     <!-- follow the menu id & assign the layout to them -->
     <fragment
         android:id="@+id/nav_home_staff"
-        android:name="com.example.mad_assignment.Staff_Fragments.staff_home.StaffHomeFragment"
+        android:name="com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment"
         android:label="@string/hotel_name"
         tools:layout="@layout/staff_fragment_home" />
 
