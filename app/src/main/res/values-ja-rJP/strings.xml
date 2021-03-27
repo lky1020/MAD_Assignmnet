@@ -58,5 +58,13 @@
     <!-- staff_fragment_home.xml -->
     <string name="today_check_in">Today\'s Check in</string>
     <string name="today_check_out">Today\'s Check Out</string>
+    <string name="total_chkIn">0</string>
+    <string name="total_chkOut">0</string>
+    <string name="check_in">Check In</string>
+    <string name="check_out">Check Out</string>
+    <string name="manage_housekeeper">Manage Housekeeper</string>
+    <string name="manage_room">Manage Room</string>
+    <string name="manage_facility">Manage Facility</string>
+    <string name="manage_staff">Manage Staff</string>
 
 </resources>

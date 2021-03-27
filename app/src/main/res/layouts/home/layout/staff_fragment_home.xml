@@ -41,7 +41,7 @@
         android:layout_width="22dp"
         android:layout_height="20dp"
         android:layout_marginTop="24dp"
-        android:text="0"
+        android:text="@string/total_chkIn"
         android:textAlignment="textEnd"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_width="22dp"
         android:layout_height="20dp"
         android:layout_marginTop="48dp"
-        android:text="0"
+        android:text="@string/total_chkOut"
         android:textAlignment="textEnd"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,12 +116,13 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_check_in_out" />
+                        android:src="@drawable/ic_check_in_out"
+                        android:contentDescription="TODO" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Check In"
+                        android:text="@string/check_in"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
@@ -156,7 +157,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Check Out"
+                        android:text="@string/check_out"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
@@ -195,12 +196,13 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_manage_staff" />
+                        android:src="@drawable/ic_manage_staff"
+                        android:contentDescription="TODO" />
 
                     <TextView
                         android:layout_width="87dp"
                         android:layout_height="32dp"
-                        android:text="Manage Housekeeper"
+                        android:text="@string/manage_housekeeper"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
@@ -235,7 +237,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Manage Room"
+                        android:text="@string/manage_room"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
@@ -280,7 +282,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Manage Facility"
+                        android:text="@string/manage_facility"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
@@ -316,7 +318,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Manage Staff"
+                        android:text="@string/manage_staff"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
