@@ -25,6 +25,14 @@
         android:label="@string/bookHouseKeep"
         tools:layout="@layout/customer_fragment_housekeeping" />
 
+<!--&lt;!&ndash;    Just testing for the image to firebase&ndash;&gt;-->
+<!--    <fragment-->
+<!--        android:id="@+id/nav_housekeeping"-->
+<!--        android:name="com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.StaffHousekeepingFragment"-->
+<!--        android:label="@string/bookHouseKeep"-->
+<!--        tools:layout="@layout/fragment_staff_housekeeping" />-->
+<!--&lt;!&ndash;    Just testing for the image to firebase&ndash;&gt;-->
+
     <fragment
         android:id="@+id/nav_TransHis_cust"
         android:name="com.example.mad_assignment.Customer_Fragments.cust_trans_history.CustTransHistoryFragment"
