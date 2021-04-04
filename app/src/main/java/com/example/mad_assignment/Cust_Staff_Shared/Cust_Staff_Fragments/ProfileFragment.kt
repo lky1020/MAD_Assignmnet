@@ -18,12 +18,12 @@ class ProfileFragment : Fragment() {
     ): View? {
 
         //retrieve data from CustomerMain.kt /StaffMain.kt
-        val userID = activity?.intent?.getStringExtra("UserID")
+        val email = activity?.intent?.getStringExtra("email")
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_profile)
 
         //assign data to test
-        textView.text = userID.toString()
+        textView.text = email.toString()
         return root
     }
 

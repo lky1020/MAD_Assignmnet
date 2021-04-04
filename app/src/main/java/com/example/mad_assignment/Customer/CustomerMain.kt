@@ -1,11 +1,14 @@
 package com.example.mad_assignment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,6 +18,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mad_assignment.Customer.ChangeLanguage.Helper.LocalHelper
+import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -48,8 +52,11 @@ class CustomerMain: AppCompatActivity() {
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
+            val intent = Intent(this, LatestMessages::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            Toast.makeText(this, "Welcome to Our Chat Room", Toast.LENGTH_LONG).show()
         }
 
         // get the whole menu drawer id from cust_nav.xml
@@ -112,16 +119,19 @@ class CustomerMain: AppCompatActivity() {
             {
                 LocalHelper.setNewLocale(this,"en")
                 recreate()
+                Toast.makeText(this, "Successfully Change to English", Toast.LENGTH_LONG).show()
             }
             R.id.language_zh ->
             {
                 LocalHelper.setNewLocale(this,"zh")
                 recreate()
+                Toast.makeText(this, "Successfully Change to Chinese", Toast.LENGTH_LONG).show()
             }
             R.id.language_ja ->
             {
                 LocalHelper.setNewLocale(this,"ja")
                 recreate()
+                Toast.makeText(this, "Successfully Change to Japanese", Toast.LENGTH_LONG).show()
             }
 
         }

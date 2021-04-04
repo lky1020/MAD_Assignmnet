@@ -67,4 +67,7 @@
     <string name="manage_facility">Manage Facility</string>
     <string name="manage_staff">Manage Staff</string>
 
+    <!--    activity_latest_messages.xml-->
+    <string name="chatWifUs">与我们聊天</string>
+    <string name="chatWifStaff">选择职员</string>
 </resources>

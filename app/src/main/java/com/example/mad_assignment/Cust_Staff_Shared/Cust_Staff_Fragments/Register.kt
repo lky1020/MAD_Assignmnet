@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -110,14 +111,27 @@ class Register: AppCompatActivity() {
 
             //if all validate
             if(allFieldFilled){
-                //pass register info to firebase function
-                createUser(name, userid, password, phoneNum, email)
 
-                //display successful message
-                Toast.makeText(this, "Register Successfully", Toast.LENGTH_LONG).show()
-                //redirect to login page
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener{
+                        if(!it.isSuccessful) return@addOnCompleteListener
+                        Log.d("Register", "Successfully created user with uid: ${it.result?.user?.uid}")
+
+                        //pass register info to firebase function
+                        createUser(name, userid, password, phoneNum, email)
+
+                        //display successful message
+                        Toast.makeText(this, "Register Successfully", Toast.LENGTH_LONG).show()
+                        //redirect to login page
+                        val intent = Intent(this, Login::class.java)
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener{
+                        Log.d("Register", "Failed to create user: ${it.message}")
+                        Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+
             }
         }
 
@@ -125,15 +139,26 @@ class Register: AppCompatActivity() {
 
     //pass new data to firebase
     fun createUser(name:String, userid:String, password:String, phoneNum:String,email:String){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        //val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val userRef: DatabaseReference = database.getReference("User")
+        //Change By Joan Hau to add uid
+        //val userRef: DatabaseReference = database.getReference("/User/$phoneNum")
+        val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
-        userRef.child(phoneNum).child("Name").setValue(name)
-        userRef.child(phoneNum).child("Password").setValue(password)
-        userRef.child(phoneNum).child("Email").setValue(email)
-        userRef.child(phoneNum).child("UserID").setValue(userid)
-        userRef.child(phoneNum).child("Role").setValue("Member")
+
+        val role = "Member"
+
+        val user = User (name,userid,uid,password,phoneNum,email,role)
+
+        userRef.setValue(user)
+        //Original from YinLam
+//        userRef.child(phoneNum).child("Name").setValue(name)
+//        userRef.child(phoneNum).child("Password").setValue(password)
+//        userRef.child(phoneNum).child("Email").setValue(email)
+//        userRef.child(phoneNum).child("UserID").setValue(userid)
+//        userRef.child(phoneNum).child("Role").setValue("Member")
+
 
     }
 

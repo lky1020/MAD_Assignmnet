@@ -20,10 +20,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerMain"></activity>
-        <activity android:name=".StaffMain"></activity>
-        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login"></activity>
-        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register"></activity>
+        <activity android:name=".CustomerMain"/>
+        <activity android:name=".StaffMain"/>
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login"/>
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register"/>
+
+<!--        For Chat App-->
+        <activity android:name=".Customer.Chat.messages.LatestMessages">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Customer.Chat.messages.NewMessage">
+
+        </activity>
+        <activity android:name=".Customer.Chat.messages.ChatLog">
+
+        </activity>
+
     </application>
 
 </manifest>

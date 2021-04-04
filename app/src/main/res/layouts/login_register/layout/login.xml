@@ -87,11 +87,11 @@
         app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <EditText
-            android:id="@+id/edittext_login_userid"
+            android:id="@+id/edittext_login_email"
             android:layout_width="285dp"
             android:layout_height="45dp"
             android:ems="10"
-            android:hint="User ID"
+            android:hint="Email"
             android:inputType="textPersonName"
             android:textSize="15dp" />
 
