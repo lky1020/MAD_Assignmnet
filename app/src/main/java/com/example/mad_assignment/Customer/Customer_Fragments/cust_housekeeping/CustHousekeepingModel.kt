@@ -21,16 +21,11 @@ class CustHousekeepingModel() : ViewModel() {
     val housekeeping : LiveData<ArrayList<Housekeeping>>
         get()= _housekeeping
 
-    init{
-        // Retrieve data from firebase
-        retrieveHousekeepingFromDB()
-    }
-
     fun getHousekeepingList(): MutableLiveData<ArrayList<Housekeeping>> {
         return _housekeeping
     }
 
-    private fun retrieveHousekeepingFromDB(){
+    fun retrieveHousekeepingFromDB(){
 
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -45,7 +40,6 @@ class CustHousekeepingModel() : ViewModel() {
                         // add the item and pass to observer for the adapter
                         housekeepingList.add(housekeeping!!)
                         _housekeeping.value = housekeepingList
-
                     }
                 }
             }
