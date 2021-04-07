@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer_Fragments.cust_housekeeping.CustHousekeepingFragment">
+    tools:context=".Customer.Customer_Fragments.cust_housekeeping.Main.CustHousekeepingFragment">
 
     <EditText
         android:id="@+id/et_housekeeping_search"
@@ -98,18 +98,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ver_line2"/>
-
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_housekeeping"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:padding="15dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ver_line2"-->
-<!--        app:layout_constraintVertical_bias="1.0"-->
-<!--        tools:listitem="@layout/cardview_item_housekeeping" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

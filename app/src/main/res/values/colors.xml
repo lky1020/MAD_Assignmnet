@@ -9,6 +9,8 @@
     <color name="gray">#888b8d</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0F346F</color>
+    <color name="green">#13ce67</color>
+    <color name="red">#f95f62</color>
 
     <!-- staff homepage - color of card  -->
     <color name="pink">#FF182F</color>

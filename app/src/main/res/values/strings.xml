@@ -69,4 +69,10 @@
     <!--    activity_latest_messages.xml-->
     <string name="chatWifUs">Chat With Us</string>
     <string name="chatWifStaff">Select Staff</string>
+    <string name="date">Date</string>
+    <string name="select_date">Select Date</string>
+    <string name="time">Time</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="book">Book</string>
 </resources>

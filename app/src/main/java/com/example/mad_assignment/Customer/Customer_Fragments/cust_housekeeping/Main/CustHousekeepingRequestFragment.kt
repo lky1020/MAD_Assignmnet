@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

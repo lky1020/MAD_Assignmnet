@@ -133,8 +133,8 @@ class CustomerMain: AppCompatActivity() {
                 recreate()
                 Toast.makeText(this, "Successfully Change to Japanese", Toast.LENGTH_LONG).show()
             }
-
         }
+
         return super.onOptionsItemSelected(item)
     }
 }
