@@ -1,14 +1,9 @@
-package com.example.mad_assignment.Customer_Fragments.cust_housekeeping
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model
 
-import android.app.Activity
-import android.app.PendingIntent
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
-import com.example.mad_assignment.MainActivity
 import com.google.firebase.database.*
 
 class CustHousekeepingModel() : ViewModel() {

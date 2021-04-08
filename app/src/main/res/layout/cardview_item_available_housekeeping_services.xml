@@ -14,14 +14,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:padding="5dp">
+        android:layout_height="80dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -30,6 +29,7 @@
                 android:id="@+id/view_services_status"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/radius"
                 android:layout_marginEnd="5dp"/>
 
@@ -44,14 +44,23 @@
                 tools:text="Time: 11:00 AM - 11:30 PM" />
 
             <TextView
-                android:id="@+id/tv_services_status"
+                android:id="@+id/tv_services_remark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/view_services_status"
                 android:layout_below="@id/tv_services_time"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                tools:text="Remark" />
+
+            <TextView
+                android:id="@+id/tv_services_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/view_services_status"
+                android:layout_below="@id/tv_services_remark"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 tools:text="Status Available" />
         </RelativeLayout>
 

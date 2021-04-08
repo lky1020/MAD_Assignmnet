@@ -1,6 +1,5 @@
 package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Main
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.HousekeepingAdapter
-import com.example.mad_assignment.Customer_Fragments.cust_housekeeping.CustHousekeepingModel
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingModel
 import com.example.mad_assignment.R
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 
 class CustHousekeepingServiceFragment : Fragment() {
 
@@ -48,12 +47,27 @@ class CustHousekeepingServiceFragment : Fragment() {
             recyclerView.adapter = HousekeepingAdapter(it, requireActivity())
         })
 
-//        val servicesList = ArrayList<HousekeepingService>()
-//        servicesList.add(HousekeepingService("Apr 18 2021","11:00 AM", "11:30 PM", "Available"))
-//        servicesList.add(HousekeepingService("Apr 18 2021","11:30 AM", "12:00 PM", "Not Available"))
+        // Room Cleaning
+//        val servicesList = ArrayList<RoomCleaningService>()
+//        servicesList.add(RoomCleaningService("Apr 17 2021","11:00 AM", "11:30 PM", "Available"))
+//        servicesList.add(RoomCleaningService("Apr 17 2021","11:30 AM", "12:00 PM", "Not Available"))
+//        servicesList.add(RoomCleaningService("Apr 17 2021","12:00 PM", "12:30 PM", "Not Available"))
+//        servicesList.add(RoomCleaningService("Apr 17 2021","12:30 PM", "01:00 PM", "Available"))
+//        servicesList.add(RoomCleaningService("Apr 17 2021","01:00 PM", "01:30 PM", "Available"))
 //
-//        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Bed Textiles").child("ServicesAvailable")
-//        myRef.child("Apr 18 2021").setValue(servicesList)
+//        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Laundry Service").child("ServicesAvailable")
+//        myRef.child("Apr 17 2021").setValue(servicesList)
+
+        //Laundry Service
+//        val servicesList = ArrayList<LaundryService>()
+//        servicesList.add(LaundryService("Apr 17 2021","11:00 AM", "03:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","11:30 AM", "05:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","12:00 PM", "05:00 PM", "Not Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","12:30 PM", "08:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","01:30 PM", "08:00 PM", "Available"))
+//
+//        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Laundry Service").child("ServicesAvailable")
+//        myRef.child("Apr 17 2021").setValue(servicesList)
 
         //Hardcode db first (waiting staff housekeeping)
 //        val database = FirebaseDatabase.getInstance()

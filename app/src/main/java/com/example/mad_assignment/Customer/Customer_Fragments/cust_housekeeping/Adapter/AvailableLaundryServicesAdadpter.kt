@@ -1,7 +1,6 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,34 +9,37 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.CustHousekeepingAvailableServicesActivity
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.example.mad_assignment.R
 
-class AvailableHousekeepingServicesAdadpter (private var availableHousekeepingServicesList: ArrayList<HousekeepingService>, private var mContext: FragmentActivity): RecyclerView.Adapter<AvailableHousekeepingServicesAdadpter.AvailableHousekeepingServicesViewHolder>(){
-
+class AvailableLaundryServicesAdadpter(private var availableLaundryServicesList: ArrayList<LaundryService>, private var mContext: FragmentActivity, val selectedDate: String): RecyclerView.Adapter<AvailableLaundryServicesAdadpter.AvailableHousekeepingServicesViewHolder>(){
+    
     class AvailableHousekeepingServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvTime: TextView = itemView.findViewById(R.id.tv_services_time)
+        val tvRemark: TextView = itemView.findViewById(R.id.tv_services_remark)
         val tvStatus: TextView = itemView.findViewById(R.id.tv_services_status)
         val viewServiceStatus: View = itemView.findViewById(R.id.view_services_status)
         val btnServiceBook: View = itemView.findViewById(R.id.btn_service_book)
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int
     ): AvailableHousekeepingServicesViewHolder {
         val itemView = LayoutInflater.from(mContext)
-            .inflate(R.layout.cardview_item_available_housekeeping_services, parent, false)
+                .inflate(R.layout.cardview_item_available_housekeeping_services, parent, false)
 
         return AvailableHousekeepingServicesViewHolder(itemView)
     }
 
     @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onBindViewHolder(holder: AvailableHousekeepingServicesViewHolder, position: Int) {
-        val currentItem = availableHousekeepingServicesList[position]
+        val currentItem = availableLaundryServicesList[position]
 
-        holder.tvTime.text = "Time: " + currentItem.timeFrom + " - " + currentItem.timeTo
+        holder.tvRemark.visibility = View.VISIBLE
+
+        holder.tvTime.text = "Pick-Up: " + currentItem.timePickUp
+        holder.tvRemark.text = "Complete: " + selectedDate + "," + currentItem.timeComplete
         holder.tvStatus.text = "Status: " + currentItem.status
 
         if(currentItem.status == "Not Available"){
@@ -62,6 +64,6 @@ class AvailableHousekeepingServicesAdadpter (private var availableHousekeepingSe
     }
 
     override fun getItemCount(): Int {
-        return availableHousekeepingServicesList.size
+        return availableLaundryServicesList.size
     }
 }

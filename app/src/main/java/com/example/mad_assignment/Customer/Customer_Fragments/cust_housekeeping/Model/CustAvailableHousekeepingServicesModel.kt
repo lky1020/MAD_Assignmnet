@@ -1,35 +1,44 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.google.firebase.database.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CustAvailableHousekeepingServicesModel() : ViewModel()  {
 
-    private val _housekeepingServices = MutableLiveData<ArrayList<HousekeepingService>>()
-    private val housekeepingServicesList = ArrayList<HousekeepingService>()
+    //Room Cleaning
+    private val _roomCleaningServices = MutableLiveData<ArrayList<RoomCleaningService>>()
+    private val roomCleaningServicesList = ArrayList<RoomCleaningService>()
 
-    val housekeepingServices : LiveData<ArrayList<HousekeepingService>>
-        get()= _housekeepingServices
+    val roomCleaningServices : LiveData<ArrayList<RoomCleaningService>>
+        get()= _roomCleaningServices
 
-    fun getHousekeepingServicesList(): MutableLiveData<ArrayList<HousekeepingService>> {
-        return _housekeepingServices
+    fun getRoomCleaningServicesList(): MutableLiveData<ArrayList<RoomCleaningService>> {
+        return _roomCleaningServices
     }
 
+    //Laundry Services
+    private val _laundryServices = MutableLiveData<ArrayList<LaundryService>>()
+    private val laundryServicesList = ArrayList<LaundryService>()
+
+    val laundryServices : LiveData<ArrayList<LaundryService>>
+        get()= _laundryServices
+
+    fun getLaundryServicesList(): MutableLiveData<ArrayList<LaundryService>> {
+        return _laundryServices
+    }
+
+    //Status
     private var _status = MutableLiveData<Boolean>()
 
     val status : LiveData<Boolean>
@@ -39,7 +48,6 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
         return _status
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     private val dtf: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
     private lateinit var from: LocalTime
@@ -48,7 +56,7 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
     private lateinit var dbTo: LocalTime
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun retrieveHousekeepingServicesFromDB(retrieveDate: String, timeFromHour: Int, timeFromMinute: Int, timeToHour: Int, timeToMinute: Int){
+    fun retrieveHousekeepingServicesFromDB(servicesType: String, retrieveDate: String, timeFromHour: Int, timeFromMinute: Int, timeToHour: Int, timeToMinute: Int){
 
         val timeFromSeason = ""
         val timeToSeason = ""
@@ -58,27 +66,43 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
 
         initTime(timeFromList, timeToList)
 
-        val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
-            .child("Bed Textiles").child("ServicesAvailable").child(retrieveDate)
-            .orderByChild("date")
-            .equalTo(retrieveDate)
+        if(servicesType == "Room Cleaning"){
+            val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
+                    .child(servicesType).child("ServicesAvailable").child(retrieveDate)
+                    .orderByChild("date")
+                    .equalTo(retrieveDate)
 
+            retrieveRoomCleaning(query)
+
+        }else if(servicesType == "Laundry Service"){
+            val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
+                    .child(servicesType).child("ServicesAvailable").child(retrieveDate)
+                    .orderByChild("date")
+                    .equalTo(retrieveDate)
+
+            retrieveLaundryService(query)
+        }
+    }
+
+
+    private fun retrieveRoomCleaning(query: Query){
         query.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     // Clear housekeepingList to prevent duplicate item appear
-                    housekeepingServicesList.clear()
+                    roomCleaningServicesList.clear()
 
                     for (i in snapshot.children) {
                         // get the item from firebase
-                        val housekeepingServices = i.getValue(HousekeepingService::class.java)
+                        val housekeepingServices = i.getValue(RoomCleaningService::class.java)
 
                         //sort the time
                         if (housekeepingServices != null) {
                             if(housekeepingServices.timeFrom.substring(6, 8) == "PM"){
                                 if(housekeepingServices.timeFrom.substring(0, 2).toInt() == 12){
-                                    dbFrom = LocalTime.of(0,
+                                    dbFrom = LocalTime.of(12,
                                             housekeepingServices.timeFrom.substring(3, 5).toInt())
                                 }
                                 else{
@@ -107,16 +131,71 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
                             if(dbFrom == from || dbFrom.isAfter(from)){
                                 if(dbTo == to || dbTo.isBefore(to)){
                                     //add the item and pass to observer for the adapter
-                                    housekeepingServicesList.add(housekeepingServices)
+                                    roomCleaningServicesList.add(housekeepingServices)
                                 }
                             }
                         }
                     }
 
-                    _status.value = housekeepingServicesList.size > 0
-
-                    _housekeepingServices.value = housekeepingServicesList
+                }else{
+                    roomCleaningServicesList.clear()
                 }
+
+                _status.value = roomCleaningServicesList.size > 0
+
+                _roomCleaningServices.value = roomCleaningServicesList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun retrieveLaundryService(query: Query){
+        query.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
+            @SuppressLint("SimpleDateFormat")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Clear housekeepingList to prevent duplicate item appear
+                    laundryServicesList.clear()
+
+                    for (i in snapshot.children) {
+                        // get the item from firebase
+                        val housekeepingServices = i.getValue(LaundryService::class.java)
+
+                        //sort the time
+                        if (housekeepingServices != null) {
+                            if(housekeepingServices.timePickUp.substring(6, 8) == "PM"){
+                                if(housekeepingServices.timePickUp.substring(0, 2).toInt() == 12){
+                                    dbFrom = LocalTime.of(12,
+                                            housekeepingServices.timePickUp.substring(3, 5).toInt())
+                                }
+                                else{
+                                    dbFrom = LocalTime.of(housekeepingServices.timePickUp.substring(0, 2).toInt() + 12,
+                                            housekeepingServices.timePickUp.substring(3, 5).toInt())
+                                }
+                            }else{
+                                dbFrom = LocalTime.of(housekeepingServices.timePickUp.substring(0, 2).toInt(),
+                                        housekeepingServices.timePickUp.substring(3, 5).toInt())
+                            }
+
+                            if((dbFrom == from || dbFrom.isAfter(from)) && (dbFrom == to || dbFrom.isBefore(to))){
+                                //add the item and pass to observer for the adapter
+                                laundryServicesList.add(housekeepingServices)
+                            }
+                        }
+                    }
+
+                }
+                else{
+                    laundryServicesList.clear()
+                }
+
+                _status.value = laundryServicesList.size > 0
+
+                _laundryServices.value = laundryServicesList
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -168,10 +247,8 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
         }
 
         from = LocalTime.of(timeFrom[0].toString().toInt(), timeFrom[1].toString().toInt())
-        Log.d("Testing Formatter", from.format(dtf))
 
         to = LocalTime.of(timeTo[0].toString().toInt(), timeTo[1].toString().toInt())
-        Log.d("Testing Formatter", to.format(dtf))
 
     }
 }

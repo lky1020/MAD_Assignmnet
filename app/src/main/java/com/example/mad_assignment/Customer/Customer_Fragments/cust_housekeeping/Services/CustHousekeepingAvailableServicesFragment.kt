@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -18,14 +17,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.AvailableHousekeepingServicesAdadpter
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.CustAvailableHousekeepingServicesModel
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableLaundryServicesAdadpter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableRoomCleaningServicesAdadpter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustAvailableHousekeepingServicesModel
 import com.example.mad_assignment.R
 import kotlinx.android.synthetic.main.customer_fragment_available_housekeeping_services.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
@@ -39,6 +39,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
     private var minute = 0
     private var fromSelected = true
 
+    private lateinit var servicesType: String
     private lateinit var tvDate: TextView
     private lateinit var tvTimeFrom: TextView
     private lateinit var tvTimeTo: TextView
@@ -49,11 +50,11 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
     private lateinit var custAvailableHousekeepingServicesModel: CustAvailableHousekeepingServicesModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        val root: View = inflater.inflate(R.layout.customer_fragment_available_housekeeping_services, container,false)
+        val root: View = inflater.inflate(R.layout.customer_fragment_available_housekeeping_services, container, false)
 
         //Get the viewmodel for housekeeping
         custAvailableHousekeepingServicesModel = ViewModelProvider(this).get(
@@ -61,10 +62,13 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
         )
 
         custAvailableHousekeepingServicesModel.getStatus().observe(viewLifecycleOwner, Observer {
-            if(it == false){
+            if (it == false) {
                 Toast.makeText(requireContext(), "No Services Available!", Toast.LENGTH_SHORT).show()
             }
         })
+
+        //Get action bar title for retrieve data from db
+        servicesType = (activity as CustHousekeepingAvailableServicesActivity?)!!.supportActionBar!!.title.toString()
 
         return root
     }
@@ -86,7 +90,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(!tvTimeFrom.text.equals("From") && !tvTimeTo.text.equals("To")){
+                if (!tvTimeFrom.text.equals("From") && !tvTimeTo.text.equals("To")) {
                     displayAvailableServiceRV(view)
                 }
             }
@@ -112,7 +116,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(!tv_selectedDate.text.equals("Select Date") && !tvTimeTo.text.equals("To")){
+                if (!tv_selectedDate.text.equals("Select Date") && !tvTimeTo.text.equals("To")) {
                     displayAvailableServiceRV(view)
                 }
             }
@@ -139,7 +143,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(!tv_selectedDate.text.equals("Select Date") && !tvTimeFrom.text.equals("From")){
+                if (!tv_selectedDate.text.equals("Select Date") && !tvTimeFrom.text.equals("From")) {
                     displayAvailableServiceRV(view)
                 }
             }
@@ -156,9 +160,8 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
     private fun displayAvailableServiceRV(view: View){
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_housekeeping_available_services)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = AvailableHousekeepingServicesAdadpter(ArrayList<HousekeepingService>(), requireActivity()) //Initialize adapter
+        recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(ArrayList<RoomCleaningService>(), requireActivity()) //Initialize adapter
         recyclerView.setHasFixedSize(true)
-
 
         //Retrieve data from db
         val retrieveDate = tvDate.text.substring(5, 11) + " " + year
@@ -167,12 +170,23 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
         val timeToHour = tvTimeTo.text.substring(0, 2)
         val timeToMinute = tvTimeTo.text.substring(3, 5)
 
-        custAvailableHousekeepingServicesModel.retrieveHousekeepingServicesFromDB(retrieveDate, timeFromHour.toInt(), timeFromMinute.toInt(), timeToHour.toInt(), timeToMinute.toInt())
+        if(servicesType == "Room Cleaning"){
+            custAvailableHousekeepingServicesModel.retrieveHousekeepingServicesFromDB(servicesType, retrieveDate, timeFromHour.toInt(), timeFromMinute.toInt(), timeToHour.toInt(), timeToMinute.toInt())
 
-        //Observe the housekeeping list and set it
-        custAvailableHousekeepingServicesModel.getHousekeepingServicesList().observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = AvailableHousekeepingServicesAdadpter(it, requireActivity())
-        })
+            //Observe the housekeeping list and set it
+            custAvailableHousekeepingServicesModel.getRoomCleaningServicesList().observe(viewLifecycleOwner, Observer {
+                recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(it, requireActivity())
+            })
+        }
+        else if(servicesType == "Laundry Service"){
+            custAvailableHousekeepingServicesModel.retrieveHousekeepingServicesFromDB(servicesType, retrieveDate, timeFromHour.toInt(), timeFromMinute.toInt(), timeToHour.toInt(), timeToMinute.toInt())
+
+            //Observe the housekeeping list and set it
+            custAvailableHousekeepingServicesModel.getLaundryServicesList().observe(viewLifecycleOwner, Observer {
+                recyclerView.adapter = AvailableLaundryServicesAdadpter(it, requireActivity(), tv_selectedDate.text.toString())
+            })
+        }
+
     }
 
     private fun pickDate(){
