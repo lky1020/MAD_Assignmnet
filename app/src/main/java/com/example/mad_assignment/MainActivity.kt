@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //click 'Login' button
         val btnStaffLogin: Button = findViewById(R.id.btnto_loginpage)
         btnStaffLogin.setOnClickListener(){
-            val intent = Intent(this@MainActivity, CustomerMain::class.java)
+            val intent = Intent(this@MainActivity, Login::class.java)
             startActivity(intent)
         }
 
