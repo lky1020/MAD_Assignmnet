@@ -24,7 +24,6 @@ class CustHousekeepingFragment : Fragment() {
         // Initialize the fragment
         val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
         ft.replace(R.id.framel_Housekeeping, CustHousekeepingServiceFragment())
-        ft.addToBackStack(null)
         ft.commit()
 
         val tvServices: TextView = root.findViewById(R.id.tv_houseKeeping_services)
@@ -39,7 +38,6 @@ class CustHousekeepingFragment : Fragment() {
 
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.framel_Housekeeping, CustHousekeepingServiceFragment())
-            ft.addToBackStack(null)
             ft.commit()
         }
 
@@ -52,7 +50,6 @@ class CustHousekeepingFragment : Fragment() {
 
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.framel_Housekeeping, CustHousekeepingRequestFragment())
-            ft.addToBackStack(null)
             ft.commit()
         }
 

@@ -75,4 +75,5 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="book">Book</string>
+    <string name="available">Available</string>
 </resources>

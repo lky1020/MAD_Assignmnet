@@ -10,12 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.HousekeepingAdapter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingAdapter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingModel
 import com.example.mad_assignment.R
-import com.google.firebase.database.FirebaseDatabase
 
 class CustHousekeepingServiceFragment : Fragment() {
 
@@ -70,6 +67,7 @@ class CustHousekeepingServiceFragment : Fragment() {
 //        myRef.child("Apr 17 2021").setValue(servicesList)
 
         //Hardcode db first (waiting staff housekeeping)
+        //Housekeeping
 //        val database = FirebaseDatabase.getInstance()
 //        val myRef = database.getReference("Housekeeping")
 //
@@ -82,6 +80,24 @@ class CustHousekeepingServiceFragment : Fragment() {
 //
 //        val imageRef = FirebaseStorage.getInstance().getReference("Housekeeping")
 //        imageRef.putFile(filePath)
+
+        //Bed Textiles
+//        val database = FirebaseDatabase.getInstance()
+//        val myRef = database.getReference("Housekeeping").child("Bed Textiles").child("ItemAvailable")
+//
+//        val bedTextilesItem = HousekeepingItem("Cushion",
+//                "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/bedTextiles%2FCushion.png?alt=media&token=14b11887-220b-4e13-b67b-04874dfa2f1c")
+//
+//        myRef.child(bedTextilesItem.title).setValue(bedTextilesItem)
+
+        //Toiletries
+//        val database = FirebaseDatabase.getInstance()
+//        val myRef = database.getReference("Housekeeping").child("Toiletries").child("ItemAvailable")
+//
+//        val bedTextilesItem = HousekeepingItem("Lotion",
+//                "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/toiletries%2FLotion.png?alt=media&token=b8cd5f43-1619-4914-a88b-26ffe895718b")
+//
+//        myRef.child(bedTextilesItem.title).setValue(bedTextilesItem)
 
     }
 }

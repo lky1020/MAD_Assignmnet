@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Service
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog

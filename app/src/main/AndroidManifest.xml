@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_Assignment">
         <activity
-            android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.CustHousekeepingAvailableServicesActivity"
+            android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.Item.CustHousekeepingAvailableItemActivity"
+        android:parentActivityName=".CustomerMain" />
+        <activity
+            android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.Service.CustHousekeepingAvailableServicesActivity"
             android:parentActivityName=".CustomerMain" />
         <activity android:name=".MainActivity">
             <intent-filter>

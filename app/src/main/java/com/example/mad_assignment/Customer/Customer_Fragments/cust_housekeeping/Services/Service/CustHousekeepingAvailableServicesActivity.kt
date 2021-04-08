@@ -1,15 +1,13 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Service
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.R
 
 class CustHousekeepingAvailableServicesActivity : AppCompatActivity() {
-    private lateinit var decorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

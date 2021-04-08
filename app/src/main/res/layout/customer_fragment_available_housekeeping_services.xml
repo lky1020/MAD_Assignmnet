@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.Customer_Fragments.cust_housekeeping.Services.CustHousekeepingAvailableServicesFragment">
+    tools:context=".Customer.Customer_Fragments.cust_housekeeping.Services.Service.CustHousekeepingAvailableServicesFragment">
 
     <EditText
         android:id="@+id/et_housekeeping_services_search"
@@ -191,13 +191,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ver_line2"/>
-
-<!--    <FrameLayout-->
-<!--        android:id="@+id/framel_Available_Services"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ver_line2"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

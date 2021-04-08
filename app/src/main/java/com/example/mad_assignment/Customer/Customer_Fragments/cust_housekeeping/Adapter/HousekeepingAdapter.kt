@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,7 +10,8 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.CustHousekeepingAvailableServicesActivity
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Item.CustHousekeepingAvailableItemActivity
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Service.CustHousekeepingAvailableServicesActivity
 import com.example.mad_assignment.R
 import com.squareup.picasso.Picasso
 
@@ -40,8 +41,18 @@ class HousekeepingAdapter(private var housekeepingList: ArrayList<Housekeeping>,
 
         //Set onclicklisterner
         holder.cvHousekeeping.setOnClickListener {
-            val intent: Intent = Intent(mContext, CustHousekeepingAvailableServicesActivity::class.java).apply {
-                putExtra("Title", currentItem.title)
+            var intent = Intent()
+
+            if(holder.tvTitle.text == "Room Cleaning" || holder.tvTitle.text == "Laundry Service"){
+
+                intent = Intent(mContext, CustHousekeepingAvailableServicesActivity::class.java).apply {
+                    putExtra("Title", currentItem.title)
+                }
+
+            }else{
+                intent = Intent(mContext, CustHousekeepingAvailableItemActivity::class.java).apply {
+                    putExtra("Title", currentItem.title)
+                }
             }
 
             mContext.startActivity(intent)
