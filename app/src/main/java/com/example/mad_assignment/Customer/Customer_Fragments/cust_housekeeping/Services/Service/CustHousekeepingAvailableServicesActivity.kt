@@ -18,7 +18,7 @@ class CustHousekeepingAvailableServicesActivity : AppCompatActivity() {
 
         //Receive data
         val title: String = intent.getStringExtra("Title").toString()
-
+        val imageUrl: String = intent.getStringExtra("ImageUrl").toString()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -27,7 +27,7 @@ class CustHousekeepingAvailableServicesActivity : AppCompatActivity() {
 
         //Set Fragment
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.framel_Housekeeping_Services, CustHousekeepingAvailableServicesFragment())
+        ft.replace(R.id.framel_Housekeeping_Services, CustHousekeepingAvailableServicesFragment(title, imageUrl))
         ft.commit()
     }
 }

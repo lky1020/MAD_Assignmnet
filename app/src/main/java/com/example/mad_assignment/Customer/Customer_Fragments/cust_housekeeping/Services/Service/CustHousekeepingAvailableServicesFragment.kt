@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +18,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
+import com.example.mad_assignment.Customer.Chat.messages.NewMessage
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableLaundryServicesAdadpter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableRoomCleaningServicesAdadpter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustAvailableHousekeepingServicesModel
 import com.example.mad_assignment.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.customer_fragment_available_housekeeping_services.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+class CustHousekeepingAvailableServicesFragment(private var title: String, private var imageUrl: String) : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     //Date
     private var year = 0
@@ -40,6 +49,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
     private var fromSelected = true
 
     private lateinit var servicesType: String
+    private lateinit var imgUrl: String
     private lateinit var tvDate: TextView
     private lateinit var tvTimeFrom: TextView
     private lateinit var tvTimeTo: TextView
@@ -68,7 +78,10 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
         })
 
         //Get action bar title for retrieve data from db
-        servicesType = (activity as CustHousekeepingAvailableServicesActivity?)!!.supportActionBar!!.title.toString()
+        servicesType = title
+
+        //Get the image from the housekeeping
+        imgUrl = imageUrl
 
         return root
     }
@@ -160,7 +173,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
     private fun displayAvailableServiceRV(view: View){
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_housekeeping_available_services)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(ArrayList<RoomCleaningService>(), requireActivity()) //Initialize adapter
+        recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(ArrayList<RoomCleaningService>(), requireActivity(), servicesType, imgUrl) //Initialize adapter
         recyclerView.setHasFixedSize(true)
 
         //Retrieve data from db
@@ -175,7 +188,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
 
             //Observe the housekeeping list and set it
             custAvailableHousekeepingServicesModel.getRoomCleaningServicesList().observe(viewLifecycleOwner, Observer {
-                recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(it, requireActivity())
+                recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(it, requireActivity(), servicesType, imgUrl)
             })
         }
         else if(servicesType == "Laundry Service"){
@@ -183,7 +196,7 @@ class CustHousekeepingAvailableServicesFragment : Fragment(), DatePickerDialog.O
 
             //Observe the housekeeping list and set it
             custAvailableHousekeepingServicesModel.getLaundryServicesList().observe(viewLifecycleOwner, Observer {
-                recyclerView.adapter = AvailableLaundryServicesAdadpter(it, requireActivity(), tv_selectedDate.text.toString())
+                recyclerView.adapter = AvailableLaundryServicesAdadpter(it, requireActivity(), tv_selectedDate.text.toString(), servicesType, imgUrl)
             })
         }
 

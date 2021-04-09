@@ -49,7 +49,6 @@ class CustAvailableHousekeepingServicesModel() : ViewModel()  {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private val dtf: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
     private lateinit var from: LocalTime
     private lateinit var to: LocalTime
     private lateinit var dbFrom: LocalTime

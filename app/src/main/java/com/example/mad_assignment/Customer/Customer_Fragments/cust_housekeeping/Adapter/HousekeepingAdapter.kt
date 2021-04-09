@@ -47,6 +47,7 @@ class HousekeepingAdapter(private var housekeepingList: ArrayList<Housekeeping>,
 
                 intent = Intent(mContext, CustHousekeepingAvailableServicesActivity::class.java).apply {
                     putExtra("Title", currentItem.title)
+                    putExtra("ImageUrl", currentItem.img)
                 }
 
             }else{

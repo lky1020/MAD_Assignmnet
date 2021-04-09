@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingAdapter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingModel
 import com.example.mad_assignment.R
+import com.google.firebase.database.FirebaseDatabase
 
 class CustHousekeepingServiceFragment : Fragment() {
 
@@ -52,7 +54,7 @@ class CustHousekeepingServiceFragment : Fragment() {
 //        servicesList.add(RoomCleaningService("Apr 17 2021","12:30 PM", "01:00 PM", "Available"))
 //        servicesList.add(RoomCleaningService("Apr 17 2021","01:00 PM", "01:30 PM", "Available"))
 //
-//        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Laundry Service").child("ServicesAvailable")
+//        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Room Cleaning").child("ServicesAvailable")
 //        myRef.child("Apr 17 2021").setValue(servicesList)
 
         //Laundry Service
