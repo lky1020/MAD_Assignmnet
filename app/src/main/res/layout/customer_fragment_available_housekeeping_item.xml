@@ -66,8 +66,8 @@
         app:layout_constraintStart_toEndOf="@id/tv_houseKeeping_item_available" />
 
     <TextView
-        android:id="@+id/tv_houseKeeping_item_requested"
-        android:text="@string/requested"
+        android:id="@+id/tv_houseKeeping_item_ordered"
+        android:text="@string/ordered"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
