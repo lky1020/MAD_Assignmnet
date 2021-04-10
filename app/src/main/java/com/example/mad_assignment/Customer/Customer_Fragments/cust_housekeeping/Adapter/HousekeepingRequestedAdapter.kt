@@ -45,15 +45,17 @@ class HousekeepingRequestedAdapter(private var housekeepingRequestedList: ArrayL
         val retrieveDate = currentItem.date
         val dayOfMonth = retrieveDate.substring(4, 6).toInt()
         val month = convertMonth(retrieveDate.substring(0, 3))
-        val year =retrieveDate.substring(7).toInt()
+        val year = retrieveDate.substring(7).toInt()
 
         val simpleDateFormat = SimpleDateFormat("EEEE")
         val date = Date(year, month, dayOfMonth)
         val dayString = simpleDateFormat.format(date).substring(0, 3)
 
+        val monthString = convertMonth(month)
+
         Picasso.get().load(currentItem.serviceImg).into(holder.ivService);
         holder.tvServiceTitle.text = currentItem.serviceType
-        holder.tvServiceDate.text = "Date: $dayString, $month $dayOfMonth "
+        holder.tvServiceDate.text = "Date: $dayString, $monthString $dayOfMonth "
         holder.tvServiceTime.text = "Time: " + currentItem.timeFrom + " - " + currentItem.timeTo
         holder.tvBookedTime.text = "Book at " + currentItem.bookedTime
 
@@ -85,5 +87,24 @@ class HousekeepingRequestedAdapter(private var housekeepingRequestedList: ArrayL
         }
 
         return 12
+    }
+
+    private fun convertMonth(month: Int): String{
+        when (month){
+            0 -> return "Jan"
+            1 -> return "Feb"
+            2 -> return "Mar"
+            3 -> return "Apr"
+            4 -> return "May"
+            5 -> return "Jun"
+            6 -> return "Jul"
+            7 -> return "Aug"
+            8 -> return "Sep"
+            9 -> return "Oct"
+            10 -> return "Nov"
+            11 -> return "Dec"
+        }
+
+        return ""
     }
 }

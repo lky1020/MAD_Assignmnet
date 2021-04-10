@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingBottomSheetFragment
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
 import com.example.mad_assignment.R
 import com.squareup.picasso.Picasso
 
-class HousekeepingItemAdapter(private var housekeepingItemList: ArrayList<HousekeepingItem>, private var mContext: FragmentActivity): RecyclerView.Adapter<HousekeepingItemAdapter.HousekeepingItemViewHolder>() {
+class HousekeepingItemAdapter(private var housekeepingItemList: ArrayList<HousekeepingItem>, private var mContext: FragmentActivity, private val servicesType: String): RecyclerView.Adapter<HousekeepingItemAdapter.HousekeepingItemViewHolder>() {
 
     /*
     The cardview will be same as the housekeeping mainpage cardview
@@ -35,13 +36,16 @@ class HousekeepingItemAdapter(private var housekeepingItemList: ArrayList<Housek
 
     override fun onBindViewHolder(holder: HousekeepingItemViewHolder, position: Int) {
         val currentItem = housekeepingItemList[position]
+        val bottomSheetFragment = HousekeepingBottomSheetFragment(currentItem, servicesType, currentItem.img)
 
         holder.tvTitle.text = currentItem.title
         Picasso.get().load(currentItem.img).into(holder.ivHousekeepingItem);
 
         //Set onclicklisterner
         holder.cvHousekeepingItem.setOnClickListener {
-            //TODO
+
+            bottomSheetFragment.show(mContext.supportFragmentManager, "BottomSheetDialog")
+
         }
 
     }

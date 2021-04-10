@@ -38,7 +38,7 @@ class CustHousekeepingItemAvailableFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_housekeeping_item)
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
-        recyclerView.adapter = HousekeepingItemAdapter(ArrayList<HousekeepingItem>(), requireActivity()) //Initialize adapter
+        recyclerView.adapter = HousekeepingItemAdapter(ArrayList<HousekeepingItem>(), requireActivity(), servicesType) //Initialize adapter
         recyclerView.setHasFixedSize(true)
 
         //Get the viewmodel for housekeeping
@@ -49,7 +49,7 @@ class CustHousekeepingItemAvailableFragment : Fragment() {
 
         //Observe the housekeeping list and set it
         custHousekeepingItemModel.getHousekeepingItemList().observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = HousekeepingItemAdapter(it, requireActivity())
+            recyclerView.adapter = HousekeepingItemAdapter(it, requireActivity(), servicesType)
         })
     }
 }
