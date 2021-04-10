@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.google.firebase.database.*
 
-class CustHousekeepingModel() : ViewModel() {
+class CustHousekeepingServicesModel() : ViewModel() {
 
     private var ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Housekeeping")
 
@@ -30,6 +30,9 @@ class CustHousekeepingModel() : ViewModel() {
 
                     for(i in snapshot.children){
                         // get the item from firebase
+                        /*
+                            ItemAvailable, ServicesAvailable, ServicesBooked will not include into houskeeping class
+                         */
                         val housekeeping = i.getValue(Housekeeping::class.java)
 
                         // add the item and pass to observer for the adapter

@@ -12,14 +12,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingModel
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingServicesModel
 import com.example.mad_assignment.R
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
 class StaffHousekeepingFragment : Fragment() {
-    private lateinit var custHousekeepingModel: CustHousekeepingModel
+    private lateinit var custHousekeepingServicesModel: CustHousekeepingServicesModel
     lateinit var filePath: Uri
     lateinit var imageView: ImageView
 

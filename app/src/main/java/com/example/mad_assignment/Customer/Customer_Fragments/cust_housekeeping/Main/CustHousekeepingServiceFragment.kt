@@ -10,15 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingAdapter
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingModel
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingServicesAdapter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingServicesModel
 import com.example.mad_assignment.R
-import com.google.firebase.database.FirebaseDatabase
 
 class CustHousekeepingServiceFragment : Fragment() {
 
-    private lateinit var custHousekeepingModel: CustHousekeepingModel
+    private lateinit var custHousekeepingServicesModel: CustHousekeepingServicesModel
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -32,18 +30,18 @@ class CustHousekeepingServiceFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_housekeeping)
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
-        recyclerView.adapter = HousekeepingAdapter(ArrayList<Housekeeping>(), requireActivity()) //Initialize adapter
+        recyclerView.adapter = HousekeepingServicesAdapter(ArrayList<Housekeeping>(), requireActivity()) //Initialize adapter
         recyclerView.setHasFixedSize(true)
 
         //Get the viewmodel for housekeeping
-        custHousekeepingModel = ViewModelProvider(this).get(CustHousekeepingModel::class.java)
+        custHousekeepingServicesModel = ViewModelProvider(this).get(CustHousekeepingServicesModel::class.java)
 
         //Retrieve data from db
-        custHousekeepingModel.retrieveHousekeepingFromDB()
+        custHousekeepingServicesModel.retrieveHousekeepingFromDB()
 
         //Observe the housekeeping list and set it
-        custHousekeepingModel.getHousekeepingList().observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = HousekeepingAdapter(it, requireActivity())
+        custHousekeepingServicesModel.getHousekeepingList().observe(viewLifecycleOwner, Observer {
+            recyclerView.adapter = HousekeepingServicesAdapter(it, requireActivity())
         })
 
         // Room Cleaning

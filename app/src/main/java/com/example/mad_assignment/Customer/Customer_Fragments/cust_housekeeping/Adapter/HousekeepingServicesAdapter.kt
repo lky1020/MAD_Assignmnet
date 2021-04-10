@@ -15,7 +15,7 @@ import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.
 import com.example.mad_assignment.R
 import com.squareup.picasso.Picasso
 
-class HousekeepingAdapter(private var housekeepingList: ArrayList<Housekeeping>, private var mContext: FragmentActivity): RecyclerView.Adapter<HousekeepingAdapter.HousekeepingViewHolder>() {
+class HousekeepingServicesAdapter(private var housekeepingList: ArrayList<Housekeeping>, private var mContext: FragmentActivity): RecyclerView.Adapter<HousekeepingServicesAdapter.HousekeepingViewHolder>() {
 
     class HousekeepingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val cvHousekeeping: CardView = itemView.findViewById(R.id.cv_housekeeping)
