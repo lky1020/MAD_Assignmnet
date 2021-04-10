@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingServicesAdapter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustHousekeepingServicesModel
 import com.example.mad_assignment.R
+import com.google.firebase.database.FirebaseDatabase
 
 class CustHousekeepingServiceFragment : Fragment() {
 
@@ -62,6 +64,11 @@ class CustHousekeepingServiceFragment : Fragment() {
 //        servicesList.add(LaundryService("Apr 17 2021","12:00 PM", "05:00 PM", "Not Available"))
 //        servicesList.add(LaundryService("Apr 17 2021","12:30 PM", "08:00 PM", "Available"))
 //        servicesList.add(LaundryService("Apr 17 2021","01:30 PM", "08:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","02:00 PM", "03:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","03:30 PM", "04:00 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","04:00 PM", "05:00 PM", "Not Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","05:30 PM", "05:30 PM", "Available"))
+//        servicesList.add(LaundryService("Apr 17 2021","05:30 PM", "06:00 PM", "Available"))
 //
 //        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Laundry Service").child("ServicesAvailable")
 //        myRef.child("Apr 17 2021").setValue(servicesList)
