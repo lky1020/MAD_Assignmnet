@@ -27,7 +27,6 @@ import java.util.*
 
 class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem, private val servicesType: String, private var imageUrl: String): BottomSheetDialogFragment() {
 
-    private var estimateTime = ""
     private lateinit var tvTitle: TextView
     private lateinit var tvQuantity: TextView
     private var dismissMessage = ""
@@ -76,14 +75,14 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
             val estimateReceivedDate = getDateCalendar()
             val estimateReceivedTime = getTime()
             val estimateReceived = "$estimateReceivedDate, $estimateReceivedTime"
-            orderItemForUser(currentItem, estimateReceived)
+            orderItemForUser(estimateReceived)
 
             dismissMessage = "Item Ordered"
             dismiss()
         }
     }
 
-    private fun orderItemForUser(currentItem: HousekeepingItem, estimateReceived: String){
+    private fun orderItemForUser(estimateReceived: String){
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
@@ -105,6 +104,7 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
                         tvTitle.text.toString(),
                         imageUrl,
                         tvQuantity.text.toString().toInt(),
+                        bookedTime,
                         estimateReceived,
                         servicesType,
                         currentUser.name)
@@ -191,7 +191,7 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
             estimateTimeList[1] = 0
         }
 
-        return estimateTimeList[0].toString() + ":"+ estimateTimeList[1].toString() + " " + estimateTimeList[2].toString()
+        return String.format("%02d", estimateTimeList[0]) + ":"+ String.format("%02d", estimateTimeList[1]) + " " + estimateTimeList[2].toString()
 
     }
 

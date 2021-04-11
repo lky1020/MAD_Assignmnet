@@ -60,7 +60,10 @@ class CustHousekeepingRequestedModel() : ViewModel()  {
                                 }
                             }
                         }else{
-                            housekeepingRequestedList.clear()
+                            // To prevent previous data been removed (>= 2 firebase query)
+                            if(housekeepingRequestedList.size == 0){
+                                housekeepingRequestedList.clear()
+                            }
                         }
 
                         _status.value = housekeepingRequestedList.size > 0

@@ -4,6 +4,7 @@ data class HousekeepingOrderedItem (
         val title: String = "",
         val img: String = "",
         val quantity: Int = 0,
+        val bookedTime: String = "",
         val receiveTime: String = "",
         val serviceType: String = "",
         val user: String = ""

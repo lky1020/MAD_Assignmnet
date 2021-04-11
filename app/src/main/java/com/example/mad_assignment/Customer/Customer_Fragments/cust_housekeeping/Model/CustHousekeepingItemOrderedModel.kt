@@ -60,7 +60,11 @@ class CustHousekeepingItemOrderedModel() : ViewModel()  {
                                 }
                             }
                         }else{
-                            housekeepingItemorderedList.clear()
+                            // To prevent previous data been removed (>= 2 firebase query)
+                            if(housekeepingItemorderedList.size == 0){
+                                housekeepingItemorderedList.clear()
+                            }
+
                         }
 
                         _status.value = housekeepingItemorderedList.size > 0

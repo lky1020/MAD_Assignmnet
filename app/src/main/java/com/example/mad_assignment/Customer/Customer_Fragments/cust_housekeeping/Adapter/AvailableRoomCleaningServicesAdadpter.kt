@@ -128,7 +128,7 @@ class AvailableRoomCleaningServicesAdadpter(private var availableRoomCleaningSer
                 .orderByChild("timeFrom")
                 .equalTo(currentItem.timeFrom)
 
-        query.addValueEventListener(object : ValueEventListener {
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {

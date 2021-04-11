@@ -125,7 +125,7 @@ class AvailableLaundryServicesAdadpter(private var availableLaundryServicesList:
                 .orderByChild("timePickUp")
                 .equalTo(currentItem.timePickUp)
 
-        query.addValueEventListener(object : ValueEventListener {
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
