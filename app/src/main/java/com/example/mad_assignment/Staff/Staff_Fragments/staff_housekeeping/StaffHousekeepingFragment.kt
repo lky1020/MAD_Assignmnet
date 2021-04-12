@@ -19,9 +19,6 @@ import com.google.firebase.storage.StorageReference
 
 
 class StaffHousekeepingFragment : Fragment() {
-    private lateinit var custHousekeepingServicesModel: CustHousekeepingServicesModel
-    lateinit var filePath: Uri
-    lateinit var imageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,53 +26,7 @@ class StaffHousekeepingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.staff_fragment_housekeeping, container, false)
-        imageView = root.findViewById(R.id.iv_testing)
-//        val recyclerView: RecyclerView = root.findViewById(R.id.rv_housekeeping)
-//
-//        //Get the viewmodel for housekeeping
-//        custHousekeepingModel = ViewModelProvider(this).get(CustHousekeepingModel::class.java)
-//
-//        //Observe the housekeeping list and set it
-//        custHousekeepingModel.getHousekeepingList().observe(viewLifecycleOwner, Observer {
-//            recyclerView.adapter = HousekeepingAdapter(it)
-//        })
-//
-//        recyclerView.layoutManager = GridLayoutManager(this.context, 2)
-//        recyclerView.setHasFixedSize(true)
-
-        val btnUpload: Button = root.findViewById(R.id.btn_choose)
-        btnUpload.setOnClickListener {
-            var i = Intent()
-            i.setType("image/*")
-            i.setAction(Intent.ACTION_GET_CONTENT)
-            startActivityForResult(Intent.createChooser(i, "Choose Picture"), 111)
-        }
-
-        return root
+        return inflater.inflate(R.layout.staff_fragment_housekeeping, container, false)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 111 && resultCode == Activity.RESULT_OK && data != null){
-            filePath = data.data!!
-
-            val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, filePath)
-            imageView.setImageBitmap(bitmap)
-
-            val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("housekeeping/Room Cleaning")
-//            val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("housekeeping/Laundry Service")
-//            val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("housekeeping/Toiletries")
-//            val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("housekeeping/Bed Textiles")
-
-            imageRef.putFile(filePath)
-                .addOnSuccessListener {
-                    Toast.makeText(activity, "File Uploaded", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener{
-                    Toast.makeText(activity, "File Fail", Toast.LENGTH_SHORT).show()
-                }
-        }
-    }
 }

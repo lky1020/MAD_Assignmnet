@@ -9,6 +9,13 @@
         <item android:id="@+id/nav_report"
             android:icon="@drawable/ic_report"
             android:title="@string/txtReport"/>
+
+        <!--    Housekeeping (just for testing)-->
+        <item android:id="@+id/nav_housekeeping"
+            android:icon="@drawable/ic_housekeeping"
+            android:title="@string/housekeeping"/>
+        <!--    Housekeeping (just for testing)-->
+
         <item android:id="@+id/nav_TransHis_staff"
             android:icon="@drawable/ic_transaction_history"
             android:title="@string/transaction_history"/>
