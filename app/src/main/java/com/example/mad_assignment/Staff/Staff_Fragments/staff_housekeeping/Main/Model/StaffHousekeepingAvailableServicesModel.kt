@@ -32,79 +32,92 @@ class StaffHousekeepingAvailableServicesModel() : ViewModel() {
         return _laundryServices
     }
 
-    fun retrieveHousekeepingServicesFromDB(servicesType: String){
+    //Status
+    private var _status = MutableLiveData<Boolean>()
+
+    val status : LiveData<Boolean>
+        get()= _status
+
+    fun getStatus(): MutableLiveData<Boolean>{
+        return _status
+    }
+
+    fun retrieveHousekeepingServicesFromDB(servicesType: String, date: String){
 
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Housekeeping")
-                .child(servicesType).child("ServicesAvailable").child("Apr 17 2021")
+                .child(servicesType).child("ServicesAvailable").child(date)
 
+        //Check got data or not
+        ref.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+                    _status.value = true
+
+                } else {
+                    roomCleaningServicesList.clear()
+                    laundryServicesList.clear()
+
+                    _status.value = false
+
+                    if (servicesType == "Room Cleaning") {
+                        _roomCleaningServices.value = roomCleaningServicesList
+
+                    } else {
+                        _laundryServices.value = laundryServicesList
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+        //add and display data
         ref.addChildEventListener(object : ChildEventListener {
+
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 if (servicesType == "Room Cleaning") {
+
                     val roomService = snapshot.getValue(RoomCleaningService::class.java)!!
 
-                    // add the item and pass to observer for the adapter
-                    roomCleaningServicesList.add(roomService)
-                    _roomCleaningServices.value = roomCleaningServicesList
+                    //Prevent duplicate data
+                    if(!roomCleaningServicesList.contains(roomService)){
+                        // add the item and pass to observer for the adapter
+                        roomCleaningServicesList.add(roomService)
+                        _roomCleaningServices.value = roomCleaningServicesList
+                    }
 
                 } else {
                     val laundryService = snapshot.getValue(LaundryService::class.java)!!
 
-                    // add the item and pass to observer for the adapter
-                    laundryServicesList.add(laundryService)
-                    _laundryServices.value = laundryServicesList
+                    //Prevent duplicate data
+                    if(!laundryServicesList.contains(laundryService)){
+                        // add the item and pass to observer for the adapter
+                        laundryServicesList.add(laundryService)
+                        _laundryServices.value = laundryServicesList
+                    }
+
                 }
+
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
         })
-
-        //            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.exists()){
-//                    // Clear list to prevent duplicate item appear
-//                    roomCleaningServicesList.clear()
-//                    laundryServicesList.clear()
-//
-//                    for(i in snapshot.children){
-//
-//                        val roomServiceList: ArrayList<RoomCleaningService> = i.getValue(RoomCleaningService::class.java)!!
-//
-//                        for(j in roomServiceList){
-//                            if(servicesType == "Room Cleaning"){
-//                                val roomService = j.getValue(RoomCleaningService::class.java)!!
-//
-//                                // add the item and pass to observer for the adapter
-//                                roomCleaningServicesList.add(roomService)
-//                                _roomCleaningServices.value = roomCleaningServicesList
-//
-//                            }else{
-//                                val laundryService = j.getValue(LaundryService::class.java)!!
-//
-//                                // add the item and pass to observer for the adapter
-//                                laundryServicesList.add(laundryService)
-//                                _laundryServices.value = laundryServicesList
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
     }
 }
