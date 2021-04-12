@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Service.CustHousekeepingAvailableServicesFragment
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.Item.StaffHousekeepingItemFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.Services.StaffHousekeepingServicesFragment
 import kotlinx.android.synthetic.main.activity_staff_housekeeping_service_fragment.*
 
@@ -42,6 +43,12 @@ class StaffHousekeepingServiceActivity : AppCompatActivity() {
             //Set Fragment
             val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
             ft.replace(R.id.framel_staff_Housekeeping_manage, StaffHousekeepingServicesFragment(title))
+            ft.commit()
+
+        }else{
+            //Set Fragment
+            val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.framel_staff_Housekeeping_manage, StaffHousekeepingItemFragment(title))
             ft.commit()
         }
 

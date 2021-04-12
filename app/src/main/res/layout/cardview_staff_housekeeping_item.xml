@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_housekeeping_services"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    android:layout_marginBottom="25dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_item_ordered"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_outline_downloading"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                android:layout_marginEnd="10dp"
+                app:shapeAppearanceOverlay="@style/Circular"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/iv_item_ordered"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:id="@+id/tv_ordered_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/teal_200"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="5dp"
+                    tools:text="Pillow" />
+
+                <TextView
+                    android:id="@+id/tv_ordered_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_ordered_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="Quantity: 2" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btn_item_edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_outline_edit"
+            android:background="@drawable/radius"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_item_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="25dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/btn_item_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_outline_delete"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

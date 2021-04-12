@@ -2,5 +2,6 @@ package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
 
 data class HousekeepingItem (
     val title: String = "",
-    val img: String = ""
+    val img: String = "",
+    val quantity: Int = 100
 )

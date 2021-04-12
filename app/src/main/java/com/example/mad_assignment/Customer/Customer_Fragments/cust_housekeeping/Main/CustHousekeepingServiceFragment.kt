@@ -131,7 +131,7 @@ class CustHousekeepingServiceFragment : Fragment() {
 //        val myRef = database.getReference("Housekeeping").child("Bed Textiles").child("ItemAvailable")
 //
 //        val bedTextilesItem = HousekeepingItem("Cushion",
-//                "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/bedTextiles%2FCushion.png?alt=media&token=14b11887-220b-4e13-b67b-04874dfa2f1c")
+//                "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/bedTextiles%2FCushion.png?alt=media&token=14b11887-220b-4e13-b67b-04874dfa2f1c", 100)
 //
 //        myRef.child(bedTextilesItem.title).setValue(bedTextilesItem)
 
