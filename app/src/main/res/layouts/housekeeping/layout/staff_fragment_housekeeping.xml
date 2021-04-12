@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Staff.Staff_Fragments.staff_housekeeping.StaffHousekeepingFragment">
+    tools:context=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment">
 
 <EditText
     android:id="@+id/et_housekeeping_search"
@@ -27,5 +27,14 @@
     app:layout_constraintEnd_toEndOf="parent"
     tools:targetApi="m"
     android:importantForAutofill="no" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_staff_housekeeping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/cardview_item_housekeeping"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_housekeeping_search"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

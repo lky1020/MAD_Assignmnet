@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_housekeeping_services"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:id="@+id/view_services_status"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/radius"
+                android:layout_marginEnd="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_services_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/view_services_status"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                tools:text="Time: 11:00 AM - 11:30 PM" />
+
+            <TextView
+                android:id="@+id/tv_services_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/view_services_status"
+                android:layout_below="@id/tv_services_time"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="Remark" />
+
+            <TextView
+                android:id="@+id/tv_services_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/view_services_status"
+                android:layout_below="@id/tv_services_remark"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="Status Available" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_service_edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_outline_edit"
+            android:textColor="@color/white"
+            android:background="@drawable/radius"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_service_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_service_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_outline_delete"
+            android:textColor="@color/white"
+            android:background="@drawable/radius"
+            android:backgroundTint="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

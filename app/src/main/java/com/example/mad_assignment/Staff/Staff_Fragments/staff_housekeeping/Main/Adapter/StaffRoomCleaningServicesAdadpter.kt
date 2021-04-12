@@ -1,0 +1,81 @@
+package com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Adapter
+
+import android.annotation.SuppressLint
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.BookedHousekeepingService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
+import com.example.mad_assignment.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+
+
+class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningServicesList: ArrayList<RoomCleaningService>, private var mContext: FragmentActivity): RecyclerView.Adapter<StaffRoomCleaningServicesAdadpter.StaffHousekeepingRoomServicesViewHolder>(){
+
+    class StaffHousekeepingRoomServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val tvTime: TextView = itemView.findViewById(R.id.tv_services_time)
+        val tvRemark: TextView = itemView.findViewById(R.id.tv_services_remark)
+        val tvStatus: TextView = itemView.findViewById(R.id.tv_services_status)
+        val viewServiceStatus: View = itemView.findViewById(R.id.view_services_status)
+        val ivEdit: ImageView = itemView.findViewById(R.id.iv_service_edit)
+        val ivDelete: ImageView = itemView.findViewById(R.id.iv_service_delete)
+    }
+
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+    ): StaffHousekeepingRoomServicesViewHolder {
+        val itemView = LayoutInflater.from(mContext)
+            .inflate(R.layout.cardview_staff_housekeeping_services, parent, false)
+
+        return StaffHousekeepingRoomServicesViewHolder(itemView)
+    }
+
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
+    override fun onBindViewHolder(holder: StaffHousekeepingRoomServicesViewHolder, position: Int) {
+        val currentItem = availableRoomCleaningServicesList[position]
+
+        holder.tvRemark.visibility = View.GONE
+
+        val params: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        params.addRule(RelativeLayout.END_OF, R.id.view_services_status);
+        params.setMargins(0, 35, 0, 0)
+        holder.tvTime.layoutParams = params
+
+        holder.tvTime.text = "Time: " + currentItem.timeFrom + " - " + currentItem.timeTo
+        holder.tvStatus.text = "Status: " + currentItem.status
+
+        if(currentItem.status == "Not Available"){
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red);
+
+        }else{
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green);
+        }
+
+        //Set onclicklisterner
+        holder.ivEdit.setOnClickListener {
+            //TODO
+        }
+
+        holder.ivDelete.setOnClickListener {
+            //TODO
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return availableRoomCleaningServicesList.size
+    }
+
+}

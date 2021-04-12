@@ -23,7 +23,7 @@ app:startDestination="@+id/nav_home_staff">
 <!--    Housekeeping (just for testing)-->
     <fragment
         android:id="@+id/nav_housekeeping"
-        android:name="com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.StaffHousekeepingFragment"
+        android:name="com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment"
         android:label="Housekeeping"
         tools:layout="@layout/staff_fragment_housekeeping" />
 <!--    Housekeeping (just for testing)-->

@@ -28,7 +28,7 @@
 <!--&lt;!&ndash;    Just testing for the image to firebase&ndash;&gt;-->
 <!--    <fragment-->
 <!--        android:id="@+id/nav_housekeeping"-->
-<!--        android:name="com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.StaffHousekeepingFragment"-->
+<!--        android:name="com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingFragment"-->
 <!--        android:label="@string/bookHouseKeep"-->
 <!--        tools:layout="@layout/fragment_staff_housekeeping" />-->
 <!--&lt;!&ndash;    Just testing for the image to firebase&ndash;&gt;-->
