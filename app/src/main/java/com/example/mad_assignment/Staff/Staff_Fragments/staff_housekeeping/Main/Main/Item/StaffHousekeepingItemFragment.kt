@@ -16,16 +16,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Adapter.StaffHousekeepingItemAdapter
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Adapter.StaffHousekeepingServicesAdapter
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Model.StaffHousekeepingItemModel
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Model.StaffHousekeepingAvailableItemModel
 
 class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
 
-    private lateinit var staffHousekeepingItemModel: StaffHousekeepingItemModel
+    private lateinit var staffHousekeepingAvailableItemModel: StaffHousekeepingAvailableItemModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var parentLayout: ViewGroup
     private lateinit var parentElement: ContentFrameLayout
@@ -44,7 +42,7 @@ class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
         val root: View =  inflater.inflate(R.layout.staff_fragment_housekeeping_item, container, false)
 
         //Get the viewmodel for housekeeping
-        staffHousekeepingItemModel = ViewModelProvider(this).get(StaffHousekeepingItemModel::class.java)
+        staffHousekeepingAvailableItemModel = ViewModelProvider(this).get(StaffHousekeepingAvailableItemModel::class.java)
 
         //Get action bar title for retrieve data from db
         servicesType = title
@@ -91,10 +89,10 @@ class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         //Retrieve data from db
-        staffHousekeepingItemModel.retrieveHousekeepingItemFromDB(servicesType)
+        staffHousekeepingAvailableItemModel.retrieveHousekeepingItemFromDB(servicesType)
 
         //Observe the housekeeping list and set it
-        staffHousekeepingItemModel.gethousekeepingItemList().observe(viewLifecycleOwner, Observer {
+        staffHousekeepingAvailableItemModel.gethousekeepingItemList().observe(viewLifecycleOwner, Observer {
             recyclerView.adapter = StaffHousekeepingItemAdapter(it, requireActivity())
             housekeepingItemList = it
         })

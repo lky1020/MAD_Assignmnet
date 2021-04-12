@@ -63,7 +63,7 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
 
         //Set onclicklisterner
         holder.ivEdit.setOnClickListener {
-            //TODO
+            updateServices(currentItem, position)
         }
 
         holder.ivDelete.setOnClickListener {
@@ -73,5 +73,44 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
 
     override fun getItemCount(): Int {
         return availableLaundryServicesList.size
+    }
+
+    private fun updateServices(currentItem: LaundryService, position: Int) {
+        val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
+            .child("Laundry Service").child("ServicesAvailable").child(currentItem.date)
+            .orderByChild("timePickUp")
+            .equalTo(currentItem.timePickUp)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
+            @SuppressLint("SimpleDateFormat")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (i in snapshot.children) {
+                        val currentLaundryService = i.getValue(LaundryService::class.java)
+
+                        val dbCompleteTime = currentLaundryService?.timeComplete
+                        var status = ""
+
+                        status = if(currentItem.status == "Not Available"){
+                            "Available"
+                        }else{
+                            "Not Available"
+                        }
+
+                        if(dbCompleteTime.equals(currentItem.timeComplete)){
+                            val updateLaundryService = LaundryService(currentItem.date,currentItem.timePickUp, currentItem.timeComplete, status)
+                            snapshot.ref.child(position.toString()).setValue(updateLaundryService)
+
+                            Toast.makeText(mContext, "Status Updated", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

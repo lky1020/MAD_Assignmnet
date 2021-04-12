@@ -86,7 +86,7 @@ class CustHousekeepingServiceFragment : Fragment() {
 
         // Room Cleaning
 //        val servicesList1 = ArrayList<RoomCleaningService>()
-//        servicesList1.add(RoomCleaningService("Apr 24 2021","11:00 AM", "11:30 PM", "Available"))
+//        servicesList1.add(RoomCleaningService("Apr 24 2021","11:00 AM", "11:30 AM", "Available"))
 //        servicesList1.add(RoomCleaningService("Apr 24 2021","11:30 AM", "12:00 PM", "Available"))
 //        servicesList1.add(RoomCleaningService("Apr 24 2021","12:00 PM", "12:30 PM", "Available"))
 //        servicesList1.add(RoomCleaningService("Apr 24 2021","12:30 PM", "01:00 PM", "Available"))

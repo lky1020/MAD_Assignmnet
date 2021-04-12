@@ -50,14 +50,13 @@ class StaffHousekeepingAvailableServicesModel() : ViewModel() {
         //Check got data or not
         ref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
+                roomCleaningServicesList.clear()
+                laundryServicesList.clear()
 
+                if (snapshot.exists()) {
                     _status.value = true
 
                 } else {
-                    roomCleaningServicesList.clear()
-                    laundryServicesList.clear()
-
                     _status.value = false
 
                     if (servicesType == "Room Cleaning") {
@@ -67,52 +66,52 @@ class StaffHousekeepingAvailableServicesModel() : ViewModel() {
                         _laundryServices.value = laundryServicesList
                     }
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
+                //add and display data
+                ref.addChildEventListener(object : ChildEventListener {
 
-            }
-        })
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        if (servicesType == "Room Cleaning") {
 
-        //add and display data
-        ref.addChildEventListener(object : ChildEventListener {
+                            val roomService = snapshot.getValue(RoomCleaningService::class.java)!!
 
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                if (servicesType == "Room Cleaning") {
+                            //Prevent duplicate data
+                            if(!roomCleaningServicesList.contains(roomService)){
+                                // add the item and pass to observer for the adapter
+                                roomCleaningServicesList.add(roomService)
+                                _roomCleaningServices.value = roomCleaningServicesList
+                            }
 
-                    val roomService = snapshot.getValue(RoomCleaningService::class.java)!!
+                        } else {
+                            val laundryService = snapshot.getValue(LaundryService::class.java)!!
 
-                    //Prevent duplicate data
-                    if(!roomCleaningServicesList.contains(roomService)){
-                        // add the item and pass to observer for the adapter
-                        roomCleaningServicesList.add(roomService)
-                        _roomCleaningServices.value = roomCleaningServicesList
+                            //Prevent duplicate data
+                            if(!laundryServicesList.contains(laundryService)){
+                                // add the item and pass to observer for the adapter
+                                laundryServicesList.add(laundryService)
+                                _laundryServices.value = laundryServicesList
+                            }
+
+                        }
+
                     }
 
-                } else {
-                    val laundryService = snapshot.getValue(LaundryService::class.java)!!
+                    override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
 
-                    //Prevent duplicate data
-                    if(!laundryServicesList.contains(laundryService)){
-                        // add the item and pass to observer for the adapter
-                        laundryServicesList.add(laundryService)
-                        _laundryServices.value = laundryServicesList
                     }
 
-                }
+                    override fun onChildRemoved(snapshot: DataSnapshot) {
 
-            }
+                    }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
 
-            }
+                    }
 
-            override fun onChildRemoved(snapshot: DataSnapshot) {
+                    override fun onCancelled(error: DatabaseError) {
 
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
+                    }
+                })
             }
 
             override fun onCancelled(error: DatabaseError) {

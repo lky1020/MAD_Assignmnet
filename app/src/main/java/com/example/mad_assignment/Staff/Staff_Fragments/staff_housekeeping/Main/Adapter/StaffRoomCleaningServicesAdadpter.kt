@@ -66,7 +66,7 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
 
         //Set onclicklisterner
         holder.ivEdit.setOnClickListener {
-            //TODO
+            updateServices(currentItem, position)
         }
 
         holder.ivDelete.setOnClickListener {
@@ -78,4 +78,47 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
         return availableRoomCleaningServicesList.size
     }
 
+    private fun updateServices(currentItem: RoomCleaningService, position: Int) {
+        val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
+            .child("Room Cleaning").child("ServicesAvailable").child(currentItem.date)
+            .orderByChild("timeFrom")
+            .equalTo(currentItem.timeFrom)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
+            @SuppressLint("SimpleDateFormat")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (i in snapshot.children) {
+                        val currentRoomCleaningService = i.getValue(RoomCleaningService::class.java)
+
+                        val dbTimeTo = currentRoomCleaningService?.timeTo
+                        var status = ""
+
+                        status = if(currentItem.status == "Not Available"){
+                            "Available"
+                        }else{
+                            "Not Available"
+                        }
+
+                        if (dbTimeTo.equals(currentItem.timeTo)) {
+                            val updateRoomCleaningService = RoomCleaningService(
+                                currentItem.date,
+                                currentItem.timeFrom,
+                                currentItem.timeTo,
+                                status
+                            )
+                            snapshot.ref.child(position.toString()).setValue(updateRoomCleaningService)
+
+                            Toast.makeText(mContext, "Status Updated", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }
