@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Register
+import kotlinx.android.synthetic.main.activity_chat_log.*
 
 
 class MainActivity : AppCompatActivity() {

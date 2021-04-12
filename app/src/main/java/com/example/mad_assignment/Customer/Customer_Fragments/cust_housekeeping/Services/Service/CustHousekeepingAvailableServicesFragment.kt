@@ -3,6 +3,7 @@ package com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -23,6 +25,9 @@ import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.example.mad_assignment.Customer.Chat.messages.NewMessage
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableLaundryServicesAdadpter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableRoomCleaningServicesAdadpter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingRequestedAdapter
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.BookedHousekeepingService
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustAvailableHousekeepingServicesModel
 import com.example.mad_assignment.R
@@ -58,7 +63,12 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
     private lateinit var ivTimeTo: ImageView
 
     private lateinit var custAvailableHousekeepingServicesModel: CustAvailableHousekeepingServicesModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var etServicesSeacrh: EditText
+    private var roomCleaningList = ArrayList<RoomCleaningService>()
+    private var laundryServiceList =  ArrayList<LaundryService>()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -83,11 +93,41 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
         //Get the image from the housekeeping
         imgUrl = imageUrl
 
+        etServicesSeacrh = root.findViewById(R.id.et_housekeeping_services_search)
+
+        root.setOnTouchListener { v, event ->
+            etServicesSeacrh.clearFocus()
+
+            // Disable virtual k
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm!!.hideSoftInputFromWindow(etServicesSeacrh.windowToken, 0)
+
+            true
+        }
+
         return root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        etServicesSeacrh.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                if(!etServicesSeacrh.text.equals("") && (roomCleaningList.size > 0 || laundryServiceList.size > 0)){
+                    filter(s.toString())
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+        })
 
         tvDate = view.findViewById(R.id.tv_selectedDate)
         tvDate.setOnClickListener {
@@ -171,7 +211,7 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun displayAvailableServiceRV(view: View){
-        val recyclerView: RecyclerView = view.findViewById(R.id.rv_housekeeping_available_services)
+        recyclerView = view.findViewById(R.id.rv_housekeeping_available_services)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(ArrayList<RoomCleaningService>(), requireActivity(), servicesType, imgUrl) //Initialize adapter
         recyclerView.setHasFixedSize(true)
@@ -189,6 +229,7 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
             //Observe the housekeeping list and set it
             custAvailableHousekeepingServicesModel.getRoomCleaningServicesList().observe(viewLifecycleOwner, Observer {
                 recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(it, requireActivity(), servicesType, imgUrl)
+                roomCleaningList = it
             })
         }
         else if(servicesType == "Laundry Service"){
@@ -197,6 +238,7 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
             //Observe the housekeeping list and set it
             custAvailableHousekeepingServicesModel.getLaundryServicesList().observe(viewLifecycleOwner, Observer {
                 recyclerView.adapter = AvailableLaundryServicesAdadpter(it, requireActivity(), tv_selectedDate.text.toString(), servicesType, imgUrl)
+                laundryServiceList = it
             })
         }
 
@@ -267,6 +309,61 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
             tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
         }else{
             tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+        }
+    }
+
+    @SuppressLint("DefaultLocale")
+    private fun filter(text: String){
+        if(activity != null) {
+
+            if(roomCleaningList.size > 0) {
+                val filteredRoomList = ArrayList<RoomCleaningService>()
+
+                if (text != "") {
+                    for (i in roomCleaningList) {
+                        if (text.toLowerCase()[0] == 'n') {
+                            if (i.status == "Not Available") {
+                                filteredRoomList.add(i)
+                            }
+                        } else if (text.toLowerCase()[0] == 'a') {
+                            if (i.status == "Available") {
+                                filteredRoomList.add(i)
+                            }
+                        }
+                    }
+                }else{
+                    for (i in roomCleaningList) {
+                        filteredRoomList.add(i)
+                    }
+                }
+
+                recyclerView.adapter = AvailableRoomCleaningServicesAdadpter(filteredRoomList, requireActivity(), servicesType, imgUrl)
+
+            }
+            else{
+                val filteredLaundryList = ArrayList<LaundryService>()
+
+                if(text != ""){
+                    for (i in laundryServiceList) {
+                        if(text.toLowerCase()[0] == 'n'){
+                            if (i.status == "Not Available") {
+                                filteredLaundryList.add(i)
+                            }
+                        }else if(text.toLowerCase()[0] == 'a') {
+                            if (i.status == "Available") {
+                                filteredLaundryList.add(i)
+                            }
+                        }
+                    }
+                }else{
+                    for (i in laundryServiceList) {
+                        filteredLaundryList.add(i)
+                    }
+                }
+
+                recyclerView.adapter = AvailableLaundryServicesAdadpter(filteredLaundryList, requireActivity(), tv_selectedDate.text.toString(), servicesType, imgUrl)
+
+            }
         }
     }
 }
