@@ -70,7 +70,7 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
         }
 
         holder.ivDelete.setOnClickListener {
-            //TODO
+            deleteServices(currentItem, position)
         }
     }
 
@@ -120,5 +120,21 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
 
             }
         })
+    }
+
+    private fun deleteServices(currentItem: RoomCleaningService, position: Int){
+
+        // Order item for User
+        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping")
+            .child("Room Cleaning").child("ServicesAvailable")
+            .child(currentItem.date)
+
+        myRef.child(position.toString()).removeValue()
+
+        availableRoomCleaningServicesList.remove(currentItem);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, availableRoomCleaningServicesList.size);
+
+        Toast.makeText(mContext, "Room Services Deleted", Toast.LENGTH_SHORT).show()
     }
 }

@@ -67,7 +67,7 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
         }
 
         holder.ivDelete.setOnClickListener {
-            //TODO
+            deleteServices(currentItem, position)
         }
     }
 
@@ -112,5 +112,21 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
 
             }
         })
+    }
+
+    private fun deleteServices(currentItem: LaundryService, position: Int){
+
+        // Order item for User
+        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping")
+            .child("Laundry Service").child("ServicesAvailable")
+            .child(currentItem.date)
+
+        myRef.child(position.toString()).removeValue()
+
+        availableLaundryServicesList.remove(currentItem);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, availableLaundryServicesList.size);
+
+        Toast.makeText(mContext, "Laundry Services Deleted", Toast.LENGTH_SHORT).show()
     }
 }
