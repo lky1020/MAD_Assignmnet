@@ -83,7 +83,6 @@ class StaffHousekeepingItemAdapter(private var housekeepingItemList: ArrayList<H
                 if(enteredQuantity.text.toString() != ""){
 
                     try{
-
                         if(enteredQuantity.text.toString().toInt() > 0){
                             mAlertDialog.dismiss()
 
@@ -93,9 +92,7 @@ class StaffHousekeepingItemAdapter(private var housekeepingItemList: ArrayList<H
                         }
 
                     }catch (ex: Exception){
-
                         Toast.makeText(mContext, "Invalid Input", Toast.LENGTH_SHORT).show()
-
                     }
                 }else{
                     Toast.makeText(mContext, "Invalid Input", Toast.LENGTH_SHORT).show()
