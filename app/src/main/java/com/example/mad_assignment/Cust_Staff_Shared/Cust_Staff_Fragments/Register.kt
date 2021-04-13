@@ -17,14 +17,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern
 import java.util.regex.Pattern.compile
-//--- compare if the user is exist b4: email/phone number is used b4 ---//
 
 //connect with register.xml
 class Register: AppCompatActivity() {
 
     private lateinit var decorView: View
     lateinit var mRegisterName:EditText
-    lateinit var mRegisterUserid:EditText
     lateinit var mRegisterPassword1:EditText
     lateinit var mRegisterPassword2:EditText
     lateinit var mRegisterPhoneNum:EditText
@@ -48,13 +46,11 @@ class Register: AppCompatActivity() {
 
         //pass data to firebase
         mRegisterName =findViewById(R.id.edittext_register_name)
-        mRegisterUserid =findViewById(R.id.edittext_register_userid)
         mRegisterPassword1  =findViewById(R.id.edittext_register_password1)
         mRegisterPassword2  =findViewById(R.id.edittext_register_password2)
         mRegisterPhoneNum =findViewById(R.id.edittext_register_phonenum)
         mRegisterEmail =findViewById(R.id.edittext_register_email)
         btnSubmitRegister =findViewById(R.id.btn_register_submit)
-
 
         //showPassword icon onclick listener
         showorHidePassword()
@@ -62,20 +58,28 @@ class Register: AppCompatActivity() {
         //submit register info
         btnSubmitRegister.setOnClickListener(){
            val name = mRegisterName.text.toString().trim()
-           val userid = mRegisterUserid.text.toString().trim()
            val password = mRegisterPassword1.text.toString().trim()
            val phoneNum = mRegisterPhoneNum.text.toString().trim()
            val email = mRegisterEmail.text.toString().trim()
 
             var allFieldFilled = true
             //validation for each field
+
+            //validation for user name
             if (TextUtils.isEmpty(name)){
                 mRegisterName.error = "Enter Name"
                 allFieldFilled = false
             }
-            if (TextUtils.isEmpty(userid)){
-                mRegisterUserid.error = "Enter User ID"
+
+            //validation for email
+            if (TextUtils.isEmpty(email)){
+                mRegisterEmail.error = "Enter Email"
                 allFieldFilled = false
+            }else{
+                //set email format and validate
+                if(!validateEmailFormat(email)){
+                    allFieldFilled = false
+                }
             }
 
             //validation for user password
@@ -98,16 +102,6 @@ class Register: AppCompatActivity() {
                 }
             }
 
-            //validation for email
-            if (TextUtils.isEmpty(email)){
-                mRegisterEmail.error = "Enter Email"
-                allFieldFilled = false
-            }else{
-                //set email format and validate
-                if(!validateEmailFormat(email)){
-                    allFieldFilled = false
-                }
-            }
 
             //if all validate
             if(allFieldFilled){
@@ -118,7 +112,7 @@ class Register: AppCompatActivity() {
                         Log.d("Register", "Successfully created user with uid: ${it.result?.user?.uid}")
 
                         //pass register info to firebase function
-                        createUser(name, userid, password, phoneNum, email)
+                        createUser(name, password, phoneNum, email)
 
                         //display successful message
                         Toast.makeText(this, "Register Successfully", Toast.LENGTH_LONG).show()
@@ -131,34 +125,22 @@ class Register: AppCompatActivity() {
                         Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
 
-
             }
         }
 
     }
 
     //pass new data to firebase
-    fun createUser(name:String, userid:String, password:String, phoneNum:String,email:String){
+    fun createUser(name:String, password:String, phoneNum:String,email:String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
-        //val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
         //Change By Joan Hau to add uid
-        //val userRef: DatabaseReference = database.getReference("/User/$phoneNum")
         val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
-
         val role = "Member"
-
-        val user = User (name,userid,uid,password,phoneNum,email,role)
+        val user = User (name,uid,password,phoneNum,email,role)
 
         userRef.setValue(user)
-        //Original from YinLam
-//        userRef.child(phoneNum).child("Name").setValue(name)
-//        userRef.child(phoneNum).child("Password").setValue(password)
-//        userRef.child(phoneNum).child("Email").setValue(email)
-//        userRef.child(phoneNum).child("UserID").setValue(userid)
-//        userRef.child(phoneNum).child("Role").setValue("Member")
-
 
     }
 

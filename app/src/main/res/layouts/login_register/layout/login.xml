@@ -74,11 +74,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/white_bg_rectangle" />
 
-    <!--Get userId-->
+    <!--Get Email-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_login_userid"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/layout_login_email"
+        android:layout_width="289dp"
+        android:layout_height="56dp"
         android:layout_marginTop="24dp"
         android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -100,14 +100,13 @@
     <!--Get password-->
     <LinearLayout
         android:id="@+id/layout_login_password"
-        android:layout_width="314dp"
+        android:layout_width="312dp"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/layout_login_userid">
+        app:layout_constraintTop_toBottomOf="@+id/layout_login_email">
 
         <!--icon show password1 or not-->
 
@@ -131,8 +130,8 @@
         <ImageView
             android:id="@+id/iv_login_hidePassword"
             android:layout_width="27dp"
-            android:paddingLeft="3dp"
             android:layout_height="match_parent"
+            android:paddingLeft="3dp"
             android:src="@drawable/ic_hide_psw"
             android:visibility="visible" />
     </LinearLayout>
