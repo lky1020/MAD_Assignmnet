@@ -30,7 +30,7 @@ class StaffHousekeepingMainFragment : Fragment() {
 
     // Search
     private lateinit var etSearch: EditText
-    private lateinit var housekeepingList: ArrayList<Housekeeping>
+    private var housekeepingList = ArrayList<Housekeeping>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
