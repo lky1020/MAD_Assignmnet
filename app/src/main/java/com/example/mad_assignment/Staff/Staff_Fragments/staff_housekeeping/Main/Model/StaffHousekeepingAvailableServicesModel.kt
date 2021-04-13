@@ -44,74 +44,55 @@ class StaffHousekeepingAvailableServicesModel() : ViewModel() {
 
     fun retrieveHousekeepingServicesFromDB(servicesType: String, date: String){
 
-        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Housekeeping")
-                .child(servicesType).child("ServicesAvailable").child(date)
+        val query: Query = FirebaseDatabase.getInstance().getReference("Housekeeping")
+                .child(servicesType).child("ServicesAvailable").child(date).orderByChild("date")
+                .equalTo(date)
 
         //Check got data or not
-        ref.addValueEventListener(object: ValueEventListener{
+        query.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                roomCleaningServicesList.clear()
-                laundryServicesList.clear()
-
                 if (snapshot.exists()) {
-                    _status.value = true
+                    roomCleaningServicesList.clear()
+                    laundryServicesList.clear()
 
-                } else {
-                    _status.value = false
-
-                    if (servicesType == "Room Cleaning") {
-                        _roomCleaningServices.value = roomCleaningServicesList
-
-                    } else {
-                        _laundryServices.value = laundryServicesList
-                    }
-                }
-
-                //add and display data
-                ref.addChildEventListener(object : ChildEventListener {
-
-                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    for(i in snapshot.children){
                         if (servicesType == "Room Cleaning") {
 
-                            val roomService = snapshot.getValue(RoomCleaningService::class.java)!!
+                            val roomService = i.getValue(RoomCleaningService::class.java)!!
 
                             //Prevent duplicate data
                             if(!roomCleaningServicesList.contains(roomService)){
                                 // add the item and pass to observer for the adapter
                                 roomCleaningServicesList.add(roomService)
-                                _roomCleaningServices.value = roomCleaningServicesList
                             }
 
                         } else {
-                            val laundryService = snapshot.getValue(LaundryService::class.java)!!
+                            val laundryService = i.getValue(LaundryService::class.java)!!
 
                             //Prevent duplicate data
                             if(!laundryServicesList.contains(laundryService)){
                                 // add the item and pass to observer for the adapter
                                 laundryServicesList.add(laundryService)
-                                _laundryServices.value = laundryServicesList
                             }
-
                         }
-
                     }
 
-                    override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                } else {
+                    roomCleaningServicesList.clear()
+                    laundryServicesList.clear()
+                }
 
-                    }
+                if(servicesType == "Room Cleaning"){
+                    _status.value = roomCleaningServicesList.size > 0
 
-                    override fun onChildRemoved(snapshot: DataSnapshot) {
+                    _roomCleaningServices.value = roomCleaningServicesList
 
-                    }
+                }else{
+                    _status.value = laundryServicesList.size > 0
 
-                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    _laundryServices.value = laundryServicesList
+                }
 
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-                })
             }
 
             override fun onCancelled(error: DatabaseError) {

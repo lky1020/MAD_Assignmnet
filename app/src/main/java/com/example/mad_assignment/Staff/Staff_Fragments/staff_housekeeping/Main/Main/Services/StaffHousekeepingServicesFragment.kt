@@ -54,9 +54,6 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
     private var roomCleaningList = java.util.ArrayList<RoomCleaningService>()
     private var laundryServiceList = java.util.ArrayList<LaundryService>()
 
-    private var updateRoomCleaningList = java.util.ArrayList<RoomCleaningService>()
-    private var updateLaundryServiceList = java.util.ArrayList<LaundryService>()
-
     //Date
     private lateinit var selectedDate: TextView
     private var year = 0
@@ -192,9 +189,7 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
 
                     mAlertDialog.dismiss()
 
-                    if(servicesType == "Room Cleaning"){
-                        updateRoomCleaning()
-                    }
+                    addService(servicesType)
 
                     Toast.makeText(requireActivity(), "Added Success", Toast.LENGTH_SHORT).show()
                 }else{
@@ -304,35 +299,31 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
         }
     }
 
-    private fun updateRoomCleaning(){
+    private fun addService(servicesType: String){
 
         val retrieveDate = selectedDate.text.substring(5, 11) + " " + year
 
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Housekeeping")
             .child(servicesType).child("ServicesAvailable").child(retrieveDate)
 
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    // Clear housekeepingList to prevent duplicate item appear
-                    updateRoomCleaningList.clear()
+                var lastItem = 0
 
-                    //convert time to am/pm
+                if (snapshot.exists()) {
 
                     for (i in snapshot.children) {
-                        // get the item from firebase
-                        val housekeepingServices = i.getValue(RoomCleaningService::class.java)
-
-                        //add the item and pass to observer for the adapter
-                        updateRoomCleaningList.add(housekeepingServices!!)
+                        //At last, it will be a new index to add into the db
+                        lastItem += 1
                     }
-
-                }else{
-                    updateRoomCleaningList.clear()
                 }
 
                 //change 24 hour to 12 hour
+                /*
+                Note: The time pick up and time complete will be use timeFrom and timeTo
+                respectively for the Laundry Service
+                 */
                 val timeFromHour = selectedFrom.text.substring(0, 2)
                 val timeFromMinute = selectedFrom.text.substring(3, 5)
                 val timeFromSeason = ""
@@ -346,17 +337,23 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
                 val dbTimeFrom = initTime(timeFromList)
                 val dbTimeTo = initTime(timeToList)
 
-                //Create new room cleaning class and add to the list
-                val newRoomCleaning = RoomCleaningService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
+                val addRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child(servicesType).child("ServicesAvailable").child(retrieveDate)
 
-                if(!updateRoomCleaningList.contains(newRoomCleaning)){
-                    updateRoomCleaningList.add(newRoomCleaning)
+                if(servicesType == "Room Cleaning"){
+                    //Create new room cleaning class and add to the list
+                    val newRoomCleaning = RoomCleaningService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
 
                     //Update to db
-                    val updateRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Room Cleaning").child("ServicesAvailable")
-                    updateRef.child(retrieveDate).setValue(updateRoomCleaningList)
+                    addRef.child(lastItem.toString()).setValue(newRoomCleaning)
+                }else{
+                    //Create new room cleaning class and add to the list
+                    val newLaundryService = LaundryService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
 
+                    //Update to db
+                    addRef.child(lastItem.toString()).setValue(newLaundryService)
                 }
+
+
             }
             override fun onCancelled(error: DatabaseError) {
 
