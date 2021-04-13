@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_Assignment">
-        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingServiceActivity"></activity>
+        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity"
+            android:parentActivityName=".StaffMain"/>
+        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingServiceActivity" />
         <activity
             android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.Item.CustHousekeepingAvailableItemActivity"
             android:parentActivityName=".CustomerMain" />

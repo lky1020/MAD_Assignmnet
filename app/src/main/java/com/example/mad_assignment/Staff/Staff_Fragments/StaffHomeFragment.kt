@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
 import com.example.mad_assignment.Staff_Fragments.manager_report.ManagerReportFragment
 import com.example.mad_assignment.Staff_Fragments.staff_trans_history.StaffTransHistoryFragment
 
@@ -51,6 +52,16 @@ class StaffHomeFragment : Fragment() {
         }else{
             cv_staff.visibility = View.INVISIBLE
         }
+
+        //redirect to manage house keeper page
+        cv_houseKeeper.setOnClickListener(){
+            //the class.java file is TEMPORARY
+            activity?.let{
+                val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
+
         /*
         //redirect to chk in page
         cv_chkIn.setOnClickListener(){
@@ -68,14 +79,6 @@ class StaffHomeFragment : Fragment() {
             }
         }
 
-        //redirect to manage house keeper page
-        cv_houseKeeper.setOnClickListener(){
-            //the class.java file is TEMPORARY
-            activity?.let{
-                val intent = Intent (it, LogoutFragment::class.java)
-                it.startActivity(intent)
-            }
-        }
 
         //redirect to manage room page
         cv_room.setOnClickListener(){
