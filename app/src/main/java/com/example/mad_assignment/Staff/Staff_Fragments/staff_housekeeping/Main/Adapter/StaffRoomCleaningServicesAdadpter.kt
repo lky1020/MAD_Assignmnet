@@ -85,8 +85,6 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
             .equalTo(currentItem.timeFrom)
 
         query.addListenerForSingleValueEvent(object : ValueEventListener {
-            @RequiresApi(Build.VERSION_CODES.O)
-            @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
@@ -124,7 +122,7 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
 
     private fun deleteServices(currentItem: RoomCleaningService, position: Int){
 
-        // Order item for User
+        // Delete service for User
         val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping")
             .child("Room Cleaning").child("ServicesAvailable")
             .child(currentItem.date)

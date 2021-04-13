@@ -85,7 +85,7 @@ class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
 
         recyclerView = view.findViewById(R.id.rv_staff_housekeeping_item)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = StaffHousekeepingItemAdapter(ArrayList<HousekeepingItem>(), requireActivity()) //Initialize adapter
+        recyclerView.adapter = StaffHousekeepingItemAdapter(ArrayList<HousekeepingItem>(), requireActivity(), servicesType) //Initialize adapter
         recyclerView.setHasFixedSize(true)
 
         //Retrieve data from db
@@ -93,7 +93,7 @@ class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
 
         //Observe the housekeeping list and set it
         staffHousekeepingAvailableItemModel.gethousekeepingItemList().observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = StaffHousekeepingItemAdapter(it, requireActivity())
+            recyclerView.adapter = StaffHousekeepingItemAdapter(it, requireActivity(), servicesType)
             housekeepingItemList = it
         })
     }
@@ -109,7 +109,7 @@ class StaffHousekeepingItemFragment(private val title: String) : Fragment() {
                 }
             }
 
-            recyclerView.adapter = StaffHousekeepingItemAdapter(filteredList, requireActivity())
+            recyclerView.adapter = StaffHousekeepingItemAdapter(filteredList, requireActivity(), servicesType)
         }
     }
 }
