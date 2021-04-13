@@ -189,9 +189,7 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
 
                     mAlertDialog.dismiss()
 
-                    if(servicesType == "Room Cleaning"){
-                        updateRoomCleaning()
-                    }
+                    addService(servicesType)
 
                     Toast.makeText(requireActivity(), "Added Success", Toast.LENGTH_SHORT).show()
                 }else{
@@ -301,7 +299,7 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
         }
     }
 
-    private fun updateRoomCleaning(){
+    private fun addService(servicesType: String){
 
         val retrieveDate = selectedDate.text.substring(5, 11) + " " + year
 
@@ -322,6 +320,10 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
                 }
 
                 //change 24 hour to 12 hour
+                /*
+                Note: The time pick up and time complete will be use timeFrom and timeTo
+                respectively for the Laundry Service
+                 */
                 val timeFromHour = selectedFrom.text.substring(0, 2)
                 val timeFromMinute = selectedFrom.text.substring(3, 5)
                 val timeFromSeason = ""
@@ -335,12 +337,22 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
                 val dbTimeFrom = initTime(timeFromList)
                 val dbTimeTo = initTime(timeToList)
 
-                //Create new room cleaning class and add to the list
-                val newRoomCleaning = RoomCleaningService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
+                val addRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child(servicesType).child("ServicesAvailable").child(retrieveDate)
 
-                //Update to db
-                val updateRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child("Room Cleaning").child("ServicesAvailable").child(retrieveDate)
-                updateRef.child(lastItem.toString()).setValue(newRoomCleaning)
+                if(servicesType == "Room Cleaning"){
+                    //Create new room cleaning class and add to the list
+                    val newRoomCleaning = RoomCleaningService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
+
+                    //Update to db
+                    addRef.child(lastItem.toString()).setValue(newRoomCleaning)
+                }else{
+                    //Create new room cleaning class and add to the list
+                    val newLaundryService = LaundryService(retrieveDate, dbTimeFrom, dbTimeTo, "Available")
+
+                    //Update to db
+                    addRef.child(lastItem.toString()).setValue(newLaundryService)
+                }
+
 
             }
             override fun onCancelled(error: DatabaseError) {
