@@ -64,7 +64,6 @@ class StaffMain: AppCompatActivity() {
             setOf(
                 R.id.nav_home_staff,
                 R.id.nav_report,
-                R.id.nav_housekeeping, //testing by kah yee (waiting for open access in homepage)
                 R.id.nav_TransHis_staff,
                 R.id.nav_profile,
                 R.id.nav_logout

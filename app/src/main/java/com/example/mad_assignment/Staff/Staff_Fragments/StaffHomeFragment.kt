@@ -24,7 +24,6 @@ class StaffHomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
         //temp variable  -- need retrieve total cust chk in & out
         var numIn = 20
         var numOut = 20
@@ -32,7 +31,6 @@ class StaffHomeFragment : Fragment() {
 
 
         val root = inflater.inflate(R.layout.staff_fragment_home, container, false)
-
         var tv_Num_ChkIn: TextView = root.findViewById(R.id.tv_ChkIn_totalNum)
         var tv_Num_ChkOut: TextView = root.findViewById(R.id.tv_ChkOut_totalNum)
 
@@ -44,7 +42,7 @@ class StaffHomeFragment : Fragment() {
         val cv_facility: CardView = root.findViewById(R.id.cv_manage_facilities)
         val cv_staff: CardView = root.findViewById(R.id.cv_manage_staff)
 
-        //  staffHomeViewModel.text.observe(viewLifecycleOwner, Observer {
+      //  staffHomeViewModel.text.observe(viewLifecycleOwner, Observer {
         tv_Num_ChkIn.text = numIn.toString()//it
         tv_Num_ChkOut.text = numOut.toString()//it
 
@@ -127,7 +125,6 @@ class StaffHomeFragment : Fragment() {
              */
 
         }
-
 
         return root
     }

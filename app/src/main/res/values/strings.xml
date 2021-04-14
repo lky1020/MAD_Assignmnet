@@ -83,4 +83,21 @@
     <string name="enter_quantity">Enter Quantity</string>
     <string name="edit">Edit</string>
     <string name="enter_item_name">Enter Item Name</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="register_staff">Register Staff</string>
+    <string name="enter_staff_name">Enter Staff Name</string>
+    <string name="enter_staff_id">Enter Staff ID</string>
+    <string name="manage_services_facilities">Manage Services/Facilities</string>
+    <string name="manage_housekeeping">Manage Housekeeping</string>
+    <string name="manage_check_in_out">Manage Check In/Out</string>
+    <string name="permission"><u>Permission</u></string>
+    <string name="room">Room</string>
+    <string name="services_facilities">Services/Facilities</string>
+    <string name="check_in_out">Check In/Out</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="manage">Manage</string>
+    <string name="update_staff">Update Staff</string>
 </resources>
