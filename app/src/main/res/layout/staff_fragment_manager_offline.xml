@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Staff.Staff_Fragments.staff_manager.Main.StaffManagerOfflineFragment"
+    tools:context=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerOnlineFragment"
     android:padding="10dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_staff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/offline" />
+        tools:listitem="@layout/cardview_staff_manager" />
 
-</FrameLayout>
+</RelativeLayout>
