@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.StaffManagerActivity
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
 
 //belongs to staff_fragment_home.xml
 class StaffHomeFragment : Fragment() {

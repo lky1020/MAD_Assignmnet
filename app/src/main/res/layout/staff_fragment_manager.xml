@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Staff.Staff_Fragments.staff_manager.Main.StaffManagerFragment">
+    tools:context=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerFragment">
 
     <EditText
         android:id="@+id/et_manager_search"

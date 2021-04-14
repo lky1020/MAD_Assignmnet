@@ -1,5 +1,6 @@
 package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingServiceActivity
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Permission.StaffPermissionActivity
 import com.google.android.material.imageview.ShapeableImageView
 import com.squareup.picasso.Picasso
 
@@ -40,7 +43,13 @@ class StaffManagerAdapter(private var staffList: ArrayList<Staff>, private var m
 
         //Set onclicklisterner
         holder.btnManage.setOnClickListener {
-            //TODO
+            var intent = Intent()
+
+            intent = Intent(mContext, StaffPermissionActivity::class.java).apply {
+                putExtra("Staff", currentItem)
+            }
+
+            mContext.startActivity(intent)
         }
 
     }

@@ -1,11 +1,10 @@
-package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main
+package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Services.Service.CustHousekeepingAvailableServicesFragment
 import com.example.mad_assignment.R
 
 class StaffManagerActivity : AppCompatActivity() {

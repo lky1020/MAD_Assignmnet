@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main
+package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -24,8 +24,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerOfflineFragment
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerOnlineFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -233,7 +231,7 @@ class StaffManagerFragment : Fragment() {
                 createUser(name, password, phoneNum, email, uid)
 
                 registerStaffInformation(name, id, email, password, phoneNum, role,
-                        roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison)
+                        roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison, uid)
             }
     }
 
@@ -248,7 +246,8 @@ class StaffManagerFragment : Fragment() {
     }
 
     private fun registerStaffInformation(name: String, id: String, email: String, password: String, phoneNum: String, role: String,
-                                         roomPermisison: Boolean, servicesFacilitiesPermisison: Boolean, housekeepingPermisison: Boolean, checkInOutPermisison: Boolean){
+                                         roomPermisison: Boolean, servicesFacilitiesPermisison: Boolean,
+                                         housekeepingPermisison: Boolean, checkInOutPermisison: Boolean, uid: String){
 
         val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("staff/$name")
 
@@ -260,7 +259,7 @@ class StaffManagerFragment : Fragment() {
                     val staffRef = FirebaseDatabase.getInstance().getReference("/Staff/")
 
                     val staff = Staff(name, id, email, password, phoneNum, imgURL, role,
-                        "Offline", roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison)
+                        "Offline", roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison, uid)
 
                     staffRef.child("$name - $uid").setValue(staff)
                 }

@@ -99,4 +99,5 @@
     <string name="enter_password">Enter Password</string>
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="manage">Manage</string>
+    <string name="update_staff">Update Staff</string>
 </resources>
