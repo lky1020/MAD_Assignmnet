@@ -8,15 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
-import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.StaffManagerActivity
-import com.example.mad_assignment.Staff_Fragments.manager_report.ManagerReportFragment
-import com.example.mad_assignment.Staff_Fragments.staff_trans_history.StaffTransHistoryFragment
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.StaffManagerActivity
 
 //belongs to staff_fragment_home.xml
 class StaffHomeFragment : Fragment() {
