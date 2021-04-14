@@ -15,6 +15,8 @@ import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFra
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerFragment
 
 //belongs to staff_fragment_home.xml
 class StaffHomeFragment : Fragment() {
@@ -78,8 +80,9 @@ class StaffHomeFragment : Fragment() {
              */
         }
 
-        //*************redirect to manage house keeper page
+        //redirect to manage house keeper page
         cv_houseKeeper.setOnClickListener() {
+
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
             ft.commit()
@@ -112,17 +115,11 @@ class StaffHomeFragment : Fragment() {
 
         }
 
-        //*************redirect to manage staff page
+        //redirect to manage staff page
         cv_staff.setOnClickListener() {
-        //the class.java file is TEMPORARY
-        /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                    ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                    ft.commit()*/
-                    /*
-            //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-            //startActivity(intent)
-             */
+            val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+            ft.replace(R.id.nav_host_fragment_staff, StaffManagerFragment())
+            ft.commit()
 
         }
 
