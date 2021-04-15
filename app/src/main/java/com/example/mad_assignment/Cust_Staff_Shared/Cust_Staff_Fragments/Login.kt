@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.example.mad_assignment.CustomerMain
@@ -16,10 +17,7 @@ import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.login.*
 import java.util.regex.Pattern
 
@@ -121,7 +119,7 @@ class Login: AppCompatActivity() {
 
                 //redirect to specific role's main page
                 Log.d("Login","Login as Role $roleDb")
-                redirectToRoleMainPage(roleDb!!)
+                redirectToRoleMainPage(currentUser!!, roleDb!!)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -130,7 +128,7 @@ class Login: AppCompatActivity() {
     }
 
     //redirect to specific role's main page
-    private fun redirectToRoleMainPage(roleDb:String){
+    private fun redirectToRoleMainPage(currentUser: User, roleDb:String){
         //redirect to different page
         when (roleDb) {
             "Member" -> {
@@ -142,6 +140,10 @@ class Login: AppCompatActivity() {
             }
             "Staff" -> {
                 Log.d("Login","Login as Staff")
+
+                //Update staff status to online
+                updateStaffStatus(currentUser)
+
                 //proceed to staff main page
                 val intentStaffMain = Intent(this, StaffMain::class.java)
                 intentStaffMain.putExtra("Role", "Staff")
@@ -212,6 +214,38 @@ class Login: AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                 View.SYSTEM_UI_FLAG_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    }
+
+    private fun updateStaffStatus(currentUser: User){
+
+        val query: Query = FirebaseDatabase.getInstance().getReference("Staff")
+                .orderByChild("uid")
+                .equalTo(currentUser.uid)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+
+                    for(i in snapshot.children){
+                        val staff = i.getValue(Staff::class.java)
+
+                        if (staff != null) {
+                            if(staff.uid == currentUser.uid){
+                                val updateStaffStatus = Staff(currentUser.name, staff.id, staff.email, staff.password, staff.phoneNum, staff.img, staff.role,
+                                        "Online", staff.accessRoom, staff.accessServicesFacilities,
+                                        staff.accessHousekeeping, staff.accessCheckInOut, staff.uid)
+
+                                snapshot.ref.child("${staff.name} - ${staff.uid}").setValue(updateStaffStatus)
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }
 

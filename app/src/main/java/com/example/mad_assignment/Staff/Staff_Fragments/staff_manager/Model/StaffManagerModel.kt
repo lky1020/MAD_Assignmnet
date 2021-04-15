@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Class.Staff
+import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.google.firebase.database.*
 
 class StaffManagerModel() : ViewModel()  {
@@ -33,39 +35,6 @@ class StaffManagerModel() : ViewModel()  {
         val query: Query = FirebaseDatabase.getInstance().getReference("Staff")
                 .orderByChild("status")
                 .equalTo(status)
-
-        query.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    staffList.clear()
-
-                    for(i in snapshot.children){
-                        val staff = i.getValue(Staff::class.java)
-
-                        // add the item and pass to observer for the adapter
-                        staffList.add(staff!!)
-                    }
-                }else{
-                    staffList.clear()
-                }
-
-                _status.value = staffList.size > 0
-
-                _staff.value = staffList
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-    }
-
-    //For login to update the status
-    fun updateStaffStatus(username: String){
-
-        val query: Query = FirebaseDatabase.getInstance().getReference("Staff")
-                .orderByChild("name")
-                .equalTo(username)
 
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
