@@ -228,19 +228,17 @@ class StaffManagerFragment : Fragment() {
                 Log.d("Register", "Successfully created user with uid: ${it.result?.user?.uid}")
                 uid = it.result?.user?.uid.toString()
 
-                createUser(name, password, phoneNum, email, uid)
-
                 registerStaffInformation(name, id, email, password, phoneNum, role,
                         roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison, uid)
             }
     }
 
-    private fun createUser(name:String, password:String, phoneNum:String, email:String, uid:String){
+    private fun createUser(name:String, password:String, phoneNum:String, email:String, uid:String, imgURL:String){
 
         val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
         val role = "Staff"
-        val user = User (name, uid, password, phoneNum, email, role, "")
+        val user = User (name, uid, password, phoneNum, email, role, imgURL)
 
         userRef.setValue(user)
     }
@@ -262,6 +260,9 @@ class StaffManagerFragment : Fragment() {
                         "Offline", roomPermisison, servicesFacilitiesPermisison, housekeepingPermisison, checkInOutPermisison, uid)
 
                     staffRef.child("$name - $uid").setValue(staff)
+
+                    //Create User for Login
+                    createUser(name, password, phoneNum, email, uid, imgURL)
                 }
             }
             .addOnFailureListener{

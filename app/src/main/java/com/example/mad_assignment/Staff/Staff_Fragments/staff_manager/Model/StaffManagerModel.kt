@@ -59,4 +59,37 @@ class StaffManagerModel() : ViewModel()  {
             }
         })
     }
+
+    //For login to update the status
+    fun updateStaffStatus(username: String){
+
+        val query: Query = FirebaseDatabase.getInstance().getReference("Staff")
+                .orderByChild("name")
+                .equalTo(username)
+
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    staffList.clear()
+
+                    for(i in snapshot.children){
+                        val staff = i.getValue(Staff::class.java)
+
+                        // add the item and pass to observer for the adapter
+                        staffList.add(staff!!)
+                    }
+                }else{
+                    staffList.clear()
+                }
+
+                _status.value = staffList.size > 0
+
+                _staff.value = staffList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }
