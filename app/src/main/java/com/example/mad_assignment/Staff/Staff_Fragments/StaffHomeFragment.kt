@@ -1,9 +1,6 @@
 package com.example.mad_assignment.Staff.Staff_Fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +8,9 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerFragment
 
 //belongs to staff_fragment_home.xml

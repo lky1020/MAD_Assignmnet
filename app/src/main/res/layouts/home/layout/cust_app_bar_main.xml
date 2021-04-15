@@ -40,7 +40,8 @@
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="15dp"
         app:backgroundTint="@color/white"
-        app:srcCompat="@drawable/ic_cust_services" />
+        app:srcCompat="@drawable/ic_cust_services"
+        android:contentDescription="@string/icon_cust_services"/>
 
     <!-- the part for locate fragment  -->
     <fragment
@@ -48,10 +49,12 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
         app:defaultNavHost="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/cust_page_navigation" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

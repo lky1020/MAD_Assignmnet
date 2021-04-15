@@ -16,10 +16,15 @@
     <string name="bookHouseKeep">Book Housekeeping</string>
     <string name="fakeLogout">FAKE LOGOUT</string>
 
+    <!--cust_app_bar_main.xml-->
+    <string name="icon_cust_services">icon_cust_services</string>
+
     <!--hotelapp_firstpage.xml-->
     <string name="hotel_name">Quad-Core Hotel</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="backgroundImg1">backgroundImg1</string>
+    <string name="backgroundImg2">backgroundImg2</string>
 
     <!--fragment_profile.xml-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -34,15 +39,27 @@
     <string name="btnCreate">Create</string>
     <string name="btnGet">Get</string>
 
+    <!--customer_fragment_home_item.xml-->
+    <string name="des_book_room">We have many room type which single rooms to quad rooms, queen rooms, king rooms, and president suite.</string>
+    <string name="banner_cust_home">banner_cust_home</string>
+
     <!--login.xml-->
     <string name="welcomeMsg">WELCOME \nTO \nQUAD CORE HOTEL!</string>
     <string name="forgetPassMsg">Forget Password</string>
     <string name="rememberMeMsg">Remember Me</string>
     <string name="btnLogin">LOGIN</string>
+    <string name="back_icon">back_icon</string>
+    <string name="password">Password</string>
+    <string name="white_bg_3">white bg 3</string>
+    <string name="email">Email</string>
+    <string name="icon_eye_password">icon_eye_password</string>
 
     <!--register.xml-->
     <string name="txtCreateAcc">Create a new account to join us!</string>
     <string name="txtFillForm">Please fill up the form below.</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
 
     <!--staff_fragment_report.xml-->
     <string name="txtReport">Report</string>
@@ -70,5 +87,7 @@
     <!--    activity_latest_messages.xml-->
     <string name="chatWifUs">Chat With Us</string>
     <string name="chatWifStaff">Select Staff</string>
+
+
 
 </resources>

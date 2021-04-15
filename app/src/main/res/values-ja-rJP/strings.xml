@@ -16,10 +16,15 @@
     <string name="bookHouseKeep">ハウスキーピングの予約</string>
     <string name="fakeLogout">フェイクログアウト</string>
 
+    <!--cust_app_bar_main.xml-->
+    <string name="icon_cust_services">icon_cust_services</string>
+
     <!--hotelapp_firstpage.xml-->
     <string name="hotel_name">クアッドコア・ホテル</string>
     <string name="login">ログイン</string>
     <string name="register">登録</string>
+    <string name="backgroundImg1">backgroundImg1</string>
+    <string name="backgroundImg2">backgroundImg2</string>
 
     <!--fragment_profile.xml-->
     <string name="hello_blank_fragment">ハロー・ブランク・フラグメント</string>
@@ -34,15 +39,27 @@
     <string name="btnCreate">クリエイト</string>
     <string name="btnGet">ゲット</string>
 
+    <!--customer_fragment_home_item.xml-->
+    <string name="des_book_room">We have many room type which single rooms to quad rooms, queen rooms, king rooms, and president suite.</string>
+    <string name="banner_cust_home">banner_cust_home</string>
+
     <!--login.xml-->
     <string name="welcomeMsg">歓迎 \nには \nクアッドコアホテル!</string>
     <string name="forgetPassMsg">パスワードを忘れた場合</string>
     <string name="rememberMeMsg">リメンバー・ミー</string>
     <string name="btnLogin">ログイン</string>
+    <string name="back_icon">back_icon</string>
+    <string name="password">Password</string>
+    <string name="white_bg_3">white bg 3</string>
+    <string name="email">Email</string>
+    <string name="icon_eye_password">icon_eye_password</string>
 
     <!--register.xml-->
     <string name="txtCreateAcc">新しいアカウントを作成して参加する!</string>
     <string name="txtFillForm">以下のフォームにご記入ください。</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
 
     <!--staff_fragment_report.xml-->
     <string name="txtReport">レポート</string>

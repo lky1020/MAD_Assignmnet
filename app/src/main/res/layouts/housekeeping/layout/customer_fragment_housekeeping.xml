@@ -6,14 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Customer.Customer_Fragments.cust_housekeeping.Main.CustHousekeepingFragment">
 
     <EditText
         android:id="@+id/et_housekeeping_search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
         android:drawableStart="@drawable/ic_search"
         android:drawableTint="@color/teal_200"
@@ -95,7 +95,7 @@
         android:id="@+id/framel_Housekeeping"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="185dp"
+        android:layout_marginTop="145dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ver_line2"/>

@@ -16,10 +16,15 @@
     <string name="bookHouseKeep">预订家政服务</string>
     <string name="fakeLogout">伪造登出</string>
 
+    <!--cust_app_bar_main.xml-->
+    <string name="icon_cust_services">icon_cust_services</string>
+
     <!--hotelapp_firstpage.xml-->
     <string name="hotel_name">四核心酒店</string>
     <string name="login">登入</string>
     <string name="register">注册</string>
+    <string name="backgroundImg1">backgroundImg1</string>
+    <string name="backgroundImg2">backgroundImg2</string>
 
     <!--fragment_profile.xml-->
     <string name="hello_blank_fragment">你好，空白片断</string>
@@ -34,15 +39,27 @@
     <string name="btnCreate">创建</string>
     <string name="btnGet">领取</string>
 
+    <!--customer_fragment_home_item.xml-->
+    <string name="des_book_room">We have many room type which single rooms to quad rooms, queen rooms, king rooms, and president suite.</string>
+    <string name="banner_cust_home">banner_cust_home</string>
+
     <!--login.xml-->
     <string name="welcomeMsg">欢迎 \n光临 \n四核心酒店!</string>
     <string name="forgetPassMsg">忘记密码</string>
     <string name="rememberMeMsg">记住我</string>
     <string name="btnLogin">登录</string>
+    <string name="back_icon">back_icon</string>
+    <string name="password">Password</string>
+    <string name="white_bg_3">white bg 3</string>
+    <string name="email">Email</string>
+    <string name="icon_eye_password">icon_eye_password</string>
 
     <!--register.xml-->
     <string name="txtCreateAcc">创建一个新的账户来加入我们!</string>
     <string name="txtFillForm">请填写以下表格。</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
 
     <!--staff_fragment_report.xml-->
     <string name="txtReport">报告</string>

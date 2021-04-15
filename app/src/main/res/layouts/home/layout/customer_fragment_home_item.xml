@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#69B7FF">
+
+    <LinearLayout
+        android:id="@+id/cust_home_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle_Room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/room"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_room_banner"
+            android:layout_width="410dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/banner_cust_home"
+            android:src="@drawable/banner_hotelroom"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle_Room" />
+
+        <TextView
+            android:id="@+id/tv_des_home_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:text="@string/des_book_room"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_room_banner" />
+
+        <TextView
+            android:id="@+id/tv_book_now"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingRight="22dp"
+            android:text="Book Room >>"
+            android:textAlignment="textEnd"
+            android:textColor="#143383"
+            app:layout_constraintEnd_toEndOf="@+id/tv_des_home_item"
+            app:layout_constraintTop_toBottomOf="@+id/tv_des_home_item" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

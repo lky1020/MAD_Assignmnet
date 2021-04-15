@@ -17,7 +17,8 @@
         android:scaleType="fitXY"
         android:src="@drawable/login_bg"
         tools:layout_editor_absoluteX="-38dp"
-        tools:layout_editor_absoluteY="196dp" />
+        tools:layout_editor_absoluteY="196dp"
+        android:contentDescription="@string/backgroundImg1" />
 
     <ImageView
         android:id="@+id/iv_login_bg2"
@@ -30,7 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="39dp" />
+        tools:layout_editor_absoluteY="39dp"
+        android:contentDescription="@string/backgroundImg2" />
 
     <!-- back to MainActivity icon -->
     <ImageView
@@ -43,7 +45,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_back"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:contentDescription="@string/back_icon" />
 
 
     <TextView
@@ -72,7 +75,8 @@
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="@+id/iv_login_bg1"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/white_bg_rectangle" />
+        app:srcCompat="@drawable/white_bg_rectangle"
+        android:contentDescription="@string/white_bg_3" />
 
     <!--Get Email-->
     <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +95,7 @@
             android:layout_width="285dp"
             android:layout_height="45dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textPersonName"
             android:textSize="15dp" />
 
@@ -121,7 +125,7 @@
                 android:layout_width="285dp"
                 android:layout_height="45dp"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textSize="15dp"></EditText>
 
@@ -133,7 +137,8 @@
             android:layout_height="match_parent"
             android:paddingLeft="3dp"
             android:src="@drawable/ic_hide_psw"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:contentDescription="@string/icon_eye_password" />
     </LinearLayout>
 
     <!--Forget Password-->

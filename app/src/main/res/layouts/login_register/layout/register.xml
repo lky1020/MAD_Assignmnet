@@ -128,7 +128,7 @@
                     android:layout_width="285dp"
                     android:layout_height="45dp"
                     android:ems="10"
-                    android:hint="Full Name"
+                    android:hint="@string/full_name"
                     android:inputType="textPersonName"
                     android:textSize="15dp"
                     tools:layout_editor_absoluteX="61dp"
@@ -151,7 +151,7 @@
                     android:layout_width="285dp"
                     android:layout_height="45dp"
                     android:ems="10"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:inputType="textPersonName"
                     android:textSize="15dp" />
 
@@ -182,7 +182,7 @@
                         android:layout_width="260dp"
                         android:layout_height="45dp"
                         android:ems="10"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:textSize="15dp">
                     </EditText>
@@ -220,7 +220,7 @@
                         android:layout_width="260dp"
                         android:layout_height="45dp"
                         android:ems="10"
-                        android:hint="Confirm Password"
+                        android:hint="@string/confirm_password"
                         android:inputType="textPassword"
                         android:textSize="15dp" />
 
@@ -252,7 +252,7 @@
                     android:layout_width="285dp"
                     android:layout_height="45dp"
                     android:ems="10"
-                    android:hint="Phone Number"
+                    android:hint="@string/phone_number"
                     android:inputType="textPersonName"
                     android:textSize="15dp" />
 
