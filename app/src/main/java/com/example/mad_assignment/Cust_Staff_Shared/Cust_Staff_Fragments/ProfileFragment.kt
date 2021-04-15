@@ -22,14 +22,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.latest_message_row.view.*
 import java.util.*
 
 
 //belongs to fragment_profile.xml
 class ProfileFragment : Fragment() {
 
-    ///private lateinit var contentResolver: ContentResolver
+    //private lateinit var contentResolver: ContentResolver
     lateinit var iv_profile: ImageView
 
     companion object {
@@ -43,6 +42,7 @@ class ProfileFragment : Fragment() {
     ): View? {
 
         fetchCurrentUser()
+
 
         //retrieve data from CustomerMain.kt /StaffMain.kt
         val userID = activity?.intent?.getStringExtra("UserID")
@@ -108,7 +108,6 @@ class ProfileFragment : Fragment() {
                         Log.d("PROFILE FRAGMENT", "File Location: $it")
                         Toast.makeText(context, "Your photo is uploaded successfully", Toast.LENGTH_LONG).show()
                         saveUserToFirebaseDB(it.toString())
-                        //saveUserToFirebaseDatabase(it.toString())
                     }
                 }
                 .addOnFailureListener {
@@ -134,10 +133,11 @@ class ProfileFragment : Fragment() {
     }
 
     //get info from firebase
+
     private fun fetchCurrentUser(){
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/User/$uid")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
 
@@ -154,6 +154,7 @@ class ProfileFragment : Fragment() {
 
         })
     }
+
 
 
 }
