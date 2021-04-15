@@ -240,7 +240,7 @@ class StaffManagerFragment : Fragment() {
         val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
         val role = "Staff"
-        val user = User (name, uid, password, phoneNum, email, role)
+        val user = User (name, uid, password, phoneNum, email, role, "")
 
         userRef.setValue(user)
     }

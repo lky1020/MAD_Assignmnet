@@ -42,14 +42,15 @@ class CustHomeAdapter(private val context: FragmentActivity, private val item: L
 
         holder.eachItem.setOnClickListener(){
             //proceed to Specific Pages
-            if(holder.book_now.text.contains("Service")){
+            if(holder.book_now.text.contains("Services")){
                 //proceed to service page
-
-            }else if(holder.book_now.text.contains("Faci")){
-                //proceed to facility page
                 val ft: FragmentTransaction = context?.supportFragmentManager!!.beginTransaction()
                 ft.replace(R.id.nav_host_fragment, StaffHousekeepingMainFragment())
                 ft.commit()
+
+            }else if(holder.book_now.text.contains("Faci")){
+                //proceed to facility page
+
 
             }else{
                 //proceed to room page

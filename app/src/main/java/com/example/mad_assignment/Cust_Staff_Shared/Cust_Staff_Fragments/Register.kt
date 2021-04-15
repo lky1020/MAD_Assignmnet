@@ -15,6 +15,8 @@ import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import java.util.*
 import java.util.regex.Pattern
 import java.util.regex.Pattern.compile
 
@@ -134,11 +136,13 @@ class Register: AppCompatActivity() {
     fun createUser(name:String, password:String, phoneNum:String,email:String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
 
-        //Change By Joan Hau to add uid
+        //add uid
         val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
         val role = "Member"
-        val user = User (name,uid,password,phoneNum,email,role)
+        val imgURL = "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/User%2FcmlN78KRp4VMBw7kWaWk1aLfofI3%2F900504c3-6fcd-4395-b9e8-3aa7b2b6e48f?alt=media&token=3626f866-c12a-461b-9aa7-904f32f4cd1c"
+        val user = User (name,uid,password,phoneNum,email,role, imgURL)
+
 
         userRef.setValue(user)
 

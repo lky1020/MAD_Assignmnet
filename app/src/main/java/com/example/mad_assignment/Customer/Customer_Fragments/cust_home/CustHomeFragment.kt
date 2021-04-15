@@ -39,7 +39,7 @@ class CustHomeFragment : Fragment() {
         home_items.add(Cust_Home_Item("Facilities", R.drawable.banner_hotelfacility, "There are many facilities such as spa, swimming pool, gym room and etc. Waiting you to enjoy it!", "Book Facility >>"))
         //need modify the 3rd der
         if(isbooking) {
-            home_items.add(Cust_Home_Item("Services", R.drawable.banner_hotelroom, "We have many room type which single rooms to quad rooms, queen rooms, king rooms, and president suite.", "Book Room >>"))
+            home_items.add(Cust_Home_Item("Services", R.drawable.banner_hotelroom, "Let's book our services! We will provide the best services to you.", "Book Services >>"))
         }
 
         return root
