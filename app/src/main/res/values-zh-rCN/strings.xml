@@ -87,4 +87,35 @@
     <!--    activity_latest_messages.xml-->
     <string name="chatWifUs">与我们聊天</string>
     <string name="chatWifStaff">选择职员</string>
+    <string name="date">日期</string>
+    <string name="select_date">选择日期</string>
+    <string name="time">时间</string>
+    <string name="from">从</string>
+    <string name="to">到</string>
+    <string name="book">预定</string>
+    <string name="cancel">取消</string>
+    <string name="order">预定</string>
+    <string name="ordered">预定了</string>
+    <string name="add">加</string>
+    <string name="enter_quantity">输入数量</string>
+    <string name="edit">编辑</string>
+    <string name="enter_item_name">输入商品名称</string>
+    <string name="online">在线</string>
+    <string name="offline">离线</string>
+    <string name="register_staff">注册人员</string>
+    <string name="enter_staff_name">输入职员名称</string>
+    <string name="enter_staff_id">输入员工编号</string>
+    <string name="manage_housekeeping">管理客房整理</string>
+    <string name="manage_services_facilities">管理服务/设施</string>
+    <string name="manage_check_in_out">管理签入/签出</string>
+    <string name="permission"><u>权限</u></string>
+    <string name="room">房间</string>
+    <string name="services_facilities">服务/设施</string>
+    <string name="check_in_out">签入/签出</string>
+    <string name="enter_email">输入电子邮件</string>
+    <string name="enter_password">输入密码</string>
+    <string name="enter_phone_number">输入电话号码</string>
+    <string name="manage">管理</string>
+    <string name="update_staff">更新人员</string>
+    <string name="available">可用</string>
 </resources>
