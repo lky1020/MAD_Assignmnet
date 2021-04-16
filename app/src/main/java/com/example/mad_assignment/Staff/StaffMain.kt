@@ -13,6 +13,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.mad_assignment.Class.Staff
+import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -33,6 +35,9 @@ class StaffMain: AppCompatActivity() {
         // run staff_nav.xml, the main activity of the customer pages
         super.onCreate(savedInstanceState)
         setContentView(R.layout.staff_nav)
+
+        //Use to check permission
+        val staffInfo: Staff? = intent.getParcelableExtra("staff")
 
         // get the value pass from login
         var staffPos: String? = intent.getStringExtra("Role")

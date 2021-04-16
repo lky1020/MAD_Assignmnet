@@ -54,6 +54,7 @@ class LatestMessages : AppCompatActivity() {
             if(currentUser?.role == "Staff"){
                 val intentStaffMain = Intent(this, StaffMain::class.java)
                 intentStaffMain.putExtra("Role", "Staff")
+                intentStaffMain.putExtra("user", currentUser)
                 startActivity(intentStaffMain)
             }
             else if(currentUser?.role == "Manager"){

@@ -145,6 +145,7 @@ class Login: AppCompatActivity() {
                 val intentStaffMain = Intent(this, StaffMain::class.java)
                 intentStaffMain.putExtra("Role", "Staff")
                 intentStaffMain.putExtra("email",  edittext_login_email.text.toString())
+                intentStaffMain.putExtra("user", currentUser)
                 startActivity(intentStaffMain)
             }
             else -> {
