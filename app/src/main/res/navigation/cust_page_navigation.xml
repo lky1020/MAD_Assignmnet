@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.ProfileFragment"
+        android:name="com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 
@@ -49,6 +49,5 @@
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment"
-        android:label="@string/fakeLogout"
-        tools:layout="@layout/fragment_logout" />
+        />
 </navigation>

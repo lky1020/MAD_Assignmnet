@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#251F1F"
-    tools:context=".Cust_Staff_Shared.Cust_Staff_Fragments.ProfileFragment">
+    tools:context=".Cust_Staff_Shared.Cust_Staff_Fragments.Profile.ProfileFragment">
 
     <!-- bg img -->
     <ImageView

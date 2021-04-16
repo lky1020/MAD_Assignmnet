@@ -31,11 +31,11 @@
 
         <ImageView
             android:id="@+id/iv_room_banner"
-            android:layout_width="410dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
             android:contentDescription="@string/banner_cust_home"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:src="@drawable/banner_hotelroom"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"

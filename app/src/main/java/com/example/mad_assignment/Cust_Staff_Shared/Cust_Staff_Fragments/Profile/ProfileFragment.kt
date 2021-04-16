@@ -1,22 +1,23 @@
-package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
+package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Profile
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
+import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
+import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
-import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -61,6 +62,10 @@ class ProfileFragment : Fragment() {
         user_password = root.findViewById(R.id.tv_user_password)
         user_phoneNum = root.findViewById(R.id.tv_user_phoneNum)
 
+        //edit var
+        val edit_name_icon:ImageView = root.findViewById(R.id.edit_name_icon)
+        val tv_logout:TextView = root.findViewById(R.id.tv_logout)
+        val tv_edit_info:TextView = root.findViewById(R.id.tv_edit_info)
 
         //add photo
         btn_select_photo.setOnClickListener(){
@@ -70,6 +75,25 @@ class ProfileFragment : Fragment() {
             val intentAction = Intent(Intent.ACTION_PICK)
             intentAction.type = "image/*"
             startActivityForResult(intentAction, 0)
+        }
+
+        //logout
+        tv_logout.setOnClickListener(){
+            //pop out a confirmation message
+            val confirmLogoutBox = AlertDialog.Builder(context)
+            confirmLogoutBox.setTitle("LOGOUT")
+            confirmLogoutBox.setMessage("Please click 'Confirm' to logout.")
+            confirmLogoutBox.setPositiveButton("Confirm") { dialogInterface: DialogInterface, i: Int ->
+                Toast.makeText(context, "Logout Successfully!", Toast.LENGTH_SHORT).show()
+
+                //logout to the MAIN MAIN page
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+            }
+            confirmLogoutBox.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
+                Toast.makeText(context, "Cancel Logout!", Toast.LENGTH_SHORT).show()
+            }
+            confirmLogoutBox.show()
         }
 
 
