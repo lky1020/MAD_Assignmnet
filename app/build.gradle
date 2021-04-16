@@ -102,4 +102,16 @@ dependencies {
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:26.8.0')
 
+    //Firebase UI
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    //life cycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //date range
+    implementation 'com.github.beeline09:DateRangePicker:1.0.2'
+    implementation "com.google.android.material:material:1.4.0-alpha02"
+
+    //to convert class into json
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

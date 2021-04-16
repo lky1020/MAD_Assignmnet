@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Customer.Booking.Main.BookRoomMenu">
+
+    <!-- the upper app bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutConfirmRoom"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- toolbar-->
+        </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/confirm_book_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_300"
+            android:elevation="2dp"
+            app:layout_anchor="@+id/appBarLayoutConfirmRoom"
+            app:layout_anchorGravity="center">
+
+            <!-- back icon -->
+
+            <ImageView
+                android:id="@+id/confirm_book_back_icon"
+                android:layout_width="31dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_back"
+                app:tint="@color/white" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/confirm_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Comfirm Booking"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayoutConfirmRoom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayoutRoom">
+
+            <!-- Check in date -->
+            <ImageButton
+                android:id="@+id/confirm_book_luggage"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_luggage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/confirm_book_check_in_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Check in:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_luggage"
+                app:layout_constraintStart_toEndOf="@+id/confirm_book_luggage" />
+
+            <TextView
+                android:id="@+id/confirm_book_check_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="12 Feb 2021"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/confirm_book_check_in_title"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_check_in_title" />
+
+            <!-- Check out date -->
+            <ImageButton
+                android:id="@+id/confirm_book_luggage1"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/icon_luggage"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_luggage"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_book_luggage" />
+
+            <TextView
+                android:id="@+id/confirm_book_check_out_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:text="Check out:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_luggage1"
+                app:layout_constraintStart_toEndOf="@+id/confirm_book_luggage1"
+                 />
+
+            <TextView
+                android:id="@+id/confirm_book_check_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14 Feb 2021"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_check_out_title"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_check_in"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_check_out_title" />
+
+            <!-- Guest -->
+            <ImageButton
+                android:id="@+id/confirm_book_guest_icon"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/icon_guest"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_luggage1"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_book_luggage1" />
+
+            <TextView
+                android:id="@+id/confirm_book_guest_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:text="Guest:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_guest_icon"
+                app:layout_constraintStart_toEndOf="@+id/confirm_book_guest_icon"
+                />
+
+            <TextView
+                android:id="@+id/confirm_book_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Guest"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_guest_title"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_check_out"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_guest_title" />
+
+            <View
+                android:id="@+id/ver_line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/confirm_book_guest_icon" />
+
+
+            <!-- Price Details -->
+            <TextView
+                android:id="@+id/confirm_book_price_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="end"
+                android:text="Price details:"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/ver_line1"
+                app:layout_constraintTop_toBottomOf="@+id/ver_line1" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:id="@+id/rv_confirm_book_price_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_book_price_details_title"
+                tools:listitem="@layout/confirm_booking_item" />
+
+            <!-- Total price -->
+            <TextView
+                android:id="@+id/confirm_book_subtotal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="end"
+                android:text="Subtotal"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/rv_confirm_book_price_details"
+                app:layout_constraintTop_toBottomOf="@+id/rv_confirm_book_price_details" />
+
+            <TextView
+                android:id="@+id/confirm_book_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_subtotal_title"
+                app:layout_constraintEnd_toEndOf="@+id/rv_confirm_book_price_details"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_subtotal_title" />
+
+            <View
+                android:id="@+id/ver_line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/confirm_book_subtotal_title" />
+
+            <TextView
+                android:id="@+id/confirm_book_breakfast_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast buffet"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_subtotal_title"
+                app:layout_constraintTop_toBottomOf="@+id/ver_line2" />
+
+            <TextView
+                android:id="@+id/confirm_book_breakfast_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RM15 per guest"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_breakfast_title"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_book_breakfast_title" />
+
+            <TextView
+                android:id="@+id/confirm_book_breakfast_guest_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guest"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/confirm_book_breakfast_description"
+                app:layout_constraintTop_toBottomOf="@+id/confirm_book_breakfast_description" />
+
+            <!-- Number Control-->
+            <LinearLayout
+                android:id="@+id/layout_cb_num_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/ver_line2"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_breakfast_guest_title">
+
+                <!-- minus button -->
+                <ImageView
+                    android:id="@+id/iv_cb_minus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_minus" />
+
+                <TextView
+                    android:id="@+id/tv_cb_guest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <!-- add button -->
+                <ImageView
+                    android:id="@+id/iv_cb_plus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_plus" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/ver_line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/layout_cb_num_control" />
+
+            <TextView
+                android:id="@+id/confirm_book_total_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total price"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/ver_line3"
+                app:layout_constraintTop_toBottomOf="@+id/ver_line3" />
+
+            <TextView
+                android:id="@+id/confirm_book_total"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/confirm_book_total_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/confirm_book_total_title" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_confirm_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_blue_300"
+        android:text="Confirm and Pay"
+        android:textColor="@color/white"
+        android:backgroundTint="#fb607f"
+        android:textSize="16sp"
+        android:letterSpacing="0.1"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="5dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

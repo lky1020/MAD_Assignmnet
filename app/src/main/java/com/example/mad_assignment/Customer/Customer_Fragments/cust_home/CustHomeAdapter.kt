@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Customer.Customer_Fragments.cust_home
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Customer.Booking.Main.BookRoomMenu
+import com.example.mad_assignment.Customer.Booking.Main.BookingSearchPage
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import kotlinx.android.synthetic.main.customer_fragment_home_item.view.*
@@ -53,7 +56,9 @@ class CustHomeAdapter(private val context: FragmentActivity, private val item: L
 
 
             }else{
-                //proceed to room page
+                //proceed to booking page
+                val intent = Intent(context, BookingSearchPage::class.java)
+                context.startActivity(intent)
 
             }
         }

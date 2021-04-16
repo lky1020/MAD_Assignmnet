@@ -119,4 +119,37 @@
     <string name="update_staff">スタッフの更新</string>
     <string name="available">利用可能</string>
 
+    <!-- Booking room -->
+    <string name="manage_room_title">Manage Room</string>
+    <string name="image_desc">Image</string>
+    <string name="addRoom">Add New Room</string>
+    <string name="todo">TODO</string>
+    <string name="add_room_title">Add Room</string>
+
+    <string name="book_room_qty_spinner">Selected Room Quantity</string>
+
+    <string-array name="room_select_qty">
+        <item>1 room</item>
+        <item>2 rooms</item>
+        <item>3 rooms</item>
+        <item>4 rooms</item>
+        <item>5 rooms</item>
+        <item>6 rooms</item>
+        <item>7 rooms</item>
+        <item>8 rooms</item>
+        <item>9 rooms</item>
+        <item>10 rooms</item>
+    </string-array>
+
+    <string-array name="room_select_type">
+        <item>Select Room Type</item>
+        <item>Standard Single Room</item>
+        <item>Standard Double Room</item>
+        <item>Deluxe Double Room</item>
+        <item>Standard Twin Room</item>
+        <item>Superior Queen Room</item>
+        <item>Family Room</item>
+        <item>Deluxe Studio</item>
+        <item>Triple Room</item>
+    </string-array>
 </resources>

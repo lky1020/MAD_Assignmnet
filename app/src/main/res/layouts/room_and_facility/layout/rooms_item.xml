@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Card Layout for Rooms Item (Staff) -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="false"
+    android:id="@+id/card_rooms_item">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Circle text view -->
+        <TextView
+            android:id="@+id/tv_ri_room_no"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/circle_green"
+            android:text="SS001"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:letterSpacing="0.05"
+            android:layout_margin="10dp"/>
+
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tv_ri_room_status_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="Status: "
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_ri_room_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Available"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <!-- button -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical|end">
+
+        <!-- edir icon -->
+        <ImageButton
+            android:id="@+id/ib_rooms_edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_green"
+            android:src="@drawable/icon_edit"
+            android:layout_marginRight="10dp"/>
+
+        <!-- delete icon -->
+        <ImageButton
+            android:id="@+id/ib_rooms_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_red"
+            android:src="@drawable/icon_delete"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Card Layout for Room Menu (Staff) -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="false"
+    android:id="@+id/card_book_room_cart"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_brc_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:layout_marginVertical="8dp">
+
+
+        <ImageView
+            android:id="@+id/iv_bmc_item"
+            android:layout_width="100dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Room Type -->
+        <TextView
+            android:id="@+id/tv_brc_item_room_type"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Standard Double Room"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_bmc_item"
+            app:layout_constraintTop_toTopOf="@+id/iv_bmc_item" />
+
+        <!-- Price -->
+        <TextView
+            android:id="@+id/tv_brc_item_price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="price for 2 nights"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_brc_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM 298"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_price_title" />
+
+        <!-- Beds -->
+        <TextView
+            android:id="@+id/tv_brc_item_beds"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:text="2 beds"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_brc_item_room_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_room_type" />
+
+        <!-- Occupancy -->
+        <TextView
+            android:id="@+id/tv_brc_item_occupancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 guest"
+            android:textSize="12dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_brc_item_beds"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_beds" />
+
+        <!-- Drop down list -->
+
+        <Spinner
+            android:id="@+id/brc_item_spinner"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:entries="@array/room_select_qty"
+            android:layout_height="40dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_bmc_item"
+            app:layout_constraintStart_toStartOf="@+id/tv_brc_item_occupancy"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_occupancy" />
+
+        <!-- Delete button -->
+        <ImageButton
+            android:id="@+id/brc_item_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/blue_300"
+            android:padding="3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_close"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/brc_item_spinner"
+            app:layout_constraintTop_toTopOf="@+id/brc_item_spinner" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
