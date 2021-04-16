@@ -135,7 +135,7 @@ class Login: AppCompatActivity() {
                 Log.d("Login","Login as Member")
                 //proceed to cust main page
                 val intentCustMain = Intent(this, CustomerMain::class.java)
-                intentCustMain.putExtra("email", edittext_login_email.text.toString())
+               // intentCustMain.putExtra("email", edittext_login_email.text.toString())
                 startActivity(intentCustMain)
             }
             "Staff" -> {

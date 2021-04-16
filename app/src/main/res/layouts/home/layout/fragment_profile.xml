@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- act as a fragment - declared in cust_page_navigation.xml & staff_page_navigation.xml  -->
-<androidx.constraintlayout.widget.ConstraintLayout
-    tools:context=".Cust_Staff_Shared.Cust_Staff_Fragments.ProfileFragment"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#251F1F"
+    tools:context=".Cust_Staff_Shared.Cust_Staff_Fragments.ProfileFragment">
 
-    <TextView
-        android:layout_height="wrap_content"
+    <!-- bg img -->
+    <ImageView
+        android:id="@+id/iv_profilePage_bg1"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:id="@+id/text_profile"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#F0FDFCFC"
+        android:contentDescription="@string/backgroundImg1"
+        android:scaleType="fitXY"
+        android:src="@drawable/dark_blue_design_bg"
+        tools:layout_editor_absoluteX="-38dp"
+        tools:layout_editor_absoluteY="196dp" />
+
 
     <ImageView
-        android:layout_height="168dp"
-        android:layout_width="166dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/iv_profilePage_bg2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BAFFFCFC"
+        android:backgroundTint="#23000000"
+        android:contentDescription="@string/backgroundImg2"
+        android:scaleType="fitXY"
+        android:src="@drawable/gray_color_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="72dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <!-- user profile photo -->
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="72dp"
         android:src="@drawable/ic_account_photo"
-        app:layout_constraintCircleRadius="75dp"/>
+        app:civ_border_color="@color/white"
+        app:civ_border_width="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <!-- bg of the camera icon -->
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_camera_icon_bg"
         android:layout_width="47dp"
         android:layout_height="43dp"
         android:src="@drawable/round_black_bg"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_profile"
-        app:layout_constraintVertical_bias="0.814" />
+        app:layout_constraintVertical_bias="0.811" />
 
+    <!-- camera icon -->
     <Button
         android:id="@+id/btn_select_photo"
         android:layout_width="34dp"
@@ -53,19 +71,162 @@
         android:background="@drawable/ic_camera"
         android:backgroundTint="@color/white"
         android:radius="75dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_camera_icon_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_camera_icon_bg"
+        app:layout_constraintStart_toStartOf="@+id/iv_camera_icon_bg"
+        app:layout_constraintTop_toTopOf="@+id/iv_camera_icon_bg" />
 
+    <!-- white color bg -->
+    <ImageView
+        android:id="@+id/iv_register_bg3"
+        android:layout_width="336dp"
+        android:layout_height="360dp"
+        android:paddingTop="2dp"
+        android:src="@drawable/white_bg_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+        app:layout_constraintVertical_bias="0.517" />
+
+    <!-- user name -->
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textColor="#F3EFEF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+    <!-- icon for edit user name -->
+    <ImageView
+        android:id="@+id/edit_name_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_user_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- email title-->
+    <TextView
+        android:id="@+id/tv_email_title"
+        android:layout_width="265dp"
+        android:layout_height="26dp"
+        android:text="Email"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
+
+    <!-- password title -->
+    <TextView
+        android:id="@+id/tv_password_title"
+        android:layout_width="265dp"
+        android:layout_height="31dp"
+        android:text="Password"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_register_bg3"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_email"
+        app:layout_constraintVertical_bias="0.181" />
+
+    <!-- phone number title -->
+    <TextView
+        android:id="@+id/tv_phoneNum_title"
+        android:layout_width="265dp"
+        android:layout_height="31dp"
+        android:text="Phone No."
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_register_bg3"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
+        app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_password"
+        app:layout_constraintVertical_bias="0.349" />
+
+    <!-- user email -->
+    <TextView
+        android:id="@+id/tv_user_email"
+        android:layout_width="265dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_email_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_title" />
+
+    <!-- user password -->
+    <TextView
+        android:id="@+id/tv_user_password"
+        android:layout_width="265dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_email_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password_title" />
+
+    <!-- user phone num -->
+    <TextView
+        android:id="@+id/tv_user_phoneNum"
+        android:layout_width="265dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_email_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum_title" />
+
+    <!-- tv for logout fn -->
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="#1D0437"
+        app:layout_constraintBottom_toTopOf="@+id/tv_email_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
+        app:layout_constraintTop_toTopOf="@+id/iv_register_bg3" />
+
+    <!-- tv for edit user info -->
+    <TextView
+        android:id="@+id/tv_edit_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="Edit"
+        android:textColor="#1D0437"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_logout"
+        app:layout_constraintEnd_toStartOf="@+id/tv_logout"
+        app:layout_constraintTop_toTopOf="@+id/tv_logout"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

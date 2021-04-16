@@ -4,17 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.R
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,14 +24,20 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 
 //belongs to fragment_profile.xml
 class ProfileFragment : Fragment() {
 
-    //private lateinit var contentResolver: ContentResolver
-    lateinit var iv_profile: ImageView
+    lateinit var iv_profile: CircleImageView
+    lateinit var user_name:TextView
+    lateinit var user_email:TextView
+    lateinit var user_password:TextView
+    lateinit var user_phoneNum:TextView
+
+    var selectPhotoUri:Uri? = null
 
     companion object {
         var currentUser: User? = null
@@ -40,57 +48,49 @@ class ProfileFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        //get current user data
         fetchCurrentUser()
 
-
-        //retrieve data from CustomerMain.kt /StaffMain.kt
-        val userID = activity?.intent?.getStringExtra("UserID")
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        //variable
+        //variable initialization
         var btn_select_photo: Button = root.findViewById(R.id.btn_select_photo)
         iv_profile = root.findViewById(R.id.iv_profile)
+        user_name = root.findViewById(R.id.tv_user_name)
+        user_email = root.findViewById(R.id.tv_user_email)
+        user_password = root.findViewById(R.id.tv_user_password)
+        user_phoneNum = root.findViewById(R.id.tv_user_phoneNum)
 
-        //TEST VARIABLE -- will be REMOVE later
-        val textView: TextView = root.findViewById(R.id.text_profile)
-
-        //assign data to TEST -- will be REMOVE later
-        textView.text = userID.toString()
 
         //add photo
         btn_select_photo.setOnClickListener(){
             Log.d("ProfileFragment", "Try to show photo selector")
 
+            //get into gallery
             val intentAction = Intent(Intent.ACTION_PICK)
             intentAction.type = "image/*"
             startActivityForResult(intentAction, 0)
-
         }
-        //*************************refresh the page to get current photo
-        //fetchCurrentUser()
+
+
+
 
         return root
-
-
     }
 
     //select photo in phone
-    var selectPhotoUri:Uri? = null
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        //proceed and check what the selected image was...
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            Log.d("ProfileFragment", "Profile image is selected")
+            selectPhotoUri = data.data
 
-         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
-             //proceed and check what the selected image was...
-             Log.d("ProfileFragment", "Profile image is selected")
-
-             selectPhotoUri = data.data
-
-             //upload the data img into Firebase
-             uploadImgToFirebaseStorage(selectPhotoUri!!)
-
-         }
+            //upload the data img into Firebase
+            uploadImgToFirebaseStorage(selectPhotoUri!!)
+        }
     }
+
 
     //upload img to firebase storage and firebase
     private fun uploadImgToFirebaseStorage(imguri: Uri) {
@@ -112,15 +112,15 @@ class ProfileFragment : Fragment() {
                 }
                 .addOnFailureListener {
                     Log.d("PROFILE FRAGMENT", "Failed to upload image to storage: ${it.message}")
-                    Toast.makeText(context, "Your photo is fail to upload", Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(context, "Your photo is fail to upload", Toast.LENGTH_LONG)
+                        .show()
                 }
     }
 
+    //upload selected img with all data to firebase db
     private fun saveUserToFirebaseDB(imgurl: String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/User/$uid")
-
         val user = User(currentUser!!.name, currentUser!!.uid, currentUser!!.password, currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, imgurl)
 
         ref.setValue(user)
@@ -133,13 +133,17 @@ class ProfileFragment : Fragment() {
     }
 
     //get info from firebase
-
     private fun fetchCurrentUser(){
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/User/$uid")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
+
+                user_name.text = currentUser!!.name
+                user_email.text = currentUser!!.email
+                user_password.text = currentUser!!.password
+                user_phoneNum.text = currentUser!!.phoneNum
 
                 if (currentUser!!.img != null) {
                     Picasso.get().load(currentUser!!.img).into(iv_profile)
@@ -151,7 +155,6 @@ class ProfileFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
     }
 

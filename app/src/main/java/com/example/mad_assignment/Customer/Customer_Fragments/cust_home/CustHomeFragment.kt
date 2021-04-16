@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,6 +33,9 @@ class CustHomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        //allow app bar
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+
         //custHomeViewModel =  ViewModelProvider(this).get(CustHomeViewModel::class.java)
         val root = inflater.inflate(R.layout.customer_fragment_home, container, false)
 

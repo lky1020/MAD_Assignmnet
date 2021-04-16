@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -21,6 +22,9 @@ class StaffHomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        //allow app bar
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+
         //temp variable  -- need retrieve total cust chk in & out
         var numIn = 20
         var numOut = 20
