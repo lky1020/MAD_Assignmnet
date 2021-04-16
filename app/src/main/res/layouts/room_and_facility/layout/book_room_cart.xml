@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Customer.Booking.Main.BookRoomMenu">
+
+    <!-- the upper app bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutConfirmRoom"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- toolbar-->
+        </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/confirm_book_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_300"
+            android:elevation="2dp"
+            app:layout_anchor="@+id/appBarLayoutConfirmRoom"
+            app:layout_anchorGravity="center">
+
+            <!-- back icon -->
+
+            <ImageView
+                android:id="@+id/confirm_book_back_icon"
+                android:layout_width="31dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_back"
+                app:tint="@color/white" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/confirm_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Selected Room"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayoutConfirmRoom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayoutRoom">
+
+            <!-- your trip -->
+            <TextView
+                android:id="@+id/tv_brc_your_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Your trip"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayoutRoom" />
+
+            <!-- Travel Date -->
+            <TextView
+                android:id="@+id/tv_brc_date_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingVertical="5dp"
+                android:text="Travel Date"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_brc_your_trip"
+                app:layout_constraintTop_toBottomOf="@+id/tv_brc_your_trip" />
+
+            <TextView
+                android:id="@+id/tv_brc_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_rect_grey"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="5dp"
+                android:text="12 Feb to 13 Feb"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_brc_date_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_brc_guest"
+                app:layout_constraintTop_toTopOf="@+id/tv_brc_date_title" />
+
+            <!-- No. of guest -->
+
+            <TextView
+                android:id="@+id/tv_brc_guest_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingVertical="5dp"
+                android:text="Number of Guest"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_brc_date_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_brc_date_title" />
+
+            <TextView
+                android:id="@+id/tv_brc_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/round_rect_grey"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="5dp"
+                android:text="2 Guest"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_brc_guest_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_brc_guest_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_brc_guest_title" />
+
+            <!-- Line -->
+            <View
+                android:id="@+id/brc_ver_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="#EFEFEF"
+                app:layout_constraintTop_toBottomOf="@id/tv_brc_guest" />
+
+
+            <!-- Recycle View - Selected Room -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cart_item"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brc_ver_line"
+                tools:listitem="@layout/book_room_cart_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Line -->
+        <View
+            android:id="@+id/brc_ver_line2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="#EFEFEF" />
+
+        <Button
+            android:id="@+id/btn_brc_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/round_button_blue_300"
+            android:backgroundTint="@color/dark_late_blue"
+            android:text="Add"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_brc_reserve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_button_blue_300"
+            android:backgroundTint="@color/royal_fuchsia"
+            android:text="Reserve"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

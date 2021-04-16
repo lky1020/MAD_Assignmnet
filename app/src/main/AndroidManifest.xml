@@ -46,6 +46,16 @@
         </activity>
         <activity android:name=".Customer.Chat.messages.NewMessage" />
         <activity android:name=".Customer.Chat.messages.ChatLog" />
+
+        <activity android:name=".Customer.Booking.Main.ConfirmBooking"></activity>
+        <activity android:name=".Customer.Booking.Main.BookRoomCart" />
+        <activity android:name=".Customer.Booking.Main.BookRoomMenu" />
+        <activity android:name=".Staff.room.AddRoom" />
+        <activity android:name=".Staff.room.ManageRoom" />
+        <activity android:name=".Staff.room.ManageRoomMenu" />
+        <activity
+            android:name=".Customer.Booking.Main.BookingSearchPage"
+            android:theme="@style/Theme.MAD_Assignment1" />
     </application>
 
 </manifest>

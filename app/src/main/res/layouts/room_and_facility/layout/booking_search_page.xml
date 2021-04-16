@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Booking.Main.BookingSearchPage">
+
+    <!-- Title -->
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:background="@drawable/bg6"
+            android:cropToPadding="false"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="80dp"
+            android:letterSpacing="0.07"
+            android:padding="4dp"
+            android:text="Start Booking"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+    <!-- white container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_booking_search_white_container"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:background="@drawable/half_round_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- back icon -->
+        <ImageView
+            android:id="@+id/booking_search_back_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_back"
+            app:tint="@color/black"
+            android:contentDescription="@string/todo" />
+
+        <LinearLayout
+            android:id="@+id/layout_bs_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/booking_search_back_icon">
+
+            <!-- Prefer Date -->
+            <TextView
+                android:id="@+id/tv_bs_prefer_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check in &amp; Check out"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+
+            <!-- Select Date Button -->
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:textSize="16sp"
+                android:id="@+id/btn_prefer_date"
+                android:text="Pick Your Date"/>
+
+            <!-- Guest -->
+            <TextView
+                android:id="@+id/tv_bs_prefer_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="Number of Guest"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_bs_no._guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Guest"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <!-- Number Control-->
+        <LinearLayout
+            android:id="@+id/layout_bs_num_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/layout_bs_lbl"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="50dp">
+
+            <!-- minus button -->
+            <ImageView
+                android:id="@+id/iv_bs_minus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_minus" />
+
+            <TextView
+                android:id="@+id/tv_bs_guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <!-- add button -->
+            <ImageView
+                android:id="@+id/iv_bs_plus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_plus" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_bs_next"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="Next"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:src="@drawable/round_button_light_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
