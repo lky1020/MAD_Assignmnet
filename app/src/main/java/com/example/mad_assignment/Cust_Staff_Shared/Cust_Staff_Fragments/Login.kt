@@ -76,17 +76,14 @@ class Login: AppCompatActivity() {
             else if (password.isEmpty()) {
                 etPassword.error = "Enter Password"
             } else { //both field filled
-                performLoginSuccessful()
+                performLoginSuccessful(email, password)
             }
         }
 
     }
 
     //Login Validation in Firebase Auth
-    private fun performLoginSuccessful(){
-        val email = edittext_login_email.text.toString()
-        val password = edittext_login_password.text.toString()
-
+    private fun performLoginSuccessful(email:String, password:String){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
