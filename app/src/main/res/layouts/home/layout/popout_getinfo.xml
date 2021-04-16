@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Close Icon -->
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="44dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_close" />
+
+    <!-- Title: Reset email -->
+
+    <!-- Get input new email -->
+
+    <!-- Title: Reset password -->
+
+    <!-- Get input old ps -->
+    <TextView
+        android:id="@+id/tv_reset_Password_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Reset Password"
+        android:textColor="#070707"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_close" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_old_password"
+        android:layout_width="274dp"
+        android:layout_height="58dp"
+        android:textColorHint="#808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_reset_Password_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_Password_title">
+
+        <EditText
+            android:id="@+id/edittext_old_password"
+            android:layout_width="269dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="Old Password"
+            android:inputType="textPassword"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Get input new ps 1 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_new_password1"
+        android:layout_width="274dp"
+        android:layout_height="58dp"
+        android:textColorHint="#808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/layout_old_password"
+        app:layout_constraintTop_toBottomOf="@+id/layout_old_password">
+
+        <EditText
+            android:id="@+id/edittext_new_password1"
+            android:layout_width="269dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="Enter New Password"
+            android:inputType="textPassword"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Get input new ps 2 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_new_password2"
+        android:layout_width="274dp"
+        android:layout_height="58dp"
+        android:textColorHint="#808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/layout_new_password1"
+        app:layout_constraintTop_toBottomOf="@+id/layout_new_password1">
+
+        <EditText
+            android:id="@+id/edittext_new_password2"
+            android:layout_width="269dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="Enter New Password Again"
+            android:inputType="textPassword"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Title: Reset Phone num-->
+    <TextView
+        android:id="@+id/tv_reset_phoneNum_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Reset Phone Number"
+        android:textColor="#070707"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/layout_new_password2"
+        app:layout_constraintTop_toBottomOf="@+id/layout_new_password2" />
+
+    <!-- Get input new phone num -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_new_phoneNum"
+        android:layout_width="274dp"
+        android:layout_height="58dp"
+        android:textColorHint="#808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_reset_phoneNum_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_phoneNum_title">
+
+        <EditText
+            android:id="@+id/edittext_new_phoneNum"
+            android:layout_width="269dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="New Phone Number"
+            android:inputType="textPersonName"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- confirm new info -->
+    <Button
+        android:id="@+id/btn_confirm_new_info"
+        android:layout_width="94dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#1583DA"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_new_phoneNum"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

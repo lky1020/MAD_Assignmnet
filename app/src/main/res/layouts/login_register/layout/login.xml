@@ -145,7 +145,7 @@
 
     <TextView
         android:id="@+id/tv_forgetPasword"
-        android:layout_width="85dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="25dp"

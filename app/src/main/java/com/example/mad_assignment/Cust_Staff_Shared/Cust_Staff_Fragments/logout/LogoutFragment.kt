@@ -49,8 +49,6 @@ class LogoutFragment : Fragment() {
         }
         confirmBox.show()
 
-
-
         return null
     }
 }

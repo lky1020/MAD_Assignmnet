@@ -6,6 +6,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFra
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +29,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.popout_getinfo.view.*
+import kotlinx.android.synthetic.main.popout_getname.view.*
+import kotlinx.android.synthetic.main.popout_getname.view.iv_close
 import java.util.*
+import java.util.regex.Pattern
 
 
 //belongs to fragment_profile.xml
@@ -42,6 +49,11 @@ class ProfileFragment : Fragment() {
 
     companion object {
         var currentUser: User? = null
+
+        var currentAcc = FirebaseAuth.getInstance()
+        var userID: String = currentAcc.currentUser.uid
+        var user: FirebaseUser = currentAcc.currentUser
+
     }
 
     override fun onCreateView(
@@ -66,6 +78,115 @@ class ProfileFragment : Fragment() {
         val edit_name_icon:ImageView = root.findViewById(R.id.edit_name_icon)
         val tv_logout:TextView = root.findViewById(R.id.tv_logout)
         val tv_edit_info:TextView = root.findViewById(R.id.tv_edit_info)
+
+        //edit user name fn
+        edit_name_icon.setOnClickListener(){
+            //Inflate the dialog with custom view
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.popout_getname, null)
+
+            //AlertDialogBuilder
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+
+            mDialogView.edittext_new_name.setText(currentUser!!.name)
+            //show dialog
+            val  mAlertDialog = mBuilder.show()
+
+            //confirm button
+            mDialogView.btn_confirm_new_name.setOnClickListener(){
+                var mNewName:EditText = mDialogView.edittext_new_name
+
+                val newName = mNewName.text.toString().trim()
+                val nameREG = "^([a-zA-Z /.])*\$"
+                var pattern: Pattern = Pattern.compile(nameREG)
+                fun CharSequence.isName() : Boolean = pattern.matcher(this).find()
+
+                //validate phone num format
+                if (TextUtils.isEmpty(newName)){
+                    mNewName.error = "Enter new name"
+                }else if(!(newName.isName())) {
+                    mNewName.error = "Invalid Name Format"
+                }else{
+                    //update new name
+                    val user = User(newName, currentUser!!.uid, currentUser!!.password, currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, currentUser!!.img)
+                    saveUserToFirebaseDB(user)
+
+                    Toast.makeText(context, "Change Name Successfully!", Toast.LENGTH_SHORT).show()
+                    mAlertDialog.dismiss()
+
+                }
+            }
+
+            //close icon
+            mDialogView.iv_close.setOnClickListener(){
+                //dismiss dialog
+                mAlertDialog.dismiss()
+            }
+        }
+
+        //edit user info fn (without name)
+        tv_edit_info.setOnClickListener(){
+            //Inflate the dialog with custom view
+            val mDialogView1 = LayoutInflater.from(context).inflate(R.layout.popout_getinfo, null)
+
+            //AlertDialogBuilder
+            val mBuilder1 = AlertDialog.Builder(context)
+                .setView(mDialogView1)
+
+            mDialogView1.edittext_new_phoneNum.setText(currentUser!!.phoneNum)
+
+            //show dialog
+            val  mAlertDialog1 = mBuilder1.show()
+
+            //confirm button
+            mDialogView1.btn_confirm_new_info.setOnClickListener(){
+                var mOldPassword:EditText = mDialogView1.edittext_old_password
+                var mNewPs1:EditText = mDialogView1.edittext_new_password1
+                var mNewPs2:EditText = mDialogView1.edittext_new_password2
+                var mNewPhoneNum:EditText = mDialogView1.edittext_new_phoneNum
+
+                //validation
+                val isValid = validationForUserInfo(mOldPassword,mNewPs1,mNewPs2, mNewPhoneNum)
+                if(isValid){
+                    if( mNewPs2.text.toString() == currentUser!!.password && mNewPhoneNum.text.toString() == currentUser!!.phoneNum){
+                        Toast.makeText(context, "No Changes is Made !", Toast.LENGTH_SHORT).show()
+                        mAlertDialog1.dismiss()
+                    }else {
+                        //update new inputted info
+                        val userInfo = User(
+                            currentUser!!.name,
+                            currentUser!!.uid,
+                            mNewPs2.text.toString().trim(),
+                            mNewPhoneNum.text.toString().trim(),
+                            currentUser!!.email,
+                            currentUser!!.role,
+                            currentUser!!.img
+                        )
+
+                        //save to firebase storage
+                        user.updatePassword(mNewPs2.text.toString())
+                            .addOnSuccessListener {
+                                //save to firebase db
+                                saveUserToFirebaseDB(userInfo)
+                                Toast.makeText(context, "Change Info Successfully !", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            .addOnFailureListener{
+                                Toast.makeText(context, "Fail to update info !", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
+                        mAlertDialog1.dismiss()
+                    }
+                }
+            }
+
+            //close icon
+            mDialogView1.iv_close.setOnClickListener(){
+                //dismiss dialog
+                mAlertDialog1.dismiss()
+            }
+        }
 
         //add photo
         btn_select_photo.setOnClickListener(){
@@ -102,6 +223,76 @@ class ProfileFragment : Fragment() {
         return root
     }
 
+    //validation user new info
+    private fun validationForUserInfo(mOldPassword:EditText,mNewPs1:EditText,mNewPs2:EditText, mNewPhoneNum:EditText):Boolean{
+        //initialized
+        val oldPsw = mOldPassword.text.toString().trim()
+        val newPsw1 = mNewPs1.text.toString().trim()
+        val newPsw2 = mNewPs2.text.toString().trim()
+        val newPhoneNum = mNewPhoneNum.text.toString().trim()
+
+        var isValid = true
+
+        //validation for new phone num
+        if (TextUtils.isEmpty(newPhoneNum)){
+            mNewPhoneNum.error = "Phone Number is required"
+            return false
+        }else{
+            //set phone num format and validate
+            val phoneREG = "^[0-9]{10,11}$"
+            var phoneNum_pattern: Pattern = Pattern.compile(phoneREG)
+            fun CharSequence.isPhoneNumber() : Boolean = phoneNum_pattern.matcher(this).find()
+
+            //validate phone num format
+            if(!(newPhoneNum.isPhoneNumber())){
+                if(newPhoneNum.contains('-')){
+                    mNewPhoneNum.error = "Phone number do not contains '-'"
+                    return false
+                }else{
+                    mNewPhoneNum.error = "Invalid Phone Number"
+                    return false
+                }
+            }
+        }
+
+        //validation for old ps, new ps 1 & new ps 2
+        if(!(TextUtils.isEmpty(oldPsw)) && !(TextUtils.isEmpty(newPsw1)) && !(TextUtils.isEmpty(newPsw2)) ){
+            if(oldPsw == currentUser!!.password){ //valid old ps
+                if(newPsw1 == oldPsw){
+                    mNewPs1.error = "Old and New Password cannot be the same"
+                    isValid = false
+                }else if(newPsw1 != newPsw2){
+                    mNewPs2.error = "Both New Password Field must be same"
+                    isValid = false
+                }
+            }else{
+                mOldPassword.error = "Invalid Old Password"
+                isValid = false
+            }
+
+        }else if (!(TextUtils.isEmpty(oldPsw)) || !(TextUtils.isEmpty(newPsw1)) ||!(TextUtils.isEmpty(newPsw2)) ) {
+            if(TextUtils.isEmpty(oldPsw)){
+                mOldPassword.error = "Old Password is Required"
+                isValid = false
+            }
+            if(TextUtils.isEmpty(newPsw1)){
+                mNewPs1.error = "New Password is Required"
+                isValid = false
+            }
+            if(TextUtils.isEmpty(newPsw2)){
+                mNewPs2.error = "Pls Enter New Password Again"
+                isValid = false
+            }
+        }else{
+            mNewPs2.setText(currentUser!!.password)
+        }
+
+
+
+
+        return isValid
+    }
+
     //select photo in phone
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -131,7 +322,9 @@ class ProfileFragment : Fragment() {
                     ref.downloadUrl.addOnSuccessListener {
                         Log.d("PROFILE FRAGMENT", "File Location: $it")
                         Toast.makeText(context, "Your photo is uploaded successfully", Toast.LENGTH_LONG).show()
-                        saveUserToFirebaseDB(it.toString())
+
+                        val user = User(currentUser!!.name, currentUser!!.uid, currentUser!!.password, currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, it.toString())
+                        saveUserToFirebaseDB(user)
                     }
                 }
                 .addOnFailureListener {
@@ -142,14 +335,14 @@ class ProfileFragment : Fragment() {
     }
 
     //upload selected img with all data to firebase db
-    private fun saveUserToFirebaseDB(imgurl: String){
+    private fun saveUserToFirebaseDB(user: User){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/User/$uid")
-        val user = User(currentUser!!.name, currentUser!!.uid, currentUser!!.password, currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, imgurl)
+       // val user = User(currentUser!!.name, currentUser!!.uid, currentUser!!.password, currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, imgurl)
 
         ref.setValue(user)
                 .addOnSuccessListener {
-                    Log.d("PROFILE FRAGMENT", "Finally we saved the user to Firebase Database")
+                    Log.d("PROFILE FRAGMENT", "User Info Updated - to Firebase Database")
                 }
                 .addOnFailureListener {
                     Log.d("PROFILE FRAGMENT", "Failed to set value to database: ${it.message}")

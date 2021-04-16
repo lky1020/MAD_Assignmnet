@@ -43,7 +43,7 @@
     <string name="banner_cust_home">banner_cust_home</string>
 
     <!--login.xml-->
-    <string name="welcomeMsg">WELCOME \nTO \nQUAD CORE HOTEL!</string>
+    <string name="welcomeMsg">WELCOME <br/>TO <br/>QUAD CORE HOTEL!</string>
     <string name="forgetPassMsg">Forget Password</string>
     <string name="rememberMeMsg">Remember Me</string>
     <string name="btnLogin">LOGIN</string>

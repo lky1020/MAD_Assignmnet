@@ -71,6 +71,11 @@ class Register: AppCompatActivity() {
             if (TextUtils.isEmpty(name)){
                 mRegisterName.error = "Enter Name"
                 allFieldFilled = false
+            }else{
+                //set email format and validate
+                if(!validateNameFormat(name)){
+                    allFieldFilled = false
+                }
             }
 
             //validation for email
@@ -146,6 +151,20 @@ class Register: AppCompatActivity() {
 
         userRef.setValue(user)
 
+    }
+
+    //Name Format
+    private fun validateNameFormat(name:String):Boolean{
+        val nameREG = "^[a-zA-Z /.]$"
+        var PATTERN: Pattern = Pattern.compile(nameREG)
+        fun CharSequence.isName() : Boolean = PATTERN.matcher(this).find()
+
+        //validate phone num format
+        if(!(name.isName())) {
+            mRegisterName.error = "Invalid Name Format"
+            return false
+        }
+        return true
     }
 
     //Phone Number Format

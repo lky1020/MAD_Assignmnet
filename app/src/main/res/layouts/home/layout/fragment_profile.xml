@@ -51,6 +51,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- bg of the camera icon -->
+
+    <!-- camera icon -->
+
     <ImageView
         android:id="@+id/iv_camera_icon_bg"
         android:layout_width="47dp"
@@ -58,12 +61,11 @@
         android:src="@drawable/round_black_bg"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_profile"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintVertical_bias="0.914" />
 
-    <!-- camera icon -->
     <Button
         android:id="@+id/btn_select_photo"
         android:layout_width="34dp"
@@ -185,6 +187,7 @@
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:inputType="textPassword"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
         app:layout_constraintHorizontal_bias="0.0"
