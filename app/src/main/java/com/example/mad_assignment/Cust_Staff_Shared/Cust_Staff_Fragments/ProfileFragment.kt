@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
@@ -152,10 +154,6 @@ class ProfileFragment : Fragment() {
                 convertPasswordType(mDialogView1.iv_hide_newPassword2, mDialogView1.edittext_new_password2)
             }
 
-
-
-
-
             //confirm button
             mDialogView1.btn_confirm_new_info.setOnClickListener(){
                 var mOldPassword:EditText = mDialogView1.edittext_old_password
@@ -227,6 +225,12 @@ class ProfileFragment : Fragment() {
                 if(currentUser?.role == "Staff"){
                     updateStaffStatus(Login.currentUser!!)
                 }
+
+                //logout and remove the rmb me check box
+                var preferences: SharedPreferences? = this.activity?.getSharedPreferences("chkBox", AppCompatActivity.MODE_PRIVATE)
+                var editor: SharedPreferences.Editor = preferences!!.edit()
+                editor.putString("chkRmbMe", "false")
+                editor.apply()
 
                 Toast.makeText(context, "Logout Successfully!", Toast.LENGTH_SHORT).show()
 

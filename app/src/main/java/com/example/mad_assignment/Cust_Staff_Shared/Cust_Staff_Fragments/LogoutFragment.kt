@@ -40,11 +40,11 @@ class LogoutFragment : Fragment() {
                 updateStaffStatus(currentUser!!)
             }
 
+            //logout and remove the rmb me check box
             var preferences: SharedPreferences? = this.activity?.getSharedPreferences("chkBox", AppCompatActivity.MODE_PRIVATE)
             var editor:SharedPreferences.Editor = preferences!!.edit()
             editor.putString("chkRmbMe", "false")
             editor.apply()
-
 
 
             Toast.makeText(context, "Logout Successfully!", Toast.LENGTH_SHORT).show()

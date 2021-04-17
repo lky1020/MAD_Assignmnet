@@ -33,6 +33,9 @@ class Login: AppCompatActivity() {
     //Change by Joan Hau for fetch current user information
     companion object {
         var currentUser: User? = null
+
+        //for static purpose - to store email & password later
+        var PREFS_NAME: String? = "PrefsFile"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +62,9 @@ class Login: AppCompatActivity() {
             fetchCurrentUserInfo()
 
         } else if (chkBox.equals("false")) {
+            //get the email & password that the user want to rmb
+            getPreferencesData()
+
             Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
         }
 
@@ -86,8 +92,25 @@ class Login: AppCompatActivity() {
             } else if (password.isEmpty()) {
                 etPassword.error = "Enter Password"
             } else { //both field filled
+
+                //store remembered email & password into the PREFS_NAME
+                var preferencesText = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+
+                if(chkRmbMe.isChecked){
+                    var editor: SharedPreferences.Editor = preferencesText.edit()
+                    editor.putString("pref_name", email)
+                    editor.putString("pref_pass", password)
+                    editor.apply()
+
+
+                }else{
+                    preferencesText.edit().clear().apply()
+                }
+
+                //proceed to login
                 performLoginSuccessful(email, password)
             }
+
         }
 
         //forget password
@@ -122,6 +145,20 @@ class Login: AppCompatActivity() {
         }
     }
 
+    //get the data (email & password) that store in the PREFS_NAME
+    private fun getPreferencesData(){
+        var sharePref:SharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        if(sharePref.contains("pref_name")){
+            val name: String? = sharePref.getString("pref_name", "not found.")
+            etEmail.setText(name)
+
+            if(sharePref.contains("pref_pass")){
+                val pass: String? = sharePref.getString("pref_pass", "not found.")
+                etPassword.setText(pass)
+            }
+
+        }
+    }
 
 
 
@@ -162,6 +199,7 @@ class Login: AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
     }
 
     //redirect to specific role's main page
