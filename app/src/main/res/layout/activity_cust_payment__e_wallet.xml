@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_EWallet">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutPaymentE_Wallet"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- toolbar-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="2dp"
+                app:layout_anchor="@+id/appBarLayout"
+                app:layout_anchorGravity="center"
+                app:title="@string/ewallet">
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tvRedirectEWalletMsg"
+        android:layout_width="365dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="633dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/ewalletMsg"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutPaymentE_Wallet" />
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_EWallet_tng"
+        android:layout_width="378dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122">
+
+        <ImageView
+            android:id="@+id/imgViewEWalletSelected_tng"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/tng" />
+
+        <TextView
+            android:id="@+id/tvtng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="70dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/tngStr"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_ewallet_gp"
+        android:layout_width="378dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285">
+
+        <ImageView
+            android:id="@+id/imgViewEWalletSelected_gp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/gp" />
+
+        <TextView
+            android:id="@+id/tvGp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="70dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/grabpayStr"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_EWallet_Boost"
+        android:layout_width="378dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453">
+
+        <ImageView
+            android:id="@+id/imgViewEWalletSelected_boost"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/boost" />
+
+        <TextView
+            android:id="@+id/tvBoost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="70dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/boostStr"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_EWallet_Fave"
+        android:layout_width="378dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619">
+
+        <ImageView
+            android:id="@+id/imgViewEWalletSelected_fave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/fave" />
+
+        <TextView
+            android:id="@+id/tvFave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="70dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/faveStr"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_ewallet_Total"
+        android:layout_width="414dp"
+        android:layout_height="147dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_EWallet_Fave"
+        app:layout_constraintVertical_bias="0.39">
+
+        <TextView
+            android:id="@+id/tvSubtotalAmountEWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotalEWallet"
+            app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet" />
+
+        <TextView
+            android:id="@+id/tvTotalEWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="600dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalAmountEWallet"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvSubtotalAmountEWallet"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSubtotalEWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:text="@string/subtotal"
+        android:textColor="@color/gray"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_EWallet_Fave"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_EWallet_Boost" />
+
+    <TextView
+        android:id="@+id/tvTotalAmountEWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totalAmount"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvSubtotalEWallet"
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_ewallet_Total" />
+
+    <TextView
+        android:id="@+id/tvTotalAmountValueEWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="15dp"
+        android:text="RM 239.00"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalAmountEWallet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalAmountEWallet" />
+
+    <TextView
+        android:id="@+id/tvSubtotalValueEWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:text="RM239.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSubtotalEWallet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSubtotalEWallet" />
+
+    <Button
+        android:id="@+id/btnPayNowEWallet"
+        android:layout_width="409dp"
+        android:layout_height="53dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/payNowStr"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_ewallet_Total" />
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_EWallet_radioGroup"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="250dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_EWallet_Boost"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_EWallet_Boost"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/rdb_EWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbtng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="145dp"
+                android:checked="true"
+                android:paddingTop="50dp" />
+
+            <RadioButton
+                android:id="@+id/rbgp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp" />
+
+            <RadioButton
+                android:id="@+id/rbboost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp" />
+
+            <RadioButton
+                android:id="@+id/rbfave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp" />
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

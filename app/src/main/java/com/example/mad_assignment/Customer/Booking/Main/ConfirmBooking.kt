@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Customer.Booking.Main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Adapter.ConfirmBookingAdapter
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.Customer.Booking.Class.ReservationDetail
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_method
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -128,6 +130,9 @@ class ConfirmBooking : AppCompatActivity() {
                 .addOnFailureListener{
                     Log.d("confirm book", "Fail to reserve")
                 }
+
+            val intent = Intent(this, cust_payment_method::class.java)
+            startActivity(intent)
 
         }
 

@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- To Generate PDF and Download -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Customer.ChangeLanguage.ChangeLanguageMainApplication"
@@ -16,8 +18,7 @@
         android:theme="@style/Theme.MAD_Assignment">
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Permission.StaffPermissionActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity" />
-        <activity
-            android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity"/>
+        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingServiceActivity" />
         <activity
             android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.Item.CustHousekeepingAvailableItemActivity"
@@ -35,16 +36,8 @@
         <activity android:name=".CustomerMain" />
         <activity android:name=".StaffMain" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login" />
-        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" /> <!-- For Chat App -->
-        <activity android:name=".Customer.Chat.messages.LatestMessages">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Customer.Chat.messages.NewMessage" />
-        <activity android:name=".Customer.Chat.messages.ChatLog" />
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" />
 
         <activity android:name=".Customer.Booking.Main.ConfirmBooking" />
         <activity android:name=".Customer.Booking.Main.BookRoomCart" />
@@ -55,6 +48,28 @@
         <activity
             android:name=".Customer.Booking.Main.BookingSearchPage"
             android:theme="@style/Theme.MAD_Assignment1" />
+
+        <!-- Customer Payment -->
+        <activity
+            android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_transaction_details"
+            android:parentActivityName=".CustomerMain" />
+        <activity android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_credit_card" />
+        <activity android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_EWallet" />
+        <activity android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_online_banking" />
+        <activity
+            android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_method"
+            android:parentActivityName=".CustomerMain" />
+
+        <!-- For Chat App -->
+        <activity
+            android:name=".Customer.Chat.messages.LatestMessages"
+            android:parentActivityName=".CustomerMain" />
+        <activity
+            android:name=".Customer.Chat.messages.NewMessage"
+            android:parentActivityName=".Customer.Chat.messages.LatestMessages" />
+        <activity
+            android:name=".Customer.Chat.messages.ChatLog"
+            android:parentActivityName=".Customer.Chat.messages.LatestMessages" />
     </application>
 
 </manifest>

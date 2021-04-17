@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_method">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutPaymentSelection"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- toolbar-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="2dp"
+                app:layout_anchor="@+id/appBarLayout"
+                app:layout_anchorGravity="center"
+                app:title="@string/selectPaymentMethod">
+
+
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_method"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.071">
+
+        <ImageView
+            android:id="@+id/imgViewOnlineBanking"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="329dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/online_banking_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.422"
+            app:srcCompat="@drawable/online_banking_icon" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOnlineBanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/onlineBanking"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_method" />
+
+    <ImageView
+        android:id="@+id/imgViewOnlineBankingForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvOnlineBanking"
+        app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintStart_toEndOf="@+id/tvOnlineBanking"
+        app:layout_constraintTop_toBottomOf="@+id/tvOnlineBanking"
+        app:srcCompat="@drawable/ic_action_send" />
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_method_creditCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method"
+        app:layout_constraintVertical_bias="0.063">
+
+        <ImageView
+            android:id="@+id/imgViewCreditCard"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="329dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/online_banking_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.422"
+            app:srcCompat="@drawable/credit_card" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCreditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/creditcard"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_layout_bar_cust_payment_method_creditCard"
+        app:layout_constraintStart_toStartOf="@+id/tvOnlineBanking"
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_method_creditCard" />
+
+    <ImageView
+        android:id="@+id/imgViewCreditCardForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCreditCard"
+        app:layout_constraintEnd_toEndOf="@+id/imgViewOnlineBankingForward"
+        app:layout_constraintStart_toStartOf="@+id/imgViewOnlineBankingForward"
+        app:layout_constraintTop_toTopOf="@+id/tvCreditCard"
+        app:srcCompat="@drawable/ic_action_send" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method_creditCard"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_method_creditCard"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method_creditCard"
+        app:layout_constraintVertical_bias="0.116">
+
+        <ImageView
+            android:id="@+id/imgViewEWallet"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="329dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/online_banking_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.422"
+            app:srcCompat="@drawable/ewallet" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ewallet"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        app:layout_constraintStart_toStartOf="@+id/tvCreditCard"
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_method_ewallet" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        app:layout_constraintEnd_toEndOf="@+id/imgViewCreditCardForward"
+        app:layout_constraintStart_toStartOf="@+id/imgViewCreditCardForward"
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        app:srcCompat="@drawable/ic_action_send" />
+
+    <LinearLayout
+        android:id="@+id/ll_layout_bar_cust_payment_method_Total"
+        android:layout_width="429dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/payment_method_selection"
+        android:backgroundTint="#E4FFFFFF"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tvSubtotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
+            app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="600dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvSubtotalAmount"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvSubtotalAmount"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:text="@string/subtotal"
+        android:textColor="@color/gray"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_method_ewallet"
+        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_method_ewallet" />
+
+    <TextView
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totalAmount"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvSubtotal"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtotal" />
+
+    <TextView
+        android:id="@+id/tvTotalAmountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:text="RM 239.00"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalAmount" />
+
+    <TextView
+        android:id="@+id/tvSubtotalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:text="RM239.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSubtotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSubtotal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

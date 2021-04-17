@@ -1,31 +1,54 @@
 package com.example.mad_assignment.Customer_Fragments.cust_trans_history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.model.Payment
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.views.cust_transaction_history
 import com.example.mad_assignment.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.customer_fragment_trans_history.*
+
 
 //belongs to customer_fragment_services.xml
 class CustTransHistoryFragment : Fragment() {
 
-    private lateinit var custTransHistoryViewModel: CustTransHistoryViewModel
+    private var payment_list = ArrayList<Payment>()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        custTransHistoryViewModel =
-                ViewModelProvider(this).get(CustTransHistoryViewModel::class.java)
         val root = inflater.inflate(R.layout.customer_fragment_trans_history, container, false)
-        val textView: TextView = root.findViewById(R.id.text_transHis)
-        custTransHistoryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/Payment/$uid")
+        ref.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach {
+                    Log.d("NewMessage", it.toString())
+
+                    val payment = it.getValue(Payment::class.java)
+                    if(payment != null)
+                        payment_list.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status))
+                }
+                recyclerview_trans_history.adapter = cust_transaction_history(requireActivity(),payment_list)
+                recyclerview_trans_history.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
         })
         return root
     }
