@@ -19,7 +19,6 @@ class StaffHousekeepingMainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Manage Housekeeping"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Set Fragment
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
