@@ -8,6 +8,8 @@ import java.util.*
 data class Reservation @RequiresApi(Build.VERSION_CODES.O) constructor(
     var reservationID: String? = null,
     var uid: String? = null,
+    var custName: String? = null,
+    var custImg: String? = null,
     var guest:Int? = 0,
     var checkInDate:String? = null,
     var checkOutDate:String? = null,

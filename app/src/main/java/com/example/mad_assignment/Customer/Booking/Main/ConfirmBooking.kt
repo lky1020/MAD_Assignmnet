@@ -9,18 +9,17 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Booking.Adapter.ConfirmBookingAdapter
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.Customer.Booking.Class.ReservationDetail
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_method
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.confirm_booking.*
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
@@ -107,29 +106,52 @@ class ConfirmBooking : AppCompatActivity() {
 
         btn_confirm_pay.setOnClickListener {
             val uid = FirebaseAuth.getInstance().uid
-            val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid/${reservationID}")
 
-            val reservation:Reservation = Reservation(
-                    reservationID,
-                    uid,
-                    guest,
-                    convertLongToDate1(sharedPreferences.getLong("startDate", 0)),
-                    convertLongToDate1(sharedPreferences.getLong("endDate", 0)),
-                    nights,
-                    tv_cb_guest.text.toString().toInt(),
-                    selectedRoomList,
-                    totalPrice,
-                    "pending",
-                    todayDate(),
-            )
 
-            ref.setValue(reservation)
-                .addOnSuccessListener {
-                    Log.d("confirm book", "Successfully reserve")
+            val query: Query = FirebaseDatabase.getInstance().getReference("User")
+                    .orderByChild("uid")
+                    .equalTo(uid)
+
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+
+                        for(i in snapshot.children){
+                            val user = i.getValue(User::class.java)
+
+                            val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid/${reservationID}")
+
+                            val reservation:Reservation = Reservation(
+                                    reservationID,
+                                    uid,
+                                    user!!.name,
+                                    user.img,
+                                    guest,
+                                    convertLongToDate1(sharedPreferences.getLong("startDate", 0)),
+                                    convertLongToDate1(sharedPreferences.getLong("endDate", 0)),
+                                    nights,
+                                    tv_cb_guest.text.toString().toInt(),
+                                    selectedRoomList,
+                                    totalPrice,
+                                    "pending",
+                                    todayDate(),
+                            )
+
+                            ref.setValue(reservation)
+                                    .addOnSuccessListener {
+                                        Log.d("confirm book", "Successfully reserve")
+                                    }
+                                    .addOnFailureListener{
+                                        Log.d("confirm book", "Fail to reserve")
+                                    }
+                        }
+                    }
                 }
-                .addOnFailureListener{
-                    Log.d("confirm book", "Fail to reserve")
+
+                override fun onCancelled(error: DatabaseError) {
+
                 }
+            })
 
             val intent = Intent(this, cust_payment_method::class.java)
             startActivity(intent)
