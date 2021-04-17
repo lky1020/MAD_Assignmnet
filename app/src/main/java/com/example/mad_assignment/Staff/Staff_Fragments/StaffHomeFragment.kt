@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login.Companion.currentUser
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
@@ -68,7 +69,7 @@ class StaffHomeFragment : Fragment() {
 
         if(user_role == "Staff"){
             //Will check permission
-            val currentUser: User = activity?.intent?.getParcelableExtra("user")!!
+            val currentUser: User = currentUser!! //activity?.intent?.getParcelableExtra("user")!!
             setStaffView(currentUser, cv_chkIn, cv_chkOut, cv_houseKeeper, cv_room, cv_facility, cv_staff)
 
         }else{

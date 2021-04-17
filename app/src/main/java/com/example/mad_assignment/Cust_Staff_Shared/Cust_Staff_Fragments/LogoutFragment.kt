@@ -15,11 +15,14 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login.Companion.currentUser
+import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.Customer_Fragments.cust_home.CustHomeFragment
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment
+import com.example.mad_assignment.StaffMain
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.login.*
 
 //belongs to fragment_logout.xml
 class LogoutFragment : Fragment() {
@@ -55,15 +58,26 @@ class LogoutFragment : Fragment() {
         confirmBox.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
             Toast.makeText(context, "Cancel Logout!", Toast.LENGTH_SHORT).show()
 
-            val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+            //val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
 
-            if(currentUser?.role == "Staff" || currentUser?.role == "Manager"){
-                ft.replace(R.id.nav_host_fragment_staff, StaffHomeFragment())
-            }else{
-                ft.replace(R.id.nav_host_fragment, CustHomeFragment())
+            if(currentUser?.role == "Staff"){
+                val intentStaffMain = Intent(context, StaffMain::class.java)
+                intentStaffMain.putExtra("Role", "Staff")
+                startActivity(intentStaffMain)
+                //ft.replace(R.id.nav_host_fragment_staff, StaffHomeFragment())
+
+            }else if(currentUser?.role == "Manager"){
+                val intentStaffMain = Intent(context, StaffMain::class.java)
+                intentStaffMain.putExtra("Role", "Manager")
+                startActivity(intentStaffMain)
+            }
+            else{
+                val intentCustMain = Intent(context, CustomerMain::class.java)
+                startActivity(intentCustMain)
+                //ft.replace(R.id.nav_host_fragment, CustHomeFragment())
             }
 
-            ft.commit()
+            //ft.commit()
         }
         confirmBox.show()
 

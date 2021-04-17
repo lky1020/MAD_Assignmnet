@@ -58,7 +58,6 @@ class Login: AppCompatActivity() {
 
         //detect if checkbox is true, then direct login
         if (chkBox.equals("true")) {
-            //val intent:Intent =  Intent(this, CustomerMain::class.java)
             fetchCurrentUserInfo()
 
         } else if (chkBox.equals("false")) {
@@ -67,6 +66,8 @@ class Login: AppCompatActivity() {
 
             Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
         }
+
+
 
 
         //if show or hide Password icon is clicked
@@ -156,10 +157,8 @@ class Login: AppCompatActivity() {
                 val pass: String? = sharePref.getString("pref_pass", "not found.")
                 etPassword.setText(pass)
             }
-
         }
     }
-
 
 
     //Login Validation in Firebase Auth
@@ -171,9 +170,6 @@ class Login: AppCompatActivity() {
                 //Fetch the info of the current login customer
                 fetchCurrentUserInfo()
                 Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
-
-                //display message for authorized user
-                Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
             }
             .addOnFailureListener {
                 //Use Default Error Message Generate by Firebase Auth
@@ -210,7 +206,6 @@ class Login: AppCompatActivity() {
                 Log.d("Login","Login as Member")
                 //proceed to cust main page
                 val intentCustMain = Intent(this, CustomerMain::class.java)
-               // intentCustMain.putExtra("email", edittext_login_email.text.toString())
                 startActivity(intentCustMain)
             }
             "Staff" -> {
@@ -222,8 +217,8 @@ class Login: AppCompatActivity() {
                 //proceed to staff main page
                 val intentStaffMain = Intent(this, StaffMain::class.java)
                 intentStaffMain.putExtra("Role", "Staff")
-                intentStaffMain.putExtra("email",  edittext_login_email.text.toString())
-                intentStaffMain.putExtra("user", currentUser)
+                //intentStaffMain.putExtra("email",  edittext_login_email.text.toString())
+                //intentStaffMain.putExtra("user", currentUser)
                 startActivity(intentStaffMain)
             }
             else -> {
@@ -231,10 +226,12 @@ class Login: AppCompatActivity() {
                 //proceed to manager main page
                 val intentManagerMain = Intent(this, StaffMain::class.java)
                 intentManagerMain.putExtra("Role", "Manager")
-                intentManagerMain.putExtra("email", edittext_login_email.text.toString())
+                //intentManagerMain.putExtra("email", edittext_login_email.text.toString())
                 startActivity(intentManagerMain)
             }
         }
+
+        Toast.makeText(this, "Log in to ${currentUser!!.name} account", Toast.LENGTH_SHORT).show()
     }
 
     // validate email function
