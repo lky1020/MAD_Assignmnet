@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
@@ -43,10 +44,23 @@ class Login: AppCompatActivity() {
         decorView.systemUiVisibility = hideSystemBars()
 
         //variable
-        etEmail= findViewById(R.id.edittext_login_email)
+        etEmail = findViewById(R.id.edittext_login_email)
         etPassword = findViewById(R.id.edittext_login_password)
         var showPsdIv: ImageView = findViewById(R.id.iv_login_hidePassword)
         var btnLogin: Button = findViewById(R.id.btn_login)
+
+        var chkRmbMe: CheckBox = findViewById(R.id.checkBox_rmbMe)
+        var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+        var chkBox: String? = preferences.getString("chkRmbMe", "")
+
+        //detect if checkbox is true, then direct login
+        if (chkBox.equals("true")) {
+            //val intent:Intent =  Intent(this, CustomerMain::class.java)
+            fetchCurrentUserInfo()
+
+        } else if (chkBox.equals("false")) {
+            Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
+        }
 
 
         //if show or hide Password icon is clicked
@@ -67,25 +81,49 @@ class Login: AppCompatActivity() {
             //check if userid and password is filled
             if (email.isEmpty()) {
                 etEmail.error = "Enter User Email"
-            }else if(!validateEmailFormat(email)){ //set email format and validate
-                    etEmail.error = "Invalid Email!"
-            }
-            else if (password.isEmpty()) {
+            } else if (!validateEmailFormat(email)) { //set email format and validate
+                etEmail.error = "Invalid Email!"
+            } else if (password.isEmpty()) {
                 etPassword.error = "Enter Password"
             } else { //both field filled
                 performLoginSuccessful(email, password)
             }
         }
 
-
-        val tv_forgetPasword:TextView = findViewById(R.id.tv_forgetPasword)
-        tv_forgetPasword.setOnClickListener{
+        //forget password
+        val tv_forgetPasword: TextView = findViewById(R.id.tv_forgetPasword)
+        tv_forgetPasword.setOnClickListener {
             val forgetIntent = Intent(applicationContext, Forget_Password::class.java)
             startActivity(forgetIntent)
 
         }
 
+        //remember me
+        chkRmbMe.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+
+                var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+                var editor: SharedPreferences.Editor = preferences.edit()
+                editor.putString("chkRmbMe", "true")
+                editor.apply()
+                Toast.makeText(this, "Checked", Toast.LENGTH_SHORT).show()
+
+            } else if (!(isChecked)) {
+
+                var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+                var editor: SharedPreferences.Editor = preferences.edit()
+                editor.putString("chkRmbMe", "false")
+                editor.apply()
+                Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
     }
+
+
+
 
     //Login Validation in Firebase Auth
     private fun performLoginSuccessful(email:String, password:String){
@@ -93,10 +131,10 @@ class Login: AppCompatActivity() {
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
-                Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
-
                 //Fetch the info of the current login customer
                 fetchCurrentUserInfo()
+                Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
+
                 //display message for authorized user
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
             }

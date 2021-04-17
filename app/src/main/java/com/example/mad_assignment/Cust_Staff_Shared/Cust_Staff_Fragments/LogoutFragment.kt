@@ -1,29 +1,24 @@
-package com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout
+package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login.Companion.currentUser
-import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Profile.ProfileFragment
-import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.Customer_Fragments.cust_home.CustHomeFragment
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import com.google.firebase.database.*
 
 //belongs to fragment_logout.xml
@@ -44,6 +39,13 @@ class LogoutFragment : Fragment() {
             if(currentUser?.role == "Staff"){
                 updateStaffStatus(currentUser!!)
             }
+
+            var preferences: SharedPreferences? = this.activity?.getSharedPreferences("chkBox", AppCompatActivity.MODE_PRIVATE)
+            var editor:SharedPreferences.Editor = preferences!!.edit()
+            editor.putString("chkRmbMe", "false")
+            editor.apply()
+
+
 
             Toast.makeText(context, "Logout Successfully!", Toast.LENGTH_SHORT).show()
 
@@ -68,6 +70,8 @@ class LogoutFragment : Fragment() {
         return null
     }
 
+
+    // update staff status to firebase
     private fun updateStaffStatus(currentUser: User){
 
         val query: Query = FirebaseDatabase.getInstance().getReference("Staff")

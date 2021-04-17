@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Profile
+package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -16,11 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
-import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth

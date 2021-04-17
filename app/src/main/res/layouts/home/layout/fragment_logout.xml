@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.Cust_Staff_Fragments.logout.LogoutFragment">
+    tools:context=".Cust_Staff_Shared.Cust_Staff_Fragments.LogoutFragment">
 
     <TextView
         android:id="@+id/text_logout"
