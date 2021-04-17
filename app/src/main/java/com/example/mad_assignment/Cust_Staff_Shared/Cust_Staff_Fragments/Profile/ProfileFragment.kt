@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
 import com.example.mad_assignment.Customer.Cust_Staff_Fragments.logout.LogoutFragment
@@ -22,10 +23,7 @@ import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -205,6 +203,11 @@ class ProfileFragment : Fragment() {
             confirmLogoutBox.setTitle("LOGOUT")
             confirmLogoutBox.setMessage("Please click 'Confirm' to logout.")
             confirmLogoutBox.setPositiveButton("Confirm") { dialogInterface: DialogInterface, i: Int ->
+
+                if(currentUser?.role == "Staff"){
+                    updateStaffStatus(Login.currentUser!!)
+                }
+
                 Toast.makeText(context, "Logout Successfully!", Toast.LENGTH_SHORT).show()
 
                 //logout to the MAIN MAIN page
@@ -216,9 +219,6 @@ class ProfileFragment : Fragment() {
             }
             confirmLogoutBox.show()
         }
-
-
-
 
         return root
     }
@@ -286,9 +286,6 @@ class ProfileFragment : Fragment() {
         }else{
             mNewPs2.setText(currentUser!!.password)
         }
-
-
-
 
         return isValid
     }
@@ -375,6 +372,35 @@ class ProfileFragment : Fragment() {
         })
     }
 
+    private fun updateStaffStatus(currentUser: User){
 
+        val query: Query = FirebaseDatabase.getInstance().getReference("Staff")
+                .orderByChild("uid")
+                .equalTo(currentUser.uid)
 
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+
+                    for(i in snapshot.children){
+                        val staff = i.getValue(Staff::class.java)
+
+                        if (staff != null) {
+                            if(staff.uid == currentUser.uid){
+                                val updateStaffStatus = Staff(currentUser.name, staff.id, staff.email, staff.password, staff.phoneNum, staff.img, staff.role,
+                                        "Offline", staff.accessRoom, staff.accessServicesFacilities,
+                                        staff.accessHousekeeping, staff.accessCheckInOut, staff.uid)
+
+                                snapshot.ref.child("${staff.name} - ${staff.uid}").setValue(updateStaffStatus)
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }
