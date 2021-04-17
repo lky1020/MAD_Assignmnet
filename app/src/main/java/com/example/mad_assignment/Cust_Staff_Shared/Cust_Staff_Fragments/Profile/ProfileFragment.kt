@@ -8,6 +8,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -48,8 +50,8 @@ class ProfileFragment : Fragment() {
     companion object {
         var currentUser: User? = null
 
+        //var for firebase storage
         var currentAcc = FirebaseAuth.getInstance()
-        var userID: String = currentAcc.currentUser.uid
         var user: FirebaseUser = currentAcc.currentUser
 
     }
@@ -76,6 +78,7 @@ class ProfileFragment : Fragment() {
         val edit_name_icon:ImageView = root.findViewById(R.id.edit_name_icon)
         val tv_logout:TextView = root.findViewById(R.id.tv_logout)
         val tv_edit_info:TextView = root.findViewById(R.id.tv_edit_info)
+
 
         //edit user name fn
         edit_name_icon.setOnClickListener(){
@@ -136,6 +139,27 @@ class ProfileFragment : Fragment() {
             //show dialog
             val  mAlertDialog1 = mBuilder1.show()
 
+            //view password in text function
+
+            mDialogView1.iv_hide_oldPassword.setOnClickListener(){
+                //conveert to password type or text type
+                convertPasswordType(mDialogView1.iv_hide_oldPassword, mDialogView1.edittext_old_password)
+            }
+
+            mDialogView1.iv_hide_newPassword1.setOnClickListener(){
+                //conveert to password type or text type
+                convertPasswordType(mDialogView1.iv_hide_newPassword1, mDialogView1.edittext_new_password1)
+            }
+
+            mDialogView1.iv_hide_newPassword2.setOnClickListener() {
+                //conveert to password type or text type
+                convertPasswordType(mDialogView1.iv_hide_newPassword2, mDialogView1.edittext_new_password2)
+            }
+
+
+
+
+
             //confirm button
             mDialogView1.btn_confirm_new_info.setOnClickListener(){
                 var mOldPassword:EditText = mDialogView1.edittext_old_password
@@ -160,19 +184,19 @@ class ProfileFragment : Fragment() {
                             currentUser!!.role,
                             currentUser!!.img
                         )
+                            //save new password to firebase storage
+                            user.updatePassword(mNewPs2.text.toString())
+                                    .addOnSuccessListener {
+                                        //save to firebase db
+                                        saveUserToFirebaseDB(userInfo)
+                                        Toast.makeText(context, "Change Info Successfully !", Toast.LENGTH_SHORT)
+                                                .show()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(context, "Fail to update info !", Toast.LENGTH_SHORT)
+                                                .show()
+                                    }
 
-                        //save to firebase storage
-                        user.updatePassword(mNewPs2.text.toString())
-                            .addOnSuccessListener {
-                                //save to firebase db
-                                saveUserToFirebaseDB(userInfo)
-                                Toast.makeText(context, "Change Info Successfully !", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-                            .addOnFailureListener{
-                                Toast.makeText(context, "Fail to update info !", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
 
                         mAlertDialog1.dismiss()
                     }
@@ -264,6 +288,9 @@ class ProfileFragment : Fragment() {
                 }else if(newPsw1 != newPsw2){
                     mNewPs2.error = "Both New Password Field must be same"
                     isValid = false
+                }else if(newPsw1.length < 6){
+                    mNewPs1.error = "Password must more than 6 characters"
+                    isValid = false
                 }
             }else{
                 mOldPassword.error = "Invalid Old Password"
@@ -273,6 +300,9 @@ class ProfileFragment : Fragment() {
         }else if (!(TextUtils.isEmpty(oldPsw)) || !(TextUtils.isEmpty(newPsw1)) ||!(TextUtils.isEmpty(newPsw2)) ) {
             if(TextUtils.isEmpty(oldPsw)){
                 mOldPassword.error = "Old Password is Required"
+                isValid = false
+            }else if(oldPsw != currentUser!!.password){
+                mOldPassword.error = "Invalid Old Password"
                 isValid = false
             }
             if(TextUtils.isEmpty(newPsw1)){
@@ -289,6 +319,18 @@ class ProfileFragment : Fragment() {
 
         return isValid
     }
+
+    //change password view type
+    private fun convertPasswordType(icon_eyes:ImageView, password:EditText){
+        if(password.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+            password.transformationMethod = PasswordTransformationMethod.getInstance()
+            icon_eyes.setImageResource(R.drawable.ic_hide_psw)
+        }else{
+            password.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            icon_eyes.setImageResource(R.drawable.ic_show_psw)
+        }
+    }
+
 
     //select photo in phone
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -362,7 +404,7 @@ class ProfileFragment : Fragment() {
                 if (currentUser!!.img != null) {
                     Picasso.get().load(currentUser!!.img).into(iv_profile)
                 } else {
-                    iv_profile.setImageResource(R.drawable.ic_profile)
+                    iv_profile.setImageResource(R.drawable.ic_account_photo)
                 }
             }
 
@@ -372,6 +414,7 @@ class ProfileFragment : Fragment() {
         })
     }
 
+    //upfate staff status
     private fun updateStaffStatus(currentUser: User){
 
         val query: Query = FirebaseDatabase.getInstance().getReference("Staff")

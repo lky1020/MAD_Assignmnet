@@ -27,9 +27,6 @@ class Login: AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
 
-    var phoneNumberDb: String? = null
-    var userDb: String? = null
-    var emailDb: String? = null
     var roleDb: String? = null
 
     //Change by Joan Hau for fetch current user information
@@ -80,6 +77,14 @@ class Login: AppCompatActivity() {
             }
         }
 
+
+        val tv_forgetPasword:TextView = findViewById(R.id.tv_forgetPasword)
+        tv_forgetPasword.setOnClickListener{
+            val forgetIntent = Intent(applicationContext, Forget_Password::class.java)
+            startActivity(forgetIntent)
+
+        }
+
     }
 
     //Login Validation in Firebase Auth
@@ -109,9 +114,6 @@ class Login: AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
-               // phoneNumberDb = currentUser?.phoneNum
-              //  userDb = currentUser?.name
-              //  emailDb = currentUser?.email
                 roleDb = currentUser?.role
 
                 //redirect to specific role's main page

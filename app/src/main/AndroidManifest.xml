@@ -36,6 +36,7 @@
         <activity android:name=".CustomerMain" />
         <activity android:name=".StaffMain" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login" />
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Forget_Password" />
 
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" />
 
