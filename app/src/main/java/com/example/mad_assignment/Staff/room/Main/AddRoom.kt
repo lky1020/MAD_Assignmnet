@@ -1,8 +1,7 @@
-package com.example.mad_assignment.Staff.room
+package com.example.mad_assignment.Staff.room.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView

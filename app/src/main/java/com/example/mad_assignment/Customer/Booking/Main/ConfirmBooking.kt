@@ -2,10 +2,10 @@ package com.example.mad_assignment.Customer.Booking.Main
 
 import android.annotation.SuppressLint
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Adapter.ConfirmBookingAdapter
@@ -19,16 +19,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.book_room_cart.*
-import kotlinx.android.synthetic.main.book_room_cart.confirm_book_back_icon
-import kotlinx.android.synthetic.main.book_room_cart.confirm_book_toolbar
-import kotlinx.android.synthetic.main.booking_search_page.*
 import kotlinx.android.synthetic.main.confirm_booking.*
-import kotlinx.android.synthetic.main.confirm_booking.iv_cb_minus
-import kotlinx.android.synthetic.main.confirm_booking.iv_cb_plus
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+
 
 class ConfirmBooking : AppCompatActivity() {
 
@@ -110,17 +108,17 @@ class ConfirmBooking : AppCompatActivity() {
             val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid/${reservationID}")
 
             val reservation:Reservation = Reservation(
-                reservationID,
-                uid,
-                guest,
-                sharedPreferences.getLong("startDate", 0),
-                sharedPreferences.getLong("endDate", 0),
-                nights,
-                tv_cb_guest.text.toString().toInt(),
-                selectedRoomList,
-                totalPrice,
-                "pending",
-                LocalDateTime.now()
+                    reservationID,
+                    uid,
+                    guest,
+                    convertLongToDate1(sharedPreferences.getLong("startDate", 0)),
+                    convertLongToDate1(sharedPreferences.getLong("endDate", 0)),
+                    nights,
+                    tv_cb_guest.text.toString().toInt(),
+                    selectedRoomList,
+                    totalPrice,
+                    "pending",
+                    todayDate(),
             )
 
             ref.setValue(reservation)
@@ -146,7 +144,7 @@ class ConfirmBooking : AppCompatActivity() {
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val count = snapshot.childrenCount +1
+                val count = snapshot.childrenCount + 1
                 reservationID = count.toString()
             }
 
@@ -161,6 +159,20 @@ class ConfirmBooking : AppCompatActivity() {
     private fun convertLongToDate(date: Long?): String {
         val format: SimpleDateFormat = SimpleDateFormat("dd MMM yyyy")
         return format.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun convertLongToDate1(date: Long?): String {
+        val format: SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return format.format(date)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SimpleDateFormat")
+    private fun todayDate(): String {
+        val today: LocalDate = LocalDate.now()
+        val formattedDate = today.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        return formattedDate
     }
 
     private fun Double.format(digits: Int) = "%.${digits}f".format(this)

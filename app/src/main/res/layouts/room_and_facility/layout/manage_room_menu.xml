@@ -4,46 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Staff.room.ManageRoomMenu"
+    tools:context=".Staff.room.Main.ManageRoomMenu"
     android:orientation="vertical">
 
     <!-- the upper app bar -->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayoutRoomMenu"
+        android:id="@+id/appbar_manage_room_menu"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!-- only a white rectangle-->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/room_menu_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="2dp"
-                app:layout_anchor="@+id/appBarLayout"
-                app:layout_anchorGravity="center">
-
-                <TextView
-                    android:id="@+id/manage_room_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/manage_room_title"
-                    android:textSize="20sp" />
-
-            </androidx.appcompat.widget.Toolbar>
+            <!-- toolbar-->
         </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/room_menu_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="2dp"
+            app:layout_anchor="@+id/appBarLayoutConfirmRoom"
+            app:layout_anchorGravity="center">
+
+            <!-- back icon -->
+
+            <ImageView
+                android:id="@+id/manage_room_menu_back_icon"
+                android:layout_width="31dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/confirm_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Manage Room"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Body - Grid View -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvManageRoomMenu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/manage_room_menu_item"/>
 </LinearLayout>

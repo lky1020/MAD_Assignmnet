@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginHorizontal="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayoutRoom">
+            app:layout_constraintTop_toBottomOf="@+id/appbar_room">
 
             <!-- Check in date -->
             <ImageButton

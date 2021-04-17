@@ -47,8 +47,6 @@ class BookRoomAdapter(
 
         // Process date
         Picasso.get().load(currentItem.img).into(holder.ivRoom)
-
-
         Picasso.get().isLoggingEnabled = true
 
         holder.tvRoomType.text = currentItem.roomType
