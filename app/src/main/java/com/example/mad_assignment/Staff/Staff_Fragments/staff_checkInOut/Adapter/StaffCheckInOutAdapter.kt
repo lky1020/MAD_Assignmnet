@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity
 import com.google.android.material.imageview.ShapeableImageView
 import com.squareup.picasso.Picasso
 import java.util.*
@@ -60,8 +62,18 @@ class StaffCheckInOutAdapter(private var checkInOutList: ArrayList<Reservation>,
             holder.btnCheckInOut.text = "Check Out"
         }
 
+        //Set onclicklisterner
         holder.btnCheckInOut.setOnClickListener {
-            //TODO
+
+            var intent = Intent()
+
+            intent = Intent(mContext, StaffManageCheckInOutActivity::class.java).apply {
+                putExtra("Reservation", currentItem)
+                putExtra("type", holder.btnCheckInOut.text)
+            }
+
+            mContext.startActivity(intent)
+
         }
     }
 
