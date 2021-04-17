@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_housekeeping_services"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    android:layout_marginBottom="25dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_customer_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_outline_downloading"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:shapeAppearanceOverlay="@style/Circular"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/iv_customer_img"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tv_customer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/teal_200"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    tools:text="Ms. Alvin"/>
+
+                <TextView
+                    android:id="@+id/tv_guest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_customer_name"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="3 Guest" />
+
+                <TextView
+                    android:id="@+id/tv_check_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_guest"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="17/02//2021" />
+
+                <TextView
+                    android:id="@+id/tv_reservedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_check_date"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:text="Reserved at: 16/02//2021" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_check_in_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Check In"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/purple_500"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
