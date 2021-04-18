@@ -16,12 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_Assignment">
-        <activity android:name=".Staff.facility.Main.EditFacility"></activity>
+        <activity android:name=".Staff.facility.Main.EditFacility"/>
         <activity android:name=".Staff.facility.Main.ManageFacilityDetails" />
         <activity android:name=".Staff.facility.Main.AddFacility" />
         <activity android:name=".Staff.facility.Main.ManageFacilityMenu" />
         <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity" />
-        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity" />
+        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity"
+            android:parentActivityName=".StaffMain"/>
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Permission.StaffPermissionActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity" />

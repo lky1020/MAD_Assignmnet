@@ -58,7 +58,7 @@ class StaffHomeFragment : Fragment() {
         // variable
         var numIn: Int = 0
         var numOut: Int = 0
-        val user_role = activity?.intent?.getStringExtra("Role")
+        val user_role = currentUser!!.role
 
         var tv_Num_ChkIn: TextView = view.findViewById(R.id.tv_ChkIn_totalNum)
         var tv_Num_ChkOut: TextView = view.findViewById(R.id.tv_ChkOut_totalNum)
