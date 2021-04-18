@@ -155,19 +155,16 @@ class StaffHomeFragment : Fragment() {
                             if (staffDetail.uid == currentUser.uid) {
 
 
-                                    //*************redirect to chk in page
+                                    //redirect to chk in page
                                     cv_chkIn.setOnClickListener() {
 
                                     if (staffDetail.accessCheckInOut) {
-                                        //the class.java file is TEMPORARY
-                                        /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                                        ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
+                                        activity?.let{
+                                            val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
+                                            intent.putExtra("type", "check in")
+                                            it.startActivity(intent)
+                                        }
 
-                                        ft.commit()*/
-                                        /*
-                                        //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                                        //startActivity(intent)
-                                         */
                                     }else {
                                         Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
@@ -175,18 +172,15 @@ class StaffHomeFragment : Fragment() {
 
 
 
-                                    //*************redirect to chk out page
+                                    //redirect to chk out page
                                     cv_chkOut.setOnClickListener() {
                                         if (staffDetail.accessCheckInOut) {
-                                            //the class.java file is TEMPORARY
-                                            /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                                            ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
+                                            activity?.let{
+                                                val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
+                                                intent.putExtra("type", "check in")
+                                                it.startActivity(intent)
+                                            }
 
-                                            ft.commit()*/
-                                            /*
-                                            //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                                            //startActivity(intent)
-                                             */
                                         }else {
                                             Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                         }
