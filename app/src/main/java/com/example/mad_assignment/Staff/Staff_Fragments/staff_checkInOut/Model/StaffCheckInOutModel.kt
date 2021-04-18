@@ -18,25 +18,13 @@ class StaffCheckInOutModel() : ViewModel()   {
         return _checkInOut
     }
 
-    //Status
-    private var _status = MutableLiveData<Boolean>()
-
-    val status : LiveData<Boolean>
-        get()= _status
-
-    fun getStatus(): MutableLiveData<Boolean> {
-        return _status
-    }
-
-    fun retrieveCheckInOutFromDB(status: String){
+    fun retrieveCheckInOutFromDB(status: String, date: String){
 
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Reservation")
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-
-                    checkInOutList.clear()
 
                     for(i in snapshot.children){
 
@@ -48,19 +36,30 @@ class StaffCheckInOutModel() : ViewModel()   {
                         query.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
 
+                                checkInOutList.clear()
+
                                 if(snapshot.exists()){
                                     for (j in snapshot.children) {
                                         // get the item from firebase
                                         val reservationInfo = j.getValue(Reservation::class.java)
 
-                                        if (!checkInOutList.contains(reservationInfo)) {
-                                            // add the item and pass to observer for the adapter
-                                            checkInOutList.add(reservationInfo!!)
+                                        if (reservationInfo != null) {
+                                            if(status == "paid") {
+                                                if (reservationInfo.checkInDate == date && !checkInOutList.contains(reservationInfo)) {
+                                                    // add the item and pass to observer for the adapter
+                                                    checkInOutList.add(reservationInfo)
+                                                }
+                                            }else if(status == "check in"){
+                                                if (reservationInfo.checkOutDate == date && !checkInOutList.contains(reservationInfo)) {
+                                                    // add the item and pass to observer for the adapter
+                                                    checkInOutList.add(reservationInfo)
+                                                }
+                                            }
                                         }
                                     }
+                                }else{
+                                    checkInOutList.clear()
                                 }
-
-                                _status.value = checkInOutList.size > 0
 
                                 _checkInOut.value = checkInOutList
                             }

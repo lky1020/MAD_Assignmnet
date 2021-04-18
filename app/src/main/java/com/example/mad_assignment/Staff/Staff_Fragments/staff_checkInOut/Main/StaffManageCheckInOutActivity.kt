@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
@@ -62,6 +63,14 @@ class StaffManageCheckInOutActivity : AppCompatActivity() {
             supportActionBar?.title = "Manage Check In"
         }else{
             supportActionBar?.title = "Manage Check Out"
+        }
+
+        btnCheckInOut.setOnClickListener {
+            if(type == "Check In"){
+                Toast.makeText(this, "Check In Success", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Check Out Success", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

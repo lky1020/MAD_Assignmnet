@@ -8,11 +8,9 @@
     tools:context=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_staff_check_out"
+        android:id="@+id/rv_staff_check_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/cardview_staff_check_in_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        tools:listitem="@layout/cardview_staff_check_in_out"/>
 
 </RelativeLayout>
