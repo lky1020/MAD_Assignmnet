@@ -93,8 +93,6 @@
             app:layout_constraintTop_toBottomOf="@+id/appbar_room">
 
             <!-- search bar -->
-
-            <!-- Date & Guest -->
             <EditText
                 android:id="@+id/et_brm_search"
                 android:layout_width="match_parent"
@@ -109,7 +107,6 @@
                 android:inputType="text"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintHorizontal_bias="0.473"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

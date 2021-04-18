@@ -40,15 +40,20 @@
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Forget_Password" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" />
+
+        <!-- Booking and manage room -->
         <activity android:name=".Customer.Booking.Main.ConfirmBooking" />
         <activity android:name=".Customer.Booking.Main.BookRoomCart" />
         <activity android:name=".Customer.Booking.Main.BookRoomMenu" />
-        <activity android:name=".Staff.room.Main.AddRoom" />
+        <activity android:name=".Staff.room.Main.EditRoomDesc" />
         <activity android:name=".Staff.room.Main.ManageRoom" />
         <activity android:name=".Staff.room.Main.ManageRoomMenu" />
         <activity
             android:name=".Customer.Booking.Main.BookingSearchPage"
-            android:theme="@style/Theme.MAD_Assignment1" /> <!-- Customer Payment -->
+            android:theme="@style/Theme.MAD_Assignment1" />
+
+
+        <!-- Customer Payment -->
         <activity
             android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_transaction_details"
             android:parentActivityName=".CustomerMain" />

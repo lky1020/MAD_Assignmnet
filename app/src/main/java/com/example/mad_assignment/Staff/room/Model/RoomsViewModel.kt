@@ -8,38 +8,6 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Staff.room.Class.Room
 import com.google.firebase.database.*
 
-/*class RoomsViewModel: ViewModel() {
-    val repo = RoomRepo()
-
-    fun fetchRoomData(): LiveData<MutableList<Room>> {
-        val mutableData = MutableLiveData<MutableList<Room>>()
-        repo.getRoomData().observeForever { roomList ->
-            mutableData.value = roomList
-        }
-
-        return mutableData
-    }
-}
-
-class RoomRepo {
-
-    fun getRoomData(): LiveData<MutableList<Room>> {
-        val mutableData = MutableLiveData<MutableList<Room>>()
-
-        FirebaseFirestore.getInstance().collection("Rooms").get().addOnSuccessListener { result ->
-            val listData: MutableList<Room> = mutableListOf<Room>()
-            for(document: QueryDocumentSnapshot in result){
-                val roomNo: String? = document.getString("roomNo")
-                val status: String? = document.getString("status")
-                val room = Room(roomNo!!, status!!)
-                listData.add(room)
-            }
-            mutableData.value = listData
-        }
-        return mutableData
-    }
-}*/
-
 class RoomsViewModel() : ViewModel()  {
 
     private val mutableData = MutableLiveData<MutableList<Room>>()
@@ -66,7 +34,7 @@ class RoomsViewModel() : ViewModel()  {
 
     fun fetchRoomData(roomType: String){
 
-        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Room").child(roomType).child("Rooms")
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Rooms").child(roomType)
 
         ref.addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -85,14 +53,6 @@ class RoomsViewModel() : ViewModel()  {
                     }
                 }
             }
-
-            /*for(document: QueryDocumentSnapshot in result){
-                val roomNo: String? = document.getString("roomNo")
-                val status: String? = document.getString("status")
-                val room = Room(roomNo!!, status!!)
-                listData.add(room)
-            }
-            mutableData.value = listData*/
 
             override fun onCancelled(error: DatabaseError) {
 
