@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.cust_payment_trans_his_row.view.*
 
 class cust_transaction_history(private val context: FragmentActivity, private val payment: List<Payment>): RecyclerView.Adapter<cust_transaction_history.ViewHolder>() {
 
-    var paymentInfo: Payment? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.cust_payment_trans_his_row, parent, false))
     }

@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
@@ -27,9 +28,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_cust_payment__e_wallet.*
 import kotlinx.android.synthetic.main.activity_cust_payment_method.*
+import kotlinx.android.synthetic.main.confirm_booking.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -48,6 +51,8 @@ class cust_payment_EWallet : AppCompatActivity() {
         var elementCount: Int = 0
         var currentReserved: Reservation? = null
         var totalPrice: String? = ""
+        var paymentMethod = ""
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -276,19 +281,21 @@ class cust_payment_EWallet : AppCompatActivity() {
 
 
         val ref = FirebaseDatabase.getInstance().getReference("/Payment/$uid/${invoiceID}")
-        var paymentMethod = ""
 
-        if(rbtng.isChecked) {
-            paymentMethod = "TNG Wallet"
-        }
-        else if (rbgp.isChecked) {
-            paymentMethod = "Grab Pay"
-        }
-        else if (rbboost.isChecked) {
-            paymentMethod = "Boost"
-        }
-        else if (rbfave.isChecked) {
-            paymentMethod = "Fave"
+
+        when {
+            rbtng.isChecked -> {
+                paymentMethod = "TNG Wallet"
+            }
+            rbgp.isChecked -> {
+                paymentMethod = "Grab Pay"
+            }
+            rbboost.isChecked -> {
+                paymentMethod = "Boost"
+            }
+            rbfave.isChecked -> {
+                paymentMethod = "Fave"
+            }
         }
 
 
@@ -421,12 +428,13 @@ class cust_payment_EWallet : AppCompatActivity() {
             alertBuilder.setMessage(
                     """
                                 Customer Name: ${currentUser?.name.toString()}
+                                Date Reserved: ${currentReserved?.dateReserved}
                                 Reservation Details:
                                 Check In Date: ${currentReserved?.checkInDate}
                                 Check Out Date:  ${currentReserved?.checkOutDate}
                                 No of Guest:  ${currentReserved?.guest}
                                 No of Nights: ${currentReserved?.nights}
-                                Total Price: RM ${currentReserved?.totalPrice}
+                                Total Price: RM $totalPrice
                                 """.trimIndent()
             )
             alertBuilder.setPositiveButton(
@@ -439,12 +447,50 @@ class cust_payment_EWallet : AppCompatActivity() {
                 Toast.makeText(this, "Thank you for purchase", Toast.LENGTH_LONG).show()
 
                 generatePDF(invoiceID)
+                val uid = FirebaseAuth.getInstance().uid
+                val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid/${currentReserved!!.reservationID}")
+                val sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE)
+                val reservation = Reservation(
+                        currentReserved!!.reservationID,
+                        uid,
+                        currentReserved!!.custName,
+                        currentReserved!!.custImg,
+                        currentReserved!!.guest,
+                        convertLongToDate1(sharedPreferences.getLong("startDate", 0)),
+                        convertLongToDate1(sharedPreferences.getLong("endDate", 0)),
+                        currentReserved!!.nights,
+                        currentReserved!!.breakfast,
+                        currentReserved!!.reservationDetail,
+                        currentReserved!!.totalPrice,
+                        "paid",
+                        currentReserved!!.dateReserved,
+                )
+
+                ref.setValue(reservation)
+                        .addOnSuccessListener {
+                            Log.d("confirm book", "Successfully Payment")
+                        }
+                        .addOnFailureListener{
+                            Log.d("confirm book", "Fail Payment")
+                        }
+
+
                 val intent = Intent(this, cust_payment_transaction_details::class.java)
+                intent.putExtra("reservedID", currentReserved!!.reservationID)
+                intent.putExtra("paymentMethod", paymentMethod)
                 startActivity(intent)
             }
             alertBuilder.setNegativeButton(
                     "Cancel"
-            ) { dialogInterface, i -> dialogInterface.dismiss() }
+            ) { dialogInterface, i ->
+                dialogInterface.dismiss()
+
+                Toast.makeText(this, "Payment has been Cancel", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, cust_payment_transaction_details::class.java)
+                intent.putExtra("reservedID", currentReserved!!.reservationID)
+                intent.putExtra("paymentMethod", paymentMethod)
+                startActivity(intent)
+            }
             val alertDialog = alertBuilder.create()
             alertDialog.show()
 
@@ -455,9 +501,17 @@ class cust_payment_EWallet : AppCompatActivity() {
     }
 
     private fun assignDataIntoText() {
-        val passText = "RM ${totalPrice}"
+        val passText = "RM $totalPrice"
 
         tvSubtotalValueEWallet.text = passText
         tvTotalAmountValueEWallet.text = passText
     }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun convertLongToDate1(date: Long?): String {
+        val format: SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return format.format(date)
+    }
+
+
 }

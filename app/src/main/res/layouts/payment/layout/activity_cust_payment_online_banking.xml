@@ -227,7 +227,7 @@
         app:layout_constraintVertical_bias="0.39">
 
         <TextView
-            android:id="@+id/tvSubtotalAmount"
+            android:id="@+id/tvSubtotalAmountOnlineBanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
@@ -275,7 +275,7 @@
         app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_method_Total" />
 
     <TextView
-        android:id="@+id/tvTotalAmountValue"
+        android:id="@+id/tvTotalAmountValueOnlineBanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingEnd="15dp"
@@ -288,7 +288,7 @@
         app:layout_constraintTop_toTopOf="@+id/tvTotalAmount" />
 
     <TextView
-        android:id="@+id/tvSubtotalValue"
+        android:id="@+id/tvSubtotalValueOnlineBanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"

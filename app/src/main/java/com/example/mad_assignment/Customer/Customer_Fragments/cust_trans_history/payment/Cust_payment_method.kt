@@ -14,7 +14,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_cust_payment_method.*
 
 
@@ -38,6 +37,7 @@ class cust_payment_method : AppCompatActivity() {
     }
 
     private fun callFunctionDirect(){
+
         ll_layout_bar_cust_payment_method.setOnClickListener{
             val intent = Intent(this, cust_payment_online_banking::class.java)
             intent.putExtra("reservedID",currentReserved!!.reservationID)
