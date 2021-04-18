@@ -1,8 +1,10 @@
 package com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main
 
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
@@ -11,9 +13,11 @@ import androidx.appcompat.widget.Toolbar
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment.Companion.PREFS_NUM_CHK
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import java.time.LocalDate
 
 class StaffManageCheckInOutActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
@@ -71,6 +75,17 @@ class StaffManageCheckInOutActivity : AppCompatActivity() {
                 if(reservation != null){
                     checkInUser(reservation)
 
+                    //********************************
+                    //store today's chk in number of cust into the PREFS_NUM_CHK
+                    var shareChkPref: SharedPreferences = getSharedPreferences(PREFS_NUM_CHK, MODE_PRIVATE)
+
+                    val chkInNum: Int = shareChkPref.getInt("pref_chkIn", 0) + 1
+
+                    var editor: SharedPreferences.Editor = shareChkPref.edit()
+                    editor.putInt("pref_chkIn", chkInNum)
+                    editor.apply()
+
+
                     //go back to manage activity
                     onBackPressed()
 
@@ -82,6 +97,18 @@ class StaffManageCheckInOutActivity : AppCompatActivity() {
             }else{
                 if(reservation != null){
                     checkOutUser(reservation)
+
+                    //********************************
+                    //store today's chk in number of cust into the PREFS_NUM_CHK
+                    var shareChkPref: SharedPreferences = getSharedPreferences(PREFS_NUM_CHK, MODE_PRIVATE)
+
+                    val chkOutNum: Int? = shareChkPref.getInt("pref_chkOut", 0)+ 1
+
+                    var editor: SharedPreferences.Editor = shareChkPref.edit()
+                    editor.putInt("pref_chkOut", chkOutNum!!)
+                    editor.apply()
+
+
 
                     //go back to manage activity
                     onBackPressed()
