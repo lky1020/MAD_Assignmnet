@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Staff.facility.Main.ManageFacilityDetails">
+
+
+    <!-- the upper app bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_manage_facility_details"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- toolbar-->
+        </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/facility_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="2dp"
+            app:layout_anchor="@+id/appbar_manage_facility_menu"
+            app:layout_anchorGravity="center">
+
+            <!-- back icon -->
+
+            <ImageView
+                android:id="@+id/manage_facility_details_back_icon"
+                android:layout_width="31dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/facility_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Facility Details"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_facility_img"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_manage_facility_details">
+
+        <ImageView
+            android:id="@+id/iv_facility_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_img" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Name -->
+    <TextView
+        android:id="@+id/tv_facility_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: Swimming pool"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/cv_facility_img"
+        app:layout_constraintTop_toBottomOf="@+id/cv_facility_img" />
+
+    <View
+        android:id="@+id/hor_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_facility_name" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/tv_facility_desc"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Description: \nSwimming sssssssssssssssssssssssssssssssssssssssssssssssssspool"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_name"
+        app:layout_constraintTop_toBottomOf="@+id/hor_line1" />
+
+    <View
+        android:id="@+id/hor_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_desc"
+        app:layout_constraintTop_toBottomOf="@id/tv_facility_desc" />
+
+    <!-- Location -->
+    <TextView
+        android:id="@+id/tv_facility_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location: 4F"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_desc"
+        app:layout_constraintTop_toBottomOf="@+id/hor_line2" />
+
+    <View
+        android:id="@+id/hor_line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_location"
+        app:layout_constraintTop_toBottomOf="@id/tv_facility_location" />
+
+    <!-- Operation -->
+    <TextView
+        android:id="@+id/tv_facility_operation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Operation: 8.00 am to 8.00 pm"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_facility_location"
+        app:layout_constraintTop_toBottomOf="@+id/hor_line3" />
+
+
+    <!-- Delete button -->
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/round_button_charcoal"
+        android:backgroundTint="@color/red_focused"
+        android:elevation="12sp"
+        android:layout_marginBottom="10dp"
+        android:text="Delete"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Edit button -->
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/round_button_charcoal"
+        android:backgroundTint="@color/midnight_green"
+        android:elevation="12sp"
+        android:text="Edit"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

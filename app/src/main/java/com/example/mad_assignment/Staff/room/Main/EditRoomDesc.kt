@@ -34,7 +34,6 @@ import java.util.regex.PatternSyntaxException
 
 class EditRoomDesc : AppCompatActivity() {
 
-    private val PICK_IMAGE_REQUEST = 71
     private var firebaseStore: FirebaseStorage? = null
     private var storageReference: StorageReference? = null
     var selectPhotoUri:Uri? = null

@@ -16,7 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_Assignment">
-        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity"/>
+        <activity android:name=".Staff.facility.Main.EditFacility"></activity>
+        <activity android:name=".Staff.facility.Main.ManageFacilityDetails" />
+        <activity android:name=".Staff.facility.Main.AddFacility" />
+        <activity android:name=".Staff.facility.Main.ManageFacilityMenu" />
+        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Permission.StaffPermissionActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity" />
@@ -39,9 +43,7 @@
         <activity android:name=".StaffMain" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Login" />
         <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Forget_Password" />
-        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" />
-
-        <!-- Booking and manage room -->
+        <activity android:name=".Cust_Staff_Shared.Cust_Staff_Fragments.Register" /> <!-- Booking and manage room -->
         <activity android:name=".Customer.Booking.Main.ConfirmBooking" />
         <activity android:name=".Customer.Booking.Main.BookRoomCart" />
         <activity android:name=".Customer.Booking.Main.BookRoomMenu" />
@@ -50,10 +52,7 @@
         <activity android:name=".Staff.room.Main.ManageRoomMenu" />
         <activity
             android:name=".Customer.Booking.Main.BookingSearchPage"
-            android:theme="@style/Theme.MAD_Assignment1" />
-
-
-        <!-- Customer Payment -->
+            android:theme="@style/Theme.MAD_Assignment1" /> <!-- Customer Payment -->
         <activity
             android:name=".Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_transaction_details"
             android:parentActivityName=".CustomerMain" />

@@ -24,6 +24,7 @@ import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.St
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
+import com.example.mad_assignment.Staff.facility.Main.ManageFacilityMenu
 import com.example.mad_assignment.Staff.room.Main.ManageRoomMenu
 
 import com.google.firebase.database.*
@@ -149,15 +150,10 @@ class StaffHomeFragment : Fragment() {
 
             //*************redirect to manage facility page
             cv_facility.setOnClickListener() {
-                //the class.java file is TEMPORARY
-                /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                            ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                            ft.commit()*/
-                /*
-                //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                //startActivity(intent)
-                 */
+                activity?.let{
+                    val intent = Intent (it, ManageFacilityMenu::class.java)
+                    it.startActivity(intent)
+                }
 
             }
 
