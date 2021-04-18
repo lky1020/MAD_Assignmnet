@@ -154,7 +154,6 @@
     </string-array>
 
 
-
     <!--activity_cust_payment_method.xml-->
     <string name="onlineBanking">Online Banking</string>
     <string name="creditcard">Credit/Debit Card</string>
@@ -188,4 +187,7 @@
     <string name="amountStr">Amount</string>
     <string name="payMethodStr">Payment Method</string>
     <string name="doubleRoomStr">Double Room</string>
+    <string name="room_detail">Room Detail</string>
+    <string name="number_of_guest">Number of Guest</string>
+    <string name="extra_requirement">Extra Requirement</string>
 </resources>

@@ -145,7 +145,7 @@ class Register: AppCompatActivity() {
         val userRef = FirebaseDatabase.getInstance().getReference("/User/$uid")
 
         val role = "Member"
-        val imgURL = "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/User%2FcmlN78KRp4VMBw7kWaWk1aLfofI3%2F900504c3-6fcd-4395-b9e8-3aa7b2b6e48f?alt=media&token=3626f866-c12a-461b-9aa7-904f32f4cd1c"
+        val imgURL = "https://firebasestorage.googleapis.com/v0/b/quadcorehms-5b4ed.appspot.com/o/User%2F69q2IG8FZGOAqYTtwmsdZWgqSav1%2F25d59638-bd26-4584-94af-d30214cd0300?alt=media&token=33b8fb71-d66b-4c2d-8549-e613537b7f53"
         val user = User (name,uid,password,phoneNum,email,role, imgURL)
 
 
@@ -155,7 +155,7 @@ class Register: AppCompatActivity() {
 
     //Name Format
     private fun validateNameFormat(name:String):Boolean{
-        val nameREG = "^[a-zA-Z /.]$"
+        val nameREG = "^([a-zA-Z /.])*$"
         var PATTERN: Pattern = Pattern.compile(nameREG)
         fun CharSequence.isName() : Boolean = PATTERN.matcher(this).find()
 

@@ -2,12 +2,20 @@ package com.example.mad_assignment.Customer.Booking.Class
 
 import java.util.ArrayList
 
-data class RoomType(
-    var roomID: String? = null,
-    var roomType: String? = null,
-    var occupancy: Int? = 0,
-    var size: Int? = 0,
-    var price: Double? = 0.0,
-    var beds: String? = null,
-    var img: String? = null,
-)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class RoomType(
+    var roomID: String?,
+    var roomType: String?,
+    var occupancy: Int?,
+    var size: Int?,
+    var price: Double?,
+    var beds: String?,
+    var img: String?,
+
+): Parcelable {
+
+    constructor() : this(null, null, 0, 0, 0.0, null, null)
+}

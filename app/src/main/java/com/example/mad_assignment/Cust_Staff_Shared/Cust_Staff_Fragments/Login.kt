@@ -1,6 +1,7 @@
 package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
@@ -27,14 +28,14 @@ class Login: AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
 
-    var phoneNumberDb: String? = null
-    var userDb: String? = null
-    var emailDb: String? = null
     var roleDb: String? = null
 
     //Change by Joan Hau for fetch current user information
     companion object {
         var currentUser: User? = null
+
+        //for static purpose - to store email & password later
+        var PREFS_NAME: String? = "PrefsFile"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +47,27 @@ class Login: AppCompatActivity() {
         decorView.systemUiVisibility = hideSystemBars()
 
         //variable
-        etEmail= findViewById(R.id.edittext_login_email)
+        etEmail = findViewById(R.id.edittext_login_email)
         etPassword = findViewById(R.id.edittext_login_password)
         var showPsdIv: ImageView = findViewById(R.id.iv_login_hidePassword)
         var btnLogin: Button = findViewById(R.id.btn_login)
+
+        var chkRmbMe: CheckBox = findViewById(R.id.checkBox_rmbMe)
+        var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+        var chkBox: String? = preferences.getString("chkRmbMe", "")
+
+        //detect if checkbox is true, then direct login
+        if (chkBox.equals("true")) {
+            fetchCurrentUserInfo()
+
+        } else if (chkBox.equals("false")) {
+            //get the email & password that the user want to rmb
+            getPreferencesData()
+
+            Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
+        }
+
+
 
 
         //if show or hide Password icon is clicked
@@ -70,17 +88,78 @@ class Login: AppCompatActivity() {
             //check if userid and password is filled
             if (email.isEmpty()) {
                 etEmail.error = "Enter User Email"
-            }else if(!validateEmailFormat(email)){ //set email format and validate
-                    etEmail.error = "Invalid Email!"
-            }
-            else if (password.isEmpty()) {
+            } else if (!validateEmailFormat(email)) { //set email format and validate
+                etEmail.error = "Invalid Email!"
+            } else if (password.isEmpty()) {
                 etPassword.error = "Enter Password"
             } else { //both field filled
+
+                //store remembered email & password into the PREFS_NAME
+                var preferencesText = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+
+                if(chkRmbMe.isChecked){
+                    var editor: SharedPreferences.Editor = preferencesText.edit()
+                    editor.putString("pref_name", email)
+                    editor.putString("pref_pass", password)
+                    editor.apply()
+
+
+                }else{
+                    preferencesText.edit().clear().apply()
+                }
+
+                //proceed to login
                 performLoginSuccessful(email, password)
             }
+
         }
 
+        //forget password
+        val tv_forgetPasword: TextView = findViewById(R.id.tv_forgetPasword)
+        tv_forgetPasword.setOnClickListener {
+            val forgetIntent = Intent(applicationContext, Forget_Password::class.java)
+            startActivity(forgetIntent)
+
+        }
+
+        //remember me
+        chkRmbMe.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+
+                var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+                var editor: SharedPreferences.Editor = preferences.edit()
+                editor.putString("chkRmbMe", "true")
+                editor.apply()
+                Toast.makeText(this, "Checked", Toast.LENGTH_SHORT).show()
+
+            } else if (!(isChecked)) {
+
+                var preferences: SharedPreferences = getSharedPreferences("chkBox", MODE_PRIVATE)
+                var editor: SharedPreferences.Editor = preferences.edit()
+                editor.putString("chkRmbMe", "false")
+                editor.apply()
+                Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
     }
+
+    //get the data (email & password) that store in the PREFS_NAME
+    private fun getPreferencesData(){
+        var sharePref:SharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        if(sharePref.contains("pref_name")){
+            val name: String? = sharePref.getString("pref_name", "not found.")
+            etEmail.setText(name)
+
+            if(sharePref.contains("pref_pass")){
+                val pass: String? = sharePref.getString("pref_pass", "not found.")
+                etPassword.setText(pass)
+            }
+        }
+    }
+
 
     //Login Validation in Firebase Auth
     private fun performLoginSuccessful(email:String, password:String){
@@ -88,12 +167,9 @@ class Login: AppCompatActivity() {
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
-                Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
-
                 //Fetch the info of the current login customer
                 fetchCurrentUserInfo()
-                //display message for authorized user
-                Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
+                Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
             }
             .addOnFailureListener {
                 //Use Default Error Message Generate by Firebase Auth
@@ -109,9 +185,6 @@ class Login: AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
-               // phoneNumberDb = currentUser?.phoneNum
-              //  userDb = currentUser?.name
-              //  emailDb = currentUser?.email
                 roleDb = currentUser?.role
 
                 //redirect to specific role's main page
@@ -122,6 +195,7 @@ class Login: AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
     }
 
     //redirect to specific role's main page
@@ -132,7 +206,6 @@ class Login: AppCompatActivity() {
                 Log.d("Login","Login as Member")
                 //proceed to cust main page
                 val intentCustMain = Intent(this, CustomerMain::class.java)
-               // intentCustMain.putExtra("email", edittext_login_email.text.toString())
                 startActivity(intentCustMain)
             }
             "Staff" -> {
@@ -144,8 +217,8 @@ class Login: AppCompatActivity() {
                 //proceed to staff main page
                 val intentStaffMain = Intent(this, StaffMain::class.java)
                 intentStaffMain.putExtra("Role", "Staff")
-                intentStaffMain.putExtra("email",  edittext_login_email.text.toString())
-                intentStaffMain.putExtra("user", currentUser)
+                //intentStaffMain.putExtra("email",  edittext_login_email.text.toString())
+                //intentStaffMain.putExtra("user", currentUser)
                 startActivity(intentStaffMain)
             }
             else -> {
@@ -153,10 +226,12 @@ class Login: AppCompatActivity() {
                 //proceed to manager main page
                 val intentManagerMain = Intent(this, StaffMain::class.java)
                 intentManagerMain.putExtra("Role", "Manager")
-                intentManagerMain.putExtra("email", edittext_login_email.text.toString())
+                //intentManagerMain.putExtra("email", edittext_login_email.text.toString())
                 startActivity(intentManagerMain)
             }
         }
+
+        Toast.makeText(this, "Log in to ${currentUser!!.name} account", Toast.LENGTH_SHORT).show()
     }
 
     // validate email function

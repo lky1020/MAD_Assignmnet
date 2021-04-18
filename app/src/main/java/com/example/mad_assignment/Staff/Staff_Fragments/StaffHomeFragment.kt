@@ -2,7 +2,6 @@ package com.example.mad_assignment.Staff.Staff_Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login.Companion.currentUser
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
 
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerFragment
 import com.google.firebase.database.*
 
 //belongs to staff_fragment_home.xml
@@ -68,7 +68,7 @@ class StaffHomeFragment : Fragment() {
 
         if(user_role == "Staff"){
             //Will check permission
-            val currentUser: User = activity?.intent?.getParcelableExtra("user")!!
+            val currentUser: User = currentUser!! //activity?.intent?.getParcelableExtra("user")!!
             setStaffView(currentUser, cv_chkIn, cv_chkOut, cv_houseKeeper, cv_room, cv_facility, cv_staff)
 
         }else{
@@ -76,28 +76,20 @@ class StaffHomeFragment : Fragment() {
             //Manager (will not check permission)
             //*************redirect to chk in page
             cv_chkIn.setOnClickListener() {
-                //the class.java file is TEMPORARY
-                /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                ft.commit()*/
-                /*
-                //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                //startActivity(intent)
-                 */
+                activity?.let{
+                    val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
+                    intent.putExtra("type", "check in")
+                    it.startActivity(intent)
+                }
             }
 
             //*************redirect to chk out page
             cv_chkOut.setOnClickListener() {
-                //the class.java file is TEMPORARY
-                /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                ft.commit()*/
-                /*
-                //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                //startActivity(intent)
-                 */
+                activity?.let{
+                    val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
+                    intent.putExtra("type", "check out")
+                    it.startActivity(intent)
+                }
             }
 
             //redirect to manage house keeper page
