@@ -6,12 +6,10 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.mad_assignment.R
 
 
 class StaffCheckInOutMainActivity : AppCompatActivity() {
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var decorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
