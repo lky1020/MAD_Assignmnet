@@ -62,7 +62,7 @@ class cust_payment_credit_card : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         fetchCurrentUser()
 
-        // checking our permissions.
+        // checking for permissions.
         if (checkPermission()) {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
         } else {
@@ -77,22 +77,11 @@ class cust_payment_credit_card : AppCompatActivity() {
             .postalCodeRequired(true)
             .mobileNumberRequired(true)
             .mobileNumberExplanation("SMS is required on this number")
-            .setup(this);
+            .setup(this)
 
         cardForm.cvvEditText.inputType =
             InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
 
-
-        cardForm.cardRequired(true)
-            .expirationRequired(true)
-            .cvvRequired(true)
-            .postalCodeRequired(true)
-            .mobileNumberRequired(true)
-            .mobileNumberExplanation("SMS is required on this number")
-            .setup(this)
-
-        cardForm.getCvvEditText().inputType =
-            InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
 
 
         buy.setOnClickListener {
@@ -102,11 +91,11 @@ class cust_payment_credit_card : AppCompatActivity() {
                 alertBuilder.setTitle("Confirm before purchase")
                 alertBuilder.setMessage(
                         """
-                                Card number: ${cardForm.getCardNumber()}
-                                Card expiry date: ${cardForm.getExpirationDateEditText().text.toString()}
-                                Card CVV: ${cardForm.getCvv()}
-                                Postal code: ${cardForm.getPostalCode()}
-                                Phone number: ${cardForm.getMobileNumber()}
+                                Card number: ${cardForm.cardNumber}
+                                Card expiry date: ${cardForm.expirationDateEditText.text.toString()}
+                                Card CVV: ${cardForm.cvv}
+                                Postal code: ${cardForm.postalCode}
+                                Phone number: ${cardForm.mobileNumber}
                                 """.trimIndent()
                 )
                 alertBuilder.setPositiveButton(
@@ -164,23 +153,6 @@ class cust_payment_credit_card : AppCompatActivity() {
 
 
 
-//        paint.color = Color.rgb(0, 50, 250)
-//
-//        canvas.drawText("QUAD CORE HOTEL", 20f, 20f, paint)
-//        paint.textSize = 8.5f
-//        canvas.drawText("165, Jalan Ampang, Kuala Lumpur", 20f, 40f, paint)
-//        canvas.drawText("50450 Kuala Lumpur", 20f, 55f, paint)
-//        canvas.drawText("Wilayah Persekutuan Kuala Lumpur", 20f, 70f, paint)
-//        forLinePaint.style = Paint.Style.STROKE
-//        forLinePaint.pathEffect = DashPathEffect(floatArrayOf(5f, 5f), 0F)
-//        forLinePaint.strokeWidth = 2f
-//        canvas.drawLine(20f, 75f, 230f, 75f, forLinePaint)
-//
-//        canvas.drawText("Customer Name" + currentUser!!.name, 20f, 90f, paint)
-//        canvas.drawLine(20f, 100f, 230f, 100f, forLinePaint)
-//
-//        paint.textAlign = Paint.Align.RIGHT
-//        canvas.drawText("1000", 230f, 135f, paint)
 
         myPdfDocument.finishPage(myPage)
         val file = File(Environment.getExternalStorageDirectory(), "QUAD CORE RECEIPT$invoiceID.pdf")

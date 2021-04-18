@@ -41,6 +41,7 @@ class CustTransHistoryFragment : Fragment() {
                     if(payment != null)
                         payment_list.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status))
                 }
+
                 recyclerview_trans_history.adapter = cust_transaction_history(requireActivity(),payment_list)
                 recyclerview_trans_history.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }

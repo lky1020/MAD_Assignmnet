@@ -38,7 +38,7 @@ class cust_transaction_history(private val context: FragmentActivity, private va
             itemView.tv_purchase_status.text = viewHolder.status
             itemView.tv_purchase_text.text = "Purchase"
 
-            val status = viewHolder.status.toString()
+            val status = viewHolder.status
             val target = itemView.imgView_purchase_icon_trans_his
             if (status == "success") {
 

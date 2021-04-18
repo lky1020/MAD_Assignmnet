@@ -63,6 +63,7 @@ class BookRoomCart : AppCompatActivity() {
         selectedRoomList = ArrayList()
         selectedRoomList!!.add(selectedRoom)
 
+
         //recycle view
         val recyclerView: RecyclerView = findViewById(R.id.rv_cart_item)
         recyclerView.layoutManager = LinearLayoutManager(this)
