@@ -12,6 +12,7 @@ import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.R
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class StaffManageCheckInOutActivity : AppCompatActivity() {
@@ -67,11 +68,80 @@ class StaffManageCheckInOutActivity : AppCompatActivity() {
 
         btnCheckInOut.setOnClickListener {
             if(type == "Check In"){
-                Toast.makeText(this, "Check In Success", Toast.LENGTH_SHORT).show()
+                if(reservation != null){
+                    checkInUser(reservation)
+
+                    //go back to manage activity
+                    onBackPressed()
+
+                    Toast.makeText(this, "Check In Success", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "Error Occured! Please Refresh App", Toast.LENGTH_SHORT).show()
+                }
+
             }else{
-                Toast.makeText(this, "Check Out Success", Toast.LENGTH_SHORT).show()
+                if(reservation != null){
+                    checkOutUser(reservation)
+
+                    //go back to manage activity
+                    onBackPressed()
+
+                    Toast.makeText(this, "Check Out Success", Toast.LENGTH_SHORT).show()
+
+                }else{
+                    Toast.makeText(this, "Error Occured! Please Refresh App", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+    }
 
+    private fun checkInUser(reservation: Reservation){
+        val query: Query = FirebaseDatabase.getInstance().getReference("Reservation")
+            .child(reservation.uid.toString())
+            .orderByChild("reservationID")
+            .equalTo(reservation.reservationID)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()) {
+
+                    val updateReservation = Reservation(reservation.reservationID, reservation.uid, reservation.custName, reservation.custImg,
+                        reservation.guest, reservation. checkInDate, reservation.checkOutDate, reservation.nights, reservation.breakfast, reservation.reservationDetail,
+                        reservation.totalPrice, "check in", reservation.dateReserved)
+
+                    snapshot.ref.child(reservation.reservationID.toString()).setValue(updateReservation)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun checkOutUser(reservation: Reservation){
+        val query: Query = FirebaseDatabase.getInstance().getReference("Reservation")
+            .child(reservation.uid.toString())
+            .orderByChild("reservationID")
+            .equalTo(reservation.reservationID)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()) {
+
+                    val updateReservation = Reservation(reservation.reservationID, reservation.uid, reservation.custName, reservation.custImg,
+                        reservation.guest, reservation. checkInDate, reservation.checkOutDate, reservation.nights, reservation.breakfast, reservation.reservationDetail,
+                        reservation.totalPrice, "check out", reservation.dateReserved)
+
+                    snapshot.ref.child(reservation.reservationID.toString()).setValue(updateReservation)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

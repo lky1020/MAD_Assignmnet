@@ -26,6 +26,8 @@ class StaffCheckInOutModel() : ViewModel()   {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
 
+                    checkInOutList.clear()
+
                     for(i in snapshot.children){
 
                         val query: Query = FirebaseDatabase.getInstance().getReference("Reservation")
@@ -36,9 +38,8 @@ class StaffCheckInOutModel() : ViewModel()   {
                         query.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
 
-                                checkInOutList.clear()
-
                                 if(snapshot.exists()){
+
                                     for (j in snapshot.children) {
                                         // get the item from firebase
                                         val reservationInfo = j.getValue(Reservation::class.java)
@@ -55,13 +56,11 @@ class StaffCheckInOutModel() : ViewModel()   {
                                                     checkInOutList.add(reservationInfo)
                                                 }
                                             }
+
+                                            _checkInOut.value = checkInOutList
                                         }
                                     }
-                                }else{
-                                    checkInOutList.clear()
                                 }
-
-                                _checkInOut.value = checkInOutList
                             }
 
                             override fun onCancelled(error: DatabaseError) {
