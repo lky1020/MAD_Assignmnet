@@ -223,9 +223,10 @@ class StaffHomeFragment : Fragment() {
                                 cv_houseKeeper.setOnClickListener() {
 
                                     if (staffDetail.accessHousekeeping) {
-                                        val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                                        ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-                                        ft.commit()
+                                        activity?.let{
+                                            val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
+                                            it.startActivity(intent)
+                                        }
                                     }else{
                                         Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
