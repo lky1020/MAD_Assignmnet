@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.confirm_booking.*
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -104,6 +103,8 @@ class ConfirmBooking : AppCompatActivity() {
         //---------------------Confirm and pay button-----------------------
         //------------------------------------------------------------------
 
+        assignReservationID()
+
         btn_confirm_pay.setOnClickListener {
             val uid = FirebaseAuth.getInstance().uid
 
@@ -154,18 +155,20 @@ class ConfirmBooking : AppCompatActivity() {
             })
 
             val intent = Intent(this, cust_payment_method::class.java)
+            intent.putExtra("currentReservationID",reservationID)
+            Log.d("ReservationID", "Current Fetch ID: $reservationID")
             startActivity(intent)
 
         }
 
-        assignReservationID()
+
 
 
 
 
     }
 
-    fun assignReservationID(){
+    private fun assignReservationID(){
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid")
 

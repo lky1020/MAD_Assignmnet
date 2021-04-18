@@ -20,5 +20,5 @@ class Reservation(var reservationID: String?,
                   var dateReserved: String?): Parcelable{
 
     constructor() : this(null,null,null,null,0,null, null, 0,
-        0, null, 0.0, null, null)
+            0, null, 0.0, null, null)
 }

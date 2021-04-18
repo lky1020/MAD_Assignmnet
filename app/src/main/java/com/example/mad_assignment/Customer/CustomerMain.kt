@@ -56,7 +56,6 @@ class CustomerMain: AppCompatActivity() {
         fab.setOnClickListener { view ->
 
             val intent = Intent(this, LatestMessages::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             Toast.makeText(this, "Welcome to Our Chat Room", Toast.LENGTH_LONG).show()
         }

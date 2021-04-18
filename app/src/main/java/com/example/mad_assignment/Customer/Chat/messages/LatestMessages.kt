@@ -3,11 +3,8 @@ package com.example.mad_assignment.Customer.Chat.messages
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.example.mad_assignment.R
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mad_assignment.Class.User

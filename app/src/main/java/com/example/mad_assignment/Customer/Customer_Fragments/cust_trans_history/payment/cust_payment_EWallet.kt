@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.model.Payment
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_cust_payment__e_wallet.*
+import kotlinx.android.synthetic.main.activity_cust_payment_method.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -36,68 +38,28 @@ import java.util.*
 class cust_payment_EWallet : AppCompatActivity() {
 
     companion object {
-        val PERMISSION_REQUEST_CODE: Int = 200
+        const val PERMISSION_REQUEST_CODE: Int = 200
         var currentUser: User? = null
         var invoiceID: String = ""
         var pageHeight = 1120
         var pagewidth = 792
         var bmp: Bitmap? = null
         var scaledbmp: Bitmap? = null
+        var elementCount: Int = 0
+        var currentReserved: Reservation? = null
+        var totalPrice: String? = ""
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cust_payment__e_wallet)
-
-        bmp = BitmapFactory.decodeResource(resources, R.drawable.quadcorehms)
-        scaledbmp = Bitmap.createScaledBitmap(bmp!!, 140, 140, false)
-
-        fetchCurrentUser()
-
-        // checking our permissions.
-        if (checkPermission()) {
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-        } else {
-            requestPermission()
-        }
+        getCurrentReservationData()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        btnPayNowEWallet.setOnClickListener {
-
-            val alertBuilder = AlertDialog.Builder(this)
-            alertBuilder.setTitle("Confirm before purchase")
-            alertBuilder.setMessage(
-                    """
-                                Customer Name: ${currentUser?.name.toString()}
-                                """.trimIndent()
-            )
-            alertBuilder.setPositiveButton(
-                    "Confirm"
-            ) { dialogInterface, i ->
-                dialogInterface.dismiss()
-
-                savePaymentToFirebaseDatabase()
-
-                Toast.makeText(this, "Thank you for purchase", Toast.LENGTH_LONG).show()
-
-                generatePDF(invoiceID)
-                val intent = Intent(this, cust_payment_transaction_details::class.java)
-                startActivity(intent)
-            }
-            alertBuilder.setNegativeButton(
-                    "Cancel"
-            ) { dialogInterface, i -> dialogInterface.dismiss() }
-            val alertDialog = alertBuilder.create()
-            alertDialog.show()
-
-
-
-
-        }
 
     }
 
@@ -311,13 +273,27 @@ class cust_payment_EWallet : AppCompatActivity() {
     private fun savePaymentToFirebaseDatabase(){
 
         val uid = FirebaseAuth.getInstance().uid ?: ""
-        invoiceID = UUID.randomUUID().toString()
 
 
         val ref = FirebaseDatabase.getInstance().getReference("/Payment/$uid/${invoiceID}")
+        var paymentMethod = ""
 
-        val totalPayment = "2000"
-        val paymentMethod = "Credit Card"
+        if(rbtng.isChecked) {
+            paymentMethod = "TNG Wallet"
+        }
+        else if (rbgp.isChecked) {
+            paymentMethod = "Grab Pay"
+        }
+        else if (rbboost.isChecked) {
+            paymentMethod = "Boost"
+        }
+        else if (rbfave.isChecked) {
+            paymentMethod = "Fave"
+        }
+
+
+        val totalPayment = currentReserved!!.totalPrice.toString()
+
         val status = "Success"
 
         val current = LocalDateTime.now()
@@ -337,6 +313,23 @@ class cust_payment_EWallet : AppCompatActivity() {
                 .addOnFailureListener {
                     Log.d("payment", "Failed to set value to database: ${it.message}")
                 }
+    }
+
+    private fun assignInvoiceID(){
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/Payment/$uid")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                elementCount = snapshot.childrenCount.toInt()
+                val count = snapshot.childrenCount + 10000
+                invoiceID = count.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+
+
+
     }
 
 
@@ -373,5 +366,98 @@ class cust_payment_EWallet : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun getCurrentReservationData(){
+
+        val currentReservation: String? = intent.getStringExtra("reservedID")
+        Log.d("ReservationID", "$currentReservation")
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/Reservation/$uid/$currentReservation")
+
+        ref.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onDataChange(snapshot: DataSnapshot) {
+                currentReserved = snapshot.getValue(Reservation::class.java)
+
+                totalPrice = String.format("%.2f", currentReserved?.totalPrice)
+                assignDataIntoText()
+                Log.d("PaymentReserve", "Current Data $totalPrice")
+
+
+                callFunctionDirect()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun callFunctionDirect() {
+
+        bmp = BitmapFactory.decodeResource(resources, R.drawable.quadcorehms)
+        scaledbmp = Bitmap.createScaledBitmap(bmp!!, 140, 140, false)
+
+        fetchCurrentUser()
+
+        // checking our permissions.
+        if (checkPermission()) {
+            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+        } else {
+            requestPermission()
+        }
+
+        assignInvoiceID()
+
+
+
+        btnPayNowEWallet.setOnClickListener {
+
+            val alertBuilder = AlertDialog.Builder(this)
+            alertBuilder.setTitle("Confirm before purchase")
+            alertBuilder.setMessage(
+                    """
+                                Customer Name: ${currentUser?.name.toString()}
+                                Reservation Details:
+                                Check In Date: ${currentReserved?.checkInDate}
+                                Check Out Date:  ${currentReserved?.checkOutDate}
+                                No of Guest:  ${currentReserved?.guest}
+                                No of Nights: ${currentReserved?.nights}
+                                Total Price: RM ${currentReserved?.totalPrice}
+                                """.trimIndent()
+            )
+            alertBuilder.setPositiveButton(
+                    "Confirm"
+            ) { dialogInterface, i ->
+                dialogInterface.dismiss()
+
+                savePaymentToFirebaseDatabase()
+
+                Toast.makeText(this, "Thank you for purchase", Toast.LENGTH_LONG).show()
+
+                generatePDF(invoiceID)
+                val intent = Intent(this, cust_payment_transaction_details::class.java)
+                startActivity(intent)
+            }
+            alertBuilder.setNegativeButton(
+                    "Cancel"
+            ) { dialogInterface, i -> dialogInterface.dismiss() }
+            val alertDialog = alertBuilder.create()
+            alertDialog.show()
+
+
+
+
+        }
+    }
+
+    private fun assignDataIntoText() {
+        val passText = "RM ${totalPrice}"
+
+        tvSubtotalValueEWallet.text = passText
+        tvTotalAmountValueEWallet.text = passText
     }
 }
