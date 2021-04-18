@@ -1,12 +1,17 @@
 package com.example.mad_assignment.Staff.Staff_Fragments
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -19,11 +24,19 @@ import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.St
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
+import com.example.mad_assignment.Staff.room.Main.ManageRoomMenu
 
 import com.google.firebase.database.*
+import java.time.LocalDate
 
 //belongs to staff_fragment_home.xml
 class StaffHomeFragment : Fragment() {
+
+    companion object {
+        //for static purpose - to store no. of chk in chk out
+        var PREFS_NUM_CHK: String? = "PrefsFile"
+
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -37,12 +50,13 @@ class StaffHomeFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //temp variable  -- need retrieve total cust chk in & out
-        var numIn = 20
-        var numOut = 20
+        // variable
+        var numIn: Int = 0
+        var numOut: Int = 0
         val user_role = activity?.intent?.getStringExtra("Role")
 
         var tv_Num_ChkIn: TextView = view.findViewById(R.id.tv_ChkIn_totalNum)
@@ -56,9 +70,34 @@ class StaffHomeFragment : Fragment() {
         val cv_facility: CardView = view.findViewById(R.id.cv_manage_facilities)
         val cv_staff: CardView = view.findViewById(R.id.cv_manage_staff)
 
-        //  staffHomeViewModel.text.observe(viewLifecycleOwner, Observer {
-        tv_Num_ChkIn.text = numIn.toString()//it
-        tv_Num_ChkOut.text = numOut.toString()//it
+        //get share preference data
+        var preferencesChk: SharedPreferences? = this.activity?.getSharedPreferences(PREFS_NUM_CHK , MODE_PRIVATE)
+
+        //get today date of preference
+        val chkTodayDate:String? = preferencesChk!!.getString("pref_chkDate", "null")
+
+        //cmp today date of preference
+        if(chkTodayDate == "null"){
+            var editor: SharedPreferences.Editor = preferencesChk!!.edit()
+            editor.putString("pref_chkDate", LocalDate.now().toString())
+            editor.apply()
+        }else if(chkTodayDate!! < LocalDate.now().toString()){ //if today date of preference is not current date, then will reset
+            var editor: SharedPreferences.Editor = preferencesChk!!.edit()
+            editor.putInt("pref_chkIn", 0)
+            editor.putInt("pref_chkOut", 0)
+            editor.putString("pref_chkDate", LocalDate.now().toString())
+            editor.apply()
+        }
+
+        //get pref_chkIn/Out
+        numIn = preferencesChk!!.getInt("pref_chkIn", 0)
+        numOut = preferencesChk!!.getInt("pref_chkOut", 0)
+
+        Log.d("Staff Homepage", "Number of check in: $numIn")
+
+
+        tv_Num_ChkIn.text = numIn.toString( )
+        tv_Num_ChkOut.text = numOut.toString()
 
         if (user_role == "Manager") {
             cv_staff.visibility = View.VISIBLE
@@ -74,7 +113,7 @@ class StaffHomeFragment : Fragment() {
         }else{
 
             //Manager (will not check permission)
-            //*************redirect to chk in page
+            //redirect to chk in page
             cv_chkIn.setOnClickListener() {
                 activity?.let{
                     val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
@@ -102,15 +141,10 @@ class StaffHomeFragment : Fragment() {
 
             //*************redirect to manage room page
             cv_room.setOnClickListener() {
-                //the class.java file is TEMPORARY
-                /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                            ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                            ft.commit()*/
-                /*
-                //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                //startActivity(intent)
-                 */
+                activity?.let{
+                    val intent = Intent (it, ManageRoomMenu::class.java)
+                    it.startActivity(intent)
+                }
             }
 
             //*************redirect to manage facility page
@@ -177,7 +211,7 @@ class StaffHomeFragment : Fragment() {
                                         if (staffDetail.accessCheckInOut) {
                                             activity?.let{
                                                 val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
-                                                intent.putExtra("type", "check in")
+                                                intent.putExtra("type", "check out")
                                                 it.startActivity(intent)
                                             }
 

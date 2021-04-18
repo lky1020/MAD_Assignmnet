@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/charcoal"
     tools:context=".Staff.room.Main.ManageRoom">
 
     <!-- the upper app bar -->
@@ -61,259 +60,166 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- lower container -->
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/half_round_container"
-        android:orientation="vertical">
-
-        <!-- add button -->
-        <Button
-            android:id="@+id/btn_mr_add_room"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="90dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/round_button_charcoal"
-            android:text="@string/addRoom"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:letterSpacing="0.1"/>
-
-        <!-- search bar -->
-        <EditText
-            android:id="@+id/et_room_search"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/custom_search_bar"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="5dp"
-            android:drawableTint="@color/teal_200"
-            android:hint="@string/search_here"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:padding="15dp"
-            tools:targetApi="m" />
-
-        <!-- recycle view -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_rooms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="10dp"/>
-    </LinearLayout>
-
-    <!-- upper small container -->
-    <LinearLayout
-        android:id="@+id/layout_mr_upper"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round_button_purple"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="40dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar_manage_room">
+        app:layout_constraintTop_toBottomOf="@+id/appbar_manage_room">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_manage_room">
 
-            <!-- left -->
-            <LinearLayout
-                android:id="@+id/mr_left"
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <!-- Total Room -->
-                <LinearLayout
-                    android:id="@+id/layout_mr_total_room"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_roomType"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/room3" />
 
-                    <TextView
-                        android:id="@+id/mr_total_room_string"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:text="Total room:"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
+                <View
+                    android:id="@+id/overlay_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="#80000000" />
 
-                    <TextView
-                        android:id="@+id/mr_total_room"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:paddingLeft="5dp"
-                        android:text="5"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
 
-                <!-- Occupancy -->
-                <LinearLayout
-                    android:id="@+id/layout_mr_occupancy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/mr_occupancy_string"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:text="Occupancy:"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/mr_occupancy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:paddingLeft="5dp"
-                        android:text="2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- right -->
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/mr_left"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <!-- Price -->
-                <LinearLayout
-                    android:id="@+id/layout_mr_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/mr_price_string"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:text="Price: RM"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/mr_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:paddingLeft="5dp"
-                        android:text="50.00"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <!-- Size -->
-                <LinearLayout
-                    android:id="@+id/layout_mr_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/mr_size_string"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:text="Size: "
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/mr_size"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center_horizontal"
-                        android:paddingLeft="5dp"
-                        android:text="128"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/mr_beds"
+                android:id="@+id/tv_room_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="289dp"
+                android:text="Room Description"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_room_occupancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Occupancy: 2 guest"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_room_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_room_desc" />
+
+            <TextView
+                android:id="@+id/tv_room_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Price: RM 139.00"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_room_occupancy"
+                app:layout_constraintTop_toBottomOf="@+id/tv_room_occupancy" />
+
+            <TextView
+                android:id="@+id/tv_room_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Size: 66 m2"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_room_price"
+                app:layout_constraintTop_toBottomOf="@+id/tv_room_price" />
+
+            <TextView
+                android:id="@+id/tv_room_beds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:text="Beds: 1 double bed, 1 sofa bed"
-                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_room_size"
+                app:layout_constraintTop_toBottomOf="@+id/tv_room_size" />
+
+            <ImageButton
+                android:id="@+id/btn_edit_room_desc"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btn_add_rooms"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/round_button_charcoal"
+                android:letterSpacing="0.05"
+                android:text="Add Room"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/mr_left"
-                app:layout_constraintTop_toBottomOf="@+id/mr_left" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+            <!-- search bar -->
+            <EditText
+                android:id="@+id/rooms_search"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_search_bar"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/teal_200"
+                android:hint="@string/search_here"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_add_rooms"
+                app:layout_constraintStart_toStartOf="@+id/btn_add_rooms"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_rooms"
+                tools:targetApi="m" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_rooms"
+                tools:listitem="@layout/rooms_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/rooms_search"
+                app:layout_constraintStart_toStartOf="@+id/rooms_search"
+                app:layout_constraintTop_toBottomOf="@+id/rooms_search" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <Button
-            android:id="@+id/btn_mr_edi_description"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_button_white"
-            android:letterSpacing="0.1"
-            android:text="Edit Description"
-            android:textColor="@color/dark_purple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
