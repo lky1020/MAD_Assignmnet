@@ -20,6 +20,7 @@ import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment
+import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.HousekeepingReportFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.UserReportFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
@@ -74,13 +75,9 @@ class ManagerReportFragment : Fragment() {
 
         //redirect to housekeeping report page
         cv_housekeeping_report.setOnClickListener() {
-            /*
-            activity?.let{
-                val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
-                it.startActivity(intent)
-            }
-
-             */
+            val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+            ft.replace(R.id.nav_host_fragment_staff, HousekeepingReportFragment())
+            ft.commit()
         }
 
         //*************redirect to facility report page

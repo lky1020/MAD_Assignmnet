@@ -152,4 +152,11 @@
         <item>Deluxe Studio</item>
         <item>Triple Room</item>
     </string-array>
+    <string name="housekeeping_report">ハウスキーピングレポート</string>
+    <string name="room_detail">" 部屋の詳細"</string>
+    <string name="number_of_guest">客数</string>
+    <string name="total_number_of_bed_textile_ordered">ベッドテキスタイルの総数</string>
+    <string name="total_number_of_laundry_services_ordered">ランドリーサービスの総数</string>
+    <string name="total_number_of_room_cleaning_ordered">掃除された部屋の総数</string>
+    <string name="total_number_of_toiletries_ordered">バスアメニティの総数</string>
 </resources>

@@ -152,4 +152,11 @@
         <item>Deluxe Studio</item>
         <item>Triple Room</item>
     </string-array>
+    <string name="housekeeping_report">" 家政报告"</string>
+    <string name="room_detail">" 房间详细"</string>
+    <string name="number_of_guest">" 来宾人数"</string>
+    <string name="total_number_of_bed_textile_ordered">床上纺织品总数</string>
+    <string name="total_number_of_laundry_services_ordered">洗衣服务总数</string>
+    <string name="total_number_of_room_cleaning_ordered">客房清洁总数</string>
+    <string name="total_number_of_toiletries_ordered">盥洗用品总数</string>
 </resources>

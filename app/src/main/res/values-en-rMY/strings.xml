@@ -152,5 +152,12 @@
         <item>Deluxe Studio</item>
         <item>Triple Room</item>
     </string-array>
+    <string name="housekeeping_report">Housekeeping Report</string>
+    <string name="room_detail">Room Detail</string>
+    <string name="number_of_guest">Number of Guest</string>
+    <string name="total_number_of_bed_textile_ordered">Total Number of Bed Textile Ordered</string>
+    <string name="total_number_of_laundry_services_ordered">Total Number of Laundry Services Ordered</string>
+    <string name="total_number_of_room_cleaning_ordered">Total Number of Room Cleaning Ordered</string>
+    <string name="total_number_of_toiletries_ordered">Total Number of Toiletries Ordered</string>
 
 </resources>

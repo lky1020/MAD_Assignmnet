@@ -187,7 +187,15 @@
     <string name="amountStr">Amount</string>
     <string name="payMethodStr">Payment Method</string>
     <string name="doubleRoomStr">Double Room</string>
+
+
     <string name="room_detail">Room Detail</string>
     <string name="number_of_guest">Number of Guest</string>
-    <string name="extra_requirement">Extra Requirement</string>
+
+
+    <string name="total_number_of_bed_textile_ordered">Total Number of Bed Textile Ordered</string>
+    <string name="total_number_of_laundry_services_ordered">Total Number of Laundry Services Ordered</string>
+    <string name="total_number_of_room_cleaning_ordered">Total Number of Room Cleaning Ordered</string>
+    <string name="total_number_of_toiletries_ordered">Total Number of Toiletries Ordered</string>
+    <string name="housekeeping_report">Housekeeping Report</string>
 </resources>
