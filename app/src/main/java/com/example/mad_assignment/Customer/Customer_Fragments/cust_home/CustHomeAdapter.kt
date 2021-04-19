@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Main.BookRoomMenu
 import com.example.mad_assignment.Customer.Booking.Main.BookingSearchPage
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_facilities.Main.CustFacilitiesFragment
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
 import kotlinx.android.synthetic.main.customer_fragment_home_item.view.*
@@ -53,6 +54,9 @@ class CustHomeAdapter(private val context: FragmentActivity, private val item: L
 
             }else if(holder.book_now.text.contains("Faci")){
                 //proceed to facility page
+                val ft: FragmentTransaction = context?.supportFragmentManager!!.beginTransaction()
+                ft.replace(R.id.nav_host_fragment, CustFacilitiesFragment())
+                ft.commit()
 
 
             }else{

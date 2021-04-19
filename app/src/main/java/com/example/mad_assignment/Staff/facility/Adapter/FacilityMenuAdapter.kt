@@ -14,11 +14,11 @@ import com.example.mad_assignment.Staff.facility.Main.ManageFacilityDetails
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 
-class ManageFacilityMenuAdapter (
+class FacilityMenuAdapter (
     private val facilityList: ArrayList<Facility>,
     private val mContext: Context
     ):
-    RecyclerView.Adapter<ManageFacilityMenuAdapter.RecyclerViewHolder>() {
+    RecyclerView.Adapter<FacilityMenuAdapter.RecyclerViewHolder>() {
         // View Holder Class to handle Recycler View.
         inner class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val facilityName: TextView = itemView.findViewById(R.id.tv_facility_name)

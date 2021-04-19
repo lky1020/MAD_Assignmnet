@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
@@ -143,7 +144,15 @@ class StaffCheckOutFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun pickDate(){
         getDateCalendar()
 
-        DatePickerDialog(this.requireContext(), this, year, month, day).show()
+        val datePickerDialog = DatePickerDialog(this.requireContext(), this, year, month, day)
+        datePickerDialog.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+
+        datePickerDialog.show()
+
+        datePickerDialog.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+
+        datePickerDialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 
     private fun getDateCalendar(){

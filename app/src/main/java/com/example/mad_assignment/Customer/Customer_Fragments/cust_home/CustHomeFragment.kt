@@ -47,8 +47,8 @@ class CustHomeFragment : Fragment() {
         //custHomeViewModel =  ViewModelProvider(this).get(CustHomeViewModel::class.java)
         val root = inflater.inflate(R.layout.customer_fragment_home, container, false)
 
-        home_items.add(Cust_Home_Item("Room", R.drawable.banner_hotelroom, "We have many room type which single rooms to quad rooms, queen rooms, king rooms, and president suite.", "Book Room >>"))
-        home_items.add(Cust_Home_Item("Facilities", R.drawable.banner_hotelfacility, "There are many facilities such as spa, swimming pool, gym room and etc. Waiting you to enjoy it!", "Book Facility >>"))
+        home_items.add(Cust_Home_Item("Room", R.drawable.banner_hotelroom, "We have many room type which single rooms to family rooms, deluxe double rooms, deluxe studio, and etc.", "Book Room >>"))
+        home_items.add(Cust_Home_Item("Facilities", R.drawable.banner_hotelfacility, "There are many facilities such as spa, swimming pool, gym room and etc. Waiting you to enjoy it!", "View Facility >>"))
         home_items.add(Cust_Home_Item("Services", R.drawable.banner_hotelroom, "Let's book our services! We will provide the best services to you.", "Book Services >>"))
 
 

@@ -6,19 +6,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Customer_Fragments.cust_facilities.CustFacilitiesFragment">
+    tools:context=".Customer.Customer_Fragments.cust_facilities.Main.CustFacilitiesFragment">
 
-    <TextView
-        android:id="@+id/text_services"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <!-- search bar -->
+            <EditText
+                android:id="@+id/et_facility_search"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_search_bar"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/teal_200"
+                android:hint="@string/search_here"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="m" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_manage_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/manage_facility_menu_item"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_facility_search" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

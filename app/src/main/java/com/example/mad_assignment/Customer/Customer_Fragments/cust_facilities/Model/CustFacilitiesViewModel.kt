@@ -1,4 +1,4 @@
-package com.example.mad_assignment.Customer_Fragments.cust_facilities
+package com.example.mad_assignment.Customer.Customer_Fragments.cust_facilities.Model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
