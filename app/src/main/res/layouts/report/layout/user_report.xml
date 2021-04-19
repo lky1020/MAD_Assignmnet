@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:text="20-4-2021"
+        android:textColor="#092B06"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_date_genTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +55,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:text="Date :"
+        android:textColor="#092B06"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -72,13 +74,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- User report title -->
     <TextView
         android:id="@+id/tv_title_userReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="User Report"
-        android:textSize="22sp"
+        android:textColor="#054214"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hotel_name" />
@@ -90,15 +94,18 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="52dp"
         android:text="Title : "
+        android:textColor="#092B06"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_userReport" />
 
+    <!-- User Report Specific Name -->
     <TextView
-        android:id="@+id/tv_report_date"
+        android:id="@+id/tv_report_name"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:text="2021 April User Report"
+        android:text="202104 User Report"
+        android:textColor="#092B06"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,16 +113,17 @@
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
+    <!-- Total number of customer variable -->
     <TextView
         android:id="@+id/tv_title_total_cust"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="52dp"
         android:text="Total Number of Customer"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_genTitle" />
 

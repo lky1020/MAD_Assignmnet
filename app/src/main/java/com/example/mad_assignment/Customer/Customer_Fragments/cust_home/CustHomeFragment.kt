@@ -30,9 +30,7 @@ import kotlinx.android.synthetic.main.customer_fragment_home.*
 
 //belongs to customer_fragment_home.xml
 class CustHomeFragment : Fragment() {
-    //temp variable
-    var isbooking = true //false
-
+   
     //private lateinit var custHomeViewModel: CustHomeViewModel
     private lateinit var recyclerView: RecyclerView
     private var home_items = ArrayList<Cust_Home_Item>()
