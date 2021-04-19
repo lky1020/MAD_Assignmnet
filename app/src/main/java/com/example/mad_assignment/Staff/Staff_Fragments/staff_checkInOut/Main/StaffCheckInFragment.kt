@@ -6,12 +6,13 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,8 +44,8 @@ class StaffCheckInFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var checkInOutList = ArrayList<Reservation>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?,
     ): View? {
 
         parentLayout = container?.parent as ViewGroup
@@ -71,7 +72,7 @@ class StaffCheckInFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if(!etSearch.text.equals("")){
+                if (!etSearch.text.equals("")) {
                     filter(s.toString(), recyclerView)
                 }
             }
@@ -147,7 +148,15 @@ class StaffCheckInFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private fun pickDate(){
         getDateCalendar()
 
-        DatePickerDialog(this.requireContext(), this, year, month, day).show()
+        val datePickerDialog = DatePickerDialog(this.requireContext(), this, year, month, day)
+        datePickerDialog.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+
+        datePickerDialog.show()
+
+        datePickerDialog.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+
+        datePickerDialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 
     private fun getDateCalendar(){

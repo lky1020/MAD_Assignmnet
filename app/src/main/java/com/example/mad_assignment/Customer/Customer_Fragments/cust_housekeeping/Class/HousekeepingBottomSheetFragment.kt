@@ -72,13 +72,18 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
         }
 
         btnOrder.setOnClickListener {
-            val estimateReceivedDate = getDateCalendar()
-            val estimateReceivedTime = getTime()
-            val estimateReceived = "$estimateReceivedDate, $estimateReceivedTime"
-            orderItemForUser(estimateReceived)
+            if(tvQuantity.text.toString().toInt() <= currentItem.quantity){
+                val estimateReceivedDate = getDateCalendar()
+                val estimateReceivedTime = getTime()
+                val estimateReceived = "$estimateReceivedDate, $estimateReceivedTime"
+                orderItemForUser(estimateReceived)
+                updateItemQuantity(currentItem.quantity - tvQuantity.text.toString().toInt())
+                dismissMessage = "Item Ordered"
+                dismiss()
+            }else{
+                Toast.makeText(requireContext(), "Sorry, Lack of Stock!", Toast.LENGTH_SHORT).show()
+            }
 
-            dismissMessage = "Item Ordered"
-            dismiss()
         }
     }
 
@@ -116,6 +121,34 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
 
             }
 
+        })
+    }
+
+    private fun updateItemQuantity(quantity: Int){
+        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping")
+                .child(servicesType).child("ItemAvailable")
+
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (i in snapshot.children) {
+                        val currentSelectedItem = i.getValue(HousekeepingItem::class.java)
+
+                        val updateItem = HousekeepingItem(
+                                currentItem.title,
+                                currentItem.img,
+                                quantity
+                        )
+
+                        myRef.child(currentItem.title).setValue(updateItem)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
         })
     }
 
@@ -172,8 +205,11 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
     private fun initTime(estimateTimeList: MutableList<Any>): String{
 
         // Change hour to 12 hour
-        if(estimateTimeList[0].toString().toInt() >= 11){
-            estimateTimeList[0] = estimateTimeList[0].toString().toInt() - 12
+        if(estimateTimeList[0].toString().toInt() >= 12){
+            if(estimateTimeList[0].toString().toInt() != 12){
+                estimateTimeList[0] = estimateTimeList[0].toString().toInt() - 12
+            }
+
             estimateTimeList[2] = "PM"
         }
         else{

@@ -181,8 +181,6 @@ class ConfirmBooking : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {}
         })
 
-
-
     }
 
     @SuppressLint("SimpleDateFormat")

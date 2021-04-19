@@ -183,13 +183,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_housekeeping_available_services"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/cardview_item_available_housekeeping_services"
+        android:layout_height="match_parent"
+        android:layout_marginTop="165dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ver_line2"/>
+        app:layout_constraintTop_toBottomOf="@id/ver_line2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_housekeeping_available_services"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/cardview_item_available_housekeeping_services"
+            android:paddingBottom="?attr/actionBarSize" />
+    </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

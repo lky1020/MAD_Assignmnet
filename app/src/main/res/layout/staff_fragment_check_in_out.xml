@@ -124,6 +124,8 @@
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="180dp"
+        android:paddingBottom="?attr/actionBarSize"
         app:layout_constraintTop_toBottomOf="@id/iv_selectedDate"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
