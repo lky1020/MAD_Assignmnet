@@ -31,14 +31,15 @@ class cust_transaction_history(private val context: FragmentActivity, private va
 
         fun bind(viewHolder: Payment) {
 
+            val price = "RM ${viewHolder.totalPayment}0"
             itemView.tv_purchase_date.text = viewHolder.paidDateTime
-            itemView.tv_purchase_cost.text = viewHolder.totalPayment
+            itemView.tv_purchase_cost.text = price
             itemView.tv_purchase_status.text = viewHolder.status
             itemView.tv_purchase_text.text = "Purchase"
 
             val status = viewHolder.status
             val target = itemView.imgView_purchase_icon_trans_his
-            if (status == "success") {
+            if (status == "Success") {
 
                 target.setImageResource(R.drawable.receiptsuccessful)
             } else {
@@ -62,4 +63,6 @@ class cust_transaction_history(private val context: FragmentActivity, private va
 
     override fun getItemCount() = payment.size
     }
+
+    fun Double.format(digits: Int) = "%.${digits}f".format(this)
 //}

@@ -141,10 +141,9 @@
 
     <TextView
         android:id="@+id/tvpaymentMethod"
-        android:layout_width="95dp"
-        android:layout_height="29dp"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:paddingTop="10dp"
         android:text="@string/onlineBanking"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/tvTotalAmountValueDetails"
@@ -179,19 +178,6 @@
         app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_transaction_details"
         app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_transaction_details"
         app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_onlineBanking_pbe" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="115dp"
-        android:layout_height="51dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/payNowStr"
-        android:textColor="@color/gray_white"
-        android:textColorHint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerViewTransactionDataForPayment"
-        app:layout_constraintTop_toBottomOf="@+id/ll_layout_bar_cust_payment_transaction_details"
-        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTransactionDataForPayment"

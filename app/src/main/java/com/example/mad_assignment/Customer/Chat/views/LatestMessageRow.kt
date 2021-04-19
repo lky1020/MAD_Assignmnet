@@ -9,6 +9,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.latest_message_row.view.*
@@ -35,8 +36,8 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
                 Log.d("LatestMessageRow", "Latest Message Row ChatId $chatPartnerId")
                 viewHolder.itemView.username_textview_latest_message.text = chatPartnerUser?.name
 
-//                val targetImageView = viewHolder.itemView.imageview_latest_message
-//                Picasso.get().load(chatPartnerUser?.profileImageUrl).into(targetImageView)
+                val targetImageView = viewHolder.itemView.imageview_latest_message
+                Picasso.get().load(chatPartnerUser?.img).into(targetImageView)
             }
 
             override fun onCancelled(error: DatabaseError) {

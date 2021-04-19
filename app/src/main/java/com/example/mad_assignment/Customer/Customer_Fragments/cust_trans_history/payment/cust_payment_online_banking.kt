@@ -26,8 +26,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_cust_payment__e_wallet.*
-import kotlinx.android.synthetic.main.activity_cust_payment_method.*
 import kotlinx.android.synthetic.main.activity_cust_payment_online_banking.*
 import java.io.File
 import java.io.FileNotFoundException
@@ -50,6 +48,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         var currentReserved: Reservation? = null
         var totalPrice: String? = ""
         var paymentMethod = ""
+        var paidBy = "Online Banking"
     }
 
     lateinit var selectedReservationDataList: ArrayList<Reservation>
@@ -130,6 +129,7 @@ class cust_payment_online_banking : AppCompatActivity() {
 
 
 
+
         btnPayNow.setOnClickListener {
 
             val alertBuilder = AlertDialog.Builder(this)
@@ -143,7 +143,8 @@ class cust_payment_online_banking : AppCompatActivity() {
                                 Check Out Date:  ${currentReserved?.checkOutDate}
                                 No of Guest:  ${currentReserved?.guest}
                                 No of Nights: ${currentReserved?.nights}
-                                Total Price: RM ${totalPrice}
+                                Total Price: RM $totalPrice
+                                Payment Method: $paidBy
                                 """.trimIndent()
             )
             alertBuilder.setPositiveButton(
@@ -151,7 +152,7 @@ class cust_payment_online_banking : AppCompatActivity() {
             ) { dialogInterface, i ->
                 dialogInterface.dismiss()
 
-                savePaymentToFirebaseDatabase()
+                savePaymentToFirebaseDatabase("Success")
 
                 Toast.makeText(this, "Thank you for purchase", Toast.LENGTH_LONG).show()
 
@@ -184,8 +185,10 @@ class cust_payment_online_banking : AppCompatActivity() {
                         }
 
 
+
                 val intent = Intent(this, cust_payment_transaction_details::class.java)
                 intent.putExtra("reservedID", currentReserved!!.reservationID)
+                checkBoxselected()
                 intent.putExtra("paymentMethod", paymentMethod)
                 startActivity(intent)
             }
@@ -193,10 +196,11 @@ class cust_payment_online_banking : AppCompatActivity() {
                     "Cancel"
             ) { dialogInterface, i ->
                 dialogInterface.dismiss()
-
+                savePaymentToFirebaseDatabase("Fail")
                 Toast.makeText(this, "Payment has been Cancel", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, cust_payment_transaction_details::class.java)
                 intent.putExtra("reservedID", currentReserved!!.reservationID)
+                checkBoxselected()
                 intent.putExtra("paymentMethod", paymentMethod)
                 startActivity(intent)
             }
@@ -210,7 +214,7 @@ class cust_payment_online_banking : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun savePaymentToFirebaseDatabase() {
+    private fun savePaymentToFirebaseDatabase(status: String) {
 
         val uid = FirebaseAuth.getInstance().uid ?: ""
 
@@ -232,7 +236,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         }
 
         val totalPayment = currentReserved!!.totalPrice.toString()
-        val status = "Success"
+
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
         val formatted = current.format(formatter)
@@ -303,7 +307,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         val myPageInfo = PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create()
         val myPage = myPdfDocument.startPage(myPageInfo)
         val canvas = myPage.canvas
-
+        var amountIndexY = 0f
         //Company Logo in PDF
         canvas.drawBitmap(scaledbmp!!, 600f, 40f, paint)
 
@@ -340,7 +344,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         val nameColor = ContextCompat.getColor(this, R.color.black)
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         paint.color = nameColor
-        canvas.drawText("Joan Hau", 59f, 310f, paint)
+        canvas.drawText(currentUser!!.name, 59f, 310f, paint)
 
         //Email information
         paint.textAlign = Paint.Align.LEFT
@@ -348,10 +352,10 @@ class cust_payment_online_banking : AppCompatActivity() {
         val emailColor = ContextCompat.getColor(this, R.color.black)
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.ITALIC)
         paint.color = emailColor
-        canvas.drawText("lky1020@gmail.com", 138f, 340f, paint)
+        canvas.drawText(currentUser!!.email, 138f, 340f, paint)
 
 
-        //Invoive No information
+        //Invoice No information
         paint.textAlign = Paint.Align.LEFT
         paint.textSize = 22f
         val invoiceColor = ContextCompat.getColor(this, R.color.blue)
@@ -364,7 +368,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         paint.textSize = 20f
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         paint.color = nameColor
-        canvas.drawText("12356456462131", 733f, 280f, paint)
+        canvas.drawText("INV $invoiceID", 733f, 280f, paint)
 
 
         //receipt date information
@@ -379,7 +383,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         paint.textSize = 20f
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         paint.color = nameColor
-        canvas.drawText("15/02/2021", 733f, 310f, paint)
+        canvas.drawText(currentReserved!!.dateReserved.toString(), 733f, 310f, paint)
 
 
         //PAYMENT METHOD information
@@ -394,7 +398,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         paint.textSize = 20f
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         paint.color = nameColor
-        canvas.drawText("Credit Card", 733f, 340f, paint)
+        canvas.drawText(paymentMethod, 733f, 340f, paint)
 
         //STATUS information
         paint.textAlign = Paint.Align.LEFT
@@ -408,7 +412,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         paint.textSize = 20f
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
         paint.color = nameColor
-        canvas.drawText("SUCCESSFUL", 733f, 370f, paint)
+        canvas.drawText("PAID", 733f, 370f, paint)
 
         //Break line between content and header
         forLinePaint.style = Paint.Style.FILL_AND_STROKE
@@ -444,40 +448,71 @@ class cust_payment_online_banking : AppCompatActivity() {
         //Break line between content and header
         canvas.drawLine(59f, 470f, 733f, 470f, forLinePaint)
 
-        //QTY information data
-        paint.textAlign = Paint.Align.LEFT
-        paint.textSize = 20f
-        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-        paint.color = nameColor
-        canvas.drawText("1", 70f, 500f, paint)
 
-        //DESC information data
-        paint.textAlign = Paint.Align.LEFT
-        paint.textSize = 20f
-        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-        paint.color = nameColor
-        canvas.drawText("faejgkskdgbjldsflgs", 150f, 500f, paint)
 
-        //AMOUNT information data
+        val countItem = currentReserved!!.reservationDetail!!.size.minus(1)
+
+        var indexPositionY1 = 500f
+        var indexPositionY2 = 550f
+        for (i in 0..countItem){
+
+            //QTY information data
+            paint.textAlign = Paint.Align.LEFT
+            paint.textSize = 20f
+            paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+            paint.color = nameColor
+            canvas.drawText(currentReserved!!.reservationDetail!![i].qty.toString(), 70f, indexPositionY1, paint)
+
+            //DESC information data
+            paint.textAlign = Paint.Align.LEFT
+            paint.textSize = 20f
+            paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+            paint.color = nameColor
+            canvas.drawText(currentReserved!!.reservationDetail!![i].roomType!!.roomType.toString(), 150f, indexPositionY1, paint)
+
+            //AMOUNT information data
+            paint.textAlign = Paint.Align.RIGHT
+            paint.textSize = 20f
+            paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+            paint.color = nameColor
+            val priceText = "RM ${currentReserved!!.reservationDetail?.get(i)!!.subtotal!!.format(2)}"
+            canvas.drawText(priceText, 733f, indexPositionY1, paint)
+
+
+
+            indexPositionY1 += 25f
+            indexPositionY2 += 25f
+
+            amountIndexY = indexPositionY2
+
+
+
+        }
+
+        val letextIndex = amountIndexY + 50f
+        //TOTAL AMOUNT information data
         paint.textAlign = Paint.Align.RIGHT
-        paint.textSize = 20f
-        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-        paint.color = nameColor
-        canvas.drawText("289.00", 733f, 500f, paint)
+        paint.textSize = 22f
+        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.BOLD)
+        paint.color = invoiceColor
+        val subTotalText = "RM ${currentReserved!!.totalPrice!!.format(2)}"
+        canvas.drawText(subTotalText, 733f, amountIndexY, paint)
+
 
         //TOTAL AMOUNT information title
         paint.textAlign = Paint.Align.RIGHT
         paint.textSize = 22f
         paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.BOLD)
         paint.color = invoiceColor
-        canvas.drawText("AMOUNT", 550f, 550f, paint)
+        canvas.drawText("AMOUNT", 550f, amountIndexY, paint)
 
-        //TOTAL AMOUNT information data
-        paint.textAlign = Paint.Align.RIGHT
-        paint.textSize = 22f
-        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.BOLD)
-        paint.color = invoiceColor
-        canvas.drawText("RM 1000.00", 733f, 550f, paint)
+        //Break line between content and header
+        forLinePaint.style = Paint.Style.FILL_AND_STROKE
+        forLinePaint.color = forLinePaintColor
+        forLinePaint.pathEffect = DashPathEffect(floatArrayOf(0f, 0f), 0F)
+        forLinePaint.strokeWidth = 2f
+
+        canvas.drawLine(59f, letextIndex, 733f, letextIndex, forLinePaint)
 
         //THANK YOU
         paint.textAlign = Paint.Align.CENTER
@@ -501,6 +536,22 @@ class cust_payment_online_banking : AppCompatActivity() {
         myPdfDocument.close()
     }
 
+    private fun checkBoxselected(){
+        when {
+            rbpbe.isChecked -> {
+                paymentMethod = "Public Bank"
+            }
+            rbMaybank.isChecked -> {
+                paymentMethod = "Maybank"
+            }
+            rbCIMB.isChecked -> {
+                paymentMethod = "CIMB Bank"
+            }
+            rbOthers.isChecked -> {
+                paymentMethod = "Other Bank"
+            }
+        }
+    }
 }
 
 

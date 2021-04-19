@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -38,7 +39,7 @@ class NewMessage : AppCompatActivity() {
     }
 
     private fun fetchUsers(){
-        val ref = FirebaseDatabase.getInstance().getReference("/CustomerServices")
+        val ref = FirebaseDatabase.getInstance().getReference("/User")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -97,7 +98,7 @@ class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.username_testview_new_message.text = user.name
 
-//        Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.imageview_new_message)
+        Picasso.get().load(user.img).into(viewHolder.itemView.imageview_new_message)
     }
     override fun getLayout(): Int {
         return R.layout.user_row_new_message

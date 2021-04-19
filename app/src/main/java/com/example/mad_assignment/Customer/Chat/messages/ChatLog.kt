@@ -12,6 +12,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -143,9 +144,9 @@ class ChatFromItem(val text: String, val user: User): Item<ViewHolder>() {
         viewHolder.itemView.textview_from_row.text = text
 
         //load user image
-//        val uri = user.profileImageUrl
-//        val targetImgeView = viewHolder.itemView.imageview_chat_from_row
-//        Picasso.get().load(uri).into(targetImgeView)
+        val uri = user.img
+        val targetImageView = viewHolder.itemView.imageview_chat_from_row
+        Picasso.get().load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {
@@ -158,9 +159,9 @@ class ChatToItem(val text: String, val user: User): Item<ViewHolder>() {
         viewHolder.itemView.textview_to_row.text = text
 
         //load user image
-//        val uri = user.profileImageUrl
-//        val targetImgeView = viewHolder.itemView.imageview_chat_to_row
-//        Picasso.get().load(uri).into(targetImgeView)
+        val uri = user.img
+        val targetImageView = viewHolder.itemView.imageview_chat_from_row
+        Picasso.get().load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {

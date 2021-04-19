@@ -20,16 +20,28 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mad_assignment.Customer.ChangeLanguage.Helper.LocalHelper
+import com.example.mad_assignment.Customer.Chat.SendNotification.FirebaseService
+import com.example.mad_assignment.Customer.Chat.SendNotification.NotificationData
+import com.example.mad_assignment.Customer.Chat.SendNotification.PushNotification
+import com.example.mad_assignment.Customer.Chat.SendNotification.RetrofitInstance
 import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+const val TOPIC = "/topics/myTopic"
 
 //this CustomerMain is to enter & run the customer main page ---- will call by Login.kt
 class CustomerMain: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var decorView: View
+
 
     //To set the base language of the system
     override fun attachBaseContext(newBase: Context?) {
@@ -49,11 +61,28 @@ class CustomerMain: AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        var recipientToken = ""
 
-
+        FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+            FirebaseService.token = it.token
+            recipientToken = it.token
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         //action of the customer service floating button  -- will modify later - redirect to chat bot
         val fab: FloatingActionButton = findViewById(R.id.btn_cust_service)
         fab.setOnClickListener { view ->
+
+            val title = "New Message"
+            val message = "Please Check For Latest Message"
+            if(title.isNotEmpty() && message.isNotEmpty() && recipientToken.isNotEmpty()) {
+                PushNotification(
+                    NotificationData(title, message),
+                    recipientToken
+                ).also {
+                    sendNotification(it)
+                }
+            }
 
             val intent = Intent(this, LatestMessages::class.java)
             startActivity(intent)
@@ -137,6 +166,19 @@ class CustomerMain: AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful) {
+                Log.d("SendChat", "Response: ${Gson().toJson(response)}")
+            } else {
+                Log.e("SendChat", response.errorBody().toString())
+            }
+        } catch(e: Exception) {
+            Log.e("SendChat", e.toString())
+        }
     }
 }
 
