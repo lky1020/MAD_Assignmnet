@@ -13,10 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.facility.Adapter.ManageFacilityMenuAdapter
+import com.example.mad_assignment.Staff.facility.Adapter.FacilityMenuAdapter
 import com.example.mad_assignment.Staff.facility.Class.Facility
 import com.example.mad_assignment.Staff.facility.Model.FacilityViewModel
-import kotlinx.android.synthetic.main.manange_facility_menu.*
+import kotlinx.android.synthetic.main.manage_facility_menu.*
 
 class ManageFacilityMenu : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class ManageFacilityMenu : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.manange_facility_menu)
+        setContentView(R.layout.manage_facility_menu)
 
         var context = this
         //------------------------------------------------------
@@ -58,7 +58,7 @@ class ManageFacilityMenu : AppCompatActivity() {
         rv_manage_facility.layoutManager = GridLayoutManager(this, 2)
 
         //Initialize adapter
-        rv_manage_facility.adapter = ManageFacilityMenuAdapter(ArrayList<Facility>(), this)
+        rv_manage_facility.adapter = FacilityMenuAdapter(ArrayList<Facility>(), this)
         rv_manage_facility.setHasFixedSize(true)
 
         //Get the view model for room type menu
@@ -69,7 +69,7 @@ class ManageFacilityMenu : AppCompatActivity() {
 
         //Observe the room type menu list and set it
         facilityModel.getFacility().observe(this, Observer {
-            rv_manage_facility.adapter = ManageFacilityMenuAdapter(it, this)
+            rv_manage_facility.adapter = FacilityMenuAdapter(it, this)
             facilityList = it
         })
 
@@ -90,7 +90,7 @@ class ManageFacilityMenu : AppCompatActivity() {
                 if(!et_facility_search.text.equals("")){
                     filter(s.toString())
                 }else{
-                    rv_manage_facility.adapter = ManageFacilityMenuAdapter(facilityList, context)
+                    rv_manage_facility.adapter = FacilityMenuAdapter(facilityList, context)
                 }
             }
 
@@ -113,7 +113,7 @@ class ManageFacilityMenu : AppCompatActivity() {
             }
         }
 
-        rv_manage_facility.adapter = ManageFacilityMenuAdapter(filteredList, this)
+        rv_manage_facility.adapter = FacilityMenuAdapter(filteredList, this)
     }
 
 }

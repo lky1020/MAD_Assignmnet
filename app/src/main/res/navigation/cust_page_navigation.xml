@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/nav_facility"
-        android:name="com.example.mad_assignment.Customer_Fragments.cust_facilities.CustFacilitiesFragment"
+        android:name="com.example.mad_assignment.Customer.Customer_Fragments.cust_facilities.Main.CustFacilitiesFragment"
         android:label="@string/bookFaci"
         tools:layout="@layout/customer_fragment_facilities" />
 
