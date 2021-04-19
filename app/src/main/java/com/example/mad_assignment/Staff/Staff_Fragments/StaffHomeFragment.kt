@@ -174,7 +174,7 @@ class StaffHomeFragment : Fragment() {
                 .orderByChild("uid")
                 .equalTo(currentUser.uid)
 
-        query.addListenerForSingleValueEvent(object : ValueEventListener {
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
 
@@ -184,22 +184,19 @@ class StaffHomeFragment : Fragment() {
                         if (staffDetail != null) {
                             if (staffDetail.uid == currentUser.uid) {
 
-
                                     //redirect to chk in page
                                     cv_chkIn.setOnClickListener() {
+                                        if (staffDetail.accessCheckInOut) {
+                                            activity?.let {
+                                                val intent = Intent(it, StaffCheckInOutMainActivity::class.java)
+                                                intent.putExtra("type", "check in")
+                                                it.startActivity(intent)
+                                            }
 
-                                    if (staffDetail.accessCheckInOut) {
-                                        activity?.let{
-                                            val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
-                                            intent.putExtra("type", "check in")
-                                            it.startActivity(intent)
+                                        } else {
+                                            Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                         }
-
-                                    }else {
-                                        Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
-
-
 
 
                                     //redirect to chk out page
@@ -216,12 +213,9 @@ class StaffHomeFragment : Fragment() {
                                         }
 
                                     }
-                                }
-
 
                                 //redirect to manage house keeper page
                                 cv_houseKeeper.setOnClickListener() {
-
                                     if (staffDetail.accessHousekeeping) {
                                         activity?.let{
                                             val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
@@ -231,7 +225,6 @@ class StaffHomeFragment : Fragment() {
                                         Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
                                 }
-
 
                                 //*************redirect to manage room page
                                 cv_room.setOnClickListener() {
