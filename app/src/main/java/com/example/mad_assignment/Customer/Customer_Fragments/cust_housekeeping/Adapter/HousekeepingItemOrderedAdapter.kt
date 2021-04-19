@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Class.User
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingOrderedItem
 import com.example.mad_assignment.R
 import com.google.android.material.imageview.ShapeableImageView
@@ -56,6 +57,7 @@ class HousekeepingItemOrderedAdapter(private var housekeepingItemOrderedList: Ar
 
         holder.btnCancelItemOrdered.setOnClickListener {
             deleteItemOrdered(currentItem, position)
+            updateItemQuantity(currentItem, currentItem.quantity)
         }
     }
 
@@ -81,6 +83,32 @@ class HousekeepingItemOrderedAdapter(private var housekeepingItemOrderedList: Ar
                 notifyItemRangeChanged(position, housekeepingItemOrderedList.size);
 
                 Toast.makeText(mContext, "Item Ordered Been Removed", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun updateItemQuantity(currentItem: HousekeepingOrderedItem, addOnQuantity: Int){
+        val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping")
+                .child(currentItem.serviceType).child("ItemAvailable").child(currentItem.title)
+
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val currentSelectedItem = snapshot.getValue(HousekeepingItem::class.java)
+
+                    val updateItem = HousekeepingItem(
+                            currentItem.title,
+                            currentItem.img,
+                            currentSelectedItem!!.quantity.toInt() + addOnQuantity
+                    )
+
+                    myRef.setValue(updateItem)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
