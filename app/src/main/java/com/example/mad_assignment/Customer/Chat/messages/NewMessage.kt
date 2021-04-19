@@ -49,13 +49,12 @@ class NewMessage : AppCompatActivity() {
                 val adapter = GroupAdapter<ViewHolder>()
 
 
-                snapshot.children.forEach {
-                    Log.d("NewMessage", it.toString())
-
-                    val user = it.getValue(User::class.java)
-                    if(user != null && user.uid != currentUser?.uid)
-                        adapter.add(UserItem(user))
+                for (postSnapshot in snapshot.children) {
+                    val allUser: User? = postSnapshot.getValue(User::class.java)
+                    if(allUser != null && allUser.role == "Staff")
+                        adapter.add(UserItem(allUser))
                 }
+
 
                 adapter.setOnItemClickListener { item, view ->
 
@@ -73,6 +72,8 @@ class NewMessage : AppCompatActivity() {
 
 
         })
+
+
     }
 
     private fun fetchCurrentUser(){
