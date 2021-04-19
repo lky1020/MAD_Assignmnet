@@ -195,7 +195,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_button_blue_300"
-            android:backgroundTint="@color/dark_late_blue"
+            android:backgroundTint="@color/midnight_green"
             android:text="Add"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -207,7 +207,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_button_blue_300"
-            android:backgroundTint="@color/royal_fuchsia"
+            android:backgroundTint="#008080"
             android:text="Reserve"
             android:textColor="@color/white"
             android:textSize="15sp" />

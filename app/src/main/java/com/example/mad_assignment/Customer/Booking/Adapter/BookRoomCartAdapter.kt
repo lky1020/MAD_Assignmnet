@@ -84,22 +84,6 @@ open class BookRoomCartAdapter(
         }
     }
 
-    fun notify(list: ArrayList<ReservationDetail>) {
-        if (cartList != null) {
-            cartList.clear()
-            cartList.addAll(list)
-        } else {
-            cartList = list
-        }
-        notifyDataSetChanged()
-    }
-
-    fun setData(list: ArrayList<ReservationDetail>) {
-        cartList.clear()
-        cartList.addAll(list)
-
-    }
-
 
     override fun getItemCount(): Int {
         return cartList.size
