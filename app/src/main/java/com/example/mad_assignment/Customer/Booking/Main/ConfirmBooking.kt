@@ -71,7 +71,7 @@ class ConfirmBooking : AppCompatActivity() {
 
         //retrieve data from previous page
         val gson = Gson()
-        val selectedRoom = gson.fromJson<ReservationDetail>(intent.getStringExtra("selectedRoom"), ReservationDetail::class.java)
+       // val selectedRoom = gson.fromJson<ReservationDetail>(intent.getStringExtra("selectedRoom"), ReservationDetail::class.java)
         val groupListType: Type = object : TypeToken<ArrayList<ReservationDetail>>() {}.type
         selectedRoomList = gson.fromJson(intent.getStringExtra("selectedRoomList"), groupListType)
 

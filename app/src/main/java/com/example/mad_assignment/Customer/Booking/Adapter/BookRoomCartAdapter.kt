@@ -59,9 +59,22 @@ open class BookRoomCartAdapter(
                 android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        holder.qty!!.adapter = adapter
-        holder.qty!!.onItemSelectedListener = this
-        holder.qty!!.setSelection(currentItem.qty - 1)
+        holder.qty.adapter = adapter
+        holder.qty.onItemSelectedListener = this
+        holder.qty.setSelection(currentItem.qty - 1)
+
+        holder.qty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                currentItem.qty = position +1
+                currentItem.subtotal = currentItem.qty * currentItem.roomType?.price!!
+
+            }
+
+        }
 
 
         // Process date

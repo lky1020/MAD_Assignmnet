@@ -1,5 +1,6 @@
 package com.example.mad_assignment.Customer.Booking.Main
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -29,6 +30,7 @@ class BookRoomCart : AppCompatActivity() {
     lateinit var roomTypeList: ArrayList<RoomType>
 
 //private var selectedRoomList = generateDummyList(500)
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.book_room_cart)
@@ -76,10 +78,15 @@ class BookRoomCart : AppCompatActivity() {
         //---------------------------------------------------------------------
         btn_brc_reserve.setOnClickListener {
             //pass selected room to next activity
-            val gson = Gson()
-            val intent = Intent(this, ConfirmBooking::class.java)
-            intent.putExtra("selectedRoomList", gson.toJson(selectedRoomList))
-            startActivity(intent)
+            if(selectedRoomList!!.size == 0){
+                Toast.makeText(applicationContext, "Please select a room before proceed to payment", Toast.LENGTH_LONG).show()
+            }else{
+                val gson = Gson()
+                val intent = Intent(this, ConfirmBooking::class.java)
+                intent.putExtra("selectedRoomList", gson.toJson(selectedRoomList))
+                startActivity(intent)
+            }
+
         }
 
         //---------------------------------------------------------------------
@@ -127,67 +134,78 @@ class BookRoomCart : AppCompatActivity() {
                 //dismiss dialog
                 mAlertDialog.dismiss()
 
-                var status: Boolean = true
+                var status = true
+                var checkExist = false
 
-                try{
+             //   try{
                     Log.d("book",selectedRoomType.toString())
 
                     if(!selectedRoomType.equals("Select Room Type")){
                         //Add
-                        for(item in this.selectedRoomList!!){
+                            if(selectedRoomList!!.size != 0){
+                                for(item in this.selectedRoomList!!){
 
-                            //if exist same room type, update it
-                            if(item.roomType?.roomType.equals(selectedRoomType)){
-                                var updatedQty = selectedQty?.plus(item.qty)
+                                    //if exist same room type, update it
+                                    if(item.roomType?.roomType.equals(selectedRoomType)){
+                                        checkExist = true
+                                        var updatedQty = selectedQty?.plus(item.qty)
 
-                                if (updatedQty != null) {
+                                        if (updatedQty != null) {
 
-                                    if(updatedQty <= 10){
+                                            if(updatedQty <= 10){
 
-                                        item.qty = updatedQty
-                                        recyclerView.adapter?.notifyDataSetChanged()
-                                        break
-                                    }else{
+                                                item.qty = updatedQty
+                                                recyclerView.adapter?.notifyDataSetChanged()
+                                                break
+                                            }else{
 
-                                        //display error message
-                                        status= false
-                                        Toast.makeText(applicationContext, "Only maximum 10 rooms can be added", Toast.LENGTH_SHORT).show()
-                                        break
+                                                //display error message
+                                                status= false
+                                                Toast.makeText(applicationContext, "Only maximum 10 rooms can be added", Toast.LENGTH_SHORT).show()
+                                                break
+                                            }
+
+                                        }
                                     }
 
                                 }
+                                if(!checkExist){
+                                    for(room in roomTypeList){
+                                        if(room.roomType.equals(selectedRoomType)){
+                                            val subtotal: Double? = (room.price?.times(nights) )?.times(selectedQty!!)
+                                            val newRoom = ReservationDetail(room, selectedQty!!, subtotal)
+                                            selectedRoomList!!.add(0,newRoom)
+                                            recyclerView.adapter?.notifyDataSetChanged()
+                                        }
+                                    }
+                                }
                             }else{
+
+
                                 //add new room
                                 for(room in roomTypeList){
                                     if(room.roomType.equals(selectedRoomType)){
                                         val subtotal: Double? = (room.price?.times(nights) )?.times(selectedQty!!)
-
-                                        val newRoom: ReservationDetail = ReservationDetail(room, selectedQty!!, subtotal)
-                                        this.selectedRoomList!!.add(0,newRoom)
-
-                                        //(recyclerView.adapter as BookRoomCartAdapter?)?.notify(selectedRoomList!!)
-                                        recyclerView.adapter?.notifyDataSetChanged()
-                                        //recyclerView.adapter?.notifyItemInserted(0)
-                                        //this.selectedRoomList!!.add(newRoom)
-
-                                        //recyclerView.adapter?.notifyItemInserted(selectedRoomList!!.size)
+                                        val newRoom = ReservationDetail(room, selectedQty!!, subtotal)
+                                      //  selectedRoomList = ArrayList()
+                                        var newlist: ArrayList<ReservationDetail>? = ArrayList()
+                                        newlist!!.add(newRoom)
+                                        selectedRoomList = newlist
+                                        recyclerView.adapter =
+                                            selectedRoomList?.let { BookRoomCartAdapter(this.selectedRoomList!!, this, nights) }
                                         //recyclerView.adapter?.notifyDataSetChanged()
-                                        //(recyclerView.adapter as BookRoomCartAdapter?)?.notify(selectedRoomList!!)
-
                                     }
                                 }
-
                             }
 
-                        }
                     }else{
                         status= false
                         Toast.makeText(applicationContext, "Please select room type", Toast.LENGTH_SHORT).show()
                     }
-                }
-                catch (ex: Exception) {
-                    Log.e("Exception", "$ex")
-                }
+            //    }
+            //    catch (ex: Exception) {
+           //         Log.e("Exception", "$ex")
+           //     }
 
                 //display successfully message
                 if(status)
