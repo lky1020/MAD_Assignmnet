@@ -53,8 +53,10 @@ class ManageFacilityMenu : AppCompatActivity() {
         //------------------------------------------------------
 
         btn_add_facility.setOnClickListener {
-            //val intent = Intent(this, AddFacility::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, AddFacility::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+
             if (fragmentManager.backStackEntryCount != 0) {
                 fragmentManager.popBackStack()
             }
