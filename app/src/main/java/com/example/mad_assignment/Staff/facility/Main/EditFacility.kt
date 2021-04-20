@@ -192,7 +192,7 @@ class EditFacility : AppCompatActivity() {
             val fileName = UUID.randomUUID().toString() +".jpg"
             val ref = FirebaseStorage.getInstance().getReference("facility/$fileName")
 
-            ref.putFile(imguri!!)
+            ref.putFile(imguri)
                 .addOnSuccessListener {
                     Log.d("Facility", "Successfully uploaded image: ${it.metadata?.path}")
 

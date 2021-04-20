@@ -28,10 +28,6 @@ class BookRoomTypeMenuModel() : ViewModel()  {
         return _status
     }
 
-    fun updateRoomType(){
-
-    }
-
     fun fetchBookRoomType(){
 
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Room")

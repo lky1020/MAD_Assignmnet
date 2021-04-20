@@ -27,6 +27,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.edit_room_desc.*
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
@@ -160,7 +161,8 @@ class EditRoomDesc : AppCompatActivity() {
     private fun uploadImgToFirebaseStorage(imguri: Uri, roomType: RoomType) {
         if (imguri == null) return
 
-        val ref = FirebaseStorage.getInstance().getReference("/room/${roomType.roomType!!.toLowerCase()}/")
+        val fileName = UUID.randomUUID().toString() +".jpg"
+        val ref = FirebaseStorage.getInstance().getReference("/room/${roomType.roomType!!.toLowerCase()}/$fileName")
 
         ref.putFile(imguri!!)
                 .addOnSuccessListener {
