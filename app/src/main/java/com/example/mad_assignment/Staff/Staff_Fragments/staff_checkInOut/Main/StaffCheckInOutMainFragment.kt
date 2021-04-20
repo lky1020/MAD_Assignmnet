@@ -37,12 +37,12 @@ class StaffCheckInOutMainFragment : Fragment() {
 
         if(type == "check in"){
             tvCheckIn.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvCheckIn.typeface = Typeface.DEFAULT_BOLD;
+            tvCheckIn.typeface = Typeface.DEFAULT_BOLD
 
             ft.replace(R.id.framel_check_in_out, StaffCheckInFragment())
         }else{
             tvCheckOut.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvCheckOut.typeface = Typeface.DEFAULT_BOLD;
+            tvCheckOut.typeface = Typeface.DEFAULT_BOLD
 
             ft.replace(R.id.framel_check_in_out, StaffCheckOutFragment())
         }
@@ -52,10 +52,10 @@ class StaffCheckInOutMainFragment : Fragment() {
 
         tvCheckIn.setOnClickListener {
             tvCheckIn.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvCheckIn.typeface = Typeface.DEFAULT_BOLD;
+            tvCheckIn.typeface = Typeface.DEFAULT_BOLD
 
             tvCheckOut.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvCheckOut.typeface = Typeface.DEFAULT;
+            tvCheckOut.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 
@@ -66,10 +66,10 @@ class StaffCheckInOutMainFragment : Fragment() {
 
         tvCheckOut.setOnClickListener {
             tvCheckOut.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvCheckOut.typeface = Typeface.DEFAULT_BOLD;
+            tvCheckOut.typeface = Typeface.DEFAULT_BOLD
 
             tvCheckIn.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvCheckIn.typeface = Typeface.DEFAULT;
+            tvCheckIn.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 

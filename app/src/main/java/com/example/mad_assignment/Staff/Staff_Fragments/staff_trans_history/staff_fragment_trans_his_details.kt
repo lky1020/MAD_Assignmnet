@@ -39,7 +39,7 @@ class staff_fragment_trans_his_details : Fragment() {
 
         val arguments = arguments
         val currentUID = arguments!!.getString("currentUserUID")
-        val currentReservedID = arguments!!.getString("currentReservedID")
+        val currentReservedID = arguments.getString("currentReservedID")
 
 
         val ref = FirebaseDatabase.getInstance().getReference("/Reservation/$currentUID/$currentReservedID")

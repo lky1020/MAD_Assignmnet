@@ -46,7 +46,7 @@ class HousekeepingItemOrderedAdapter(private var housekeepingItemOrderedList: Ar
     override fun onBindViewHolder(holder: HousekeepingItemOrderedViewHolder, position: Int) {
         val currentItem = housekeepingItemOrderedList[position]
 
-        Picasso.get().load(currentItem.img).into(holder.ivItemOrdered);
+        Picasso.get().load(currentItem.img).into(holder.ivItemOrdered)
         holder.tvOrderedTitle.text = currentItem.title
         holder.tvOrderedQuantity.text = "Quantity: " + currentItem.quantity.toString()
         holder.tvOrderedEstimateTime.text = "Estimate Receive Time: " + currentItem.receiveTime
@@ -74,9 +74,9 @@ class HousekeepingItemOrderedAdapter(private var housekeepingItemOrderedList: Ar
                 val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child(currentItem.serviceType).child("ItemOrdered").child(currentUser.name + " - " + currentItem.bookedTime)
                 myRef.removeValue()
 
-                housekeepingItemOrderedList.remove(currentItem);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, housekeepingItemOrderedList.size);
+                housekeepingItemOrderedList.remove(currentItem)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, housekeepingItemOrderedList.size)
 
                 Toast.makeText(mContext, "Item Ordered Been Removed", Toast.LENGTH_SHORT).show()
             }

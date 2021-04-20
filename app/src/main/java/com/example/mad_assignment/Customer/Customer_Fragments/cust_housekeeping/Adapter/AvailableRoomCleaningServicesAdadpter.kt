@@ -50,7 +50,7 @@ class AvailableRoomCleaningServicesAdadpter(private var availableRoomCleaningSer
         holder.tvRemark.visibility = View.GONE
 
         val params: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-        params.addRule(RelativeLayout.END_OF, R.id.view_services_status);
+        params.addRule(RelativeLayout.END_OF, R.id.view_services_status)
         params.setMargins(0, 35, 0, 0)
         holder.tvTime.layoutParams = params
 
@@ -58,14 +58,14 @@ class AvailableRoomCleaningServicesAdadpter(private var availableRoomCleaningSer
         holder.tvStatus.text = "Status: " + currentItem.status
 
         if(currentItem.status == "Not Available"){
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red)
 
             holder.btnServiceBook.alpha = 0.25f
             holder.btnServiceBook.isClickable = false
             holder.btnServiceBook.isEnabled = false
 
         }else{
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green)
 
             holder.btnServiceBook.alpha = 1.0f
             holder.btnServiceBook.isClickable = true

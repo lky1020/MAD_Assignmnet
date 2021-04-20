@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
 import com.google.firebase.database.*
 
-class CustHousekeepingItemModel() : ViewModel()  {
+class CustHousekeepingItemModel : ViewModel()  {
 
     private val _housekeepingItem = MutableLiveData<ArrayList<HousekeepingItem>>()
     private val housekeepingItemList = ArrayList<HousekeepingItem>()

@@ -39,7 +39,7 @@ class HousekeepingItemAdapter(private var housekeepingItemList: ArrayList<Housek
         val bottomSheetFragment = HousekeepingBottomSheetFragment(currentItem, servicesType, currentItem.img)
 
         holder.tvTitle.text = currentItem.title
-        Picasso.get().load(currentItem.img).into(holder.ivHousekeepingItem);
+        Picasso.get().load(currentItem.img).into(holder.ivHousekeepingItem)
 
         //Set onclicklisterner
         holder.cvHousekeepingItem.setOnClickListener {

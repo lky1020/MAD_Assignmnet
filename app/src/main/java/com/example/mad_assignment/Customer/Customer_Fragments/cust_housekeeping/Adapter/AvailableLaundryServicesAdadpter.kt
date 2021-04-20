@@ -52,14 +52,14 @@ class AvailableLaundryServicesAdadpter(private var availableLaundryServicesList:
         holder.tvStatus.text = "Status: " + currentItem.status
 
         if(currentItem.status == "Not Available"){
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red)
 
             holder.btnServiceBook.alpha = 0.25f
             holder.btnServiceBook.isClickable = false
             holder.btnServiceBook.isEnabled = false
 
         }else{
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green)
 
             holder.btnServiceBook.alpha = 1.0f
             holder.btnServiceBook.isClickable = true

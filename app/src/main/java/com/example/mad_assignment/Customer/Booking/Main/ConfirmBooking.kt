@@ -198,7 +198,7 @@ class ConfirmBooking : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     private fun todayDate(): String {
         val today: LocalDate = LocalDate.now()
-        val formattedDate = today.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        val formattedDate = today.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
         return formattedDate
     }
 

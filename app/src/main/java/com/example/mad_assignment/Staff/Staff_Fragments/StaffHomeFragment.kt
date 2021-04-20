@@ -76,11 +76,11 @@ class StaffHomeFragment : Fragment() {
 
         //cmp today date of preference
         if(chkTodayDate == "null"){
-            var editor: SharedPreferences.Editor = preferencesChk!!.edit()
+            var editor: SharedPreferences.Editor = preferencesChk.edit()
             editor.putString("pref_chkDate", LocalDate.now().toString())
             editor.apply()
         }else if(chkTodayDate!! < LocalDate.now().toString()){ //if today date of preference is not current date, then will reset
-            var editor: SharedPreferences.Editor = preferencesChk!!.edit()
+            var editor: SharedPreferences.Editor = preferencesChk.edit()
             editor.putInt("pref_chkIn", 0)
             editor.putInt("pref_chkOut", 0)
             editor.putString("pref_chkDate", LocalDate.now().toString())
@@ -88,8 +88,8 @@ class StaffHomeFragment : Fragment() {
         }
 
         //get pref_chkIn/Out
-        numIn = preferencesChk!!.getInt("pref_chkIn", 0)
-        numOut = preferencesChk!!.getInt("pref_chkOut", 0)
+        numIn = preferencesChk.getInt("pref_chkIn", 0)
+        numOut = preferencesChk.getInt("pref_chkOut", 0)
 
         Log.d("Staff Homepage", "Number of check in: $numIn")
 

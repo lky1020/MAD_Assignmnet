@@ -38,7 +38,7 @@ class Register: AppCompatActivity() {
 
         //back icon action
         val backIcon:ImageView = findViewById(R.id.iv_register_backicon)
-        backIcon.setOnClickListener(){
+        backIcon.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -55,7 +55,7 @@ class Register: AppCompatActivity() {
         showorHidePassword()
 
         //submit register info
-        btnSubmitRegister.setOnClickListener(){
+        btnSubmitRegister.setOnClickListener {
            val name = mRegisterName.text.toString().trim()
            val password = mRegisterPassword1.text.toString().trim()
            val phoneNum = mRegisterPhoneNum.text.toString().trim()
@@ -209,7 +209,7 @@ class Register: AppCompatActivity() {
         val password2:EditText = findViewById(R.id.edittext_register_password2)
 
         //password1 icon function
-        showPsdIv1.setOnClickListener(){
+        showPsdIv1.setOnClickListener {
             if(password1.transformationMethod == HideReturnsTransformationMethod.getInstance()){
                 password1.transformationMethod = PasswordTransformationMethod.getInstance()
                 showPsdIv1.setImageResource(R.drawable.ic_hide_psw)
@@ -220,7 +220,7 @@ class Register: AppCompatActivity() {
         }
 
         //password2 icon function
-        showPsdIv2.setOnClickListener(){
+        showPsdIv2.setOnClickListener {
             if(password2.transformationMethod == HideReturnsTransformationMethod.getInstance()){
                 password2.transformationMethod = PasswordTransformationMethod.getInstance()
                 showPsdIv2.setImageResource(R.drawable.ic_hide_psw)

@@ -46,7 +46,7 @@ class StaffHousekeepingItemAdapter(private var housekeepingItemList: ArrayList<H
     override fun onBindViewHolder(holder: StaffHousekeepingItemViewHolder, position: Int) {
         val currentItem = housekeepingItemList[position]
 
-        Picasso.get().load(currentItem.img).into(holder.ivItemOrdered);
+        Picasso.get().load(currentItem.img).into(holder.ivItemOrdered)
         holder.tvOrderedTitle.text = currentItem.title
         holder.tvOrderedQuantity.text = "Quantity: " + currentItem.quantity.toString()
 
@@ -138,9 +138,9 @@ class StaffHousekeepingItemAdapter(private var housekeepingItemList: ArrayList<H
 
         myRef.child(currentItem.title).removeValue()
 
-        housekeepingItemList.remove(currentItem);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, housekeepingItemList.size);
+        housekeepingItemList.remove(currentItem)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, housekeepingItemList.size)
 
         Toast.makeText(mContext, "Item Deleted", Toast.LENGTH_SHORT).show()
     }

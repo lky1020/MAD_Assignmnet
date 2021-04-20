@@ -42,7 +42,7 @@ class AddFacility : AppCompatActivity() {
 
         //for toolbar
         setSupportActionBar(facility_toolbar)
-        supportActionBar?.title = null;
+        supportActionBar?.title = null
 
         //back button
         manage_facility_details_back_icon.setOnClickListener{
@@ -169,7 +169,7 @@ class AddFacility : AppCompatActivity() {
             val fileName = UUID.randomUUID().toString() +".jpg"
             val ref = FirebaseStorage.getInstance().getReference("facility/$fileName")
 
-            ref.putFile(imguri!!)
+            ref.putFile(imguri)
                 .addOnSuccessListener {
                     Log.d("Facility", "Successfully uploaded image: ${it.metadata?.path}")
 

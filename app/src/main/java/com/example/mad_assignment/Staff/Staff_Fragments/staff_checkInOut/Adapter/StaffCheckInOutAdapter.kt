@@ -41,7 +41,7 @@ class StaffCheckInOutAdapter(private var checkInOutList: ArrayList<Reservation>,
     override fun onBindViewHolder(holder: StaffCheckInOutViewHolder, position: Int) {
         val currentItem = checkInOutList[position]
 
-        Picasso.get().load(currentItem.custImg).into(holder.ivCustImg);
+        Picasso.get().load(currentItem.custImg).into(holder.ivCustImg)
         holder.tvCustName.text = currentItem.custName
         holder.tvGuest.text = "Guest: " + currentItem.guest
 

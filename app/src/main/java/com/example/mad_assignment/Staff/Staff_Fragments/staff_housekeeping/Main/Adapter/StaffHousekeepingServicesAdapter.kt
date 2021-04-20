@@ -36,7 +36,7 @@ class StaffHousekeepingServicesAdapter(private var housekeepingList: ArrayList<H
         val currentItem = housekeepingList[position]
 
         holder.tvTitle.text = currentItem.title
-        Picasso.get().load(currentItem.img).into(holder.ivHousekeeping);
+        Picasso.get().load(currentItem.img).into(holder.ivHousekeeping)
 
         //Set onclicklisterner
         holder.cvHousekeeping.setOnClickListener {

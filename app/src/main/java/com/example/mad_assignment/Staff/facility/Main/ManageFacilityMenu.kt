@@ -35,7 +35,7 @@ class ManageFacilityMenu : AppCompatActivity() {
         //for toolbar
         val toolbar: Toolbar = findViewById(R.id.facility_menu_toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = null;
+        supportActionBar?.title = null
 
         //back button
         val backButton = findViewById<ImageView>(R.id.manage_facility_menu_back_icon)
@@ -55,8 +55,8 @@ class ManageFacilityMenu : AppCompatActivity() {
         btn_add_facility.setOnClickListener {
             //val intent = Intent(this, AddFacility::class.java)
             //startActivity(intent)
-            if (getFragmentManager().getBackStackEntryCount() != 0) {
-                getFragmentManager().popBackStack();
+            if (fragmentManager.backStackEntryCount != 0) {
+                fragmentManager.popBackStack()
             }
         }
 

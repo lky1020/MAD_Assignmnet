@@ -79,7 +79,7 @@ class ProfileFragment : Fragment() {
 
 
         //edit user name fn
-        edit_name_icon.setOnClickListener(){
+        edit_name_icon.setOnClickListener {
             //Inflate the dialog with custom view
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.popout_getname, null)
 
@@ -92,7 +92,7 @@ class ProfileFragment : Fragment() {
             val  mAlertDialog = mBuilder.show()
 
             //confirm button
-            mDialogView.btn_confirm_new_name.setOnClickListener(){
+            mDialogView.btn_confirm_new_name.setOnClickListener {
                 var mNewName:EditText = mDialogView.edittext_new_name
 
                 val newName = mNewName.text.toString().trim()
@@ -117,14 +117,14 @@ class ProfileFragment : Fragment() {
             }
 
             //close icon
-            mDialogView.iv_close.setOnClickListener(){
+            mDialogView.iv_close.setOnClickListener {
                 //dismiss dialog
                 mAlertDialog.dismiss()
             }
         }
 
         //edit user info fn (without name)
-        tv_edit_info.setOnClickListener(){
+        tv_edit_info.setOnClickListener {
             //Inflate the dialog with custom view
             val mDialogView1 = LayoutInflater.from(context).inflate(R.layout.popout_getinfo, null)
 
@@ -139,23 +139,23 @@ class ProfileFragment : Fragment() {
 
             //view password in text function
 
-            mDialogView1.iv_hide_oldPassword.setOnClickListener(){
+            mDialogView1.iv_hide_oldPassword.setOnClickListener {
                 //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_oldPassword, mDialogView1.edittext_old_password)
             }
 
-            mDialogView1.iv_hide_newPassword1.setOnClickListener(){
+            mDialogView1.iv_hide_newPassword1.setOnClickListener {
                 //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_newPassword1, mDialogView1.edittext_new_password1)
             }
 
-            mDialogView1.iv_hide_newPassword2.setOnClickListener() {
+            mDialogView1.iv_hide_newPassword2.setOnClickListener {
                 //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_newPassword2, mDialogView1.edittext_new_password2)
             }
 
             //confirm button
-            mDialogView1.btn_confirm_new_info.setOnClickListener(){
+            mDialogView1.btn_confirm_new_info.setOnClickListener {
                 var mOldPassword:EditText = mDialogView1.edittext_old_password
                 var mNewPs1:EditText = mDialogView1.edittext_new_password1
                 var mNewPs2:EditText = mDialogView1.edittext_new_password2
@@ -208,14 +208,14 @@ class ProfileFragment : Fragment() {
             }
 
             //close icon
-            mDialogView1.iv_close.setOnClickListener(){
+            mDialogView1.iv_close.setOnClickListener {
                 //dismiss dialog
                 mAlertDialog1.dismiss()
             }
         }
 
         //add photo
-        btn_select_photo.setOnClickListener(){
+        btn_select_photo.setOnClickListener {
             Log.d("ProfileFragment", "Try to show photo selector")
 
             //get into gallery
@@ -225,7 +225,7 @@ class ProfileFragment : Fragment() {
         }
 
         //logout
-        tv_logout.setOnClickListener(){
+        tv_logout.setOnClickListener {
             //pop out a confirmation message
             val confirmLogoutBox = AlertDialog.Builder(context)
             confirmLogoutBox.setTitle("LOGOUT")
@@ -367,7 +367,7 @@ class ProfileFragment : Fragment() {
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/User/$uid/$filename")
 
-         ref.putFile(imguri!!)
+         ref.putFile(imguri)
                 .addOnSuccessListener {
                     Log.d("PROFILE FRAGMENT", "Successfully uploaded image: ${it.metadata?.path}")
 

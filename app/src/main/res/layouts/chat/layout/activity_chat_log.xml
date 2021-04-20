@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerview_newmessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,13 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         android:text="@string/chatWifUs"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_activity_new_message"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_activity_new_message" />
+        app:layout_constraintTop_toTopOf="@+id/view_activity_new_message"
+        tools:ignore="RtlSymmetry" />
 
     <ImageButton
         android:id="@+id/backPrebtn"
@@ -38,7 +38,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_activity_new_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_backtopre" />
+        app:srcCompat="@drawable/ic_action_backtopre"
+        tools:ignore="ContentDescription" />
     <!--    //define the bottom part of the chat box-->
     <LinearLayout
         android:id="@+id/ll_layout_bar"

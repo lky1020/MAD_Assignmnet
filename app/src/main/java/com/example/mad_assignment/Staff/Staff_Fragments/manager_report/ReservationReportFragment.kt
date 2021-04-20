@@ -85,7 +85,7 @@ class ReservationReportFragment : Fragment() {
                                 for (postSnapshot1 in snapshot.children) {
                                     val reservation: Reservation? = postSnapshot1.getValue(
                                         Reservation::class.java)
-                                    Log.d("Reservation Report", "Display all reservation data: ${reservation!!.reservationID} - ${reservation!!.dateReserved}")
+                                    Log.d("Reservation Report", "Display all reservation data: ${reservation!!.reservationID} - ${reservation.dateReserved}")
                                     Log.d("Reservation Report", "Display all reservation data: ${getMonth(reservation.dateReserved)}")
                                     if(getMonth(reservation.dateReserved) == mon){
                                         for(reservationDetails in reservation.reservationDetail!!){

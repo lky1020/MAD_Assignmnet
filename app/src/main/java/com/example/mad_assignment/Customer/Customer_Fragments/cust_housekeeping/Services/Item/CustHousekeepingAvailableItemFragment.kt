@@ -36,10 +36,10 @@ class CustHousekeepingAvailableItemFragment : Fragment() {
 
         tvAvailable.setOnClickListener {
             tvAvailable.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvAvailable.typeface = Typeface.DEFAULT_BOLD;
+            tvAvailable.typeface = Typeface.DEFAULT_BOLD
 
             tvOrdered.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvOrdered.typeface = Typeface.DEFAULT;
+            tvOrdered.typeface = Typeface.DEFAULT
 
             etItemSearch.setText("")
 
@@ -50,10 +50,10 @@ class CustHousekeepingAvailableItemFragment : Fragment() {
 
         tvOrdered.setOnClickListener {
             tvOrdered.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvOrdered.typeface = Typeface.DEFAULT_BOLD;
+            tvOrdered.typeface = Typeface.DEFAULT_BOLD
 
             tvAvailable.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvAvailable.typeface = Typeface.DEFAULT;
+            tvAvailable.typeface = Typeface.DEFAULT
 
             etItemSearch.setText("")
 

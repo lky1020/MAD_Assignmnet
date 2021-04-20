@@ -31,7 +31,7 @@ class Forget_Password: AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         //back icon action
-        backBtn.setOnClickListener(){
+        backBtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }

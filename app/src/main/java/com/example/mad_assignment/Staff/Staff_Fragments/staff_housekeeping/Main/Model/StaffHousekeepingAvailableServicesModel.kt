@@ -7,7 +7,7 @@ import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.google.firebase.database.*
 
-class StaffHousekeepingAvailableServicesModel() : ViewModel() {
+class StaffHousekeepingAvailableServicesModel : ViewModel() {
 
     //Room Cleaning
     private val _roomCleaningServices = MutableLiveData<ArrayList<RoomCleaningService>>()

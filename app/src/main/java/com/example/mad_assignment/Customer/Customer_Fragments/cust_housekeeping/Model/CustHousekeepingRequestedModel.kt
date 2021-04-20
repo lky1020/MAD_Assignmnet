@@ -10,7 +10,7 @@ import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class CustHousekeepingRequestedModel() : ViewModel()  {
+class CustHousekeepingRequestedModel : ViewModel()  {
 
     private val _housekeepingRequested = MutableLiveData<ArrayList<BookedHousekeepingService>>()
     private val housekeepingRequestedList = ArrayList<BookedHousekeepingService>()

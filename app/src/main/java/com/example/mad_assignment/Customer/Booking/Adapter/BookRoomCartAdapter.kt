@@ -110,9 +110,9 @@ open class BookRoomCartAdapter(
     }
 
     private fun deleteSelectedRoom(currentItem: ReservationDetail, position: Int){
-        cartList.remove(currentItem);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, cartList.size);
+        cartList.remove(currentItem)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, cartList.size)
 
         Toast.makeText(mContext, "Removed successfully", Toast.LENGTH_SHORT).show()
 

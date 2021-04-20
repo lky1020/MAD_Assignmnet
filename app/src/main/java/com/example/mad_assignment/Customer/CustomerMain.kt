@@ -141,7 +141,7 @@ class CustomerMain: AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item?.itemId){
+        when(item.itemId){
             R.id.language_en ->
             {
                 LocalHelper.setNewLocale(this,"en")

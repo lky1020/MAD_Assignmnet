@@ -39,21 +39,21 @@ class ManagerReportFragment : Fragment() {
 
 
         //redirect to user report page
-        cv_user_report.setOnClickListener() {
+        cv_user_report.setOnClickListener {
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.nav_host_fragment_staff, UserReportFragment())
             ft.commit()
         }
 
         //redirect to reservation report page
-        cv_reservation_report.setOnClickListener() {
+        cv_reservation_report.setOnClickListener {
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.nav_host_fragment_staff, ReservationReportFragment())
             ft.commit()
         }
 
         //redirect to housekeeping report page
-        cv_housekeeping_report.setOnClickListener() {
+        cv_housekeeping_report.setOnClickListener {
             val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
             ft.replace(R.id.nav_host_fragment_staff, HousekeepingReportFragment())
             ft.commit()

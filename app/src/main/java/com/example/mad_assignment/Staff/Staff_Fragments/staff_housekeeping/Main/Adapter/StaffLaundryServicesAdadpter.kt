@@ -48,10 +48,10 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
         holder.tvStatus.text = "Status: " + currentItem.status
 
         if(currentItem.status == "Not Available"){
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red)
 
         }else{
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green)
         }
 
         //Set onclicklisterner
@@ -116,9 +116,9 @@ class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: Arr
 
         myRef.child(position.toString()).removeValue()
 
-        availableLaundryServicesList.remove(currentItem);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, availableLaundryServicesList.size);
+        availableLaundryServicesList.remove(currentItem)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, availableLaundryServicesList.size)
 
         Toast.makeText(mContext, "Laundry Services Deleted", Toast.LENGTH_SHORT).show()
     }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.google.firebase.database.*
 
-class StaffCheckInOutModel() : ViewModel()   {
+class StaffCheckInOutModel : ViewModel()   {
     private val _checkInOut = MutableLiveData<ArrayList<Reservation>>()
     private val checkInOutList = ArrayList<Reservation>()
 

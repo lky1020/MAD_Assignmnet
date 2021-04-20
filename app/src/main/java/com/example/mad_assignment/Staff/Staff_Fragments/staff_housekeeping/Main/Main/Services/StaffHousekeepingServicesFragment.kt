@@ -277,7 +277,7 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTime(){
         val cal: Calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"))
-        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur");
+        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
 
         hour = cal.get(Calendar.HOUR_OF_DAY)
         minute = cal.get(Calendar.MINUTE)

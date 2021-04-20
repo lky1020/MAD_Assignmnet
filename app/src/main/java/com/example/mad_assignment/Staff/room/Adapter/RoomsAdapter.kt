@@ -130,9 +130,9 @@ inner class RoomsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
                     }
         }
 
-        dataList.remove(currentItem);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, dataList.size);
+        dataList.remove(currentItem)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, dataList.size)
 
     }
 
@@ -162,7 +162,7 @@ inner class RoomsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             }
         })
 
-        notifyItemRangeChanged(position, dataList.size);
+        notifyItemRangeChanged(position, dataList.size)
     }
 
 }

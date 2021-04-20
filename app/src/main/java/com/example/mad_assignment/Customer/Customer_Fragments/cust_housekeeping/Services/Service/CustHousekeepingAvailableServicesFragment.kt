@@ -293,7 +293,7 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
 
     private fun getTime(){
         val cal: Calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"))
-        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur");
+        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
 
         hour = cal.get(Calendar.HOUR_OF_DAY)
         minute = cal.get(Calendar.MINUTE)

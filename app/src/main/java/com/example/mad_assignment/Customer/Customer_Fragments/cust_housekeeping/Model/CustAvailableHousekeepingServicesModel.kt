@@ -12,7 +12,7 @@ import com.google.firebase.database.*
 import java.time.LocalTime
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class CustAvailableHousekeepingServicesModel() : ViewModel()  {
+class CustAvailableHousekeepingServicesModel : ViewModel()  {
 
     //Room Cleaning
     private val _roomCleaningServices = MutableLiveData<ArrayList<RoomCleaningService>>()

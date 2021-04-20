@@ -112,6 +112,6 @@ class BookingSearchPage : AppCompatActivity() {
     }
 
     private fun display(number: Int) {
-        tv_bs_guest.setText("$number")
+        tv_bs_guest.text = "$number"
     }
 }

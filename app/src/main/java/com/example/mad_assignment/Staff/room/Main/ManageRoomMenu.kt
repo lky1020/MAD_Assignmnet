@@ -28,7 +28,7 @@ class ManageRoomMenu : AppCompatActivity() {
         //for toolbar
         val toolbar: Toolbar = findViewById(R.id.room_menu_toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = null;
+        supportActionBar?.title = null
 
         //back button
         val backButton = findViewById<ImageView>(R.id.manage_room_menu_back_icon)

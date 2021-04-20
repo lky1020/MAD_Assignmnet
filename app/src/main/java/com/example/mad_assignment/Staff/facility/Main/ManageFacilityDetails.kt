@@ -27,7 +27,7 @@ class ManageFacilityDetails : AppCompatActivity() {
 
         //for toolbar
         setSupportActionBar(facility_toolbar)
-        supportActionBar?.title = null;
+        supportActionBar?.title = null
 
         //back button
         manage_facility_details_back_icon.setOnClickListener{

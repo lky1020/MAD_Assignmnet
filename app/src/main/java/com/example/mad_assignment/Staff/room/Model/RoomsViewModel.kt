@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Staff.room.Class.Room
 import com.google.firebase.database.*
 
-class RoomsViewModel() : ViewModel()  {
+class RoomsViewModel : ViewModel()  {
 
     private val mutableData = MutableLiveData<MutableList<Room>>()
 

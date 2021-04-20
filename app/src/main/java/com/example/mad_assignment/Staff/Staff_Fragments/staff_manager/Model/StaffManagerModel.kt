@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Class.Staff
 import com.google.firebase.database.*
 
-class StaffManagerModel() : ViewModel()  {
+class StaffManagerModel : ViewModel()  {
 
     private val _staff = MutableLiveData<ArrayList<Staff>>()
     private val staffList = ArrayList<Staff>()

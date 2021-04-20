@@ -109,22 +109,22 @@ class BookRoomCart : AppCompatActivity() {
             val  mAlertDialog = mBuilder.show()
 
             //Room Type Spinner
-            mDialogView.spinner_cust_add_room_type.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            mDialogView.spinner_cust_add_room_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     selectedRoomType = parent.getItemAtPosition(position).toString()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
-            })
+            }
 
             //Quantity Spinner
-            mDialogView.spinner_cust_add_room_qty.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            mDialogView.spinner_cust_add_room_qty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    selectedQty = parent?.selectedItemPosition!! + 1
+                    selectedQty = parent.selectedItemPosition + 1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
-            })
+            }
 
             //--------------------------------------------------
             //----------------  ADD FUNCTION -------------------

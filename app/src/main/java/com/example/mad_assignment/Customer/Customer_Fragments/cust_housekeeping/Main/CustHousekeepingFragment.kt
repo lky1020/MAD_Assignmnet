@@ -37,10 +37,10 @@ class CustHousekeepingFragment : Fragment() {
 
         tvServices.setOnClickListener {
             tvServices.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvServices.typeface = Typeface.DEFAULT_BOLD;
+            tvServices.typeface = Typeface.DEFAULT_BOLD
 
             tvRequested.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvRequested.typeface = Typeface.DEFAULT;
+            tvRequested.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 
@@ -51,10 +51,10 @@ class CustHousekeepingFragment : Fragment() {
 
         tvRequested.setOnClickListener {
             tvRequested.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvRequested.typeface = Typeface.DEFAULT_BOLD;
+            tvRequested.typeface = Typeface.DEFAULT_BOLD
 
             tvServices.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvServices.typeface = Typeface.DEFAULT;
+            tvServices.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 

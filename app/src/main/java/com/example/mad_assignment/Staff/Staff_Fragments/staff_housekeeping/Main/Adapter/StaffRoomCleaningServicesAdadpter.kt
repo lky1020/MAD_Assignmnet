@@ -44,7 +44,7 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
         holder.tvRemark.visibility = View.GONE
 
         val params: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-        params.addRule(RelativeLayout.END_OF, R.id.view_services_status);
+        params.addRule(RelativeLayout.END_OF, R.id.view_services_status)
         params.setMargins(0, 35, 0, 0)
         holder.tvTime.layoutParams = params
 
@@ -52,10 +52,10 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
         holder.tvStatus.text = "Status: " + currentItem.status
 
         if(currentItem.status == "Not Available"){
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.red)
 
         }else{
-            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green);
+            holder.viewServiceStatus.backgroundTintList = ContextCompat.getColorStateList(mContext, R.color.green)
         }
 
         //Set onclicklisterner
@@ -123,9 +123,9 @@ class StaffRoomCleaningServicesAdadpter(private var availableRoomCleaningService
 
         myRef.child(position.toString()).removeValue()
 
-        availableRoomCleaningServicesList.remove(currentItem);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, availableRoomCleaningServicesList.size);
+        availableRoomCleaningServicesList.remove(currentItem)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, availableRoomCleaningServicesList.size)
 
         Toast.makeText(mContext, "Room Services Deleted", Toast.LENGTH_SHORT).show()
     }

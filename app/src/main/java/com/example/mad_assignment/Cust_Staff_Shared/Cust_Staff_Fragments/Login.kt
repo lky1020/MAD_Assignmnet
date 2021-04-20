@@ -235,7 +235,7 @@ class Login: AppCompatActivity() {
             }
         }
 
-        Toast.makeText(this, "Log in to ${currentUser!!.name} account", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Log in to ${currentUser.name} account", Toast.LENGTH_SHORT).show()
     }
 
     // validate email function
@@ -267,7 +267,7 @@ class Login: AppCompatActivity() {
 
     private fun loginBackIcon(){
         val backIv: ImageView = findViewById(R.id.iv_login_backicon)
-        backIv.setOnClickListener(){
+        backIv.setOnClickListener {
             val intentMain = Intent(this, MainActivity::class.java)
             startActivity(intentMain)
         }

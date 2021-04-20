@@ -65,7 +65,7 @@ class HousekeepingRequestedAdapter(
 
         val monthString = convertMonth(month)
 
-        Picasso.get().load(currentItem.serviceImg).into(holder.ivService);
+        Picasso.get().load(currentItem.serviceImg).into(holder.ivService)
         holder.tvServiceTitle.text = currentItem.serviceType
         holder.tvServiceDate.text = "Date: $dayString, $monthString $dayOfMonth "
         holder.tvServiceTime.text = "Time: " + currentItem.timeFrom + " - " + currentItem.timeTo
@@ -134,9 +134,9 @@ class HousekeepingRequestedAdapter(
                 ).child("ServicesBooked").child(currentUser.name + " - " + currentItem.bookedTime)
                 myRef.removeValue()
 
-                housekeepingRequestedList.remove(currentItem);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, housekeepingRequestedList.size);
+                housekeepingRequestedList.remove(currentItem)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, housekeepingRequestedList.size)
 
                 Toast.makeText(mContext, "Service Booked Cancel", Toast.LENGTH_SHORT).show()
             }

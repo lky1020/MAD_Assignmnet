@@ -190,7 +190,7 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTime(): String{
         val cal: Calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"))
-        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur");
+        cal.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
 
         val hour = cal.get(Calendar.HOUR_OF_DAY)
         val minute = cal.get(Calendar.MINUTE)

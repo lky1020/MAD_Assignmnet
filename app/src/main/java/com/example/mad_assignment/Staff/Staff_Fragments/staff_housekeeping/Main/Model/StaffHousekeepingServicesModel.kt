@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.google.firebase.database.*
 
-class StaffHousekeepingServicesModel() : ViewModel() {
+class StaffHousekeepingServicesModel : ViewModel() {
 
     private var ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Housekeeping")
 

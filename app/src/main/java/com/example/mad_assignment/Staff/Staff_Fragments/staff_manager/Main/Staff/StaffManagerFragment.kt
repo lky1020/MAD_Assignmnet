@@ -67,10 +67,10 @@ class StaffManagerFragment : Fragment() {
 
         tvOnline.setOnClickListener {
             tvOnline.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvOnline.typeface = Typeface.DEFAULT_BOLD;
+            tvOnline.typeface = Typeface.DEFAULT_BOLD
 
             tvOffile.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvOffile.typeface = Typeface.DEFAULT;
+            tvOffile.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 
@@ -81,10 +81,10 @@ class StaffManagerFragment : Fragment() {
 
         tvOffile.setOnClickListener {
             tvOffile.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black))
-            tvOffile.typeface = Typeface.DEFAULT_BOLD;
+            tvOffile.typeface = Typeface.DEFAULT_BOLD
 
             tvOnline.setTextColor(ContextCompat.getColor(requireActivity(), R.color.gray))
-            tvOnline.typeface = Typeface.DEFAULT;
+            tvOnline.typeface = Typeface.DEFAULT
 
             etSearch.setText("")
 
@@ -160,7 +160,7 @@ class StaffManagerFragment : Fragment() {
                             if(validateEmailFormat(etStaffEmail.text.toString())){
 
                                 val oriMap = drawableToBitamp(ivStaffImg.drawable!!)
-                                val d = ContextCompat.getDrawable(requireContext(), R.drawable.ic_outline_plus);
+                                val d = ContextCompat.getDrawable(requireContext(), R.drawable.ic_outline_plus)
                                 val compareMap = drawableToBitamp(d!!)
                                 
                                 if(!oriMap!!.sameAs(compareMap)){

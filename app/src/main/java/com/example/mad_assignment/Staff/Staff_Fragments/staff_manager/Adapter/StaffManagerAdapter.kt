@@ -38,7 +38,7 @@ class StaffManagerAdapter(private var staffList: ArrayList<Staff>, private var m
 
         holder.tvName.text = currentItem.name
         holder.tvID.text = currentItem.id
-        Picasso.get().load(currentItem.img).into(holder.ivStaffImg);
+        Picasso.get().load(currentItem.img).into(holder.ivStaffImg)
 
         //Set onclicklisterner
         holder.btnManage.setOnClickListener {

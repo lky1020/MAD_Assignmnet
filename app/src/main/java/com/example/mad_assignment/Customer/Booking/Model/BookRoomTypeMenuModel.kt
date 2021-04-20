@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Booking.Class.RoomType
 import com.google.firebase.database.*
 
-class BookRoomTypeMenuModel() : ViewModel()  {
+class BookRoomTypeMenuModel : ViewModel()  {
 
     private val _bookRoomType: MutableLiveData<ArrayList<RoomType>> = MutableLiveData<ArrayList<RoomType>>()
     private val bookRoomTypeList = ArrayList<RoomType>()

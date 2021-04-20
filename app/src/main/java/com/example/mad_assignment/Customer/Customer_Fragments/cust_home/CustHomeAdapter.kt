@@ -41,17 +41,17 @@ class CustHomeAdapter(private val context: FragmentActivity, private val item: L
         val items = item[position]
         holder.bind(items)
 
-        holder.eachItem.setOnClickListener(){
+        holder.eachItem.setOnClickListener {
             //proceed to Specific Pages
             if(holder.book_now.text.contains("Services")){
                 //proceed to service page
-                val ft: FragmentTransaction = context?.supportFragmentManager!!.beginTransaction()
+                val ft: FragmentTransaction = context.supportFragmentManager.beginTransaction()
                 ft.replace(R.id.nav_host_fragment, StaffHousekeepingMainFragment())
                 ft.commit()
 
             }else if(holder.book_now.text.contains("Faci")){
                 //proceed to facility page
-                val ft: FragmentTransaction = context?.supportFragmentManager!!.beginTransaction()
+                val ft: FragmentTransaction = context.supportFragmentManager.beginTransaction()
                 ft.replace(R.id.nav_host_fragment, CustFacilitiesFragment())
                 ft.commit()
 
