@@ -28,7 +28,7 @@ class Login: AppCompatActivity() {
 
     var roleDb: String? = null
 
-    //Change by Joan Hau for fetch current user information
+    // fetch current user information
     companion object {
         var currentUser: User? = null
 
@@ -64,8 +64,6 @@ class Login: AppCompatActivity() {
 
             Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
         }
-
-
 
 
         //if show or hide Password icon is clicked
@@ -167,6 +165,7 @@ class Login: AppCompatActivity() {
 
                 //Fetch the info of the current login customer
                 fetchCurrentUserInfo()
+
                 Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
             }
             .addOnFailureListener {
@@ -184,6 +183,13 @@ class Login: AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
                 roleDb = currentUser?.role
+
+
+                if(currentUser!!.password != etPassword.text.toString() && etPassword.text.toString() != ""){
+                    //change password
+                    val user = User(currentUser!!.name, currentUser!!.uid, etPassword.text.toString(), currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, currentUser!!.img)
+                    ref.setValue(user)
+                }
 
                 //redirect to specific role's main page
                 Log.d("Login","Login as Role $roleDb")
