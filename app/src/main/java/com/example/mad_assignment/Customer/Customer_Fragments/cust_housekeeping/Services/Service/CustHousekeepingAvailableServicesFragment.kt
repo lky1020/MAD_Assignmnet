@@ -264,8 +264,10 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
 
         val validateDate = Date(validYear, validMonth, validDayOfMonth - 1)
 
+        val day = String.format("%02d", dayOfMonth)
+
         if(date >= validateDate){
-            tvDate.text = "$dayString, $monthString $dayOfMonth "
+            tvDate.text = "$dayString, $monthString $day "
         }else{
             Toast.makeText(requireContext(), "Not Allow to Choose Previous Date", Toast.LENGTH_SHORT).show()
         }

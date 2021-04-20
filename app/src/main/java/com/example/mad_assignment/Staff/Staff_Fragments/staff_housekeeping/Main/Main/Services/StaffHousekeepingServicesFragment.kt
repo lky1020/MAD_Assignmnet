@@ -247,9 +247,10 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
         val validDayOfMonth:Int = cal.get(Calendar.DAY_OF_MONTH)
 
         val validateDate = Date(validYear, validMonth, validDayOfMonth - 1)
+        val day = String.format("%02d", dayOfMonth)
 
         if(date >= validateDate){
-            selectedDate.text = "$dayString, $monthString $dayOfMonth"
+            selectedDate.text = "$dayString, $monthString $day"
         }else{
             Toast.makeText(requireContext(), "Not Allow to Choose Previous Date", Toast.LENGTH_SHORT).show()
         }

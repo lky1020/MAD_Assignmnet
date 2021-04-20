@@ -152,7 +152,7 @@ class Register: AppCompatActivity() {
 
     //Name Format
     private fun validateNameFormat(name:String):Boolean{
-        val nameREG = "^([a-zA-Z /.])*$"
+        val nameREG = "^([a-zA-Z /.])*\$"
         var PATTERN: Pattern = Pattern.compile(nameREG)
         fun CharSequence.isName() : Boolean = PATTERN.matcher(this).find()
 
