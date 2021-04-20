@@ -36,7 +36,6 @@ class ManagerReportFragment : Fragment() {
         val cv_user_report: CardView = view.findViewById(R.id.cv_user_report)
         val cv_reservation_report: CardView = view.findViewById(R.id.cv_reservation_report)
         val cv_housekeeping_report: CardView = view.findViewById(R.id.cv_housekeeping_report)
-        val cv_facility_report: CardView = view.findViewById(R.id.cv_facility_report)
 
 
         //redirect to user report page
