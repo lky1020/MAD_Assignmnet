@@ -5,5 +5,5 @@
     <string name="description">Description</string>
     <string name="location">Location</string>
     <string name="operation_hours">Operation Hours</string>
-    <string name="facility_from">From</string>
+    <string name="facility_from" translatable="false">From</string>
 </resources>
