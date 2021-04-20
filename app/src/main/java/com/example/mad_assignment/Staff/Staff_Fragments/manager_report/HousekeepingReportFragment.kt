@@ -3,15 +3,12 @@ package com.example.mad_assignment.Staff.Staff_Fragments.manager_report
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
+import androidx.fragment.app.Fragment
 import com.example.mad_assignment.R
 import com.google.firebase.database.*
 import java.time.LocalDate

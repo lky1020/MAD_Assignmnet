@@ -10,7 +10,6 @@ import com.example.mad_assignment.Customer.Booking.Class.ReservationDetail
 import com.example.mad_assignment.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_cust_payment_transaction_details_row.view.*
-import kotlin.collections.ArrayList
 
 
 class cust_transaction_details_record(

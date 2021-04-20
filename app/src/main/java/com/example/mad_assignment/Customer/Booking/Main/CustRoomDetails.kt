@@ -1,7 +1,7 @@
 package com.example.mad_assignment.Customer.Booking.Main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.R
 
 class CustRoomDetails : AppCompatActivity() {

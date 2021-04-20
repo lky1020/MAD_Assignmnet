@@ -12,16 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.BookedHousekeepingService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class StaffLaundryServicesAdadpter(private var availableLaundryServicesList: ArrayList<LaundryService>, private var mContext: FragmentActivity): RecyclerView.Adapter<StaffLaundryServicesAdadpter.StaffHousekeepingLaundryServicesViewHolder>(){
     

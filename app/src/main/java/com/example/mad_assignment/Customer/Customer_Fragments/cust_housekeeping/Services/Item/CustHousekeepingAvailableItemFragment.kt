@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingBottomSheetFragment
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Main.CustHousekeepingRequestFragment
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Main.CustHousekeepingServiceFragment
 import com.example.mad_assignment.R
 
 class CustHousekeepingAvailableItemFragment : Fragment() {

@@ -3,7 +3,6 @@ package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -12,7 +11,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
@@ -30,7 +28,7 @@ class Login: AppCompatActivity() {
 
     var roleDb: String? = null
 
-    //Change by Joan Hau for fetch current user information
+    // fetch current user information
     companion object {
         var currentUser: User? = null
 
@@ -66,8 +64,6 @@ class Login: AppCompatActivity() {
 
             Toast.makeText(this, "Please Log in to proceed", Toast.LENGTH_SHORT).show()
         }
-
-
 
 
         //if show or hide Password icon is clicked
@@ -169,6 +165,7 @@ class Login: AppCompatActivity() {
 
                 //Fetch the info of the current login customer
                 fetchCurrentUserInfo()
+
                 Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
             }
             .addOnFailureListener {
@@ -186,6 +183,13 @@ class Login: AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
                 roleDb = currentUser?.role
+
+
+                if(currentUser!!.password != etPassword.text.toString() && etPassword.text.toString() != ""){
+                    //change password
+                    val user = User(currentUser!!.name, currentUser!!.uid, etPassword.text.toString(), currentUser!!.phoneNum, currentUser!!.email, currentUser!!.role, currentUser!!.img)
+                    ref.setValue(user)
+                }
 
                 //redirect to specific role's main page
                 Log.d("Login","Login as Role $roleDb")

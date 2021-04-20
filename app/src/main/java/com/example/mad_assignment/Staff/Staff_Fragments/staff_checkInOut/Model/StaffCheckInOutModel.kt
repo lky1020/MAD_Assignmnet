@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
 import com.google.firebase.database.*
 
 class StaffCheckInOutModel() : ViewModel()   {

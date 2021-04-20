@@ -9,23 +9,19 @@ import android.text.Html
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Class.RoomType
-import com.example.mad_assignment.Customer.Booking.Main.BookRoomMenu
-import com.example.mad_assignment.Customer.Booking.Main.ConfirmBooking
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.Housekeeping
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Adapter.StaffHousekeepingServicesAdapter
 import com.example.mad_assignment.Staff.room.Adapter.RoomsAdapter
 import com.example.mad_assignment.Staff.room.Class.Room
 import com.example.mad_assignment.Staff.room.Model.RoomsViewModel
@@ -35,10 +31,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.alert_add_room.*
 import kotlinx.android.synthetic.main.alert_add_room.view.*
-import kotlinx.android.synthetic.main.alert_edit_room.view.*
-import kotlinx.android.synthetic.main.alert_edit_room.view.switch_edit_room_status
 import kotlinx.android.synthetic.main.manage_room.*
 
 
