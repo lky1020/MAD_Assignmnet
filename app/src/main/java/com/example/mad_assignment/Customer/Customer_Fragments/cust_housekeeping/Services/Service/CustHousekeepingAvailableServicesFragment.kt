@@ -309,18 +309,10 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
 
         if(fromSelected){
-            if(hourOfDay >= hour){
-                tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
-            }else{
-                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
-            }
+            tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
 
         }else{
-            if(hourOfDay >= hour){
-                tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
-            }else{
-                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
-            }
+            tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
         }
     }
 

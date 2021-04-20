@@ -26,11 +26,13 @@
 
         </service>
 
-        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity"/>
-        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity"/>
+        <activity android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffManageCheckInOutActivity" />
+        <activity
+            android:name=".Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity"
+            android:parentActivityName=".StaffMain" />
         <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Permission.StaffPermissionActivity" />
-        <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity"/>
-        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity"/>
+        <activity android:name=".Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity" />
+        <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity" />
         <activity android:name=".Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingServiceActivity" />
         <activity
             android:name=".Customer.Customer_Fragments.cust_housekeeping.Services.Item.CustHousekeepingAvailableItemActivity"

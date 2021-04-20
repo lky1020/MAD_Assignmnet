@@ -36,7 +36,6 @@ class CustTransHistoryFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 snapshot.children.forEach {
-                    Log.d("NewMessage", it.toString())
 
                     val payment = it.getValue(Payment::class.java)
                     if(payment != null)
