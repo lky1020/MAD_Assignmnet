@@ -29,7 +29,6 @@ class BookRoomCart : AppCompatActivity() {
     private var selectedRoomList: ArrayList<ReservationDetail>? = ArrayList<ReservationDetail>()
     lateinit var roomTypeList: ArrayList<RoomType>
 
-//private var selectedRoomList = generateDummyList(500)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +56,7 @@ class BookRoomCart : AppCompatActivity() {
 
         //retrieve data from previous page
         val gson = Gson()
-        val selectedRoom = gson.fromJson<ReservationDetail>(intent.getStringExtra("selectedRoom"), ReservationDetail::class.java)
+        val selectedRoom = gson.fromJson(intent.getStringExtra("selectedRoom"), ReservationDetail::class.java)
 
         val groupListType: Type = object : TypeToken<ArrayList<RoomType?>?>() {}.type
         roomTypeList = gson.fromJson(intent.getStringExtra("roomTypeList"), groupListType)
@@ -225,8 +224,9 @@ class BookRoomCart : AppCompatActivity() {
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     private fun convertLongToDate(date: Long?): String {
-        val format: SimpleDateFormat = SimpleDateFormat("dd MMM")
+        val format = SimpleDateFormat("dd MMM")
         return format.format(date)
     }
 }

@@ -188,6 +188,7 @@
     <string name="total_number_of_room_cleaning_ordered">客房清洁总数</string>
     <string name="total_number_of_toiletries_ordered">盥洗用品总数</string>
 
+
     <!--activity_cust_payment_method.xml-->
     <string name="onlineBanking">网上银行业务</string>
     <string name="creditcard">信用卡/借记卡</string>

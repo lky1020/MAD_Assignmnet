@@ -54,7 +54,7 @@ class ManageRoom : AppCompatActivity() {
         //------------------------------------------------------
 
         val gson = Gson()
-        val roomType = gson.fromJson<RoomType>(intent.getStringExtra("RoomType"), RoomType::class.java)
+        val roomType = gson.fromJson(intent.getStringExtra("RoomType"), RoomType::class.java)
 
         //------------------------------------------------------
         //---------------------- Toolbar -----------------------
@@ -153,6 +153,7 @@ class ManageRoom : AppCompatActivity() {
             val gson = Gson()
             val intent = Intent(this, EditRoomDesc::class.java)
             intent.putExtra("roomType", gson.toJson(roomType))
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
 
         }

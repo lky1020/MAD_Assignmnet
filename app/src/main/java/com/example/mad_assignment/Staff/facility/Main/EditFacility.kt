@@ -40,7 +40,7 @@ class EditFacility : AppCompatActivity() {
         //------------------------------------------------------
 
         val gson = Gson()
-        val facility = gson.fromJson<Facility>(intent.getStringExtra("facility"), Facility::class.java)
+        val facility = gson.fromJson(intent.getStringExtra("facility"), Facility::class.java)
 
         Picasso.get().load(facility.img).into(iv_facility_img)
         Picasso.get().isLoggingEnabled = true
@@ -62,11 +62,16 @@ class EditFacility : AppCompatActivity() {
 
         //back button
         manage_facility_details_back_icon.setOnClickListener{
-            finish()
+            //pass back facility
+            val gson = Gson()
+            val intent = Intent(this, ManageFacilityDetails::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.putExtra("facility", gson.toJson(facility))
+            startActivity(intent)
         }
 
         //------------------------------------------------------
-        //--------------------- Add Button ---------------------
+        //--------------------- Edit Button ---------------------
         //------------------------------------------------------
 
 
@@ -89,7 +94,7 @@ class EditFacility : AppCompatActivity() {
                         Toast.makeText(this, "Location cannot be null", Toast.LENGTH_LONG).show()
                     }else{
                         //update db
-                            facility.facilityName = name
+                        facility.facilityName = name
                         facility.description = desc
                         facility.location = location
 
@@ -105,6 +110,7 @@ class EditFacility : AppCompatActivity() {
                         if(selectPhotoUri == null){
                             addFacilityToDB(facility, this)
                         }else{
+                            facility.img = selectPhotoUri.toString()
                             updateImageDB(selectPhotoUri!!, facility)
                         }
 
@@ -112,6 +118,7 @@ class EditFacility : AppCompatActivity() {
                         //pass back facility
                         val gson = Gson()
                         val intent = Intent(this, ManageFacilityDetails::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         intent.putExtra("facility", gson.toJson(facility))
                         startActivity(intent)
                     }
@@ -199,7 +206,6 @@ class EditFacility : AppCompatActivity() {
                     ref.downloadUrl.addOnSuccessListener {
                         Log.d("Facility", "File Location: $it")
                         facility.img = it.toString()
-
                         addFacilityToDB(facility, this)
 
                     }
