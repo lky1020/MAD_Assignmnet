@@ -23,11 +23,10 @@ class MainActivity : AppCompatActivity() {
 
         //the apps will first run the first page of the app (hotelapp_firstpage.xml)
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.login)
+
         setContentView(R.layout.hotelapp_firstpage)
 
         /** btn click**/
-
         //click 'Login' button
         val btnStaffLogin: Button = findViewById(R.id.btnto_loginpage)
         btnStaffLogin.setOnClickListener(){

@@ -32,7 +32,7 @@ class StaffHomeFragment : Fragment() {
 
     companion object {
         //for static purpose - to store no. of chk in chk out
-        var PREFS_NUM_CHK: String? = "PrefsFile"
+        var PREFS_NUM_CHK: String? = "ShowTChkInOut"
 
     }
 

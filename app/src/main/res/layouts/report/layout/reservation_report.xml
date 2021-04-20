@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Staff.Staff_Fragments.manager_report.ReservationReportFragment">
+
+
+        <!--- reservation report date gen variable -->
+        <TextView
+            android:id="@+id/tv_date_gen"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textColor="#092B06"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date_genTitle"
+            app:layout_constraintStart_toStartOf="@+id/tv_report_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_report_name" />
+
+        <TextView
+            android:id="@+id/tv_date_genTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/date_string"
+            android:textColor="#092B06"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/tv_report_name" />
+
+        <TextView
+            android:id="@+id/tv_hotel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/hotel_name"
+            android:textColor="#090909"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- User report title -->
+        <TextView
+            android:id="@+id/tv_title_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Reservation Report"
+            android:textColor="#054214"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_name" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/title"
+            android:textColor="#092B06"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_report_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_reservation" />
+
+        <!-- User Report Specific Name -->
+        <TextView
+            android:id="@+id/tv_report_name"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:textColor="#092B06"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <View
+        android:id="@+id/hor_line"
+        android:background="@color/dark_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_date_gen" />
+
+    <TextView
+        android:id="@+id/tv_ss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Standard Single Room"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/hor_line"
+        app:layout_constraintTop_toBottomOf="@+id/hor_line" />
+
+        <TextView
+            android:id="@+id/tv_sd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Standard Double Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_ss"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ss" />
+
+        <TextView
+            android:id="@+id/tv_dd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deluxe Double Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_sd"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sd" />
+
+        <TextView
+            android:id="@+id/tv_st"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Standard Twin Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_dd"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dd" />
+
+        <TextView
+            android:id="@+id/tv_sq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Superior Queen Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_st"
+            app:layout_constraintTop_toBottomOf="@+id/tv_st" />
+
+        <TextView
+            android:id="@+id/tv_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_sq"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sq" />
+
+        <TextView
+            android:id="@+id/tv_ds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deluxe Studio"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_fr"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fr" />
+
+        <TextView
+            android:id="@+id/tv_tr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Triple Room"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_ds"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ds" />
+
+    <TextView
+        android:id="@+id/tv_ss_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_ss" />
+
+    <TextView
+        android:id="@+id/tv_sd_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_sd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_sd" />
+
+    <TextView
+        android:id="@+id/tv_dd_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_dd" />
+
+    <TextView
+        android:id="@+id/tv_st_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_st"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_st" />
+
+    <TextView
+        android:id="@+id/tv_sq_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_sq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_sq" />
+
+    <TextView
+        android:id="@+id/tv_fr_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_fr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fr" />
+
+    <TextView
+        android:id="@+id/tv_ds_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_ds" />
+
+    <TextView
+        android:id="@+id/tv_tr_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_tr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_tr" />
+
+        <View
+            android:id="@+id/hor_line1"
+            android:background="@color/dark_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_tr_no"/>
+
+        <TextView
+            android:id="@+id/tv_total_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Number of Reservation"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hor_line1" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_no" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
