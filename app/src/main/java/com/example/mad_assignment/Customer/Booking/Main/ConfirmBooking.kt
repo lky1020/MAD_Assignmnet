@@ -113,6 +113,7 @@ class ConfirmBooking : AppCompatActivity() {
                     .equalTo(uid)
 
             query.addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("SimpleDateFormat")
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
 
@@ -120,6 +121,8 @@ class ConfirmBooking : AppCompatActivity() {
                             val user = i.getValue(User::class.java)
 
                             val ref = FirebaseDatabase.getInstance().getReference("Reservation/$uid/${reservationID}")
+
+                            val format = SimpleDateFormat("dd/MM/yyyy")
 
                             val reservation:Reservation = Reservation(
                                     reservationID,
@@ -134,7 +137,7 @@ class ConfirmBooking : AppCompatActivity() {
                                     selectedRoomList,
                                     totalPrice,
                                     "pending",
-                                    todayDate(),
+                                    format.format(todayDate()),
                             )
 
                             ref.setValue(reservation)
