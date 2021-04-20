@@ -64,7 +64,8 @@
         app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_profile"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.914"
+        android:contentDescription="@string/image_desc" />
 
     <Button
         android:id="@+id/btn_select_photo"
@@ -90,7 +91,8 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintVertical_bias="0.517"
+        android:contentDescription="@string/image_desc" />
 
     <!-- user name -->
     <TextView
@@ -98,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:text="@string/user_name"
         android:textColor="#F3EFEF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,14 +117,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
         app:layout_constraintStart_toEndOf="@+id/tv_user_name"
         app:layout_constraintTop_toTopOf="@+id/tv_user_name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/image_desc" />
 
     <!-- email title-->
     <TextView
         android:id="@+id/tv_email_title"
         android:layout_width="265dp"
         android:layout_height="26dp"
-        android:text="Email"
+        android:text="@string/email"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -139,7 +142,7 @@
         android:id="@+id/tv_password_title"
         android:layout_width="265dp"
         android:layout_height="31dp"
-        android:text="Password"
+        android:text="@string/password"
         android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -156,7 +159,7 @@
         android:id="@+id/tv_phoneNum_title"
         android:layout_width="265dp"
         android:layout_height="31dp"
-        android:text="Phone No."
+        android:text="@string/phone_number"
         android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -173,7 +176,7 @@
         android:layout_width="265dp"
         android:layout_height="25dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/txtView"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
         app:layout_constraintHorizontal_bias="0.0"
@@ -186,8 +189,8 @@
         android:layout_width="265dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         android:inputType="textPassword"
+        android:text="@string/txtView"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
         app:layout_constraintHorizontal_bias="0.0"
@@ -200,7 +203,7 @@
         android:layout_width="265dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/txtView"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
         app:layout_constraintHorizontal_bias="0.0"
@@ -212,7 +215,7 @@
         android:id="@+id/tv_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textColor="#1D0437"
         app:layout_constraintBottom_toTopOf="@+id/tv_email_title"
         app:layout_constraintEnd_toEndOf="@+id/tv_email_title"
@@ -224,7 +227,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:text="Edit"
+        android:text="@string/edit"
         android:textColor="#1D0437"
         app:layout_constraintBottom_toBottomOf="@+id/tv_logout"
         app:layout_constraintEnd_toStartOf="@+id/tv_logout"

@@ -140,17 +140,17 @@ class ProfileFragment : Fragment() {
             //view password in text function
 
             mDialogView1.iv_hide_oldPassword.setOnClickListener(){
-                //conveert to password type or text type
+                //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_oldPassword, mDialogView1.edittext_old_password)
             }
 
             mDialogView1.iv_hide_newPassword1.setOnClickListener(){
-                //conveert to password type or text type
+                //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_newPassword1, mDialogView1.edittext_new_password1)
             }
 
             mDialogView1.iv_hide_newPassword2.setOnClickListener() {
-                //conveert to password type or text type
+                //convert to password type or text type
                 convertPasswordType(mDialogView1.iv_hide_newPassword2, mDialogView1.edittext_new_password2)
             }
 
@@ -289,7 +289,7 @@ class ProfileFragment : Fragment() {
                     mNewPs2.error = "Both New Password Field must be same"
                     isValid = false
                 }else if(newPsw1.length < 6){
-                    mNewPs1.error = "Password must more than 6 characters"
+                    mNewPs1.error = "Password should not less than 6 characters"
                     isValid = false
                 }
             }else{

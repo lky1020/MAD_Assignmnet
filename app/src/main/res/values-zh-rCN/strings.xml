@@ -27,7 +27,7 @@
     <string name="backgroundImg2">backgroundImg2</string>
 
     <!--fragment_profile.xml-->
-    <string name="hello_blank_fragment">你好，空白片断</string>
+    <string name="user_name">User Name</string>
 
     <!--customer_fragment_housekeeping.xml-->
     <string name="services">服务项目</string>
