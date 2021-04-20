@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.HousekeepingReportFragment
+import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.ReservationReportFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.UserReportFragment
 
 //belongs to staff_fragment_home.xml
@@ -47,14 +48,9 @@ class ManagerReportFragment : Fragment() {
 
         //*************redirect to reservation report page
         cv_reservation_report.setOnClickListener() {
-            /*
-            activity?.let{
-                val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
-                intent.putExtra("type", "check out")
-                it.startActivity(intent)
-            }
-
-             */
+            val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+            ft.replace(R.id.nav_host_fragment_staff, ReservationReportFragment())
+            ft.commit()
         }
 
         //redirect to housekeeping report page
@@ -64,7 +60,7 @@ class ManagerReportFragment : Fragment() {
             ft.commit()
         }
 
-        //*************redirect to facility report page
+        //*************redirect to payment report page
         cv_facility_report.setOnClickListener() {
             /*
             activity?.let{
