@@ -12,8 +12,6 @@ import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_transaction_details
 import com.example.mad_assignment.Customer_Fragments.cust_trans_history.CustTransHistoryFragment
 import com.example.mad_assignment.R
 import com.google.firebase.messaging.FirebaseMessagingService

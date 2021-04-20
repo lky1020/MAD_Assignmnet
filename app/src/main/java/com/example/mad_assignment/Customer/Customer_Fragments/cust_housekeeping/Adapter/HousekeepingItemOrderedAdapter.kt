@@ -22,10 +22,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import kotlin.collections.ArrayList
 
 class HousekeepingItemOrderedAdapter(private var housekeepingItemOrderedList: ArrayList<HousekeepingOrderedItem>, private var mContext: FragmentActivity): RecyclerView.Adapter<HousekeepingItemOrderedAdapter.HousekeepingItemOrderedViewHolder>() {
 

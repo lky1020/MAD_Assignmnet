@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,22 +19,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
-import com.example.mad_assignment.Customer.Chat.messages.NewMessage
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableLaundryServicesAdadpter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.AvailableRoomCleaningServicesAdadpter
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingRequestedAdapter
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.BookedHousekeepingService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Model.CustAvailableHousekeepingServicesModel
 import com.example.mad_assignment.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.customer_fragment_available_housekeeping_services.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -257,16 +246,30 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
         day = cal.get(Calendar.DAY_OF_MONTH)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
         val simpleDateFormat = SimpleDateFormat("EEEE")
-        val date = Date(year, month, dayOfMonth - 1)
+        val date = Date(year, month, dayOfMonth - 1) // - 1 for the dayString
         val dayString = simpleDateFormat.format(date).substring(0, 3)
 
         val monthString = convertMonth(month)
 
-        tvDate.text = "$dayString, $monthString $dayOfMonth "
+        //Used for validation
+        val cal: Calendar = Calendar.getInstance()
+        val validYear:Int = cal.get(Calendar.YEAR)
+        val validMonth:Int = cal.get(Calendar.MONTH)
+        val validDayOfMonth:Int = cal.get(Calendar.DAY_OF_MONTH)
+
+        val validateDate = Date(validYear, validMonth, validDayOfMonth - 1)
+
+        if(date >= validateDate){
+            tvDate.text = "$dayString, $monthString $dayOfMonth "
+        }else{
+            Toast.makeText(requireContext(), "Not Allow to Choose Previous Date", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun convertMonth(month: Int): String{
@@ -306,9 +309,18 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
 
         if(fromSelected){
-            tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            if(hourOfDay >= hour){
+                tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            }else{
+                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
+            }
+
         }else{
-            tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            if(hourOfDay >= hour){
+                tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            }else{
+                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -7,11 +7,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import java.util.regex.Pattern
 
 class Forget_Password: AppCompatActivity() {

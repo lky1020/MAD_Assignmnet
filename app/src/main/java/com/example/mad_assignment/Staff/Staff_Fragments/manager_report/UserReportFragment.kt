@@ -10,14 +10,11 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.ProfileFragment
 import com.example.mad_assignment.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import java.time.LocalDate
 
 class UserReportFragment : Fragment() {

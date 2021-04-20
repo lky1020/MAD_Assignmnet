@@ -1,17 +1,15 @@
 package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Permission
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso

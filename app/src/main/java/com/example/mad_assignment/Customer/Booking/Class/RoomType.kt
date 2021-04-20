@@ -1,7 +1,5 @@
 package com.example.mad_assignment.Customer.Booking.Class
 
-import java.util.ArrayList
-
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 

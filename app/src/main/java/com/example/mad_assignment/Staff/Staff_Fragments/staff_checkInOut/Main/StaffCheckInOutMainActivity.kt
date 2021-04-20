@@ -3,6 +3,7 @@ package com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
@@ -26,8 +27,13 @@ class StaffCheckInOutMainActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Manage Check In/Out"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = null
+
+        //back button
+        val backButton = findViewById<ImageView>(R.id.manage_check_in_out_back_icon)
+        backButton.setOnClickListener{
+            finish()
+        }
 
         //Set Fragment
         val fragment = StaffCheckInOutMainFragment()

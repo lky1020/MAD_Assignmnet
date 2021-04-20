@@ -14,11 +14,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mad_assignment.Class.Staff
-import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
 //this StaffMain is to enter & run the staff main page --- will call by Login.kt
 class StaffMain: AppCompatActivity() {

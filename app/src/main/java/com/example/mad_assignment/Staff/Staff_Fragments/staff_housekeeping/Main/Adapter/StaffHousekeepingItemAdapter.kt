@@ -2,7 +2,6 @@ package com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,22 +9,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Adapter.HousekeepingItemOrderedAdapter
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingItem
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.HousekeepingOrderedItem
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.example.mad_assignment.R
 import com.google.android.material.imageview.ShapeableImageView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.staff_add_services_dialog.view.*
 import kotlinx.android.synthetic.main.staff_edit_item_dialog.view.*
-import kotlin.collections.ArrayList
 
 class StaffHousekeepingItemAdapter(private var housekeepingItemList: ArrayList<HousekeepingItem>, private var mContext: FragmentActivity, private val servicesType: String): RecyclerView.Adapter<StaffHousekeepingItemAdapter.StaffHousekeepingItemViewHolder>() {
 

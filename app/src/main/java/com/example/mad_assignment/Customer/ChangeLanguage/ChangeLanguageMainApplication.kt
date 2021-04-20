@@ -2,7 +2,6 @@ package com.example.mad_assignment.Customer.ChangeLanguage
 
 import android.app.Application
 import android.content.Context
-import com.example.mad_assignment.Customer.ChangeLanguage.Helper.LocalHelper
 
 class ChangeLanguageMainApplication : Application() {
     

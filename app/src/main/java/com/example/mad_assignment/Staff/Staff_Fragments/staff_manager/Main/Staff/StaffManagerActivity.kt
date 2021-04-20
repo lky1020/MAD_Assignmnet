@@ -1,8 +1,9 @@
 package com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 import com.example.mad_assignment.R
@@ -17,7 +18,14 @@ class StaffManagerActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Manage Staff"
+        supportActionBar?.title = null
+        supportActionBar?.title = null
+
+        //back button
+        val backButton = findViewById<ImageView>(R.id.manage_staff_back_icon)
+        backButton.setOnClickListener{
+            finish()
+        }
 
         //Set Fragment
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()

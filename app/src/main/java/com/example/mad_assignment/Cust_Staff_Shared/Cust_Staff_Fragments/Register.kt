@@ -13,12 +13,9 @@ import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import java.util.regex.Pattern
-import java.util.regex.Pattern.compile
 
 //connect with register.xml
 class Register: AppCompatActivity() {
