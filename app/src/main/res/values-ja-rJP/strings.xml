@@ -228,10 +228,4 @@
     <string name="your_trip">あなたの旅行</string>
     <string name="selected_room">選択された部屋</string>
     <string name="reserve">予約</string>
-    <string name="add_facility">施設を追加</string>
-    <string name="facility_name">機器名</string>
-    <string name="description">説明</string>
-    <string name="location">ロケーション</string>
-    <string name="operation_hours">営業時間</string>
-    <string name="facility_from">から</string>
 </resources>

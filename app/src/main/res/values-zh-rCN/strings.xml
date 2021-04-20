@@ -229,10 +229,4 @@
     <string name="your_trip">您的旅行</string>
     <string name="selected_room">" 选定房间"</string>
     <string name="reserve">预订</string>
-    <string name="add_facility">添加设施</string>
-    <string name="facility_name">设备名称</string>
-    <string name="description">描述</string>
-    <string name="location">地点</string>
-    <string name="operation_hours">营业时间</string>
-    <string name="facility_from">从</string>
 </resources>

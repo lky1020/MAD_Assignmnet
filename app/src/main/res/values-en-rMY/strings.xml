@@ -228,11 +228,5 @@
     <string name="your_trip">Your Trip</string>
     <string name="selected_room">Selected Room</string>
     <string name="reserve">Reserve</string>
-    <string name="add_facility">Add Facility</string>
-    <string name="facility_name">Facility Name</string>
-    <string name="description">Description</string>
-    <string name="location">Location</string>
-    <string name="operation_hours">Operation Hours</string>
-    <string name="facility_from">From</string>
 
 </resources>
