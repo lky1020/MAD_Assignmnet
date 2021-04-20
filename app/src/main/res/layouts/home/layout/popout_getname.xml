@@ -15,7 +15,8 @@
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_close" />
+        app:srcCompat="@drawable/icon_close"
+        android:contentDescription="@string/image_desc" />
 
     <!-- Title: Reset name -->
     <TextView
@@ -23,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Reset Name"
+        android:text="@string/reset_name"
         android:textColor="#070707"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -50,7 +51,8 @@
             android:ems="10"
             android:hint="@string/full_name"
             android:inputType="textPersonName"
-            android:textSize="15dp" />
+            android:textSize="15sp"
+            android:importantForAutofill="no" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +64,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="#1583DA"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

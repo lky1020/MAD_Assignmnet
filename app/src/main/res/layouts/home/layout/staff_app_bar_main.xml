@@ -33,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:backgroundTint="@color/white"
-        app:srcCompat="@drawable/ic_cust_services" />
+        app:srcCompat="@drawable/ic_cust_services"
+        android:contentDescription="@string/image_desc" />
 
     <!-- the part for locate fragment  -->
 

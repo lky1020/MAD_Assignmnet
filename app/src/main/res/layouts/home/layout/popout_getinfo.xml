@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Reset Password"
+        android:text="@string/reset_password"
         android:textColor="#070707"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -66,9 +66,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:hint="Old Password"
+                android:hint="@string/old_password"
                 android:inputType="textPassword"
-                android:textSize="15dp" />
+                android:textSize="15sp"
+                android:importantForAutofill="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,7 +78,7 @@
             android:layout_width="27dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/icon_eye_password"
-            android:paddingLeft="3dp"
+            android:paddingStart="3dp"
             android:src="@drawable/ic_hide_psw"
             android:visibility="visible" />
 
@@ -106,9 +107,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:hint="Enter New Password"
+                android:hint="@string/enter_new_password"
                 android:inputType="textPassword"
-                android:textSize="15dp" />
+                android:textSize="15sp"
+                android:importantForAutofill="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +119,7 @@
             android:layout_width="27dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/icon_eye_password"
-            android:paddingLeft="3dp"
+            android:paddingStart="3dp"
             android:src="@drawable/ic_hide_psw"
             android:visibility="visible" />
 
@@ -146,9 +148,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:ems="10"
-                android:hint="Enter New Password Again"
+                android:hint="@string/enter_new_password_again"
                 android:inputType="textPassword"
-                android:textSize="15dp" />
+                android:textSize="15sp"
+                android:importantForAutofill="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,7 +160,7 @@
             android:layout_width="27dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/icon_eye_password"
-            android:paddingLeft="3dp"
+            android:paddingStart="3dp"
             android:src="@drawable/ic_hide_psw"
             android:visibility="visible" />
 
@@ -169,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Reset Phone Number"
+        android:text="@string/reset_phone_number"
         android:textColor="#070707"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -194,9 +197,9 @@
             android:layout_width="269dp"
             android:layout_height="45dp"
             android:ems="10"
-            android:hint="New Phone Number"
-            android:inputType="textPersonName"
-            android:textSize="15dp" />
+            android:hint="@string/new_phone_number"
+            android:inputType="text"
+            android:textSize="15sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,7 +211,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="#1583DA"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
