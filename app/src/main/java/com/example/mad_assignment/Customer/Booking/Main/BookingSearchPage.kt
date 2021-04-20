@@ -36,7 +36,7 @@ class BookingSearchPage : AppCompatActivity() {
 
             val checkStart = Date(startDate)
             val now = Calendar.getInstance()
-            now.add(Calendar.DATE, -1)
+           // now.add(Calendar.DATE,
 
             //validation
             when {
