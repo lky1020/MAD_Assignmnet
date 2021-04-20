@@ -35,7 +35,6 @@ class ManagerReportFragment : Fragment() {
         val cv_user_report: CardView = view.findViewById(R.id.cv_user_report)
         val cv_reservation_report: CardView = view.findViewById(R.id.cv_reservation_report)
         val cv_housekeeping_report: CardView = view.findViewById(R.id.cv_housekeeping_report)
-        val cv_facility_report: CardView = view.findViewById(R.id.cv_facility_report)
 
 
         //redirect to user report page
@@ -64,16 +63,6 @@ class ManagerReportFragment : Fragment() {
             ft.commit()
         }
 
-        //*************redirect to facility report page
-        cv_facility_report.setOnClickListener() {
-            /*
-            activity?.let{
-                val intent = Intent (it, ManageRoomMenu::class.java)
-                it.startActivity(intent)
-            }
-
-             */
-        }
 
     }
 }
