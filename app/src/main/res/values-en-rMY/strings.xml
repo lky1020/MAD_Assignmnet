@@ -188,4 +188,41 @@
     <string name="total_number_of_room_cleaning_ordered">Total Number of Room Cleaning Ordered</string>
     <string name="total_number_of_toiletries_ordered">Total Number of Toiletries Ordered</string>
 
+    <!--activity_cust_payment_method.xml-->
+    <string name="onlineBanking">Online Banking</string>
+    <string name="creditcard">Credit/Debit Card</string>
+    <string name="ewallet">E Wallet</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="totalAmount">Total Amount</string>
+    <string name="selectPaymentMethod">Select Payment Method</string>
+
+    <!--activity_cust_payment_online_banking.xml-->
+    <string name="onlineBankingMsg">You will be redirected to selected bank website</string>
+    <string name="pbeStr">Public Bank</string>
+    <string name="maybankStr">Maybank</string>
+    <string name="CIMBStr">CIMB Bank</string>
+    <string name="otherBankStr">Other Bank</string>
+    <string name="payNowStr">Pay Now</string>
+
+    <!--activity_cust_payment__e_wallet.xml-->
+    <string name="ewalletMsg">You will be redirected to selected E-Wallet website</string>
+    <string name="tngStr">Touch N Go</string>
+    <string name="grabpayStr">Grab Pay</string>
+    <string name="boostStr">Boost</string>
+    <string name="faveStr">Fave</string>
+
+    <!--activity_cust_payment_credit_card.xml-->
+    <string name="ConfirmPaymentStr">Confirm Payment</string>
+
+    <!--activity_cust_payment_transaction_details.xml-->
+    <string name="transactionDetailsStr">Transaction Details</string>
+    <string name="purchasesuccesStr">Purchase Successful</string>
+    <string name="purchasefailStr">Purchase Unsuccessful</string>
+    <string name="amountStr">Amount</string>
+    <string name="payMethodStr">Payment Method</string>
+    <string name="doubleRoomStr">Double Room</string>
+
+    <!--staff_fragment_trans_history.xml-->
+    <string name="usernameStr">Username</string>
+
 </resources>

@@ -187,4 +187,41 @@
     <string name="total_number_of_laundry_services_ordered">洗衣服务总数</string>
     <string name="total_number_of_room_cleaning_ordered">客房清洁总数</string>
     <string name="total_number_of_toiletries_ordered">盥洗用品总数</string>
+
+    <!--activity_cust_payment_method.xml-->
+    <string name="onlineBanking">网上银行业务</string>
+    <string name="creditcard">信用卡/借记卡</string>
+    <string name="ewallet">电子钱包</string>
+    <string name="subtotal">小计</string>
+    <string name="totalAmount">总金额</string>
+    <string name="selectPaymentMethod">选择付款方式</string>
+
+    <!--activity_cust_payment_online_banking.xml-->
+    <string name="onlineBankingMsg">您将被重定向到选定的银行网站</string>
+    <string name="pbeStr">大众银行</string>
+    <string name="maybankStr">马来亚银行</string>
+    <string name="CIMBStr">联昌银行</string>
+    <string name="otherBankStr">其他银行</string>
+    <string name="payNowStr">现在付款</string>
+
+    <!--activity_cust_payment__e_wallet.xml-->
+    <string name="ewalletMsg">您将被重定向到选定的电子钱包网站</string>
+    <string name="tngStr">Touch N Go</string>
+    <string name="grabpayStr">Grab Pay</string>
+    <string name="boostStr">Boost</string>
+    <string name="faveStr">Fave</string>
+
+    <!--activity_cust_payment_credit_card.xml-->
+    <string name="ConfirmPaymentStr">确认付款</string>
+
+    <!--activity_cust_payment_transaction_details.xml-->
+    <string name="transactionDetailsStr">交易明细</string>
+    <string name="purchasesuccesStr">购买成功</string>
+    <string name="purchasefailStr">购买失败</string>
+    <string name="amountStr">数量</string>
+    <string name="payMethodStr">付款方法</string>
+    <string name="doubleRoomStr">双人间</string>
+
+    <!--staff_fragment_trans_history.xml-->
+    <string name="usernameStr">用户名</string>
 </resources>
