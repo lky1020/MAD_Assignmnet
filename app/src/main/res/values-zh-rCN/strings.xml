@@ -66,6 +66,11 @@
     <string name="email">Email</string>
     <string name="icon_eye_password">icon_eye_password</string>
 
+    <!--forget_password.xml-->
+    <string name="verification">Verification</string>
+    <string name="msg_ask_reset_password">Please enter your email to proceed reset password.</string>
+    <string name="send_email">Send Email</string>
+
     <!--register.xml-->
     <string name="txtCreateAcc">创建一个新的账户来加入我们!</string>
     <string name="txtFillForm">请填写以下表格。</string>
@@ -95,6 +100,17 @@
     <string name="manage_room">Manage Room</string>
     <string name="manage_facility">Manage Facility</string>
     <string name="manage_staff">Manage Staff</string>
+
+    <!--user_report.xml-->
+    <string name="total_number_of_staff">Total Number of Staff</string>
+    <string name="num_of_staff">10</string>
+    <string name="date_gen">20-4-2021</string>
+    <string name="date_string">Date :</string>
+    <string name="user_report">User Report</string>
+    <string name="title">Title :</string>
+    <string name="user_report_name">202104 User Report</string>
+    <string name="total_num_cust">Total Number of Customer</string>
+    <string name="num_of_cust">10</string>
 
     <!--    activity_latest_messages.xml-->
     <string name="chatWifUs">与我们聊天</string>

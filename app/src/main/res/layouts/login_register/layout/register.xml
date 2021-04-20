@@ -18,7 +18,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/signup_bg"
                 tools:layout_editor_absoluteX="-38dp"
-                tools:layout_editor_absoluteY="196dp" />
+                tools:layout_editor_absoluteY="196dp"
+                android:contentDescription="@string/image_desc" />
 
             <ImageView
                 android:id="@+id/iv_register_bg2"
@@ -31,7 +32,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="39dp" />
+                tools:layout_editor_absoluteY="39dp"
+                android:contentDescription="@string/image_desc"/>
 
             <!-- back to MainActivity icon -->
 
@@ -45,7 +47,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_back"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                android:contentDescription="@string/image_desc"/>
 
 
     <ScrollView
@@ -72,7 +75,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.47"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/image_desc"/>
 
 
             <!-- register page image, upper part-->
@@ -84,7 +88,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_register_bg3"
-                app:srcCompat="@drawable/register_img" />
+                app:srcCompat="@drawable/register_img"
+                android:contentDescription="@string/image_desc"/>
 
 
             <TextView
@@ -130,18 +135,22 @@
                     android:ems="10"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="61dp"
-                    tools:layout_editor_absoluteY="295dp" />
+                    tools:layout_editor_absoluteY="295dp"
+                    android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!-- get password 1st time & 2nd time -->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_register_email"
                 android:layout_width="285dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:textColorHint="#808080"
                 app:layout_constraintEnd_toEndOf="@+id/iv_register_bg3"
-                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintHorizontal_bias="0.551"
                 app:layout_constraintStart_toStartOf="@+id/iv_register_bg3"
                 app:layout_constraintTop_toBottomOf="@+id/layout_register_name"
                 app:layout_constraintWidth_percent="0.7">
@@ -152,13 +161,12 @@
                     android:layout_height="45dp"
                     android:ems="10"
                     android:hint="@string/email"
+                    android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <!-- get password 1st time & 2nd time -->
             <LinearLayout
                 android:id="@+id/layout_register_password1"
                 android:orientation="horizontal"
@@ -184,7 +192,8 @@
                         android:ems="10"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:textSize="15dp">
+                        android:textSize="15sp"
+                        android:importantForAutofill="no">
                     </EditText>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -195,7 +204,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_hide_psw"
-                    android:visibility="visible"/>
+                    android:visibility="visible"
+                    android:contentDescription="@string/icon_eye_password"/>
             </LinearLayout>
 
             <LinearLayout
@@ -222,7 +232,8 @@
                         android:ems="10"
                         android:hint="@string/confirm_password"
                         android:inputType="textPassword"
-                        android:textSize="15dp" />
+                        android:textSize="15sp"
+                        android:importantForAutofill="no" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,7 +242,8 @@
                     android:id="@+id/iv_password2_hidePassword"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_hide_psw" />
+                    android:src="@drawable/ic_hide_psw"
+                    android:contentDescription="@string/icon_eye_password"/>
 
             </LinearLayout>
 
@@ -254,7 +266,8 @@
                     android:ems="10"
                     android:hint="@string/phone_number"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
+                    android:textSize="15sp"
+                    android:importantForAutofill="no" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -97,7 +97,7 @@
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textPersonName"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +127,7 @@
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textSize="15dp"></EditText>
+                android:textSize="15sp"></EditText>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +135,7 @@
             android:id="@+id/iv_login_hidePassword"
             android:layout_width="27dp"
             android:layout_height="match_parent"
-            android:paddingLeft="3dp"
+            android:paddingStart="3dp"
             android:src="@drawable/ic_hide_psw"
             android:visibility="visible"
             android:contentDescription="@string/icon_eye_password" />
