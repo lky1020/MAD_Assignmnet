@@ -18,9 +18,12 @@ import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AvailableRoomCleaningServicesAdadpter(private var availableRoomCleaningServicesList: ArrayList<RoomCleaningService>, private var mContext: FragmentActivity, private val servicesType: String, private val imgUrl: String): RecyclerView.Adapter<AvailableRoomCleaningServicesAdadpter.AvailableHousekeepingServicesViewHolder>(){
@@ -95,7 +98,11 @@ class AvailableRoomCleaningServicesAdadpter(private var availableRoomCleaningSer
                 val now: LocalTime = LocalTime.now(timeZone)
                 val dtf: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a")
 
-                val bookedTime = currentItem.date + " " + now.format(dtf)
+                val year:String = LocalDate.now().year.toString()
+                val month:String = LocalDate.now().month.toString()
+                val day: String = (LocalDate.now().dayOfMonth + 1).toString()
+
+                val bookedTime = month.substring(0, 1) + month.substring(1, 3).toLowerCase(Locale.ROOT)  + " " + day + " " + year +  " " + now.format(dtf)
 
                 // Book Service for User
                 val myRef = FirebaseDatabase.getInstance().getReference("Housekeeping").child(servicesType).child("ServicesBooked").child(currentUser.name + " - " + bookedTime)

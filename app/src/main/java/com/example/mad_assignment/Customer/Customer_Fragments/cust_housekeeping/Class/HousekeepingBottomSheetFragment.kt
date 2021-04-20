@@ -165,7 +165,7 @@ class HousekeepingBottomSheetFragment(private val currentItem: HousekeepingItem,
 
         val monthString = convertMonth(month)
 
-        return "$dayString, $monthString $day"
+        return "$dayString, $monthString ${day + 1 }"
     }
 
     private fun convertMonth(month: Int): String{

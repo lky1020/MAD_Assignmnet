@@ -60,7 +60,7 @@ class HousekeepingRequestedAdapter(
         val year = retrieveDate.substring(7).toInt()
 
         val simpleDateFormat = SimpleDateFormat("EEEE")
-        val date = Date(year, month, dayOfMonth)
+        val date = Date(year, month, dayOfMonth - 1)
         val dayString = simpleDateFormat.format(date).substring(0, 3)
 
         val monthString = convertMonth(month)
