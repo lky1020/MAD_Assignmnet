@@ -229,10 +229,12 @@
     <string name="total_number_of_room_cleaning_ordered">Total Number of Room Cleaning Ordered</string>
     <string name="total_number_of_toiletries_ordered">Total Number of Toiletries Ordered</string>
     <string name="housekeeping_report">Housekeeping Report</string>
+    
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="travel_date">Travel Date</string>
     <string name="your_trip">Your Trip</string>
     <string name="selected_room">Selected Room</string>
     <string name="reserve">Reserve</string>
+
 </resources>

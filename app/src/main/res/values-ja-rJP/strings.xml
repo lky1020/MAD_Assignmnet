@@ -148,37 +148,37 @@
     <string name="available">利用可能</string>
 
     <!-- Booking room -->
-    <string name="manage_room_title">Manage Room</string>
-    <string name="image_desc">Image</string>
-    <string name="addRoom">Add New Room</string>
+    <string name="manage_room_title">部屋を管理する</string>
+    <string name="image_desc">画像</string>
+    <string name="addRoom">新しい部屋を追加する</string>
     <string name="todo">TODO</string>
-    <string name="add_room_title">Add Room</string>
+    <string name="add_room_title">部屋を追加</string>
 
-    <string name="book_room_qty_spinner">Selected Room Quantity</string>
+    <string name="book_room_qty_spinner">選択された部屋の数量</string>
 
     <string-array name="room_select_qty">
-        <item>1 room</item>
-        <item>2 rooms</item>
-        <item>3 rooms</item>
-        <item>4 rooms</item>
-        <item>5 rooms</item>
-        <item>6 rooms</item>
-        <item>7 rooms</item>
-        <item>8 rooms</item>
-        <item>9 rooms</item>
-        <item>10 rooms</item>
+        <item>1 部屋</item>
+        <item>2 部屋</item>
+        <item>3 部屋</item>
+        <item>4 部屋</item>
+        <item>5 部屋</item>
+        <item>6 部屋</item>
+        <item>7 部屋</item>
+        <item>8 部屋</item>
+        <item>9 部屋</item>
+        <item>10 部屋</item>
     </string-array>
 
     <string-array name="room_select_type">
-        <item>Select Room Type</item>
-        <item>Standard Single Room</item>
-        <item>Standard Double Room</item>
-        <item>Deluxe Double Room</item>
-        <item>Standard Twin Room</item>
-        <item>Superior Queen Room</item>
-        <item>Family Room</item>
-        <item>Deluxe Studio</item>
-        <item>Triple Room</item>
+        <item>部屋タイプを選択</item>
+        <item>スタンダードシングルルーム</item>
+        <item>スタンダードダブルルーム</item>
+        <item>デラックスダブルルーム</item>
+        <item>スタンダードツインルーム</item>
+        <item>スーペリアクイーンルーム</item>
+        <item>ファミリールーム</item>
+        <item>デラックススタジオ</item>
+        <item>トリプルルーム</item>
     </string-array>
     <string name="housekeeping_report">ハウスキーピングレポート</string>
     <string name="room_detail">" 部屋の詳細"</string>
@@ -187,10 +187,41 @@
     <string name="total_number_of_laundry_services_ordered">ランドリーサービスの総数</string>
     <string name="total_number_of_room_cleaning_ordered">掃除された部屋の総数</string>
     <string name="total_number_of_toiletries_ordered">バスアメニティの総数</string>
-    <string name="add_facility">Add Facility</string>
-    <string name="facility_name">Facility Name</string>
-    <string name="description">Description</string>
-    <string name="location">Location</string>
-    <string name="operation_hours">Operation Hours</string>
-    <string name="facility_from">From</string>
+
+    <!--activity_cust_payment_method.xml-->
+    <string name="onlineBanking">オンラインバンキング</string>
+    <string name="creditcard">クレジット/デビットカード</string>
+    <string name="ewallet">Eウォレット</string>
+    <string name="subtotal">小計</string>
+    <string name="totalAmount">合計金額</string>
+    <string name="selectPaymentMethod">お支払い方法を選択してください</string>
+
+    <!--activity_cust_payment_online_banking.xml-->
+    <string name="onlineBankingMsg">選択した銀行のウェブサイトにリダイレクトされます</string>
+    <string name="pbeStr">Public Bank</string>
+    <string name="maybankStr">Maybank</string>
+    <string name="CIMBStr">CIMB Bank</string>
+    <string name="otherBankStr">他の銀行</string>
+    <string name="payNowStr">今払う</string>
+
+    <!--activity_cust_payment__e_wallet.xml-->
+    <string name="ewalletMsg">選択したE-WalletWebサイトにリダイレクトされます</string>
+    <string name="tngStr">Touch N Go</string>
+    <string name="grabpayStr">Grab Pay</string>
+    <string name="boostStr">Boost</string>
+    <string name="faveStr">Fave</string>
+
+    <!--activity_cust_payment_credit_card.xml-->
+    <string name="ConfirmPaymentStr">支払いの確認</string>
+
+    <!--activity_cust_payment_transaction_details.xml-->
+    <string name="transactionDetailsStr">取引の詳細</string>
+    <string name="purchasesuccesStr">購入成功</string>
+    <string name="purchasefailStr">購入に失敗しました</string>
+    <string name="amountStr">量</string>
+    <string name="payMethodStr">支払方法</string>
+    <string name="doubleRoomStr">ダブルルーム</string>
+
+    <!--staff_fragment_trans_history.xml-->
+    <string name="usernameStr">ユーザー名</string>
 </resources>
