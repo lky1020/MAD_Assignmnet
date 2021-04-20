@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.cust_payment_credit_card
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.model.Payment
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.views.cust_transaction_history
 import com.example.mad_assignment.R
@@ -39,7 +40,7 @@ class CustTransHistoryFragment : Fragment() {
 
                     val payment = it.getValue(Payment::class.java)
                     if(payment != null)
-                        payment_list.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status))
+                        payment_list.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status, payment.uid, payment.reserveID))
                 }
 
                 recyclerview_trans_history.adapter = cust_transaction_history(requireActivity(),payment_list)

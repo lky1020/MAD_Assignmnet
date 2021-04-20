@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/otherbank" />
 
     <TextView
-        android:id="@+id/tvRoomName"
+        android:id="@+id/tvRoomNameStaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -34,18 +34,18 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
-        android:id="@+id/tvRoomQty"
+        android:id="@+id/tvRoomQtyStaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingTop="20dp"
         android:text="x1"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tvRoomName"
-        app:layout_constraintTop_toBottomOf="@+id/tvRoomName" />
+        app:layout_constraintStart_toStartOf="@+id/tvRoomNameStaff"
+        app:layout_constraintTop_toBottomOf="@+id/tvRoomNameStaff" />
 
     <TextView
-        android:id="@+id/tvusername"
+        android:id="@+id/tvNameStaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -55,7 +55,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvRoomQty"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRoomQtyStaff"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

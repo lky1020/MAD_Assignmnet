@@ -369,7 +369,7 @@ class cust_payment_credit_card : AppCompatActivity() {
         val formatted = current.format(formatter)
 
 
-        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status)
+        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status, currentUser!!.uid, currentReserved?.reservationID.toString())
 
 
 
@@ -459,7 +459,7 @@ class cust_payment_credit_card : AppCompatActivity() {
                                 No of Guest:  ${currentReserved?.guest}
                                 No of Nights: ${currentReserved?.nights}
                                 Total Price: RM ${totalPrice}
-                                Payment Method: ${paymentMethod}
+                                Payment Method: $paymentMethod
                                 """.trimIndent()
                 )
                 alertBuilder.setPositiveButton(

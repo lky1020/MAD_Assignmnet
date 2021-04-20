@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Class.User
@@ -42,6 +41,7 @@ class staff_trans_his(
         val items = user[position]
         holder.bind(items)
 
+
         holder.eachItem.setOnClickListener {
             val fragment: Fragment = staff_fragment_trans_his_record()
             val arguments = Bundle()
@@ -60,7 +60,7 @@ class staff_trans_his(
 
         val eachItem: ConstraintLayout = itemView.findViewById(R.id.staff_trans_history_recyclerView_row)
         fun bind(viewHolder: User) {
-          itemView.tvusername.text = viewHolder.name
+          itemView.tvNameStaff.text = viewHolder.name
           Picasso.get().load(viewHolder.img).into(itemView.imgVTransStaffFrag)
         }
 

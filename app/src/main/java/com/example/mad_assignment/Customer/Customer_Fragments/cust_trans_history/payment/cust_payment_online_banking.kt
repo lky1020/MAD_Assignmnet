@@ -241,7 +241,7 @@ class cust_payment_online_banking : AppCompatActivity() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
         val formatted = current.format(formatter)
 
-        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status)
+        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status, currentUser!!.uid, currentReserved?.reservationID.toString())
 
 
         ref.setValue(payment).addOnSuccessListener {

@@ -7,17 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.model.Payment
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.views.cust_transaction_history
 import com.example.mad_assignment.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.customer_fragment_trans_history.*
-import kotlinx.android.synthetic.main.customer_fragment_trans_history.recyclerview_trans_history
 import kotlinx.android.synthetic.main.fragment_staff_trans_his_record.*
 import kotlinx.android.synthetic.main.staff_fragment_trans_history.*
 
@@ -41,7 +37,7 @@ class staff_fragment_trans_his_record : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        payment_List.clear()
         val root = inflater.inflate(R.layout.fragment_staff_trans_his_record, container, false)
 
         val arguments = arguments
@@ -56,11 +52,15 @@ class staff_fragment_trans_his_record : Fragment() {
 
                     val payment = it.getValue(Payment::class.java)
                     if(payment != null)
-                        payment_List.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status))
+                        payment_List.add(Payment(payment.invoiceID,payment.name,payment.paidDateTime,payment.totalPayment, payment.paymentMethod, payment.status, payment.uid, payment.reserveID))
                 }
-                fragment_staff_trans_his_record_recycler_view.layoutManager = LinearLayoutManager(activity)
-                fragment_staff_trans_his_record_recycler_view.adapter = staff_trans_his_record(requireActivity(),payment_List)
-                fragment_staff_trans_his_record_recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+                if(payment_List.size > 0){
+                    fragment_staff_trans_his_record_recycler_view.layoutManager = LinearLayoutManager(activity)
+                    fragment_staff_trans_his_record_recycler_view.adapter = staff_trans_his_record(requireActivity(),payment_List)
+                    fragment_staff_trans_his_record_recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                }
+
             }
 
             override fun onCancelled(error: DatabaseError) {

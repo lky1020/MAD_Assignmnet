@@ -337,7 +337,7 @@ class cust_payment_EWallet : AppCompatActivity() {
         val formatted = current.format(formatter)
 
 
-        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status)
+        val payment = Payment(invoiceID, currentUser?.name!!, formatted.toString(), totalPayment, paymentMethod, status, currentUser!!.uid, currentReserved?.reservationID.toString())
 
 
 

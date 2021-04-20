@@ -21,11 +21,11 @@ class cust_transaction_details_record(
 
         fun bindData(transList: ReservationDetail){
 
-            itemView.tvRoomName.text = transList.roomType?.roomType.toString()
+            itemView.tvRoomNameStaff.text = transList.roomType?.roomType.toString()
             val qty = "x ${transList.qty}"
-            itemView.tvRoomQty.text = qty
+            itemView.tvRoomQtyStaff.text = qty
             val priceText = "RM ${transList.subtotal?.format(2)}"
-            itemView.tvusername.text = priceText
+            itemView.tvNameStaff.text = priceText
             Picasso.get().load(transList.roomType?.img).into(itemView.imgVTransStaffFrag)
 
         }

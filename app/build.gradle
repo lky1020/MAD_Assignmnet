@@ -51,7 +51,7 @@ android {
                         'src\\main\\res\\layouts\\room_and_facility',
                         'src\\main\\res\\layouts\\menu_drawer',
                         'src\\main\\res\\layouts\\login_register',
-                        'src\\main\\res\\login_register', 'src\\main\\res\\layouts\\check_in_out', 'src\\main\\res\\layouts\\manager'
+                        'src\\main\\res\\login_register', 'src\\main\\res\\layouts\\check_in_out', 'src\\main\\res\\layouts\\manager', 'src\\main\\res\\layouts\\staffHistoryForPayment'
             }
         }
     }
