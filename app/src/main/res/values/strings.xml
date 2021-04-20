@@ -217,6 +217,8 @@
     <string name="payMethodStr">Payment Method</string>
     <string name="doubleRoomStr">Double Room</string>
 
+    <!--staff_fragment_trans_history.xml-->
+    <string name="usernameStr">Username</string>
 
     <string name="room_detail">Room Detail</string>
     <string name="number_of_guest">Number of Guest</string>

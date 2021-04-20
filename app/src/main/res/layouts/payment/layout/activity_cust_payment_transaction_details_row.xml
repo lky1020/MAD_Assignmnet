@@ -11,7 +11,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/imgVRoom"
+        android:id="@+id/imgVTransStaffFrag"
         android:layout_width="93dp"
         android:layout_height="86dp"
         android:layout_weight="1"
@@ -30,7 +30,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toEndOf="@+id/imgVRoom"
+        app:layout_constraintStart_toEndOf="@+id/imgVTransStaffFrag"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRoomName" />
 
     <TextView
-        android:id="@+id/tvRoomPrice"
+        android:id="@+id/tvusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"

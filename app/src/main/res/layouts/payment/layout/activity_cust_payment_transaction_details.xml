@@ -65,15 +65,13 @@
         android:layout_height="111dp"
         app:layout_constraintEnd_toEndOf="@+id/ll_layout_bar_cust_payment_onlineBanking_pbe"
         app:layout_constraintStart_toStartOf="@+id/ll_layout_bar_cust_payment_onlineBanking_pbe"
-        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_onlineBanking_pbe"
-        app:srcCompat="@drawable/success" />
+        app:layout_constraintTop_toTopOf="@+id/ll_layout_bar_cust_payment_onlineBanking_pbe" />
 
     <TextView
         android:id="@+id/tvPurchaseStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/purchasesuccesStr"
         android:textColor="@color/green"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -106,7 +104,6 @@
         android:id="@+id/tvTotalAmountValueDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RM 239.00"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -144,7 +141,6 @@
         android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/onlineBanking"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/tvTotalAmountValueDetails"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
@@ -153,7 +149,6 @@
         android:id="@+id/tvPaymentCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pbeStr"
         app:layout_constraintStart_toStartOf="@+id/tvpaymentMethod"
         app:layout_constraintTop_toBottomOf="@+id/tvpaymentMethod" />
 
@@ -164,8 +159,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvPaymentCompany"
         app:layout_constraintEnd_toEndOf="@+id/tvpaymentMethod"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/tvpaymentMethod"
-        app:srcCompat="@drawable/pbe" />
+        app:layout_constraintTop_toTopOf="@+id/tvpaymentMethod" />
 
     <View
         android:id="@+id/view3"
