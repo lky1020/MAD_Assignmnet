@@ -177,6 +177,7 @@ class ProfileFragment : Fragment() {
                             currentUser!!.email,
                             currentUser!!.role,
                             currentUser!!.img
+
                         )
                             //save new password to firebase storage
                             user.updatePassword(mNewPs2.text.toString())
@@ -191,8 +192,17 @@ class ProfileFragment : Fragment() {
                                                 .show()
                                     }
 
+                        if(mNewPs2.text.toString() != currentUser!!.password){
+                            var preferences: SharedPreferences? = this.activity?.getSharedPreferences("chkBox", AppCompatActivity.MODE_PRIVATE)
+                            var editor: SharedPreferences.Editor = preferences!!.edit()
+                            editor.putString("chkRmbMe", "false")
+                            editor.apply()
+                        }
+
 
                         mAlertDialog1.dismiss()
+
+
                     }
                 }
             }
@@ -297,7 +307,10 @@ class ProfileFragment : Fragment() {
                 isValid = false
             }
 
-        }else if (!(TextUtils.isEmpty(oldPsw)) || !(TextUtils.isEmpty(newPsw1)) ||!(TextUtils.isEmpty(newPsw2)) ) {
+        }else if (TextUtils.isEmpty(oldPsw) && TextUtils.isEmpty(newPsw1) && TextUtils.isEmpty(newPsw2)) {
+            mNewPs2.setText(currentUser!!.password)
+        }
+        else if (!(TextUtils.isEmpty(oldPsw)) || !(TextUtils.isEmpty(newPsw1)) ||!(TextUtils.isEmpty(newPsw2)) ) {
             if(TextUtils.isEmpty(oldPsw)){
                 mOldPassword.error = "Old Password is Required"
                 isValid = false

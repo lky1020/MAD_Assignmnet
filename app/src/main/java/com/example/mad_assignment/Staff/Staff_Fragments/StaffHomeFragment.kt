@@ -115,7 +115,7 @@ class StaffHomeFragment : Fragment() {
 
             //Manager (will not check permission)
             //redirect to chk in page
-            cv_chkIn.setOnClickListener() {
+            cv_chkIn.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
                     intent.putExtra("type", "check in")
@@ -123,8 +123,8 @@ class StaffHomeFragment : Fragment() {
                 }
             }
 
-            //*************redirect to chk out page
-            cv_chkOut.setOnClickListener() {
+            //redirect to chk out page
+            cv_chkOut.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
                     intent.putExtra("type", "check out")
@@ -133,23 +133,23 @@ class StaffHomeFragment : Fragment() {
             }
 
             //redirect to manage house keeper page
-            cv_houseKeeper.setOnClickListener() {
+            cv_houseKeeper.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
                     it.startActivity(intent)
                 }
             }
 
-            //*************redirect to manage room page
-            cv_room.setOnClickListener() {
+            //redirect to manage room page
+            cv_room.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, ManageRoomMenu::class.java)
                     it.startActivity(intent)
                 }
             }
 
-            //*************redirect to manage facility page
-            cv_facility.setOnClickListener() {
+            //redirect to manage facility page
+            cv_facility.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, ManageFacilityMenu::class.java)
                     it.startActivity(intent)
@@ -158,7 +158,7 @@ class StaffHomeFragment : Fragment() {
             }
 
             //redirect to manage staff page
-            cv_staff.setOnClickListener() {
+            cv_staff.setOnClickListener {
                 activity?.let{
                     val intent = Intent (it, StaffManagerActivity::class.java)
                     it.startActivity(intent)
@@ -185,7 +185,7 @@ class StaffHomeFragment : Fragment() {
                             if (staffDetail.uid == currentUser.uid) {
 
                                     //redirect to chk in page
-                                    cv_chkIn.setOnClickListener() {
+                                    cv_chkIn.setOnClickListener {
                                         if (staffDetail.accessCheckInOut) {
                                             activity?.let {
                                                 val intent = Intent(it, StaffCheckInOutMainActivity::class.java)
@@ -200,7 +200,7 @@ class StaffHomeFragment : Fragment() {
 
 
                                     //redirect to chk out page
-                                    cv_chkOut.setOnClickListener() {
+                                    cv_chkOut.setOnClickListener {
                                         if (staffDetail.accessCheckInOut) {
                                             activity?.let{
                                                 val intent = Intent (it, StaffCheckInOutMainActivity::class.java)
@@ -215,7 +215,7 @@ class StaffHomeFragment : Fragment() {
                                     }
 
                                 //redirect to manage house keeper page
-                                cv_houseKeeper.setOnClickListener() {
+                                cv_houseKeeper.setOnClickListener {
                                     if (staffDetail.accessHousekeeping) {
                                         activity?.let{
                                             val intent = Intent (it, StaffHousekeepingMainActivity::class.java)
@@ -226,18 +226,13 @@ class StaffHomeFragment : Fragment() {
                                     }
                                 }
 
-                                //*************redirect to manage room page
-                                cv_room.setOnClickListener() {
+                                //redirect to manage room page
+                                cv_room.setOnClickListener {
                                     if (staffDetail.accessRoom) {
-                                        //the class.java file is TEMPORARY
-                                        /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                                                    ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                                                    ft.commit()*/
-                                        /*
-                                        //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                                        //startActivity(intent)
-                                         */
+                                        activity?.let{
+                                            val intent = Intent (it, ManageRoomMenu::class.java)
+                                            it.startActivity(intent)
+                                        }
                                     }else{
                                         Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
@@ -245,17 +240,12 @@ class StaffHomeFragment : Fragment() {
 
 
                                 //*************redirect to manage facility page
-                                cv_facility.setOnClickListener() {
+                                cv_facility.setOnClickListener {
                                     if (staffDetail.accessServicesFacilities) {
-                                        //the class.java file is TEMPORARY
-                                        /*  val ft: FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-                                                    ft.replace(R.id.nav_host_fragment_staff, StaffHousekeepingMainFragment())
-
-                                                    ft.commit()*/
-                                        /*
-                                        //val intent = Intent (this@StaffHomeFragment.context, LogoutFragment::class.java)
-                                        //startActivity(intent)
-                                         */
+                                        activity?.let {
+                                            val intent = Intent(it, ManageFacilityMenu::class.java)
+                                            it.startActivity(intent)
+                                        }
                                     }else{
                                         Toast.makeText(requireActivity(), "Permission Denied!", Toast.LENGTH_SHORT).show()
                                     }
