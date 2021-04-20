@@ -61,18 +61,22 @@ class Forget_Password: AppCompatActivity() {
     private fun forgetPasswordEmail(email: String) {
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task: Task<Void> ->
-                    if(task.isComplete || task.isSuccessful){
+                    if(task.isSuccessful){ //task.isComplete ||
                         val loginIntent = Intent(this, Login::class.java)
                         startActivity(loginIntent)
 
                         Toast.makeText(applicationContext, "Please check your inbox to Reset Password and login again", Toast.LENGTH_LONG).show()
 
-                    }else{
+                    }else
+                    {
                         Toast.makeText(applicationContext, "Invalid Email! Pls enter again", Toast.LENGTH_LONG).show()
 
                     }
 
                 }
+            .addOnCanceledListener {
+                Toast.makeText(applicationContext, "No such user! Pls enter again", Toast.LENGTH_LONG).show()
+            }
 
 
 
