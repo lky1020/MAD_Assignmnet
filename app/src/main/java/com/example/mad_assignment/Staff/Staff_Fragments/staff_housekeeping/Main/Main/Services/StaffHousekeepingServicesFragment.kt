@@ -249,7 +249,19 @@ class StaffHousekeepingServicesFragment(private val title: String) : Fragment(),
 
         val monthString = convertMonth(month)
 
-        selectedDate.text = "$dayString, $monthString $dayOfMonth"
+        //Used for validation
+        val cal: Calendar = Calendar.getInstance()
+        val validYear:Int = cal.get(Calendar.YEAR)
+        val validMonth:Int = cal.get(Calendar.MONTH)
+        val validDayOfMonth:Int = cal.get(Calendar.DAY_OF_MONTH)
+
+        val validateDate = Date(validYear, validMonth, validDayOfMonth - 1)
+
+        if(date >= validateDate){
+            selectedDate.text = "$dayString, $monthString $dayOfMonth"
+        }else{
+            Toast.makeText(requireContext(), "Not Allow to Choose Previous Date", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun convertMonth(month: Int): String{

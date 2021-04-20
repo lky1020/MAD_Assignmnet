@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.customer_fragment_available_housekeeping_services.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 
@@ -257,16 +258,30 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
         day = cal.get(Calendar.DAY_OF_MONTH)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
         val simpleDateFormat = SimpleDateFormat("EEEE")
-        val date = Date(year, month, dayOfMonth - 1)
+        val date = Date(year, month, dayOfMonth - 1) // - 1 for the dayString
         val dayString = simpleDateFormat.format(date).substring(0, 3)
 
         val monthString = convertMonth(month)
 
-        tvDate.text = "$dayString, $monthString $dayOfMonth "
+        //Used for validation
+        val cal: Calendar = Calendar.getInstance()
+        val validYear:Int = cal.get(Calendar.YEAR)
+        val validMonth:Int = cal.get(Calendar.MONTH)
+        val validDayOfMonth:Int = cal.get(Calendar.DAY_OF_MONTH)
+
+        val validateDate = Date(validYear, validMonth, validDayOfMonth - 1)
+
+        if(date >= validateDate){
+            tvDate.text = "$dayString, $monthString $dayOfMonth "
+        }else{
+            Toast.makeText(requireContext(), "Not Allow to Choose Previous Date", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun convertMonth(month: Int): String{
@@ -306,9 +321,18 @@ class CustHousekeepingAvailableServicesFragment(private var title: String, priva
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
 
         if(fromSelected){
-            tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            if(hourOfDay >= hour){
+                tvTimeFrom.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            }else{
+                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
+            }
+
         }else{
-            tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            if(hourOfDay >= hour){
+                tvTimeTo.text = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)
+            }else{
+                Toast.makeText(requireContext(), "Invalid Time Selected", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
