@@ -26,8 +26,8 @@ class cust_transaction_details_record(
             val qty = "x ${transList.qty}"
             itemView.tvRoomQty.text = qty
             val priceText = "RM ${transList.subtotal?.format(2)}"
-            itemView.tvRoomPrice.text = priceText
-            Picasso.get().load(transList.roomType?.img).into(itemView.imgVRoom)
+            itemView.tvusername.text = priceText
+            Picasso.get().load(transList.roomType?.img).into(itemView.imgVTransStaffFrag)
 
         }
 

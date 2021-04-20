@@ -49,11 +49,23 @@ class NewMessage : AppCompatActivity() {
                 val adapter = GroupAdapter<ViewHolder>()
 
 
-                for (postSnapshot in snapshot.children) {
-                    val allUser: User? = postSnapshot.getValue(User::class.java)
-                    if(allUser != null && allUser.role == "Staff")
-                        adapter.add(UserItem(allUser))
+                if(currentUser!!.role == "Staff"){
+
+                    for (postSnapshot in snapshot.children) {
+                        val allUser: User? = postSnapshot.getValue(User::class.java)
+                        if(allUser != null && allUser.role == "Member")
+                            adapter.add(UserItem(allUser))
+                    }
                 }
+                else{
+
+                    for (postSnapshot in snapshot.children) {
+                        val allUser: User? = postSnapshot.getValue(User::class.java)
+                        if(allUser != null && allUser.role == "Staff")
+                            adapter.add(UserItem(allUser))
+                    }
+                }
+
 
 
                 adapter.setOnItemClickListener { item, view ->
