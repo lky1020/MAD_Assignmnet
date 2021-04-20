@@ -19,7 +19,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
-import com.example.mad_assignment.Customer.Booking.Class.ReservationDetail
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_trans_history.payment.model.Payment
 import com.example.mad_assignment.R
 import com.google.firebase.auth.FirebaseAuth
@@ -34,7 +33,6 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class cust_payment_EWallet : AppCompatActivity() {

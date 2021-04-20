@@ -3,7 +3,6 @@ package com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -12,7 +11,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Chat.messages.LatestMessages
 import com.example.mad_assignment.CustomerMain
 import com.example.mad_assignment.MainActivity
 import com.example.mad_assignment.R

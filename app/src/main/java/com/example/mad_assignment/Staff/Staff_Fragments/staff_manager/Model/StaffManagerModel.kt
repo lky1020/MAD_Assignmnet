@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mad_assignment.Class.Staff
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.LaundryService
 import com.google.firebase.database.*
 
 class StaffManagerModel() : ViewModel()  {

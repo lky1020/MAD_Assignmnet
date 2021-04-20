@@ -2,22 +2,19 @@ package com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.mad_assignment.Class.Staff
 import com.example.mad_assignment.Customer.Booking.Class.Reservation
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment.Companion.PREFS_NUM_CHK
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
-import java.time.LocalDate
 
 class StaffManageCheckInOutActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")

@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
 import android.util.Log
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
@@ -25,8 +27,6 @@ import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.edit_room_desc.*
-import kotlinx.android.synthetic.main.manage_room.*
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException

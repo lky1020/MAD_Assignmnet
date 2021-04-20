@@ -1,33 +1,17 @@
 package com.example.mad_assignment.Staff_Fragments.manager_report
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.mad_assignment.Class.User
-import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Login
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.HousekeepingReportFragment
 import com.example.mad_assignment.Staff.Staff_Fragments.manager_report.UserReportFragment
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_checkInOut.Main.StaffCheckInOutMainActivity
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainActivity
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_housekeeping.Main.Main.StaffHousekeepingMainFragment
-import com.example.mad_assignment.Staff.Staff_Fragments.staff_manager.Main.Staff.StaffManagerActivity
-import com.example.mad_assignment.Staff.room.Main.ManageRoomMenu
-import java.time.LocalDate
 
 //belongs to staff_fragment_home.xml
 class ManagerReportFragment : Fragment() {

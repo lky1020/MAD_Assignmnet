@@ -10,8 +10,6 @@ import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.
 import com.example.mad_assignment.Customer.Customer_Fragments.cust_housekeeping.Class.RoomCleaningService
 import com.google.firebase.database.*
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import kotlin.collections.ArrayList
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CustAvailableHousekeepingServicesModel() : ViewModel()  {

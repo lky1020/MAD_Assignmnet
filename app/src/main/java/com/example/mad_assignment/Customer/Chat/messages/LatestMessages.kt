@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mad_assignment.R
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mad_assignment.Class.User
 import com.example.mad_assignment.Cust_Staff_Shared.Cust_Staff_Fragments.Register
 import com.example.mad_assignment.Customer.Chat.models.ChatMessage
 import com.example.mad_assignment.Customer.Chat.views.LatestMessageRow
 import com.example.mad_assignment.CustomerMain
+import com.example.mad_assignment.R
 import com.example.mad_assignment.StaffMain
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*

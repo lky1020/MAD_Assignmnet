@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -21,13 +20,8 @@ import com.example.mad_assignment.Customer.Booking.Adapter.BookRoomAdapter
 import com.example.mad_assignment.Customer.Booking.Class.RoomType
 import com.example.mad_assignment.Customer.Booking.Model.BookRoomTypeMenuModel
 import com.example.mad_assignment.R
-import com.example.mad_assignment.Staff.facility.Class.Facility
-import kotlinx.android.synthetic.main.add_facility.*
 import kotlinx.android.synthetic.main.book_room_menu.*
-import kotlinx.android.synthetic.main.manage_facility_menu.*
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class BookRoomMenu : AppCompatActivity() {

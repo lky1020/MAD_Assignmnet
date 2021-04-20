@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mad_assignment.Customer.Booking.Class.RoomType
 import com.example.mad_assignment.R
 import com.example.mad_assignment.Staff.room.Main.ManageRoom
-import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlin.collections.ArrayList
 
 //This adapter is use to handle menu item in room activity
 class ManageRoomMenuAdapter(

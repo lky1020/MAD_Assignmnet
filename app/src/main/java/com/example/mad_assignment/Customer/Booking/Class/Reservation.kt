@@ -1,8 +1,8 @@
 package com.example.mad_assignment.Customer.Booking.Class
 
-import java.util.*
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 class Reservation(var reservationID: String?,
