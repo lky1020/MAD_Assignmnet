@@ -187,4 +187,10 @@
     <string name="total_number_of_laundry_services_ordered">洗衣服务总数</string>
     <string name="total_number_of_room_cleaning_ordered">客房清洁总数</string>
     <string name="total_number_of_toiletries_ordered">盥洗用品总数</string>
+    <string name="add_facility">Add Facility</string>
+    <string name="facility_name">Facility Name</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="operation_hours">Operation Hours</string>
+    <string name="facility_from">From</string>
 </resources>

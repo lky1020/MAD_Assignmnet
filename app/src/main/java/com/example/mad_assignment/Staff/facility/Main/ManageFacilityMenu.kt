@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mad_assignment.R
+import com.example.mad_assignment.Staff.Staff_Fragments.StaffHomeFragment
 import com.example.mad_assignment.Staff.facility.Adapter.FacilityMenuAdapter
 import com.example.mad_assignment.Staff.facility.Class.Facility
 import com.example.mad_assignment.Staff.facility.Model.FacilityViewModel
@@ -39,7 +40,12 @@ class ManageFacilityMenu : AppCompatActivity() {
         //back button
         val backButton = findViewById<ImageView>(R.id.manage_facility_menu_back_icon)
         backButton.setOnClickListener{
+           // val intent = Intent(this, ManageFacilityMenu::class.java)
+           // startActivity(intent)
+
             finish()
+            //var fragment =  getFragmentManager().findFragmentById(R.id.staff_fragment_home) as (StaffHomeFragment)
+            //fragment()
         }
 
         //------------------------------------------------------
@@ -47,8 +53,11 @@ class ManageFacilityMenu : AppCompatActivity() {
         //------------------------------------------------------
 
         btn_add_facility.setOnClickListener {
-            val intent = Intent(this, AddFacility::class.java)
-            startActivity(intent)
+            //val intent = Intent(this, AddFacility::class.java)
+            //startActivity(intent)
+            if (getFragmentManager().getBackStackEntryCount() != 0) {
+                getFragmentManager().popBackStack();
+            }
         }
 
         //------------------------------------------------------

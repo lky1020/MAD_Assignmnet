@@ -31,7 +31,9 @@ class ManageFacilityDetails : AppCompatActivity() {
 
         //back button
         manage_facility_details_back_icon.setOnClickListener{
-            finish()
+            val intent = Intent(this, ManageFacilityMenu::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
 
         //------------------------------------------------------
@@ -39,7 +41,7 @@ class ManageFacilityDetails : AppCompatActivity() {
         //------------------------------------------------------
 
         val gson = Gson()
-        val facility = gson.fromJson<Facility>(intent.getStringExtra("facility"), Facility::class.java)
+        val facility = gson.fromJson(intent.getStringExtra("facility"), Facility::class.java)
 
         Picasso.get().load(facility.img).into(iv_facility_img)
         Picasso.get().isLoggingEnabled = true
@@ -63,6 +65,7 @@ class ManageFacilityDetails : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton("Yes") { _, _ ->
                     deleteFacility(facility)
+
                     finish()
                 }
                 .setNegativeButton("No") { dialog, id ->
@@ -91,7 +94,7 @@ class ManageFacilityDetails : AppCompatActivity() {
 
         val myRef = FirebaseDatabase.getInstance().getReference("Facility")
 
-            myRef.child(currentItem.facilityName!!).removeValue()
+            myRef.child(currentItem.facilityID!!).removeValue()
                 .addOnSuccessListener {
                     Log.d("Facility", "Successfully delete room")
                     Toast.makeText(this, "Delete Success", Toast.LENGTH_SHORT).show()

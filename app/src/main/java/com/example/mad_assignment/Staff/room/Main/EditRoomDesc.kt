@@ -43,6 +43,7 @@ class EditRoomDesc : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_room_desc)
 
+        selectPhotoUri = null
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
@@ -117,7 +118,7 @@ class EditRoomDesc : AppCompatActivity() {
                             roomType.size = et_edit_size.text.toString().toInt()
                             roomType.beds = et_edit_beds.text.toString()
 
-                            if(selectPhotoUri == null){
+                            if(selectPhotoUri.toString() == roomType.img){
                                 //update db
                                 updateRoom(roomType, this)
                             }else{
@@ -126,6 +127,7 @@ class EditRoomDesc : AppCompatActivity() {
 
                             val gson = Gson()
                             val intent = Intent(this, ManageRoom::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             intent.putExtra("RoomType", gson.toJson(roomType))
                             startActivity(intent)
                          }
@@ -159,12 +161,12 @@ class EditRoomDesc : AppCompatActivity() {
 
     //upload img to firebase storage and firebase
     private fun uploadImgToFirebaseStorage(imguri: Uri, roomType: RoomType) {
-        if (imguri == null) return
+    //    if (imguri == roomType.img?.toUri()) return
 
         val fileName = UUID.randomUUID().toString() +".jpg"
-        val ref = FirebaseStorage.getInstance().getReference("/room/${roomType.roomType!!.toLowerCase()}/$fileName")
+        val ref = FirebaseStorage.getInstance().getReference("/room/$fileName")
 
-        ref.putFile(imguri!!)
+        ref.putFile(imguri)
                 .addOnSuccessListener {
                     Log.d("Edit Room", "Successfully uploaded image: ${it.metadata?.path}")
 
@@ -195,22 +197,15 @@ private fun updateRoom(currentItem: RoomType, context: Context){
     myRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
         override fun onDataChange(snapshot: DataSnapshot) {
-            // Code for showing progressDialog while uploading
-            val progressDialog = ProgressDialog(context)
-            progressDialog.setTitle("Uploading...")
-            progressDialog.show()
-
             if (snapshot.exists()) {
 
 
                 myRef.setValue(currentItem)
                         .addOnSuccessListener {
-                            progressDialog.dismiss()
                             Log.d("Edit Room Type", "Successfully edit room description")
                             Toast.makeText(context, "Edit Success", Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
-                            progressDialog.dismiss()
                             Log.d("Edit Room Type", "Fail to edit room description")
                             Toast.makeText(context, "Fail to Edit", Toast.LENGTH_SHORT).show()
                         }

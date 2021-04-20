@@ -2,6 +2,7 @@
 <!--Card Layout for Room Menu (Staff) -->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
@@ -25,17 +26,17 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/todo" />
 
         <!-- Room Type -->
         <TextView
             android:id="@+id/tv_brc_item_room_type"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Standard Double Room"
+            android:layout_marginStart="10dp"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/iv_bmc_item"
             app:layout_constraintTop_toTopOf="@+id/iv_bmc_item" />
@@ -45,17 +46,16 @@
             android:id="@+id/tv_brc_item_price_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="price for 2 nights"
-            android:textSize="8dp"
+            android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/tv_brc_item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RM 298"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +66,7 @@
             android:id="@+id/tv_brc_item_beds"
             android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:text="2 beds"
-            android:textSize="12dp"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/tv_brc_item_room_type"
             app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_room_type" />
 
@@ -76,8 +75,7 @@
             android:id="@+id/tv_brc_item_occupancy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2 guest"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:layout_marginBottom="5dp"
             app:layout_constraintStart_toStartOf="@+id/tv_brc_item_beds"
             app:layout_constraintTop_toBottomOf="@+id/tv_brc_item_beds" />
@@ -100,7 +98,7 @@
             android:id="@+id/brc_item_delete"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:background="@color/blue_300"
             android:padding="3dp"
             android:scaleType="centerCrop"
@@ -110,7 +108,5 @@
             app:layout_constraintStart_toEndOf="@+id/brc_item_spinner"
             app:layout_constraintTop_toTopOf="@+id/brc_item_spinner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.cardview.widget.CardView>

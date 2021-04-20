@@ -17,14 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- toolbar-->
-        </LinearLayout>
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/confirm_book_toolbar"
             android:layout_width="match_parent"
@@ -57,7 +49,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Selected Room"
+                android:text="@string/selected_room"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -71,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/appBarLayoutConfirmRoom">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -81,13 +74,13 @@
                 android:id="@+id/tv_brc_your_trip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Your trip"
+                android:layout_marginStart="20dp"
+                android:text="@string/your_trip"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appbar_room" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Travel Date -->
             <TextView
@@ -96,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:paddingVertical="5dp"
-                android:text="Travel Date"
+                android:text="@string/travel_date"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -110,7 +103,6 @@
                 android:background="@drawable/round_rect_grey"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="5dp"
-                android:text="12 Feb to 13 Feb"
                 android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_brc_date_title"
@@ -125,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingVertical="5dp"
-                android:text="Number of Guest"
+                android:text="@string/number_of_guest"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -136,11 +128,10 @@
                 android:id="@+id/tv_brc_guest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/round_rect_grey"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="5dp"
-                android:text="2 Guest"
                 android:textColor="@color/dark_gray"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_brc_guest_title"
@@ -196,7 +187,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_button_blue_300"
             android:backgroundTint="@color/midnight_green"
-            android:text="Add"
+            android:text="@string/add"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -208,7 +199,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_button_blue_300"
             android:backgroundTint="#008080"
-            android:text="Reserve"
+            android:text="@string/reserve"
             android:textColor="@color/white"
             android:textSize="15sp" />
     </LinearLayout>

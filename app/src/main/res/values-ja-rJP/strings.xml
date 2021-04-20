@@ -187,4 +187,10 @@
     <string name="total_number_of_laundry_services_ordered">ランドリーサービスの総数</string>
     <string name="total_number_of_room_cleaning_ordered">掃除された部屋の総数</string>
     <string name="total_number_of_toiletries_ordered">バスアメニティの総数</string>
+    <string name="add_facility">Add Facility</string>
+    <string name="facility_name">Facility Name</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="operation_hours">Operation Hours</string>
+    <string name="facility_from">From</string>
 </resources>

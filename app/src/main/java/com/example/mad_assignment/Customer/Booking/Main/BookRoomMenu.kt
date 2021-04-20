@@ -205,7 +205,7 @@ class BookRoomMenu : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     private fun convertLongToDate(date: Long?): String {
-        val format:SimpleDateFormat = SimpleDateFormat("dd MMM")
+        val format = SimpleDateFormat("dd MMM")
         return format.format(date)
     }
 }
