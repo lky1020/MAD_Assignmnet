@@ -88,7 +88,6 @@
         android:layout_width="273dp"
         android:layout_height="55dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="@+id/layout_old_password"
         app:layout_constraintTop_toBottomOf="@+id/layout_old_password">
