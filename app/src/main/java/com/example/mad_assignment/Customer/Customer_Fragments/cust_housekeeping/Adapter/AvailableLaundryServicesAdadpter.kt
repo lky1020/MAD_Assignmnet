@@ -94,7 +94,7 @@ class AvailableLaundryServicesAdadpter(private var availableLaundryServicesList:
 
                 val year:String = LocalDate.now().year.toString()
                 val month:String = LocalDate.now().month.toString()
-                val day: String = (LocalDate.now().dayOfMonth + 1).toString()
+                val day: String = (LocalDate.now().dayOfMonth).toString()
 
                 val bookedTime = month.substring(0, 1) + month.substring(1, 3).toLowerCase(Locale.ROOT)  + " " + day + " " + year +  " " + now.format(dtf)
 
