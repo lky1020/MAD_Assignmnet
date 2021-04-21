@@ -137,7 +137,7 @@ class ConfirmBooking : AppCompatActivity() {
                                     selectedRoomList,
                                     totalPrice,
                                     "pending",
-                                    format.format(todayDate()),
+                                    todayDate(),
                             )
 
                             ref.setValue(reservation)
