@@ -1,2 +1,2 @@
 # MAD_Assignmnet
-This is a Mobile App that developed for Mobile Application Development Assignment.
+This is a Hotel Management Mobile App that developed for Mobile Application Development Assignment.
