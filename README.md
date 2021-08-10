@@ -1,2 +1,2 @@
 # MAD_Assignmnet
- Mobile Application Development
+This is a Mobile App that developed for Mobile Application Development Assignment.
